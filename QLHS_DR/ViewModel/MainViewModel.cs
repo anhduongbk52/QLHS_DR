@@ -85,7 +85,7 @@ namespace QLHS_DR.ViewModel
                     {
                         if (loginVM.User != null)
                         {
-                            SectionLogin.Ins.CurrentUser = loginVM.User;
+                           
                             CurrentUser = loginVM.User;
                             //Group currentGroup = SectionLogin.Ins.CurrentUser.Groups.FirstOrDefault();
                             //if (currentGroup != null) SectionLogin.Ins.CurrentPermission.GetPermissionByGroup(currentGroup.GroupId);

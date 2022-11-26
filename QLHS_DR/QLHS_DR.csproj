@@ -53,6 +53,10 @@
     <Reference Include="DevExpress.Images.v21.2" />
     <Reference Include="DevExpress.Mvvm.v21.2" />
     <Reference Include="DevExpress.Xpf.Themes.Office2019Colorful.v21.2" />
+    <Reference Include="EofficeCommonLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\EofficeClient\EofficeCommonLibrary\bin\Debug\EofficeCommonLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />

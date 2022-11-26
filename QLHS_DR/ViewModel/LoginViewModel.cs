@@ -119,7 +119,8 @@ namespace EofficeClient.ViewModel
                 client.Open();
                 User = client.GetUserByName(_UserName);               
                 ServiceProxy.Ins = client;
-
+                SectionLogin.Ins.CurrentUser = User;
+                SectionLogin.Ins.Permissions = client.GetPermissions(User.Id);
                 IsLogin = true;
                 CheckBoxSave(_SaveLogin);
                 if (_SaveLogin && IsLogin)
@@ -165,5 +166,6 @@ namespace EofficeClient.ViewModel
             configuration.Save();
             ConfigurationManager.RefreshSection("appSettings");
         }
+
     }
 }

@@ -23,7 +23,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
     {
         //        
         #region "Properties and Field"
-        private BackgroundWorker bgWorker;
+     
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
 
@@ -74,19 +74,9 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         #endregion
         public ListNewDocumentViewModel()
         {
-            bgWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true
-            };
-            bgWorker.DoWork += backgroundWorker1_DoWork;
-            bgWorker.ProgressChanged += backgroundWorker1_ProgressChanged;
-            bgWorker.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
-
-
-
             iReadOnlyListUser = ServiceProxy.Ins.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
 
-
+           
 
 
             ListTaskOfUser = new List<Task>();
@@ -106,32 +96,25 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
             {
-                if (!bgWorker.IsBusy)
+                PermissionType taskPermissions = ServiceProxy.Ins.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id,_TaskSelected.Id);
+
+                bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
+                bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_TaskSelected.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
+
+
+                var taskAttachedFileDTOs = ServiceProxy.Ins.GetTaskDocuments(_TaskSelected.Id); //get all file PDF in task
+                if(taskAttachedFileDTOs.Length==1)
                 {
-                    bgWorker.RunWorkerAsync();
-                }
-                TaskAttachedFileDTO taskAttachedFileDTO = new TaskAttachedFileDTO();
-                var taskAttachedFileDTOs = ServiceProxy.Ins.GetTaskDocuments(_TaskSelected.Id);
-                DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);               
-                PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content);
-                pdfViewer.Show();
+                    DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
+                    PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content);
+                    pdfViewer.Show();
+                }           
+
+              
             });
         }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-         
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-          
-        }
+      
         public ObservableCollection<User> GetAllUser()
         {
             ObservableCollection<User> ketqua = new ObservableCollection<User>();

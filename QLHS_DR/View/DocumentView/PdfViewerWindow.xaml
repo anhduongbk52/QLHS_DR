@@ -10,6 +10,6 @@
         Loaded="pdfViewerWindow_Loaded"
         Title="PDF View" Height="Auto" Width="Auto">
     <Grid>
-        <dxpdf:PdfViewerControl Name="pdfViewer"  CommandBarStyle="Ribbon"/>
+        <dxpdf:PdfViewerControl Name="pdfViewer" DocumentLoaded="pdfViewer_DocumentLoaded" CommandBarStyle="Ribbon"/>
     </Grid>
 </Window>

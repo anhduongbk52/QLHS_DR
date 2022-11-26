@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLHS_DR.ServiceReference1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace QLHS_DR.Core
                 _ins = value;
             }
         }
-        public ServiceReference1.User CurrentUser { get; set; }
+        public PermissionType Permissions { get; set; }
+        public User CurrentUser { get; set; }
     }
 }

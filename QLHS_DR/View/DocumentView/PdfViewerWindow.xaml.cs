@@ -1,6 +1,7 @@
 ﻿using DevExpress.ClipboardSource.SpreadsheetML;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,11 @@ namespace QLHS_DR.View.DocumentView
         {
             MemoryStream stream = new MemoryStream(contextFile);
             pdfViewer.DocumentSource = stream;
+        }
+
+        private void pdfViewer_DocumentLoaded(object sender, RoutedEventArgs e)
+        {
+         
         }
     }
 }
