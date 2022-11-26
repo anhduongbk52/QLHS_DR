@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Converterter ="clr-namespace:QLHS_DR.Converter"
+                     xmlns:viewmodel="clr-namespace:QLHS_DR.ViewModel">
+    <viewmodel:ViewModelLocator x:Shared="False"  x:Key="Locator" ></viewmodel:ViewModelLocator>
+    <Converterter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></Converterter:BooleanToVisibilityConverter>
+</ResourceDictionary>

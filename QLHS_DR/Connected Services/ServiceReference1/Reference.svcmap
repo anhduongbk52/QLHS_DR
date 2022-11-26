@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="541615ca-81d0-43e9-bd83-11675eafce2c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://192.168.11.12:8888/EEMCDRWcfService/service" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="245074b4-4292-46e4-a6f1-a40b79b56dbf" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?xsd=xsd4" />
+    <MetadataFile FileName="EEMCDRWcfService.wsdl" MetadataType="Wsdl" ID="4eb11df1-f216-45ce-a5ad-08471a1a5c69" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?wsdl" />
+    <MetadataFile FileName="service.disco" MetadataType="Disco" ID="403aa72f-c2b1-40d5-85da-b6d32ad0e2d0" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?disco" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8939c522-1c7e-4056-8f28-d8ad8ef7f719" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?wsdl=wsdl0" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="17c53186-f81a-45c7-a4af-4084d0c500a4" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?xsd=xsd0" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="b1a35e18-18e0-47a5-a679-3e83a315deb3" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?xsd=xsd5" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="f0dc5327-fa3d-4237-a41b-08f778bcc786" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?xsd=xsd3" />
+    <MetadataFile FileName="service4.xsd" MetadataType="Schema" ID="d2d4358d-a27d-4126-a273-b43f40752acb" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?xsd=xsd2" />
+    <MetadataFile FileName="service5.xsd" MetadataType="Schema" ID="9a1b17db-f5d7-4029-bce2-bbdace58bff8" SourceId="1" SourceUrl="https://192.168.11.12:8888/EEMCDRWcfService/service?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

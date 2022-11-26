@@ -1,0 +1,123 @@
+﻿<dx:ThemedWindow 
+    x:Class="QLHS_DR.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    Name="mainWindow"
+    DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}"
+    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    Title="MainWindow" Height="800" Width="1000">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel>
+        <DockPanel.Resources>
+            <DataTemplate x:Key="TabItemHeaderTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"
+                               Text="{Binding}"
+                               FontWeight="Medium" />
+                </StackPanel>
+            </DataTemplate>
+        </DockPanel.Resources>
+        <dxr:RibbonControl DockPanel.Dock="Top" 
+                           RibbonStyle="Office2019"
+                           ToolbarShowMode="Hide">
+            <dxr:RibbonControl.ApplicationMenu>
+                <dxr:BackstageViewControl>
+                    <dxr:BackstageViewControl.Items>
+                        <dxr:BackstageButtonItem Command="{Binding CheckUpdateCommand}"
+                                                 Content="Check for Update"></dxr:BackstageButtonItem>
+                    </dxr:BackstageViewControl.Items>
+                </dxr:BackstageViewControl>
+            </dxr:RibbonControl.ApplicationMenu>
+            <dxr:RibbonControl.PageHeaderItems>
+                <dxb:BarSubItem  Content="{Binding CurrentUser.FullName}"
+                                 RibbonStyle="SmallWithText"
+                                 Glyph="{dx:DXImage SvgImages/Business Objects/BO_Customer.svg}">
+                    <dxb:BarButtonItem Command="{Binding LogoutCommand}"
+                                       CommandParameter="{Binding ElementName=mainWindow}"
+                                       Content="Đăng xuất"
+                                       Glyph="{dx:DXImage DevAV/Actions/Docking_16x16.png}" />
+                    <dxb:BarButtonItem Command="{Binding OpenChangePassWordWindowCommand}"
+                                       CommandParameter="{Binding ElementName=mainWindow}"
+                                       Content="Đổi mật khẩu"
+                                       Glyph="{dx:DXImage DevAV/Actions/Docking_16x16.png}"></dxb:BarButtonItem>
+                    <dxb:BarButtonItem Content="Cập nhật thông tin"
+                                       Glyph="{dx:DXImage DevAV/Actions/Docking_16x16.png}"></dxb:BarButtonItem>
+                </dxb:BarSubItem>
+            </dxr:RibbonControl.PageHeaderItems>
+            <dxr:RibbonControl.ToolbarItems>
+                <dxb:BarButtonItemLink BarItemName="newItem"/>
+            </dxr:RibbonControl.ToolbarItems>
+            <dxr:RibbonDefaultPageCategory>
+                <dxr:RibbonPage Caption="Home">
+                    <dxr:RibbonPageGroup Caption="File">
+                        <dxb:BarButtonItem x:Name="newDocument" Content="New Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>
+                        <dxb:BarButtonItem x:Name="editDocument" Content="Edit Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Dashboards/Edit.svg}"/>
+                        <dxb:BarButtonItem x:Name="userInDocument" Content="Add User To Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Department.svg}"/>
+                        <dxb:BarButtonItem  Content="Permission for Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/RichEdit/EditRangePermission.svg}"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonDefaultPageCategory>
+        </dxr:RibbonControl>
+        <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
+            <dxr:RibbonStatusBarControl.RightItems>
+                <dxb:BarButtonItem x:Name="printItem" Content="Print" Glyph="{dx:DXImage 'SvgImages/Print/Print.svg'}"/>
+            </dxr:RibbonStatusBarControl.RightItems>
+        </dxr:RibbonStatusBarControl>
+        <dxwui:HamburgerMenu  DockPanel.Dock="Left" AvailableViewStates="Inline" ViewState="Opened" IsMenuVisible="True">
+            <dxwui:HamburgerMenuNavigationButton Content="Chưa xử lý (1)" Command="{Binding LoadListNewDocument}"></dxwui:HamburgerMenuNavigationButton>
+            <dxwui:HamburgerMenuNavigationButton Content="Đã xử lý (3)" Command="{Binding LoadListDoneDocument}"></dxwui:HamburgerMenuNavigationButton>
+            <dxwui:HamburgerMenuNavigationButton Content="Đã Thu hồi (3)"></dxwui:HamburgerMenuNavigationButton>
+            <dxwui:HamburgerMenu.Content>
+                <dx:DXTabControl ItemsSource="{Binding Workspaces}"
+                         Margin="2"
+                         Grid.Row="1"
+                         BorderThickness="0"
+                         ItemHeaderTemplate="{StaticResource TabItemHeaderTemplate}"
+                         TabHidden="tabControl_TabHidden"
+                         Padding="0"
+                         Name="tabControl">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedTab}"
+                                           CommandParameter="{Binding SelectedItem,ElementName=tabControl}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <dx:DXTabControl.ItemContainerStyle>
+                        <Style TargetType="dx:DXTabItem">
+                            <Setter Property="CloseCommandParameter"
+                            Value="{Binding}" />
+                            <Setter Property="Header"  Value="{Binding Header}"></Setter>
+                            <Setter Property="AllowHide" Value="{Binding AllowHide}"></Setter>
+                            <Setter Property="IsSelected"  Value="{Binding IsSelected,Mode=TwoWay}"></Setter>  
+                            <Setter Property="Visibility" Value="{Binding IsVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BooleanToVisibilityConverter}}"></Setter>
+                        </Style>
+                    </dx:DXTabControl.ItemContainerStyle>
+                    <dx:DXTabControl.View>
+                        <dx:TabControlScrollView ShowHeaderMenu="True"                                         
+                                         ShowHiddenTabItemsInHeaderMenu="True"
+                                         HeaderLocation="Top"
+                                         HeaderOrientation="Horizontal"
+                                         AllowAnimation="True"
+                                         HideButtonShowMode="InAllTabs"                                         
+                                         ScrollViewer.PanningMode="VerticalFirst"/>
+                    </dx:DXTabControl.View>
+                    <dx:DXTabControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Content}"></ContentControl>
+                        </DataTemplate>
+                    </dx:DXTabControl.ItemTemplate>
+                </dx:DXTabControl>
+            </dxwui:HamburgerMenu.Content>
+        </dxwui:HamburgerMenu>
+
+    </DockPanel>
+</dx:ThemedWindow>
