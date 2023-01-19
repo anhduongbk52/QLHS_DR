@@ -267,12 +267,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EofficeService\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
-      <Project>{73c5b695-ab99-4697-a126-6e67cecfa389}</Project>
-      <Name>EofficeCommonLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\EOfficeServiceReference\Service.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +280,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EofficeService\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
+      <Project>{73c5b695-ab99-4697-a126-6e67cecfa389}</Project>
+      <Name>EofficeCommonLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
