@@ -1825,10 +1825,19 @@ namespace QLHS_DR.ServiceReference1 {
         private int AssignedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasPrintedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsProcessingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ServiceReference1.PermissionType PermissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SeenField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ServiceReference1.Task TaskField;
@@ -1872,6 +1881,19 @@ namespace QLHS_DR.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasPrinted {
+            get {
+                return this.HasPrintedField;
+            }
+            set {
+                if ((this.HasPrintedField.Equals(value) != true)) {
+                    this.HasPrintedField = value;
+                    this.RaisePropertyChanged("HasPrinted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -1885,6 +1907,19 @@ namespace QLHS_DR.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsProcessing {
+            get {
+                return this.IsProcessingField;
+            }
+            set {
+                if ((this.IsProcessingField.Equals(value) != true)) {
+                    this.IsProcessingField = value;
+                    this.RaisePropertyChanged("IsProcessing");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public QLHS_DR.ServiceReference1.PermissionType PermissionType {
             get {
                 return this.PermissionTypeField;
@@ -1893,6 +1928,19 @@ namespace QLHS_DR.ServiceReference1 {
                 if ((this.PermissionTypeField.Equals(value) != true)) {
                     this.PermissionTypeField = value;
                     this.RaisePropertyChanged("PermissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Seen {
+            get {
+                return this.SeenField;
+            }
+            set {
+                if ((this.SeenField.Equals(value) != true)) {
+                    this.SeenField = value;
+                    this.RaisePropertyChanged("Seen");
                 }
             }
         }
@@ -2835,6 +2883,60 @@ namespace QLHS_DR.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/ChangePassword", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/ChangePasswordResponse")]
         System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.LoginStatusType> ChangePasswordAsync(string userName, string oldPassword, string newPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTaskResponse")]
+        void UpdateTask(QLHS_DR.ServiceReference1.Task task, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTaskResponse")]
+        System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.ServiceReference1.Task task, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTaskResponse")]
+        QLHS_DR.ServiceReference1.User[] GetProcessingUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.User[]> GetProcessingUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTaskResponse")]
+        QLHS_DR.ServiceReference1.User[] GetSeenUsersInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.User[]> GetSeenUsersInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTaskResponse")]
+        QLHS_DR.ServiceReference1.User[] GetPrintedUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.User[]> GetPrintedUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTaskResponse")]
+        void SetSeenUserInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTaskResponse")]
+        System.Threading.Tasks.Task SetSeenUserInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTaskResponse")]
+        void SetPrintedUserInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTaskResponse")]
+        System.Threading.Tasks.Task SetPrintedUserInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUser", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUserResponse")]
+        void RemoveProcessingUser(int taskId, int userId, int removedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUser", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUserResponse")]
+        System.Threading.Tasks.Task RemoveProcessingUserAsync(int taskId, int userId, int removedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTaskResponse")]
+        bool HasSeenInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTaskResponse")]
+        System.Threading.Tasks.Task<bool> HasSeenInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTaskResponse")]
+        bool IsProcessingInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTask", ReplyAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTaskResponse")]
+        System.Threading.Tasks.Task<bool> IsProcessingInTaskAsync(int taskId, int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3134,6 +3236,78 @@ namespace QLHS_DR.ServiceReference1 {
         
         public System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.LoginStatusType> ChangePasswordAsync(string userName, string oldPassword, string newPassword) {
             return base.Channel.ChangePasswordAsync(userName, oldPassword, newPassword);
+        }
+        
+        public void UpdateTask(QLHS_DR.ServiceReference1.Task task, int userId) {
+            base.Channel.UpdateTask(task, userId);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.ServiceReference1.Task task, int userId) {
+            return base.Channel.UpdateTaskAsync(task, userId);
+        }
+        
+        public QLHS_DR.ServiceReference1.User[] GetProcessingUserInTask(int taskId) {
+            return base.Channel.GetProcessingUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.User[]> GetProcessingUserInTaskAsync(int taskId) {
+            return base.Channel.GetProcessingUserInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ServiceReference1.User[] GetSeenUsersInTask(int taskId) {
+            return base.Channel.GetSeenUsersInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.User[]> GetSeenUsersInTaskAsync(int taskId) {
+            return base.Channel.GetSeenUsersInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ServiceReference1.User[] GetPrintedUserInTask(int taskId) {
+            return base.Channel.GetPrintedUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ServiceReference1.User[]> GetPrintedUserInTaskAsync(int taskId) {
+            return base.Channel.GetPrintedUserInTaskAsync(taskId);
+        }
+        
+        public void SetSeenUserInTask(int taskId, int userId) {
+            base.Channel.SetSeenUserInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task SetSeenUserInTaskAsync(int taskId, int userId) {
+            return base.Channel.SetSeenUserInTaskAsync(taskId, userId);
+        }
+        
+        public void SetPrintedUserInTask(int taskId, int userId) {
+            base.Channel.SetPrintedUserInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task SetPrintedUserInTaskAsync(int taskId, int userId) {
+            return base.Channel.SetPrintedUserInTaskAsync(taskId, userId);
+        }
+        
+        public void RemoveProcessingUser(int taskId, int userId, int removedBy) {
+            base.Channel.RemoveProcessingUser(taskId, userId, removedBy);
+        }
+        
+        public System.Threading.Tasks.Task RemoveProcessingUserAsync(int taskId, int userId, int removedBy) {
+            return base.Channel.RemoveProcessingUserAsync(taskId, userId, removedBy);
+        }
+        
+        public bool HasSeenInTask(int taskId, int userId) {
+            return base.Channel.HasSeenInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> HasSeenInTaskAsync(int taskId, int userId) {
+            return base.Channel.HasSeenInTaskAsync(taskId, userId);
+        }
+        
+        public bool IsProcessingInTask(int taskId, int userId) {
+            return base.Channel.IsProcessingInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsProcessingInTaskAsync(int taskId, int userId) {
+            return base.Channel.IsProcessingInTaskAsync(taskId, userId);
         }
     }
 }

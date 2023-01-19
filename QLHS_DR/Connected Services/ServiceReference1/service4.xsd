@@ -147,8 +147,11 @@
   <xs:complexType name="UserTask">
     <xs:sequence>
       <xs:element minOccurs="0" name="AssignedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="HasPrinted" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsProcessing" type="xs:boolean" />
       <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="PermissionType" type="q7:PermissionType" />
+      <xs:element minOccurs="0" name="Seen" type="xs:boolean" />
       <xs:element minOccurs="0" name="Task" nillable="true" type="tns:Task" />
       <xs:element minOccurs="0" name="TaskId" type="xs:int" />
       <xs:element minOccurs="0" name="TaskKey" nillable="true" type="xs:base64Binary" />

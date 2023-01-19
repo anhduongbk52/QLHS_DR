@@ -1,4 +1,5 @@
 ﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.Core;
@@ -27,15 +28,15 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
 
-        private Task _TaskSelected;
-        public Task TaskSelected
+        private UserTask _UserTaskSelected;
+        public UserTask UserTaskSelected
         {
-            get => _TaskSelected;
+            get => _UserTaskSelected;
             set
             {
-                if (_TaskSelected != value)
+                if (_UserTaskSelected != value)
                 {
-                    _TaskSelected = value; OnPropertyChanged("TaskSelected");
+                    _UserTaskSelected = value; OnPropertyChanged("UserTaskSelected");
                 }
             }
         }
@@ -63,6 +64,30 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 }
             }
         }
+        private ObservableCollection<UserTask> _ListUserTaskOfTask;
+        public ObservableCollection<UserTask> ListUserTaskOfTask
+        {
+            get => _ListUserTaskOfTask;
+            set
+            {
+                if (_ListUserTaskOfTask != value)
+                {
+                    _ListUserTaskOfTask = value; OnPropertyChanged("ListUserTaskOfTask");
+                }
+            }
+        }
+        private ObservableCollection<UserTask> _ListUserTaskOfUser;
+        public ObservableCollection<UserTask> ListUserTaskOfUser
+        {
+            get => _ListUserTaskOfUser;
+            set
+            {
+                if (_ListUserTaskOfUser != value)
+                {
+                    _ListUserTaskOfUser = value; OnPropertyChanged("ListUserTaskOfUser");
+                }
+            }
+        }
         #endregion
 
 
@@ -72,45 +97,72 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ICommand TaskSelectedCommand { get; set; }
         public ICommand OpenFileCommand { get; set; }
         #endregion
-        public ListNewDocumentViewModel()
+        public ListNewDocumentViewModel(ObservableCollection<UserTask> userTask) 
         {
-            iReadOnlyListUser = ServiceProxy.Ins.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+            if(userTask!=null)
+            {
+                ListUserTaskOfUser = userTask;
+            }
+            try 
+            {
+                iReadOnlyListUser = ServiceProxy.Ins.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }    
+            
 
            
 
 
             ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
-            LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {
-                ListTaskOfUser = GetAllTaskOfUser(SectionLogin.Ins.CurrentUser.Id);
-            });
-            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
-            {
-                UsersInTask = new ObservableCollection<User>();
-                var taskusers = ServiceProxy.Ins.GetUserInTask(_TaskSelected.Id);
-                foreach (var item in taskusers)
+            //LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            //{
+            //    ListTaskOfUser = GetAllTaskOfUser(SectionLogin.Ins.CurrentUser.Id).OrderByDescending(x=>x.StartDate).ToList();
+            //});
+            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            {                
+                
+                ListUserTaskOfTask = new ObservableCollection<UserTask>();
+                try
                 {
-                    UsersInTask.Add(item);
+                    UsersInTask = ServiceProxy.Ins.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
+                    foreach (var user in _UsersInTask)
+                    {
+                        UserTask userTask = ServiceProxy.Ins.GetUserTask(user.Id, _UserTaskSelected.TaskId);
+
+                        if (userTask != null)
+                        {
+                            userTask.User = user;
+                            ListUserTaskOfTask.Add(userTask);
+                        }
+                    }
                 }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }   
+               
+                
             });
-            OpenFileCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
-                PermissionType taskPermissions = ServiceProxy.Ins.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id,_TaskSelected.Id);
-
-                bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
-                bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_TaskSelected.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
-
-
-                var taskAttachedFileDTOs = ServiceProxy.Ins.GetTaskDocuments(_TaskSelected.Id); //get all file PDF in task
-                if(taskAttachedFileDTOs.Length==1)
+                try
                 {
-                    DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
-                    PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content);
-                    pdfViewer.Show();
-                }           
+                    PermissionType taskPermissions = ServiceProxy.Ins.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
 
-              
+                    bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
+                    bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
+
+
+                    var taskAttachedFileDTOs = ServiceProxy.Ins.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
+                    if (taskAttachedFileDTOs.Length == 1)
+                    {
+                        DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
+                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content);
+                        pdfViewer.Show();
+                    }
+
+                }
+                catch(Exception ex)
+                { MessageBox.Show(ex.Message); }
+                
             });
         }
 
@@ -129,13 +181,22 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         }
         public List<Task> GetAllTaskOfUser(int userId)
         {
-            List<Task> ketqua = new List<Task>();
-            var Tasks = ServiceProxy.Ins.LoadTasks(userId);
-
-            foreach (var taks in Tasks)
+             List<Task> ketqua = new List<Task>();
+            try
             {
-                ketqua.Add(taks);
+               
+                var Tasks = ServiceProxy.Ins.LoadTasks(userId);
 
+                foreach (var taks in Tasks)
+                {
+                    ketqua.Add(taks);
+
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             return ketqua;
         }

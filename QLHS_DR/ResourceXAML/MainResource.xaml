@@ -4,4 +4,5 @@
                      xmlns:viewmodel="clr-namespace:QLHS_DR.ViewModel">
     <viewmodel:ViewModelLocator x:Shared="False"  x:Key="Locator" ></viewmodel:ViewModelLocator>
     <Converterter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></Converterter:BooleanToVisibilityConverter>
+    <Converterter:PermissionTypeToTextConverter x:Key="PermissionTypeToTextConverter"></Converterter:PermissionTypeToTextConverter>
 </ResourceDictionary>

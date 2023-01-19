@@ -11,21 +11,20 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
-                                   CommandParameter="{Binding ElementName=mainWindow}" />
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <dxg:GridControl Grid.Column="0"
+        <dxg:GridControl Grid.Column="0" 
                          AutoGenerateColumns="None" 
-                         ItemsSource="{Binding ListTaskOfUser}"
+                         ItemsSource="{Binding ListUserTaskOfUser}"
                          SelectionMode="Row"
-                         SelectedItem="{Binding TaskSelected}">
+                         SelectedItem="{Binding UserTaskSelected}">
             <dxg:GridControl.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Xem" Command="{Binding OpenFileCommand}"></MenuItem>
@@ -33,18 +32,16 @@
                     <MenuItem Header="Thêm người nhận"></MenuItem>
                 </ContextMenu>
             </dxg:GridControl.ContextMenu>
-            <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Id" ReadOnly="True" Header="TT" IsSmart="False"  Width="70"/>
-                <dxg:GridColumn FieldName="Subject" ReadOnly="True" Header="Tên tài liệu"  />
-                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Ghi chú" />
-                <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
-                <dxg:GridColumn FieldName="EndDate" ReadOnly="True" Header="Ngày kết thúc" />
+            <dxg:GridControl.Columns>                
+                <dxg:GridColumn FieldName="Task.Subject" MinWidth="400" ReadOnly="True" Header="Tên tài liệu"  />
+                <dxg:GridColumn FieldName="Task.Description" ReadOnly="True" Header="Ghi chú" />
+                <dxg:GridColumn FieldName="Task.StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView />
             </dxg:GridControl.View>
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
+                <i:EventTrigger EventName="PreviewMouseDown">
                     <i:InvokeCommandAction Command="{Binding TaskSelectedCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
@@ -52,14 +49,15 @@
         <dxg:GridControl Grid.Column="1"
                          AutoGenerateColumns="None" 
                          AutoExpandAllGroups="True"
-                         ItemsSource="{Binding UsersInTask}" 
+                         ItemsSource="{Binding ListUserTaskOfTask}" 
                          EnableSmartColumnsGeneration="True" 
                          SelectionMode="Row">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="FullName" ReadOnly="True" Header="Người xử lý"  />
-                <dxg:GridColumn FieldName="Department" ReadOnly="True" Header="Đơn vị" GroupIndex="0" />
-                <dxg:GridColumn FieldName="Department" ReadOnly="True" Header="Trạng thái" />
-                <dxg:GridColumn FieldName="Department" ReadOnly="True" Header="Quyền" />
+                <dxg:GridColumn FieldName="User.FullName" ReadOnly="True" Header="Người xử lý"  />
+                <dxg:GridColumn FieldName="User.Department" ReadOnly="True" Header="Đơn vị" GroupIndex="0" />
+                <dxg:GridColumn Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }" ReadOnly="True" Header="Quyền in" />
+                <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>
+                <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
             </dxg:GridControl.Columns>
 
             <dxg:GridControl.View>

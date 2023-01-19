@@ -214,6 +214,60 @@
   <wsdl:message name="IEEMCDRWcfService_ChangePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_UpdateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_UpdateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_GetProcessingUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessingUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_GetProcessingUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessingUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_GetSeenUsersInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeenUsersInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_GetSeenUsersInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeenUsersInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_GetPrintedUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintedUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_GetPrintedUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintedUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_SetSeenUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSeenUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_SetSeenUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSeenUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_SetPrintedUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintedUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_SetPrintedUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintedUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_RemoveProcessingUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProcessingUser" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_RemoveProcessingUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProcessingUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_HasSeenInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasSeenInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_HasSeenInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasSeenInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_IsProcessingInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProcessingInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEEMCDRWcfService_IsProcessingInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProcessingInTaskResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEEMCDRWcfService">
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetUserByName" message="tns:IEEMCDRWcfService_GetUserByName_InputMessage" />
@@ -350,6 +404,42 @@
     <wsdl:operation name="ChangePassword">
       <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/ChangePassword" message="tns:IEEMCDRWcfService_ChangePassword_InputMessage" />
       <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/ChangePasswordResponse" message="tns:IEEMCDRWcfService_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTask" message="tns:IEEMCDRWcfService_UpdateTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTaskResponse" message="tns:IEEMCDRWcfService_UpdateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingUserInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTask" message="tns:IEEMCDRWcfService_GetProcessingUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTaskResponse" message="tns:IEEMCDRWcfService_GetProcessingUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeenUsersInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTask" message="tns:IEEMCDRWcfService_GetSeenUsersInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTaskResponse" message="tns:IEEMCDRWcfService_GetSeenUsersInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintedUserInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTask" message="tns:IEEMCDRWcfService_GetPrintedUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTaskResponse" message="tns:IEEMCDRWcfService_GetPrintedUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSeenUserInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTask" message="tns:IEEMCDRWcfService_SetSeenUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTaskResponse" message="tns:IEEMCDRWcfService_SetSeenUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintedUserInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTask" message="tns:IEEMCDRWcfService_SetPrintedUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTaskResponse" message="tns:IEEMCDRWcfService_SetPrintedUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProcessingUser">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUser" message="tns:IEEMCDRWcfService_RemoveProcessingUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUserResponse" message="tns:IEEMCDRWcfService_RemoveProcessingUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasSeenInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTask" message="tns:IEEMCDRWcfService_HasSeenInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTaskResponse" message="tns:IEEMCDRWcfService_HasSeenInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProcessingInTask">
+      <wsdl:input wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTask" message="tns:IEEMCDRWcfService_IsProcessingInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTaskResponse" message="tns:IEEMCDRWcfService_IsProcessingInTask_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

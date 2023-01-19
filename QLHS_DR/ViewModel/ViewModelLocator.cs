@@ -15,9 +15,6 @@ namespace QLHS_DR.ViewModel
         {
             get { return new LoginViewModel(); }
         }
-        public ListNewDocumentViewModel ListNewDocumentViewModel
-        {
-            get { return new ListNewDocumentViewModel(); }
-        }
+       
     }
 }

@@ -16,12 +16,23 @@ using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.View;
 using EofficeClient.ViewModel;
 using QLHS_DR.View.DocumentView;
+using EofficeClient.Core;
+using QLHS_DR.ServiceReference1;
+using DevExpress.Mvvm.Native;
+using EofficeClient.ViewModel.DocumentViewModel;
+using DevExpress.Pdf.Native.BouncyCastle.Utilities.Net;
+using AutoUpdaterDotNET;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
+using QLHS_DR.Properties;
 
 namespace QLHS_DR.ViewModel
 {
     class MainViewModel:BaseViewModel
     {
         #region "Field and properties"
+        private Window window;
+
         private ObservableCollection<TabContainer> _Workspaces;
         public ObservableCollection<TabContainer> Workspaces
         {
@@ -52,20 +63,72 @@ namespace QLHS_DR.ViewModel
                 }
             }
         }
+
+        private string _ContentButtonNotCompleted;
+        public string ContentButtonNotCompleted
+        {
+            get => _ContentButtonNotCompleted;
+            set
+            {
+                if (_ContentButtonNotCompleted != value)
+                {
+                    _ContentButtonNotCompleted = value;
+                    NotifyPropertyChanged("ContentButtonNotCompleted");
+                }
+            }
+        }
+        private string _ContentButtonCompleted;
+        public string ContentButtonCompleted
+        {
+            get => _ContentButtonCompleted;
+            set
+            {
+                if (_ContentButtonCompleted != value)
+                {
+                    _ContentButtonCompleted = value;
+                    NotifyPropertyChanged("ContentButtonCompleted");
+                }
+            }
+        }
+        private string _ContentButtonRevoke;
+        public string ContentButtonRevoke
+        {
+            get => _ContentButtonRevoke;
+            set
+            {
+                if (_ContentButtonRevoke != value)
+                {
+                    _ContentButtonRevoke = value;
+                    NotifyPropertyChanged("ContentButtonRevoke");
+                }
+            }
+        }
         #endregion
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand LoadListNewDocument { get; set; }
+        public ICommand LoadListCompltetedDocument { get; set; }
+        public ICommand LoadListRevokeDocument { get; set; }
         public ICommand OpenChangePassWordWindowCommand { get; set; }
         #endregion
         public MainViewModel()
         {
+            //Settings for update
+            string addressUpdateInfo = Settings.Default.AddressUpdateInfo;
+            AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
+            AutoUpdater.Start(addressUpdateInfo);
+
+
             Workspaces = new ObservableCollection<TabContainer>();
 
+            ObservableCollection<UserTask> _ListUserTaskIsProcessing = new ObservableCollection<UserTask>();
+            ObservableCollection<UserTask> _ListUserTaskCompleted=new ObservableCollection<UserTask>();
+            ObservableCollection<UserTask> _ListUserTaskRevoked=new ObservableCollection<UserTask>();
+            ObservableCollection<UserTask>  _ListAllUserTask = new ObservableCollection<UserTask>();
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-              
+                window = p;
                 //Load current version
                 Version version = GetRunningVersion();
                 TileApplication = "EEMC Office - " + version?.Major + "." + version?.Minor + "." + version?.Build + "." + version?.Revision;
@@ -91,11 +154,71 @@ namespace QLHS_DR.ViewModel
                             //if (currentGroup != null) SectionLogin.Ins.CurrentPermission.GetPermissionByGroup(currentGroup.GroupId);
                             //else SectionLogin.Ins.CurrentPermission.GetDefaultPermission();
                         }
+                        
                         p.Show();
+
+                        _ListUserTaskIsProcessing = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != ServiceReference1.TaskStatus.Revoked && x.IsProcessing == false).OrderByDescending(x=>x.Task.StartDate).ToObservableCollection();
+                        _ListUserTaskCompleted = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != ServiceReference1.TaskStatus.Revoked && x.IsProcessing == true).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
+                        _ListUserTaskRevoked = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == ServiceReference1.TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
+                        //_ListAllUserTask = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == ServiceReference1.TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
+                        Workspaces.Clear();
+
+                        ListNewDocumentUC listNewDocumentUC = new ListNewDocumentUC();
+                        ListNewDocumentUC listCompletedDocumentUC = new ListNewDocumentUC();
+                        ListNewDocumentUC listRevokeDocumentUC = new ListNewDocumentUC();
+                        ListNewDocumentUC listAllDocumentUC = new ListNewDocumentUC();
+
+                        ListNewDocumentViewModel listNewDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskIsProcessing);                        
+                        ListNewDocumentViewModel listCompletedDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskCompleted);
+                        ListNewDocumentViewModel listRevokeDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskRevoked);
+                        ListNewDocumentViewModel listAllDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskRevoked);
+
+                        listNewDocumentUC.DataContext = listNewDocumentViewModel;
+                        listCompletedDocumentUC.DataContext = listCompletedDocumentViewModel;
+                        listRevokeDocumentUC.DataContext = listRevokeDocumentViewModel;
+                        listAllDocumentUC.DataContext = listRevokeDocumentViewModel;
+
+                        TabContainer tabItemNew = new TabContainer
+                        {
+                            Header = "Tài liệu chưa xử lý ( "+ _ListUserTaskIsProcessing.Count()+" )",
+                            AllowHide = "true",
+                            IsSelected = true,
+                            IsVisible = true,
+                            Content = listNewDocumentUC
+                        };
+                        TabContainer tabItemCompleted = new TabContainer
+                        {
+                            Header = "Tài liệu đã xử lý ( " + _ListUserTaskCompleted.Count() + " )",
+                            AllowHide = "true",
+                            IsSelected = false,
+                            IsVisible = true,
+                            Content = listCompletedDocumentUC
+                        };
+                        TabContainer tabItemRevoke = new TabContainer
+                        {
+                            Header = "Tài liệu đã thu hồi ( " + _ListUserTaskRevoked.Count() + " )",
+                            AllowHide = "true",
+                            IsSelected = false,
+                            IsVisible = true,
+                            Content = listRevokeDocumentUC
+                        };
+                        TabContainer tabItemAll = new TabContainer
+                        {
+                            Header = "All ( " + _ListUserTaskRevoked.Count() + " )",
+                            AllowHide = "true",
+                            IsSelected = false,
+                            IsVisible = true,
+                            Content = listAllDocumentUC
+                        };
+
+                        Workspaces.Add(tabItemNew);
+                        Workspaces.Add(tabItemCompleted);
+                        Workspaces.Add(tabItemRevoke);
+                        Workspaces.Add(tabItemAll);
+
                     }
                     else
                     { p.Close(); }
-
                 }
             });
             LogoutCommand = new RelayCommand<Window>((p) => { if (p == null) return false; else return true; }, (p) =>
@@ -125,18 +248,18 @@ namespace QLHS_DR.ViewModel
             });
             LoadListNewDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                ListNewDocumentUC listNewDocumentWindow = new ListNewDocumentUC();
-                Workspaces.Clear();
+                
 
-                TabContainer tabItemMain = new TabContainer
-                {
-                    Header = "Tài liệu chưa xử lý",
-                    AllowHide = "true",
-                    IsSelected = true,
-                    IsVisible = true,
-                    Content = listNewDocumentWindow
-                };
-                Workspaces.Add(tabItemMain);
+            });
+            LoadListCompltetedDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+               
+                
+
+            });
+            LoadListRevokeDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+               
 
             });
             OpenChangePassWordWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -150,7 +273,37 @@ namespace QLHS_DR.ViewModel
 
         }
         #region "Function"
-   
+        private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+            if (args.IsUpdateAvailable)
+            {
+                DialogResult dialogResult;
+                dialogResult = System.Windows.Forms.MessageBox.Show($@"Bạn ơi, phần mềm của bạn có phiên bản mới {args.CurrentVersion}. Phiên bản bạn đang sử dụng hiện tại  {args.InstalledVersion}. Bạn có muốn cập nhật phần mềm không?", @"Cập nhật phần mềm",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information);
+
+                if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
+                {
+                    try
+                    {
+                        if (AutoUpdater.DownloadUpdate(args))
+                        {
+                            window.Close();
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        System.Windows.Forms.MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+            //else
+            //{
+            //    System.Windows.Forms.MessageBox.Show(@"Phiên bản bạn đang sử dụng đã được cập nhật mới nhất.", @"Cập nhật phần mềm",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+        }
         private Version GetRunningVersion()
         {
             try
@@ -170,6 +323,26 @@ namespace QLHS_DR.ViewModel
         private static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
         {
             return true;
+        }
+        private ObservableCollection<UserTask> GetAllUserTaskOfUser(int userId)
+        {
+            ObservableCollection<UserTask> ListUserTaskOfUser =new ObservableCollection<UserTask>();
+            ObservableCollection<ServiceReference1.Task> ListTaskOfUser = ServiceProxy.Ins.LoadTasks(userId).ToObservableCollection();
+           
+            foreach (var task in ListTaskOfUser)
+            {
+                UserTask userTask = ServiceProxy.Ins.GetUserTask(userId, task.Id);
+                if(userTask != null)
+                {
+                    userTask.Task = task;
+                    ListUserTaskOfUser.Add(userTask);
+                }    
+              
+            }
+            return ListUserTaskOfUser;
+
+
+
         }
     }
 }

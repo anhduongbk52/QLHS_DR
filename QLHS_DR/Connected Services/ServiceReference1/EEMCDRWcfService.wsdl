@@ -412,6 +412,87 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingUserInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetProcessingUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeenUsersInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetSeenUsersInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintedUserInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/GetPrintedUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSeenUserInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetSeenUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintedUserInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/SetPrintedUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProcessingUser">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/RemoveProcessingUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasSeenInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/HasSeenInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProcessingInTask">
+      <soap12:operation soapAction="http://EEMC_DR_Service.Wcf/IEEMCDRWcfService/IsProcessingInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="EEMCDRWcfService">
     <wsdl:port name="WSHttpBinding_IEEMCDRWcfService" binding="tns:WSHttpBinding_IEEMCDRWcfService">

@@ -18,12 +18,16 @@ using DevExpress.Mvvm;
 using QLHS_DR.Core;
 using QLHS_DR.ViewModel;
 using EofficeClient.Core;
+using DevExpress.XtraExport.Xls;
+using QLHS_DR.EOfficeServiceReference;
 
 namespace EofficeClient.ViewModel
 {
 
     class LoginViewModel : BaseViewModel, IDataErrorInfo
     {
+
+        private EofficeMainServiceClient _MyClient;
         public string Error { get { return null; } }
         public string this[string columnName]
         {
@@ -79,13 +83,22 @@ namespace EofficeClient.ViewModel
             LoadedWindowCommand = new RelayCommand<Window>((w) => { return true; }, (p) => {
                 Password = "";
                 UserName = "";
-                CredentialData credentialData = ConfigurationUtil.LoadCredentialData(AppInfo.FolderPath);
-                if (credentialData != null)
+                try
                 {
-                    UserName = credentialData.UserId;
-                    Password = credentialData.Password;
-                    Login(p);
+                    CredentialData credentialData = ConfigurationUtil.LoadCredentialData(AppInfo.FolderPath);
+
+                    if (credentialData != null)
+                    {
+                        UserName = credentialData.UserId;
+                        Password = credentialData.Password;
+                        Login(p);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exceptiton: " + ex.Message);
+                }
+                
             });
             LoginCommand = new RelayCommand<Window>((w) => { if (_UserName != null && _Password != null && _Password != "") return true; else return false; }, (p) =>
             {
@@ -111,12 +124,17 @@ namespace EofficeClient.ViewModel
             IsLogin = false;
             if (p == null) return;
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
-            EEMCDRWcfServiceClient client = Core.ServiceHelper.NewServiceClient(_UserName, passEncode);          
+            
+            EEMCDRWcfServiceClient client = Core.ServiceHelper.NewServiceClient(_UserName, passEncode);
+            _MyClient = ServiceHelper.NewEofficeMainServiceClient(_UserName, passEncode);
 
             try
             {
                 // System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; }; //Igno SSL
                 client.Open();
+                _MyClient.Open();
+                MessageBox.Show(_MyClient.GetMessage("Duong"));
+
                 User = client.GetUserByName(_UserName);               
                 ServiceProxy.Ins = client;
                 SectionLogin.Ins.CurrentUser = User;
@@ -136,36 +154,34 @@ namespace EofficeClient.ViewModel
                     ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
                 }
                 p.Close();
+                _MyClient.Close();
             }
             catch (TimeoutException exception)
             {
                 IsLogin = false;
                 MessageBox.Show("Exceptiton: " + exception.Message);
                 client.Abort();
+                _MyClient.Abort();
             }
             catch (MessageSecurityException exception)
             {
                 IsLogin = false;
                 MessageBox.Show(exception.InnerException.Message);
                 client.Abort();
+                _MyClient.Abort();
             }
             catch (CommunicationException exception)
             {
                 IsLogin = false;
                 MessageBox.Show("Exceptiton: " + exception.Message);
                 client.Abort();
+                _MyClient.Abort();
             }
         }
         public void CheckBoxSave(bool status)
         {
-            System.Configuration.Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            if (configuration.AppSettings.Settings["StatusSavePass"] == null)
-                configuration.AppSettings.Settings.Add("StatusSavePass", status.ToString());
-            else
-                configuration.AppSettings.Settings["StatusSavePass"].Value = status.ToString();
-            configuration.Save();
-            ConfigurationManager.RefreshSection("appSettings");
+            QLHS_DR.Properties.Settings.Default.StatusSavePass = status;           
+            QLHS_DR.Properties.Settings.Default.Save();
         }
-
     }
 }

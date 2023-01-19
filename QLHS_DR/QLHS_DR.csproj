@@ -53,10 +53,6 @@
     <Reference Include="DevExpress.Images.v21.2" />
     <Reference Include="DevExpress.Mvvm.v21.2" />
     <Reference Include="DevExpress.Xpf.Themes.Office2019Colorful.v21.2" />
-    <Reference Include="EofficeCommonLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\EofficeClient\EofficeCommonLibrary\bin\Debug\EofficeCommonLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -84,12 +80,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\EOfficeServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
     <Compile Include="Core\AppInfo.cs" />
     <Compile Include="Core\G6Class.cs" />
     <Compile Include="Core\SectionLogin.cs" />
@@ -165,6 +167,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\EOfficeServiceReference\EofficeMainService.wsdl" />
+    <None Include="Connected Services\EOfficeServiceReference\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference1\EEMCDRWcfService.wsdl" />
     <None Include="Connected Services\ServiceReference1\QLHS_DR.ServiceReference1.Log.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -222,6 +231,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autoupdater.NET.Official">
+      <Version>1.7.6</Version>
+    </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
       <Version>4.6.1</Version>
     </PackageReference>
@@ -236,6 +248,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\EOfficeServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +262,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EofficeService\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
+      <Project>{73c5b695-ab99-4697-a126-6e67cecfa389}</Project>
+      <Name>EofficeCommonLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EOfficeServiceReference\Service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EOfficeServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EOfficeServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EOfficeServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
