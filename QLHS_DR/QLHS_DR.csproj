@@ -1,6 +1,7 @@
 ﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>preview</LangVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QLHS_DR</RootNamespace>
     <AssemblyName>QLHS_DR</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -237,6 +238,12 @@
     <PackageReference Include="MaterialDesignThemes">
       <Version>4.6.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.Internal">
+      <Version>7.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation">
+      <Version>7.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.39</Version>
     </PackageReference>
@@ -282,8 +289,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EofficeService\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
-      <Project>{73c5b695-ab99-4697-a126-6e67cecfa389}</Project>
+    <COMReference Include="Accessibility">
+      <Guid>{1EA4DBF0-3C3B-11CF-810C-00AA00389B71}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
+      <Project>{772c7bae-491e-4e58-95c1-e4e8d7be9b9f}</Project>
       <Name>EofficeCommonLibrary</Name>
     </ProjectReference>
   </ItemGroup>
