@@ -172,9 +172,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 { MessageBox.Show(ex.Message); }
                 
             });
-        }
-
-      
+        }      
         public ObservableCollection<User> GetAllUser()
         {
             ObservableCollection<User> ketqua = new ObservableCollection<User>();
