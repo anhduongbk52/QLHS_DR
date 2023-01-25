@@ -1,17 +1,17 @@
 ﻿
 using System.ServiceModel;
-using QLHS_DR.ServiceReference1;
+using QLHS_DR.EOfficeServiceReference;
 
 namespace EofficeClient.Core
 {
     public sealed class ServiceProxy
     {
-        private static EEMCDRWcfServiceClient _ins;
-        public static EEMCDRWcfServiceClient Ins
+        private static EofficeMainServiceClient _ins;
+        public static EofficeMainServiceClient Ins
         {
             get
             {
-                if (_ins == null) _ins = new EEMCDRWcfServiceClient();
+                if (_ins == null) _ins = new EofficeMainServiceClient();
                 if (_ins.State != CommunicationState.Opened)
                 {
                     _ins.Open();
@@ -21,6 +21,13 @@ namespace EofficeClient.Core
             set
             {
                 _ins = value;
+            }
+        }
+        ~ServiceProxy()
+        {           
+            if (_ins != null && _ins.State == System.ServiceModel.CommunicationState.Opened)
+            {
+                _ins.Close();
             }
         }
     }

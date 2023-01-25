@@ -1,9 +1,5 @@
-﻿using QLHS_DR.ServiceReference1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using QLHS_DR.EOfficeServiceReference;
 
 namespace QLHS_DR.Core
 {
@@ -24,6 +20,7 @@ namespace QLHS_DR.Core
             }
         }
         public PermissionType Permissions { get; set; }
-        public User CurrentUser { get; set; }
+        public QLHS_DR.EOfficeServiceReference.User CurrentUser { get; set; }
+        internal string Token { get; set; }
     }
 }

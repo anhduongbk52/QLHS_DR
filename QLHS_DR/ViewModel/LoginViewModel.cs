@@ -1,5 +1,4 @@
-﻿using QLHS_DR.ServiceReference1;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -26,7 +25,6 @@ namespace EofficeClient.ViewModel
 
     class LoginViewModel : BaseViewModel, IDataErrorInfo
     {
-
         private EofficeMainServiceClient _MyClient;
         public string Error { get { return null; } }
         public string this[string columnName]
@@ -61,16 +59,13 @@ namespace EofficeClient.ViewModel
             }
         }
         private string _Password;
-
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
-
         private bool _SaveLogin;
         public bool SaveLogin { get => _SaveLogin; set { _SaveLogin = value; OnPropertyChanged("SaveLogin"); } }
-
         private int _UserId;
         public int UserId { get => _UserId; set { _UserId = value; OnPropertyChanged(); } }
-        public User _User;
-        public User User { get => _User; set { _User = value; OnPropertyChanged("User"); } }
+        public QLHS_DR.EOfficeServiceReference.User _User;
+        public QLHS_DR.EOfficeServiceReference.User User { get => _User; set { _User = value; OnPropertyChanged("User"); } }
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -86,7 +81,6 @@ namespace EofficeClient.ViewModel
                 try
                 {
                     CredentialData credentialData = ConfigurationUtil.LoadCredentialData(AppInfo.FolderPath);
-
                     if (credentialData != null)
                     {
                         UserName = credentialData.UserId;
@@ -125,20 +119,17 @@ namespace EofficeClient.ViewModel
             if (p == null) return;
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
             
-            EEMCDRWcfServiceClient client = Core.ServiceHelper.NewServiceClient(_UserName, passEncode);
             _MyClient = ServiceHelper.NewEofficeMainServiceClient(_UserName, passEncode);
 
             try
             {
                 // System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; }; //Igno SSL
-                client.Open();
-                _MyClient.Open();
-                MessageBox.Show(_MyClient.GetMessage("Duong"));
-
-                User = client.GetUserByName(_UserName);               
-                ServiceProxy.Ins = client;
+                _MyClient.Open();               
+                User = _MyClient.GetUserByName(_UserName);
+                ServiceProxy.Ins = _MyClient;
                 SectionLogin.Ins.CurrentUser = User;
-                SectionLogin.Ins.Permissions = client.GetPermissions(User.Id);
+                SectionLogin.Ins.Permissions = _MyClient.GetPermissions(User.Id);
+                SectionLogin.Ins.Token = passEncode;
                 IsLogin = true;
                 CheckBoxSave(_SaveLogin);
                 if (_SaveLogin && IsLogin)
@@ -154,27 +145,24 @@ namespace EofficeClient.ViewModel
                     ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
                 }
                 p.Close();
-                _MyClient.Close();
+                //_MyClient.Close();
             }
             catch (TimeoutException exception)
             {
                 IsLogin = false;
                 MessageBox.Show("Exceptiton: " + exception.Message);
-                client.Abort();
                 _MyClient.Abort();
             }
             catch (MessageSecurityException exception)
             {
                 IsLogin = false;
                 MessageBox.Show(exception.InnerException.Message);
-                client.Abort();
                 _MyClient.Abort();
             }
             catch (CommunicationException exception)
             {
                 IsLogin = false;
                 MessageBox.Show("Exceptiton: " + exception.Message);
-                client.Abort();
                 _MyClient.Abort();
             }
         }

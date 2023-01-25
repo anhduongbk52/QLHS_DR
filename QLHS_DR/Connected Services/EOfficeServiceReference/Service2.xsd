@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ECKeyPurpose">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MESSAGE" />
+      <xs:enumeration value="FILE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ECKeyPurpose" nillable="true" type="tns:ECKeyPurpose" />
+  <xs:simpleType name="LoginStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BAD_INPUT" />
+      <xs:enumeration value="UNKNOWN_USER" />
+      <xs:enumeration value="WRONG_PASSWORD" />
+      <xs:enumeration value="USER_LOCKED" />
+      <xs:enumeration value="MAX_ATTEMPT" />
+      <xs:enumeration value="SUCCESS" />
+      <xs:enumeration value="FAILED" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LoginStatusType" nillable="true" type="tns:LoginStatusType" />
+</xs:schema>

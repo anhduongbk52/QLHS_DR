@@ -5,11 +5,46 @@
         xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         mc:Ignorable="d"
         Name="pdfViewerWindow"
         Loaded="pdfViewerWindow_Loaded"
         Title="PDF View" Height="Auto" Width="Auto">
     <Grid>
-        <dxpdf:PdfViewerControl Name="pdfViewer" DocumentLoaded="pdfViewer_DocumentLoaded" CommandBarStyle="Ribbon"/>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>            
+        </Grid.RowDefinitions>
+        <local:PdfViewerControlEx x:Name="pdfViewer" CommandBarStyle="Bars" PrintPage="pdfViewer_PrintPage" Grid.Row="0">
+            <dxpdf:PdfViewerControl.CommandProvider>
+                <dxpdf:PdfCommandProvider>                   
+                    <dxpdf:PdfCommandProvider.Actions>
+
+                        <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Close}"/>
+                        <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Open}"/>
+                        <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.OpenFromWeb}"/>
+                       
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}"  
+                                          ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomPrintCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Glyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding SmallGlyph}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding LargeGlyph}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Caption}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Hint}" />
+                        
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.PrintContext}"  
+                                          ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomPrintCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.PrintContext}" ValueBinding="{Binding Caption}" />
+
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}"  
+                                          ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomSaveCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Glyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding SmallGlyph}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding LargeGlyph}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Caption}" />
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Hint}" />       
+                       
+                    </dxpdf:PdfCommandProvider.Actions>
+                </dxpdf:PdfCommandProvider>
+            </dxpdf:PdfViewerControl.CommandProvider>
+        </local:PdfViewerControlEx>
+      
     </Grid>
 </Window>

@@ -22,10 +22,13 @@
     <MetadataSource Address="https://192.168.11.12:8888/EofficeService/Service" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="00f78953-2870-4a2f-beed-529ba1e6f54f" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd1" />
-    <MetadataFile FileName="Service.disco" MetadataType="Disco" ID="6cfb9fe6-50aa-401d-b983-df4792679dda" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?disco" />
-    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="62f2ed25-9952-41a7-98d5-850f498a3796" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd0" />
+    <MetadataFile FileName="Service2.xsd" MetadataType="Schema" ID="f11d1367-e732-45ad-b841-b36721e508d1" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd3" />
     <MetadataFile FileName="EofficeMainService.wsdl" MetadataType="Wsdl" ID="5f616f01-21a4-42f3-a8f8-d7543e6389ce" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?wsdl" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="62f2ed25-9952-41a7-98d5-850f498a3796" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd0" />
+    <MetadataFile FileName="Service.disco" MetadataType="Disco" ID="6cfb9fe6-50aa-401d-b983-df4792679dda" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?disco" />
+    <MetadataFile FileName="Service.xsd" MetadataType="Schema" ID="00f78953-2870-4a2f-beed-529ba1e6f54f" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd1" />
+    <MetadataFile FileName="Service21.xsd" MetadataType="Schema" ID="7b28a834-86a5-4350-a71e-c84ae75b6f8c" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd2" />
+    <MetadataFile FileName="Service22.xsd" MetadataType="Schema" ID="ad3772dc-72b4-450f-83bf-4cc01d7ca539" SourceId="1" SourceUrl="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -1,6 +1,6 @@
 ﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.ServiceReference1;
+using QLHS_DR.EOfficeServiceReference;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace QLHS_DR.Core
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
         private User user_0;
         private IReadOnlyList<User> ireadOnlyList_0;
-        private EEMCDRWcfServiceClient eemcdrwcfServiceClient_0;
+        private EofficeMainServiceClient eemcdrwcfServiceClient_0;
 
         //Khoi tao
         public G6Class() //Khởi tạo

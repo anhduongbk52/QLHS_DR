@@ -105,25 +105,826 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
+      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
+      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IEofficeMainService_GetMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessage" />
+  <wsdl:message name="IEofficeMainService_GetUserByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByName" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessageResponse" />
+  <wsdl:message name="IEofficeMainService_GetUserByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserById" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserContacts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserContacts" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserContacts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserECPrKeyFor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserECPrKeyFor" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserECPrKeyFor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserECPrKeyForResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessages" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserLastOnline_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLastOnline" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserLastOnline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLastOnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadMessagesFromMessageId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesFromMessageId" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadMessagesFromMessageId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesFromMessageIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddTaskAttachedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskAttachedFile" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddTaskAttachedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskAttachedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksFromTaskId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFromTaskId" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksFromTaskId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFromTaskIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_IsExistTaskName_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistTaskName" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_IsExistTaskName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistTaskNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTaskAttachedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTaskAttachedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetServerDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetServerDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetTaskDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetTaskDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLog" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPermissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissions" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPermissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetTaskPermissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskPermissions" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetTaskPermissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPrintableUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintableUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPrintableUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintableUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetPrintableUsersInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintableUsersInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetPrintableUsersInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintableUsersInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AssignUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignUser" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AssignUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RevokeTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RevokeTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetLogs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogs" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetLogs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_TryLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TryLogin" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_TryLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TryLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProcessingUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessingUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProcessingUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessingUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetSeenUsersInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeenUsersInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetSeenUsersInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeenUsersInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPrintedUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintedUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPrintedUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintedUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetSeenUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSeenUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetSeenUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSeenUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetPrintedUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintedUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetPrintedUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintedUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RemoveProcessingUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProcessingUser" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RemoveProcessingUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProcessingUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_HasSeenInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasSeenInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_HasSeenInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasSeenInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_IsProcessingInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProcessingInTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_IsProcessingInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProcessingInTaskResponse" />
   </wsdl:message>
   <wsdl:portType name="IEofficeMainService">
-    <wsdl:operation name="GetMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetMessage" message="tns:IEofficeMainService_GetMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetMessageResponse" message="tns:IEofficeMainService_GetMessage_OutputMessage" />
+    <wsdl:operation name="GetUserByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByName" message="tns:IEofficeMainService_GetUserByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByNameResponse" message="tns:IEofficeMainService_GetUserByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserById" message="tns:IEofficeMainService_GetUserById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByIdResponse" message="tns:IEofficeMainService_GetUserById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContacts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserContacts" message="tns:IEofficeMainService_GetUserContacts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserContactsResponse" message="tns:IEofficeMainService_GetUserContacts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SendMessage" message="tns:IEofficeMainService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SendMessageResponse" message="tns:IEofficeMainService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserECPrKeyFor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserECPrKeyFor" message="tns:IEofficeMainService_GetUserECPrKeyFor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserECPrKeyForResponse" message="tns:IEofficeMainService_GetUserECPrKeyFor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/Logout" message="tns:IEofficeMainService_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LogoutResponse" message="tns:IEofficeMainService_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadMessages" message="tns:IEofficeMainService_LoadMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadMessagesResponse" message="tns:IEofficeMainService_LoadMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserStatus" message="tns:IEofficeMainService_GetUserStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserStatusResponse" message="tns:IEofficeMainService_GetUserStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLastOnline">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserLastOnline" message="tns:IEofficeMainService_GetUserLastOnline_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserLastOnlineResponse" message="tns:IEofficeMainService_GetUserLastOnline_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessagesFromMessageId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageId" message="tns:IEofficeMainService_LoadMessagesFromMessageId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageIdResponse" message="tns:IEofficeMainService_LoadMessagesFromMessageId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasks" message="tns:IEofficeMainService_LoadTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksResponse" message="tns:IEofficeMainService_LoadTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddTask" message="tns:IEofficeMainService_AddTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddTaskResponse" message="tns:IEofficeMainService_AddTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskAttachedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddTaskAttachedFile" message="tns:IEofficeMainService_AddTaskAttachedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddTaskAttachedFileResponse" message="tns:IEofficeMainService_AddTaskAttachedFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFromTaskId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskId" message="tns:IEofficeMainService_LoadTasksFromTaskId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskIdResponse" message="tns:IEofficeMainService_LoadTasksFromTaskId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsExistTaskName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/IsExistTaskName" message="tns:IEofficeMainService_IsExistTaskName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/IsExistTaskNameResponse" message="tns:IEofficeMainService_IsExistTaskName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTasks" message="tns:IEofficeMainService_DeleteTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTasksResponse" message="tns:IEofficeMainService_DeleteTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskAttachedFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles" message="tns:IEofficeMainService_DeleteTaskAttachedFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFilesResponse" message="tns:IEofficeMainService_DeleteTaskAttachedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTask" message="tns:IEofficeMainService_AddUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTaskResponse" message="tns:IEofficeMainService_AddUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetServerDateTime" message="tns:IEofficeMainService_GetServerDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetServerDateTimeResponse" message="tns:IEofficeMainService_GetServerDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetTaskDocuments" message="tns:IEofficeMainService_GetTaskDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetTaskDocumentsResponse" message="tns:IEofficeMainService_GetTaskDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTask" message="tns:IEofficeMainService_GetUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTaskResponse" message="tns:IEofficeMainService_GetUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddLog" message="tns:IEofficeMainService_AddLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddLogResponse" message="tns:IEofficeMainService_AddLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissions" message="tns:IEofficeMainService_GetPermissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionsResponse" message="tns:IEofficeMainService_GetPermissions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPermissions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetTaskPermissions" message="tns:IEofficeMainService_GetTaskPermissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetTaskPermissionsResponse" message="tns:IEofficeMainService_GetTaskPermissions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserInTask" message="tns:IEofficeMainService_GetUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserInTaskResponse" message="tns:IEofficeMainService_GetUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintableUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPrintableUserInTask" message="tns:IEofficeMainService_GetPrintableUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPrintableUserInTaskResponse" message="tns:IEofficeMainService_GetPrintableUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintableUsersInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTask" message="tns:IEofficeMainService_SetPrintableUsersInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTaskResponse" message="tns:IEofficeMainService_SetPrintableUsersInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteUserTask" message="tns:IEofficeMainService_DeleteUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteUserTaskResponse" message="tns:IEofficeMainService_DeleteUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AssignUser" message="tns:IEofficeMainService_AssignUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AssignUserResponse" message="tns:IEofficeMainService_AssignUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTask" message="tns:IEofficeMainService_LoadTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTaskResponse" message="tns:IEofficeMainService_LoadTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/RevokeTasks" message="tns:IEofficeMainService_RevokeTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/RevokeTasksResponse" message="tns:IEofficeMainService_RevokeTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetLogs" message="tns:IEofficeMainService_GetLogs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetLogsResponse" message="tns:IEofficeMainService_GetLogs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TryLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/TryLogin" message="tns:IEofficeMainService_TryLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/TryLoginResponse" message="tns:IEofficeMainService_TryLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/ChangePassword" message="tns:IEofficeMainService_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ChangePasswordResponse" message="tns:IEofficeMainService_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTask" message="tns:IEofficeMainService_UpdateTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTaskResponse" message="tns:IEofficeMainService_UpdateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProcessingUserInTask" message="tns:IEofficeMainService_GetProcessingUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetProcessingUserInTaskResponse" message="tns:IEofficeMainService_GetProcessingUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeenUsersInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetSeenUsersInTask" message="tns:IEofficeMainService_GetSeenUsersInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetSeenUsersInTaskResponse" message="tns:IEofficeMainService_GetSeenUsersInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintedUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPrintedUserInTask" message="tns:IEofficeMainService_GetPrintedUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPrintedUserInTaskResponse" message="tns:IEofficeMainService_GetPrintedUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSeenUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetSeenUserInTask" message="tns:IEofficeMainService_SetSeenUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetSeenUserInTaskResponse" message="tns:IEofficeMainService_SetSeenUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintedUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetPrintedUserInTask" message="tns:IEofficeMainService_SetPrintedUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetPrintedUserInTaskResponse" message="tns:IEofficeMainService_SetPrintedUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProcessingUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/RemoveProcessingUser" message="tns:IEofficeMainService_RemoveProcessingUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/RemoveProcessingUserResponse" message="tns:IEofficeMainService_RemoveProcessingUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasSeenInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/HasSeenInTask" message="tns:IEofficeMainService_HasSeenInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/HasSeenInTaskResponse" message="tns:IEofficeMainService_HasSeenInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProcessingInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/IsProcessingInTask" message="tns:IEofficeMainService_IsProcessingInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/IsProcessingInTaskResponse" message="tns:IEofficeMainService_IsProcessingInTask_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IEofficeMainService" type="tns:IEofficeMainService">
     <wsp:PolicyReference URI="#WSHttpBinding_IEofficeMainService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetMessage">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetMessage" style="document" />
+    <wsdl:operation name="GetUserByName">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContacts">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserECPrKeyFor">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserECPrKeyFor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessages">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLastOnline">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserLastOnline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessagesFromMessageId">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskAttachedFile">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddTaskAttachedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFromTaskId">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistTaskName">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/IsExistTaskName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskAttachedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetServerDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetTaskDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLog">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissions">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPermissions">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetTaskPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintableUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetPrintableUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintableUsersInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignUser">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AssignUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/RevokeTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetLogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TryLogin">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/TryLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetProcessingUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeenUsersInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetSeenUsersInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintedUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetPrintedUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSeenUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetSeenUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintedUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetPrintedUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProcessingUser">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/RemoveProcessingUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasSeenInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/HasSeenInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProcessingInTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/IsProcessingInTask" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

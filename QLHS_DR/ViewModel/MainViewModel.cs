@@ -17,14 +17,14 @@ using QLHS_DR.View;
 using EofficeClient.ViewModel;
 using QLHS_DR.View.DocumentView;
 using EofficeClient.Core;
-using QLHS_DR.ServiceReference1;
+using QLHS_DR.EOfficeServiceReference;
 using DevExpress.Mvvm.Native;
 using EofficeClient.ViewModel.DocumentViewModel;
 using DevExpress.Pdf.Native.BouncyCastle.Utilities.Net;
 using AutoUpdaterDotNET;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms;
 using QLHS_DR.Properties;
+using TaskStatus = QLHS_DR.EOfficeServiceReference.TaskStatus;
 
 namespace QLHS_DR.ViewModel
 {
@@ -32,7 +32,7 @@ namespace QLHS_DR.ViewModel
     {
         #region "Field and properties"
         private Window window;
-
+        private EofficeMainServiceClient _MyClient;
         private ObservableCollection<TabContainer> _Workspaces;
         public ObservableCollection<TabContainer> Workspaces
         {
@@ -46,8 +46,8 @@ namespace QLHS_DR.ViewModel
                 }
             }
         }
-        private ServiceReference1.User _CurrentUser;
-        public ServiceReference1.User CurrentUser { get => _CurrentUser; set { _CurrentUser = value; OnPropertyChanged("CurrentUser"); } }
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; set { _CurrentUser = value; OnPropertyChanged("CurrentUser"); } }
 
         public bool Isloaded = false;
         private string? _TileApplication;
@@ -122,8 +122,8 @@ namespace QLHS_DR.ViewModel
 
             Workspaces = new ObservableCollection<TabContainer>();
 
-            ObservableCollection<UserTask> _ListUserTaskIsProcessing = new ObservableCollection<UserTask>();
-            ObservableCollection<UserTask> _ListUserTaskCompleted=new ObservableCollection<UserTask>();
+            ObservableCollection<UserTask> _ListUserTaskNotFinish = new ObservableCollection<UserTask>();
+            ObservableCollection<UserTask> _ListUserTaskFinish=new ObservableCollection<UserTask>();
             ObservableCollection<UserTask> _ListUserTaskRevoked=new ObservableCollection<UserTask>();
             ObservableCollection<UserTask>  _ListAllUserTask = new ObservableCollection<UserTask>();
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -157,9 +157,9 @@ namespace QLHS_DR.ViewModel
                         
                         p.Show();
 
-                        _ListUserTaskIsProcessing = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != ServiceReference1.TaskStatus.Revoked && x.IsProcessing == false).OrderByDescending(x=>x.Task.StartDate).ToObservableCollection();
-                        _ListUserTaskCompleted = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != ServiceReference1.TaskStatus.Revoked && x.IsProcessing == true).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
-                        _ListUserTaskRevoked = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == ServiceReference1.TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
+                        _ListUserTaskNotFinish = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != TaskStatus.Revoked && x.IsFinish != true).OrderByDescending(x=>x.Task.StartDate).ToObservableCollection();
+                        _ListUserTaskFinish = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != TaskStatus.Revoked && x.IsFinish == true).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
+                        _ListUserTaskRevoked = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
                         //_ListAllUserTask = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == ServiceReference1.TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
                         Workspaces.Clear();
 
@@ -168,8 +168,8 @@ namespace QLHS_DR.ViewModel
                         ListNewDocumentUC listRevokeDocumentUC = new ListNewDocumentUC();
                         ListNewDocumentUC listAllDocumentUC = new ListNewDocumentUC();
 
-                        ListNewDocumentViewModel listNewDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskIsProcessing);                        
-                        ListNewDocumentViewModel listCompletedDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskCompleted);
+                        ListNewDocumentViewModel listNewDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskNotFinish);                        
+                        ListNewDocumentViewModel listCompletedDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskFinish);
                         ListNewDocumentViewModel listRevokeDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskRevoked);
                         ListNewDocumentViewModel listAllDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskRevoked);
 
@@ -180,7 +180,7 @@ namespace QLHS_DR.ViewModel
 
                         TabContainer tabItemNew = new TabContainer
                         {
-                            Header = "Tài liệu chưa xử lý ( "+ _ListUserTaskIsProcessing.Count()+" )",
+                            Header = "Tài liệu chưa xử lý ( "+ _ListUserTaskNotFinish.Count()+" )",
                             AllowHide = "true",
                             IsSelected = true,
                             IsVisible = true,
@@ -188,7 +188,7 @@ namespace QLHS_DR.ViewModel
                         };
                         TabContainer tabItemCompleted = new TabContainer
                         {
-                            Header = "Tài liệu đã xử lý ( " + _ListUserTaskCompleted.Count() + " )",
+                            Header = "Tài liệu đã xử lý ( " + _ListUserTaskFinish.Count() + " )",
                             AllowHide = "true",
                             IsSelected = false,
                             IsVisible = true,
@@ -210,12 +210,10 @@ namespace QLHS_DR.ViewModel
                             IsVisible = true,
                             Content = listAllDocumentUC
                         };
-
                         Workspaces.Add(tabItemNew);
                         Workspaces.Add(tabItemCompleted);
                         Workspaces.Add(tabItemRevoke);
                         Workspaces.Add(tabItemAll);
-
                     }
                     else
                     { p.Close(); }
@@ -225,7 +223,7 @@ namespace QLHS_DR.ViewModel
             {              
                 Isloaded = false;
                 ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
-
+                SectionLogin.Ins = null;
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
@@ -326,23 +324,30 @@ namespace QLHS_DR.ViewModel
         }
         private ObservableCollection<UserTask> GetAllUserTaskOfUser(int userId)
         {
-            ObservableCollection<UserTask> ListUserTaskOfUser =new ObservableCollection<UserTask>();
-            ObservableCollection<ServiceReference1.Task> ListTaskOfUser = ServiceProxy.Ins.LoadTasks(userId).ToObservableCollection();
-           
-            foreach (var task in ListTaskOfUser)
+            ObservableCollection<UserTask> ListUserTaskOfUser = new ObservableCollection<UserTask>();
+            try
             {
-                UserTask userTask = ServiceProxy.Ins.GetUserTask(userId, task.Id);
-                if(userTask != null)
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+               
+                ObservableCollection<EOfficeServiceReference.Task> ListTaskOfUser = _MyClient.LoadTasks(userId).ToObservableCollection();
+                foreach (var task in ListTaskOfUser)
                 {
-                    userTask.Task = task;
-                    ListUserTaskOfUser.Add(userTask);
-                }    
-              
+                    UserTask userTask = _MyClient.GetUserTask(userId, task.Id);
+                    if (userTask != null)
+                    {
+                        userTask.Task = task;
+                        ListUserTaskOfUser.Add(userTask);
+                    }
+                }
+                _MyClient.Close();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                _MyClient.Abort();
             }
             return ListUserTaskOfUser;
-
-
-
         }
     }
 }

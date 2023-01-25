@@ -9,17 +9,2898 @@
 //------------------------------------------------------------------------------
 
 namespace QLHS_DR.EOfficeServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AttemptCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] AvatarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> BirthDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] CertificateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CitizenIdentificationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Configuration[] ConfigurationsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPrKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPrKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPuKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPuKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> HireDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HomeTownField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> LastLoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Log[] LogsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] MasterKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Message[] MessagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Message[] Messages1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobiphoneNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPrKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPrKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPuKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPuKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserStatus StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.TaskAttachedFile[] TaskAttachedFilesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Task[] TasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Task[] Tasks1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserPermission[] UserPermissionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserRole[] UserRolesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserTask[] UserTasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserTask[] UserTasks1Field;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AttemptCount {
+            get {
+                return this.AttemptCountField;
+            }
+            set {
+                if ((this.AttemptCountField.Equals(value) != true)) {
+                    this.AttemptCountField = value;
+                    this.RaisePropertyChanged("AttemptCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Avatar {
+            get {
+                return this.AvatarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvatarField, value) != true)) {
+                    this.AvatarField = value;
+                    this.RaisePropertyChanged("Avatar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> BirthDate {
+            get {
+                return this.BirthDateField;
+            }
+            set {
+                if ((this.BirthDateField.Equals(value) != true)) {
+                    this.BirthDateField = value;
+                    this.RaisePropertyChanged("BirthDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Certificate {
+            get {
+                return this.CertificateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CertificateField, value) != true)) {
+                    this.CertificateField = value;
+                    this.RaisePropertyChanged("Certificate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CitizenIdentification {
+            get {
+                return this.CitizenIdentificationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CitizenIdentificationField, value) != true)) {
+                    this.CitizenIdentificationField = value;
+                    this.RaisePropertyChanged("CitizenIdentification");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Configuration[] Configurations {
+            get {
+                return this.ConfigurationsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConfigurationsField, value) != true)) {
+                    this.ConfigurationsField = value;
+                    this.RaisePropertyChanged("Configurations");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPrKeyForFile {
+            get {
+                return this.ECPrKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPrKeyForFileField, value) != true)) {
+                    this.ECPrKeyForFileField = value;
+                    this.RaisePropertyChanged("ECPrKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPrKeyForMsg {
+            get {
+                return this.ECPrKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPrKeyForMsgField, value) != true)) {
+                    this.ECPrKeyForMsgField = value;
+                    this.RaisePropertyChanged("ECPrKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPuKeyForFile {
+            get {
+                return this.ECPuKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPuKeyForFileField, value) != true)) {
+                    this.ECPuKeyForFileField = value;
+                    this.RaisePropertyChanged("ECPuKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPuKeyForMsg {
+            get {
+                return this.ECPuKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPuKeyForMsgField, value) != true)) {
+                    this.ECPuKeyForMsgField = value;
+                    this.RaisePropertyChanged("ECPuKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> HireDate {
+            get {
+                return this.HireDateField;
+            }
+            set {
+                if ((this.HireDateField.Equals(value) != true)) {
+                    this.HireDateField = value;
+                    this.RaisePropertyChanged("HireDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HomeTown {
+            get {
+                return this.HomeTownField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HomeTownField, value) != true)) {
+                    this.HomeTownField = value;
+                    this.RaisePropertyChanged("HomeTown");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> LastLogin {
+            get {
+                return this.LastLoginField;
+            }
+            set {
+                if ((this.LastLoginField.Equals(value) != true)) {
+                    this.LastLoginField = value;
+                    this.RaisePropertyChanged("LastLogin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Log[] Logs {
+            get {
+                return this.LogsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LogsField, value) != true)) {
+                    this.LogsField = value;
+                    this.RaisePropertyChanged("Logs");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] MasterKey {
+            get {
+                return this.MasterKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MasterKeyField, value) != true)) {
+                    this.MasterKeyField = value;
+                    this.RaisePropertyChanged("MasterKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Message[] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Message[] Messages1 {
+            get {
+                return this.Messages1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Messages1Field, value) != true)) {
+                    this.Messages1Field = value;
+                    this.RaisePropertyChanged("Messages1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MobiphoneNumber {
+            get {
+                return this.MobiphoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobiphoneNumberField, value) != true)) {
+                    this.MobiphoneNumberField = value;
+                    this.RaisePropertyChanged("MobiphoneNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPrKeyForFile {
+            get {
+                return this.OldECPrKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPrKeyForFileField, value) != true)) {
+                    this.OldECPrKeyForFileField = value;
+                    this.RaisePropertyChanged("OldECPrKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPrKeyForMsg {
+            get {
+                return this.OldECPrKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPrKeyForMsgField, value) != true)) {
+                    this.OldECPrKeyForMsgField = value;
+                    this.RaisePropertyChanged("OldECPrKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPuKeyForFile {
+            get {
+                return this.OldECPuKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPuKeyForFileField, value) != true)) {
+                    this.OldECPuKeyForFileField = value;
+                    this.RaisePropertyChanged("OldECPuKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPuKeyForMsg {
+            get {
+                return this.OldECPuKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPuKeyForMsgField, value) != true)) {
+                    this.OldECPuKeyForMsgField = value;
+                    this.RaisePropertyChanged("OldECPuKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StateId {
+            get {
+                return this.StateIdField;
+            }
+            set {
+                if ((this.StateIdField.Equals(value) != true)) {
+                    this.StateIdField = value;
+                    this.RaisePropertyChanged("StateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserStatus Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.TaskAttachedFile[] TaskAttachedFiles {
+            get {
+                return this.TaskAttachedFilesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskAttachedFilesField, value) != true)) {
+                    this.TaskAttachedFilesField = value;
+                    this.RaisePropertyChanged("TaskAttachedFiles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Task[] Tasks {
+            get {
+                return this.TasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TasksField, value) != true)) {
+                    this.TasksField = value;
+                    this.RaisePropertyChanged("Tasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Task[] Tasks1 {
+            get {
+                return this.Tasks1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Tasks1Field, value) != true)) {
+                    this.Tasks1Field = value;
+                    this.RaisePropertyChanged("Tasks1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserPermission[] UserPermissions {
+            get {
+                return this.UserPermissionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserPermissionsField, value) != true)) {
+                    this.UserPermissionsField = value;
+                    this.RaisePropertyChanged("UserPermissions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserRole[] UserRoles {
+            get {
+                return this.UserRolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserRolesField, value) != true)) {
+                    this.UserRolesField = value;
+                    this.RaisePropertyChanged("UserRoles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserTask[] UserTasks {
+            get {
+                return this.UserTasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTasksField, value) != true)) {
+                    this.UserTasksField = value;
+                    this.RaisePropertyChanged("UserTasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserTask[] UserTasks1 {
+            get {
+                return this.UserTasks1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTasks1Field, value) != true)) {
+                    this.UserTasks1Field = value;
+                    this.RaisePropertyChanged("UserTasks1");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Configuration", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Configuration : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfigByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ConfigKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ConfigValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfigBy {
+            get {
+                return this.ConfigByField;
+            }
+            set {
+                if ((this.ConfigByField.Equals(value) != true)) {
+                    this.ConfigByField = value;
+                    this.RaisePropertyChanged("ConfigBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ConfigKey {
+            get {
+                return this.ConfigKeyField;
+            }
+            set {
+                if ((this.ConfigKeyField.Equals(value) != true)) {
+                    this.ConfigKeyField = value;
+                    this.RaisePropertyChanged("ConfigKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ConfigValue {
+            get {
+                return this.ConfigValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConfigValueField, value) != true)) {
+                    this.ConfigValueField = value;
+                    this.RaisePropertyChanged("ConfigValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ModifiedDateTime {
+            get {
+                return this.ModifiedDateTimeField;
+            }
+            set {
+                if ((this.ModifiedDateTimeField.Equals(value) != true)) {
+                    this.ModifiedDateTimeField = value;
+                    this.RaisePropertyChanged("ModifiedDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Log", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Log : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IPAddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.LogType LogTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PortField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IPAddress {
+            get {
+                return this.IPAddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IPAddressField, value) != true)) {
+                    this.IPAddressField = value;
+                    this.RaisePropertyChanged("IPAddress");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.LogType LogType {
+            get {
+                return this.LogTypeField;
+            }
+            set {
+                if ((this.LogTypeField.Equals(value) != true)) {
+                    this.LogTypeField = value;
+                    this.RaisePropertyChanged("LogType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Port {
+            get {
+                return this.PortField;
+            }
+            set {
+                if ((this.PortField.Equals(value) != true)) {
+                    this.PortField = value;
+                    this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] DataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FromUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime SentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ToUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User User1Field;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FromUserId {
+            get {
+                return this.FromUserIdField;
+            }
+            set {
+                if ((this.FromUserIdField.Equals(value) != true)) {
+                    this.FromUserIdField = value;
+                    this.RaisePropertyChanged("FromUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Sent {
+            get {
+                return this.SentField;
+            }
+            set {
+                if ((this.SentField.Equals(value) != true)) {
+                    this.SentField = value;
+                    this.RaisePropertyChanged("Sent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToUserId {
+            get {
+                return this.ToUserIdField;
+            }
+            set {
+                if ((this.ToUserIdField.Equals(value) != true)) {
+                    this.ToUserIdField = value;
+                    this.RaisePropertyChanged("ToUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User1 {
+            get {
+                return this.User1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.User1Field, value) != true)) {
+                    this.User1Field = value;
+                    this.RaisePropertyChanged("User1");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserStatus", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum UserStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DEACTIVE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ACTIVED = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ONLINE = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OFFLINE = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NOT_LOGGED_YET = 8,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAttachedFile", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TaskAttachedFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FilePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ModifiedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Task TaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath {
+            get {
+                return this.FilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Modified {
+            get {
+                return this.ModifiedField;
+            }
+            set {
+                if ((this.ModifiedField.Equals(value) != true)) {
+                    this.ModifiedField = value;
+                    this.RaisePropertyChanged("Modified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ModifiedBy {
+            get {
+                return this.ModifiedByField;
+            }
+            set {
+                if ((this.ModifiedByField.Equals(value) != true)) {
+                    this.ModifiedByField = value;
+                    this.RaisePropertyChanged("ModifiedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Task Task {
+            get {
+                return this.TaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
+                    this.TaskField = value;
+                    this.RaisePropertyChanged("Task");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Task", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Task : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AssignedUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime EndDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> OwnerUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PriorityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> ReminderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ReminderDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime StartDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.TaskStatus StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SubjectField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.TaskAttachedFile[] TaskAttachedFilesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User User1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserTask[] UserTasksField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AssignedUserId {
+            get {
+                return this.AssignedUserIdField;
+            }
+            set {
+                if ((this.AssignedUserIdField.Equals(value) != true)) {
+                    this.AssignedUserIdField = value;
+                    this.RaisePropertyChanged("AssignedUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime EndDate {
+            get {
+                return this.EndDateField;
+            }
+            set {
+                if ((this.EndDateField.Equals(value) != true)) {
+                    this.EndDateField = value;
+                    this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> OwnerUserId {
+            get {
+                return this.OwnerUserIdField;
+            }
+            set {
+                if ((this.OwnerUserIdField.Equals(value) != true)) {
+                    this.OwnerUserIdField = value;
+                    this.RaisePropertyChanged("OwnerUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Priority {
+            get {
+                return this.PriorityField;
+            }
+            set {
+                if ((this.PriorityField.Equals(value) != true)) {
+                    this.PriorityField = value;
+                    this.RaisePropertyChanged("Priority");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Reminder {
+            get {
+                return this.ReminderField;
+            }
+            set {
+                if ((this.ReminderField.Equals(value) != true)) {
+                    this.ReminderField = value;
+                    this.RaisePropertyChanged("Reminder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ReminderDateTime {
+            get {
+                return this.ReminderDateTimeField;
+            }
+            set {
+                if ((this.ReminderDateTimeField.Equals(value) != true)) {
+                    this.ReminderDateTimeField = value;
+                    this.RaisePropertyChanged("ReminderDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime StartDate {
+            get {
+                return this.StartDateField;
+            }
+            set {
+                if ((this.StartDateField.Equals(value) != true)) {
+                    this.StartDateField = value;
+                    this.RaisePropertyChanged("StartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.TaskStatus Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Subject {
+            get {
+                return this.SubjectField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubjectField, value) != true)) {
+                    this.SubjectField = value;
+                    this.RaisePropertyChanged("Subject");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.TaskAttachedFile[] TaskAttachedFiles {
+            get {
+                return this.TaskAttachedFilesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskAttachedFilesField, value) != true)) {
+                    this.TaskAttachedFilesField = value;
+                    this.RaisePropertyChanged("TaskAttachedFiles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User1 {
+            get {
+                return this.User1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.User1Field, value) != true)) {
+                    this.User1Field = value;
+                    this.RaisePropertyChanged("User1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserTask[] UserTasks {
+            get {
+                return this.UserTasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTasksField, value) != true)) {
+                    this.UserTasksField = value;
+                    this.RaisePropertyChanged("UserTasks");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserPermission", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class UserPermission : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreatedDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.PermissionType PermissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreatedDateTime {
+            get {
+                return this.CreatedDateTimeField;
+            }
+            set {
+                if ((this.CreatedDateTimeField.Equals(value) != true)) {
+                    this.CreatedDateTimeField = value;
+                    this.RaisePropertyChanged("CreatedDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ModifiedDateTime {
+            get {
+                return this.ModifiedDateTimeField;
+            }
+            set {
+                if ((this.ModifiedDateTimeField.Equals(value) != true)) {
+                    this.ModifiedDateTimeField = value;
+                    this.RaisePropertyChanged("ModifiedDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.PermissionType PermissionType {
+            get {
+                return this.PermissionTypeField;
+            }
+            set {
+                if ((this.PermissionTypeField.Equals(value) != true)) {
+                    this.PermissionTypeField = value;
+                    this.RaisePropertyChanged("PermissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserRole", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class UserRole : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Role RoleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Modified {
+            get {
+                return this.ModifiedField;
+            }
+            set {
+                if ((this.ModifiedField.Equals(value) != true)) {
+                    this.ModifiedField = value;
+                    this.RaisePropertyChanged("Modified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Role Role {
+            get {
+                return this.RoleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
+                    this.RoleField = value;
+                    this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleId {
+            get {
+                return this.RoleIdField;
+            }
+            set {
+                if ((this.RoleIdField.Equals(value) != true)) {
+                    this.RoleIdField = value;
+                    this.RaisePropertyChanged("RoleId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserTask", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class UserTask : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AssignedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasPrintedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsFinishField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsProcessingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.PermissionType PermissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SeenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Task TaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] TaskKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.User User1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AssignedBy {
+            get {
+                return this.AssignedByField;
+            }
+            set {
+                if ((this.AssignedByField.Equals(value) != true)) {
+                    this.AssignedByField = value;
+                    this.RaisePropertyChanged("AssignedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasPrinted {
+            get {
+                return this.HasPrintedField;
+            }
+            set {
+                if ((this.HasPrintedField.Equals(value) != true)) {
+                    this.HasPrintedField = value;
+                    this.RaisePropertyChanged("HasPrinted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsFinish {
+            get {
+                return this.IsFinishField;
+            }
+            set {
+                if ((this.IsFinishField.Equals(value) != true)) {
+                    this.IsFinishField = value;
+                    this.RaisePropertyChanged("IsFinish");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsProcessing {
+            get {
+                return this.IsProcessingField;
+            }
+            set {
+                if ((this.IsProcessingField.Equals(value) != true)) {
+                    this.IsProcessingField = value;
+                    this.RaisePropertyChanged("IsProcessing");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.PermissionType PermissionType {
+            get {
+                return this.PermissionTypeField;
+            }
+            set {
+                if ((this.PermissionTypeField.Equals(value) != true)) {
+                    this.PermissionTypeField = value;
+                    this.RaisePropertyChanged("PermissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Seen {
+            get {
+                return this.SeenField;
+            }
+            set {
+                if ((this.SeenField.Equals(value) != true)) {
+                    this.SeenField = value;
+                    this.RaisePropertyChanged("Seen");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Task Task {
+            get {
+                return this.TaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
+                    this.TaskField = value;
+                    this.RaisePropertyChanged("Task");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] TaskKey {
+            get {
+                return this.TaskKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskKeyField, value) != true)) {
+                    this.TaskKeyField = value;
+                    this.RaisePropertyChanged("TaskKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.User User1 {
+            get {
+                return this.User1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.User1Field, value) != true)) {
+                    this.User1Field = value;
+                    this.RaisePropertyChanged("User1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LogType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum LogType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NONE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LOGIN = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LOGOUT = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CREATE_USER = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EDIT_USER = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_USER = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LOCK_USER = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UNLOCK_USER = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CHANGE_PERMISSION = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PRINT_DOCUMENT = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SIGN_DOCUMENT = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CREATE_TASK = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MODIFY_TASK = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_TASK = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ADD_USER_TO_TASK = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ADD_DOCUMENT_TO_TASK = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_DOCUMENT = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        START_SERVICE = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        STOP_SERVICE = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RESTART_SERVICE = 19,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SETUP_SSL = 20,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SETUP_USER_DATA_DIR = 21,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        REVOKE_TASK = 22,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CHANGE_DEFAULT_PASSWORD = 23,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CHANGE_USER_PASSWORD = 24,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskStatus", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum TaskStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NotStarted = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Completed = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InProgess = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NeedAssistance = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Deferred = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Revoked = 5,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PermissionType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum PermissionType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NONE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CREATE_USER = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EDIT_USER = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_USER = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LOCK_USER = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UNLOCK_USER = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VIEW_LOG = 32,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PRINT_DOCUMENT = 64,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        START_SERVICE = 128,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        STOP_SERVICE = 256,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VIEW_DOCUMENT = 512,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SEND_DOCUMENT = 1024,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RECEIVE_DOCUMENT = 2048,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        REVIEW_DOCUMENT = 4096,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SIGN_DOCUMENT = 8192,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CHANGE_PERMISSION = 16384,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CREATE_TASK = 32768,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_TASK = 65536,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ADD_USER_TO_TASK = 131072,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ADD_DOCUMENT_TO_TASK = 262144,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.RolePermission[] RolePermissionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserRole[] UserRolesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Modified {
+            get {
+                return this.ModifiedField;
+            }
+            set {
+                if ((this.ModifiedField.Equals(value) != true)) {
+                    this.ModifiedField = value;
+                    this.RaisePropertyChanged("Modified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.RolePermission[] RolePermissions {
+            get {
+                return this.RolePermissionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolePermissionsField, value) != true)) {
+                    this.RolePermissionsField = value;
+                    this.RaisePropertyChanged("RolePermissions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserRole[] UserRoles {
+            get {
+                return this.UserRolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserRolesField, value) != true)) {
+                    this.UserRolesField = value;
+                    this.RaisePropertyChanged("UserRoles");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RolePermission", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class RolePermission : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.PermissionType PermissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.Role RoleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Modified {
+            get {
+                return this.ModifiedField;
+            }
+            set {
+                if ((this.ModifiedField.Equals(value) != true)) {
+                    this.ModifiedField = value;
+                    this.RaisePropertyChanged("Modified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.PermissionType PermissionType {
+            get {
+                return this.PermissionTypeField;
+            }
+            set {
+                if ((this.PermissionTypeField.Equals(value) != true)) {
+                    this.PermissionTypeField = value;
+                    this.RaisePropertyChanged("PermissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.Role Role {
+            get {
+                return this.RoleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
+                    this.RoleField = value;
+                    this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleId {
+            get {
+                return this.RoleIdField;
+            }
+            set {
+                if ((this.RoleIdField.Equals(value) != true)) {
+                    this.RoleIdField = value;
+                    this.RaisePropertyChanged("RoleId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ECKeyPurpose", Namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataTy" +
+        "pe")]
+    public enum ECKeyPurpose : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MESSAGE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FILE = 1,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAttachedFileDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TaskAttachedFileDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ModifiedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ModifiedBy {
+            get {
+                return this.ModifiedByField;
+            }
+            set {
+                if ((this.ModifiedByField.Equals(value) != true)) {
+                    this.ModifiedByField = value;
+                    this.RaisePropertyChanged("ModifiedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginStatusType", Namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataTy" +
+        "pe")]
+    public enum LoginStatusType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        BAD_INPUT = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UNKNOWN_USER = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WRONG_PASSWORD = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        USER_LOCKED = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MAX_ATTEMPT = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SUCCESS = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FAILED = 6,
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EOfficeServiceReference.IEofficeMainService")]
     public interface IEofficeMainService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetMessage", ReplyAction="http://tempuri.org/IEofficeMainService/GetMessageResponse")]
-        string GetMessage(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserByName", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserByNameResponse")]
+        QLHS_DR.EOfficeServiceReference.User GetUserByName(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetMessage", ReplyAction="http://tempuri.org/IEofficeMainService/GetMessageResponse")]
-        System.Threading.Tasks.Task<string> GetMessageAsync(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserByName", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserByNameResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User> GetUserByNameAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserById", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserByIdResponse")]
+        QLHS_DR.EOfficeServiceReference.User GetUserById(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserById", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserByIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User> GetUserByIdAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserContacts", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserContactsResponse")]
+        QLHS_DR.EOfficeServiceReference.User[] GetUserContacts(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserContacts", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserContactsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetUserContactsAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SendMessage", ReplyAction="http://tempuri.org/IEofficeMainService/SendMessageResponse")]
+        int SendMessage(QLHS_DR.EOfficeServiceReference.Message message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SendMessage", ReplyAction="http://tempuri.org/IEofficeMainService/SendMessageResponse")]
+        System.Threading.Tasks.Task<int> SendMessageAsync(QLHS_DR.EOfficeServiceReference.Message message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserECPrKeyFor", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserECPrKeyForResponse")]
+        byte[] GetUserECPrKeyFor(int userId, string password, QLHS_DR.EOfficeServiceReference.ECKeyPurpose purpose);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserECPrKeyFor", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserECPrKeyForResponse")]
+        System.Threading.Tasks.Task<byte[]> GetUserECPrKeyForAsync(int userId, string password, QLHS_DR.EOfficeServiceReference.ECKeyPurpose purpose);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/Logout", ReplyAction="http://tempuri.org/IEofficeMainService/LogoutResponse")]
+        void Logout(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/Logout", ReplyAction="http://tempuri.org/IEofficeMainService/LogoutResponse")]
+        System.Threading.Tasks.Task LogoutAsync(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadMessages", ReplyAction="http://tempuri.org/IEofficeMainService/LoadMessagesResponse")]
+        QLHS_DR.EOfficeServiceReference.Message[] LoadMessages(int fromId, int toId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadMessages", ReplyAction="http://tempuri.org/IEofficeMainService/LoadMessagesResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Message[]> LoadMessagesAsync(int fromId, int toId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserStatus", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserStatusResponse")]
+        QLHS_DR.EOfficeServiceReference.UserStatus GetUserStatus(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserStatus", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserStatusResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.UserStatus> GetUserStatusAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserLastOnline", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserLastOnlineResponse")]
+        System.DateTime GetUserLastOnline(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserLastOnline", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserLastOnlineResponse")]
+        System.Threading.Tasks.Task<System.DateTime> GetUserLastOnlineAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageId", ReplyAction="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageIdResponse")]
+        QLHS_DR.EOfficeServiceReference.Message[] LoadMessagesFromMessageId(int fromId, int toId, int fromMessageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageId", ReplyAction="http://tempuri.org/IEofficeMainService/LoadMessagesFromMessageIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Message[]> LoadMessagesFromMessageIdAsync(int fromId, int toId, int fromMessageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadTasks", ReplyAction="http://tempuri.org/IEofficeMainService/LoadTasksResponse")]
+        QLHS_DR.EOfficeServiceReference.Task[] LoadTasks(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadTasks", ReplyAction="http://tempuri.org/IEofficeMainService/LoadTasksResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Task[]> LoadTasksAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddTask", ReplyAction="http://tempuri.org/IEofficeMainService/AddTaskResponse")]
+        int AddTask(QLHS_DR.EOfficeServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddTask", ReplyAction="http://tempuri.org/IEofficeMainService/AddTaskResponse")]
+        System.Threading.Tasks.Task<int> AddTaskAsync(QLHS_DR.EOfficeServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddTaskAttachedFile", ReplyAction="http://tempuri.org/IEofficeMainService/AddTaskAttachedFileResponse")]
+        void AddTaskAttachedFile(QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddTaskAttachedFile", ReplyAction="http://tempuri.org/IEofficeMainService/AddTaskAttachedFileResponse")]
+        System.Threading.Tasks.Task AddTaskAttachedFileAsync(QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskId", ReplyAction="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskIdResponse")]
+        QLHS_DR.EOfficeServiceReference.Task[] LoadTasksFromTaskId(int userId, int fromTaskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskId", ReplyAction="http://tempuri.org/IEofficeMainService/LoadTasksFromTaskIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Task[]> LoadTasksFromTaskIdAsync(int userId, int fromTaskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/IsExistTaskName", ReplyAction="http://tempuri.org/IEofficeMainService/IsExistTaskNameResponse")]
+        bool IsExistTaskName(string taskName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/IsExistTaskName", ReplyAction="http://tempuri.org/IEofficeMainService/IsExistTaskNameResponse")]
+        System.Threading.Tasks.Task<bool> IsExistTaskNameAsync(string taskName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/DeleteTasks", ReplyAction="http://tempuri.org/IEofficeMainService/DeleteTasksResponse")]
+        void DeleteTasks(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/DeleteTasks", ReplyAction="http://tempuri.org/IEofficeMainService/DeleteTasksResponse")]
+        System.Threading.Tasks.Task DeleteTasksAsync(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles", ReplyAction="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFilesResponse")]
+        void DeleteTaskAttachedFiles(int[] taskAttachedFileIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles", ReplyAction="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFilesResponse")]
+        System.Threading.Tasks.Task DeleteTaskAttachedFilesAsync(int[] taskAttachedFileIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddUserTask", ReplyAction="http://tempuri.org/IEofficeMainService/AddUserTaskResponse")]
+        void AddUserTask(int taskId, int userId, int assignedBy, byte[] userTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddUserTask", ReplyAction="http://tempuri.org/IEofficeMainService/AddUserTaskResponse")]
+        System.Threading.Tasks.Task AddUserTaskAsync(int taskId, int userId, int assignedBy, byte[] userTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetServerDateTime", ReplyAction="http://tempuri.org/IEofficeMainService/GetServerDateTimeResponse")]
+        System.DateTime GetServerDateTime();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetServerDateTime", ReplyAction="http://tempuri.org/IEofficeMainService/GetServerDateTimeResponse")]
+        System.Threading.Tasks.Task<System.DateTime> GetServerDateTimeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetTaskDocuments", ReplyAction="http://tempuri.org/IEofficeMainService/GetTaskDocumentsResponse")]
+        QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO[] GetTaskDocuments(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetTaskDocuments", ReplyAction="http://tempuri.org/IEofficeMainService/GetTaskDocumentsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO[]> GetTaskDocumentsAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.UserTask GetUserTask(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.UserTask> GetUserTaskAsync(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddLog", ReplyAction="http://tempuri.org/IEofficeMainService/AddLogResponse")]
+        void AddLog(QLHS_DR.EOfficeServiceReference.Log log_0);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AddLog", ReplyAction="http://tempuri.org/IEofficeMainService/AddLogResponse")]
+        System.Threading.Tasks.Task AddLogAsync(QLHS_DR.EOfficeServiceReference.Log log_0);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetPermissions", ReplyAction="http://tempuri.org/IEofficeMainService/GetPermissionsResponse")]
+        QLHS_DR.EOfficeServiceReference.PermissionType GetPermissions(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetPermissions", ReplyAction="http://tempuri.org/IEofficeMainService/GetPermissionsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.PermissionType> GetPermissionsAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetTaskPermissions", ReplyAction="http://tempuri.org/IEofficeMainService/GetTaskPermissionsResponse")]
+        QLHS_DR.EOfficeServiceReference.PermissionType GetTaskPermissions(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetTaskPermissions", ReplyAction="http://tempuri.org/IEofficeMainService/GetTaskPermissionsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.PermissionType> GetTaskPermissionsAsync(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserInTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.User[] GetUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetPrintableUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetPrintableUserInTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.User[] GetPrintableUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetPrintableUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetPrintableUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetPrintableUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTask", ReplyAction="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTaskResponse")]
+        void SetPrintableUsersInTask(int taskId, int[] userIds, bool prinable, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTask", ReplyAction="http://tempuri.org/IEofficeMainService/SetPrintableUsersInTaskResponse")]
+        System.Threading.Tasks.Task SetPrintableUsersInTaskAsync(int taskId, int[] userIds, bool prinable, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/DeleteUserTask", ReplyAction="http://tempuri.org/IEofficeMainService/DeleteUserTaskResponse")]
+        void DeleteUserTask(int taskId, int userId, int deletedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/DeleteUserTask", ReplyAction="http://tempuri.org/IEofficeMainService/DeleteUserTaskResponse")]
+        System.Threading.Tasks.Task DeleteUserTaskAsync(int taskId, int userId, int deletedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AssignUser", ReplyAction="http://tempuri.org/IEofficeMainService/AssignUserResponse")]
+        void AssignUser(int taskId, int userId, int assignedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/AssignUser", ReplyAction="http://tempuri.org/IEofficeMainService/AssignUserResponse")]
+        System.Threading.Tasks.Task AssignUserAsync(int taskId, int userId, int assignedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadTask", ReplyAction="http://tempuri.org/IEofficeMainService/LoadTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.Task LoadTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/LoadTask", ReplyAction="http://tempuri.org/IEofficeMainService/LoadTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Task> LoadTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/RevokeTasks", ReplyAction="http://tempuri.org/IEofficeMainService/RevokeTasksResponse")]
+        void RevokeTasks(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/RevokeTasks", ReplyAction="http://tempuri.org/IEofficeMainService/RevokeTasksResponse")]
+        System.Threading.Tasks.Task RevokeTasksAsync(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetLogs", ReplyAction="http://tempuri.org/IEofficeMainService/GetLogsResponse")]
+        QLHS_DR.EOfficeServiceReference.Log[] GetLogs(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.EOfficeServiceReference.LogType type, int userId, int filterUserId, int fromLogId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetLogs", ReplyAction="http://tempuri.org/IEofficeMainService/GetLogsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Log[]> GetLogsAsync(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.EOfficeServiceReference.LogType type, int userId, int filterUserId, int fromLogId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/TryLogin", ReplyAction="http://tempuri.org/IEofficeMainService/TryLoginResponse")]
+        QLHS_DR.EOfficeServiceReference.LoginStatusType TryLogin(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/TryLogin", ReplyAction="http://tempuri.org/IEofficeMainService/TryLoginResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.LoginStatusType> TryLoginAsync(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/ChangePassword", ReplyAction="http://tempuri.org/IEofficeMainService/ChangePasswordResponse")]
+        QLHS_DR.EOfficeServiceReference.LoginStatusType ChangePassword(string userName, string oldPassword, string newPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/ChangePassword", ReplyAction="http://tempuri.org/IEofficeMainService/ChangePasswordResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.LoginStatusType> ChangePasswordAsync(string userName, string oldPassword, string newPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateTask", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateTaskResponse")]
+        void UpdateTask(QLHS_DR.EOfficeServiceReference.Task task, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateTask", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateTaskResponse")]
+        System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.EOfficeServiceReference.Task task, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetProcessingUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetProcessingUserInTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.User[] GetProcessingUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetProcessingUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetProcessingUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetProcessingUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetSeenUsersInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetSeenUsersInTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.User[] GetSeenUsersInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetSeenUsersInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetSeenUsersInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetSeenUsersInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetPrintedUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetPrintedUserInTaskResponse")]
+        QLHS_DR.EOfficeServiceReference.User[] GetPrintedUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetPrintedUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/GetPrintedUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetPrintedUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetSeenUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/SetSeenUserInTaskResponse")]
+        void SetSeenUserInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetSeenUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/SetSeenUserInTaskResponse")]
+        System.Threading.Tasks.Task SetSeenUserInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetPrintedUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/SetPrintedUserInTaskResponse")]
+        void SetPrintedUserInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetPrintedUserInTask", ReplyAction="http://tempuri.org/IEofficeMainService/SetPrintedUserInTaskResponse")]
+        System.Threading.Tasks.Task SetPrintedUserInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/RemoveProcessingUser", ReplyAction="http://tempuri.org/IEofficeMainService/RemoveProcessingUserResponse")]
+        void RemoveProcessingUser(int taskId, int userId, int removedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/RemoveProcessingUser", ReplyAction="http://tempuri.org/IEofficeMainService/RemoveProcessingUserResponse")]
+        System.Threading.Tasks.Task RemoveProcessingUserAsync(int taskId, int userId, int removedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/HasSeenInTask", ReplyAction="http://tempuri.org/IEofficeMainService/HasSeenInTaskResponse")]
+        bool HasSeenInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/HasSeenInTask", ReplyAction="http://tempuri.org/IEofficeMainService/HasSeenInTaskResponse")]
+        System.Threading.Tasks.Task<bool> HasSeenInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/IsProcessingInTask", ReplyAction="http://tempuri.org/IEofficeMainService/IsProcessingInTaskResponse")]
+        bool IsProcessingInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/IsProcessingInTask", ReplyAction="http://tempuri.org/IEofficeMainService/IsProcessingInTaskResponse")]
+        System.Threading.Tasks.Task<bool> IsProcessingInTaskAsync(int taskId, int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +2930,348 @@ namespace QLHS_DR.EOfficeServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public string GetMessage(string name) {
-            return base.Channel.GetMessage(name);
+        public QLHS_DR.EOfficeServiceReference.User GetUserByName(string username) {
+            return base.Channel.GetUserByName(username);
         }
         
-        public System.Threading.Tasks.Task<string> GetMessageAsync(string name) {
-            return base.Channel.GetMessageAsync(name);
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User> GetUserByNameAsync(string username) {
+            return base.Channel.GetUserByNameAsync(username);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User GetUserById(int userId) {
+            return base.Channel.GetUserById(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User> GetUserByIdAsync(int userId) {
+            return base.Channel.GetUserByIdAsync(userId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User[] GetUserContacts(string userName) {
+            return base.Channel.GetUserContacts(userName);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetUserContactsAsync(string userName) {
+            return base.Channel.GetUserContactsAsync(userName);
+        }
+        
+        public int SendMessage(QLHS_DR.EOfficeServiceReference.Message message) {
+            return base.Channel.SendMessage(message);
+        }
+        
+        public System.Threading.Tasks.Task<int> SendMessageAsync(QLHS_DR.EOfficeServiceReference.Message message) {
+            return base.Channel.SendMessageAsync(message);
+        }
+        
+        public byte[] GetUserECPrKeyFor(int userId, string password, QLHS_DR.EOfficeServiceReference.ECKeyPurpose purpose) {
+            return base.Channel.GetUserECPrKeyFor(userId, password, purpose);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> GetUserECPrKeyForAsync(int userId, string password, QLHS_DR.EOfficeServiceReference.ECKeyPurpose purpose) {
+            return base.Channel.GetUserECPrKeyForAsync(userId, password, purpose);
+        }
+        
+        public void Logout(string userName, string password) {
+            base.Channel.Logout(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task LogoutAsync(string userName, string password) {
+            return base.Channel.LogoutAsync(userName, password);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Message[] LoadMessages(int fromId, int toId) {
+            return base.Channel.LoadMessages(fromId, toId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Message[]> LoadMessagesAsync(int fromId, int toId) {
+            return base.Channel.LoadMessagesAsync(fromId, toId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.UserStatus GetUserStatus(int userId) {
+            return base.Channel.GetUserStatus(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.UserStatus> GetUserStatusAsync(int userId) {
+            return base.Channel.GetUserStatusAsync(userId);
+        }
+        
+        public System.DateTime GetUserLastOnline(int userId) {
+            return base.Channel.GetUserLastOnline(userId);
+        }
+        
+        public System.Threading.Tasks.Task<System.DateTime> GetUserLastOnlineAsync(int userId) {
+            return base.Channel.GetUserLastOnlineAsync(userId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Message[] LoadMessagesFromMessageId(int fromId, int toId, int fromMessageId) {
+            return base.Channel.LoadMessagesFromMessageId(fromId, toId, fromMessageId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Message[]> LoadMessagesFromMessageIdAsync(int fromId, int toId, int fromMessageId) {
+            return base.Channel.LoadMessagesFromMessageIdAsync(fromId, toId, fromMessageId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Task[] LoadTasks(int userId) {
+            return base.Channel.LoadTasks(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Task[]> LoadTasksAsync(int userId) {
+            return base.Channel.LoadTasksAsync(userId);
+        }
+        
+        public int AddTask(QLHS_DR.EOfficeServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey) {
+            return base.Channel.AddTask(task, ownerTaskKey, assignedTaskKey);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddTaskAsync(QLHS_DR.EOfficeServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey) {
+            return base.Channel.AddTaskAsync(task, ownerTaskKey, assignedTaskKey);
+        }
+        
+        public void AddTaskAttachedFile(QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId) {
+            base.Channel.AddTaskAttachedFile(attachedFilesDTO, userId);
+        }
+        
+        public System.Threading.Tasks.Task AddTaskAttachedFileAsync(QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId) {
+            return base.Channel.AddTaskAttachedFileAsync(attachedFilesDTO, userId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Task[] LoadTasksFromTaskId(int userId, int fromTaskId) {
+            return base.Channel.LoadTasksFromTaskId(userId, fromTaskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Task[]> LoadTasksFromTaskIdAsync(int userId, int fromTaskId) {
+            return base.Channel.LoadTasksFromTaskIdAsync(userId, fromTaskId);
+        }
+        
+        public bool IsExistTaskName(string taskName) {
+            return base.Channel.IsExistTaskName(taskName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsExistTaskNameAsync(string taskName) {
+            return base.Channel.IsExistTaskNameAsync(taskName);
+        }
+        
+        public void DeleteTasks(int[] taskIds, int userId) {
+            base.Channel.DeleteTasks(taskIds, userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteTasksAsync(int[] taskIds, int userId) {
+            return base.Channel.DeleteTasksAsync(taskIds, userId);
+        }
+        
+        public void DeleteTaskAttachedFiles(int[] taskAttachedFileIds, int userId) {
+            base.Channel.DeleteTaskAttachedFiles(taskAttachedFileIds, userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteTaskAttachedFilesAsync(int[] taskAttachedFileIds, int userId) {
+            return base.Channel.DeleteTaskAttachedFilesAsync(taskAttachedFileIds, userId);
+        }
+        
+        public void AddUserTask(int taskId, int userId, int assignedBy, byte[] userTaskKey) {
+            base.Channel.AddUserTask(taskId, userId, assignedBy, userTaskKey);
+        }
+        
+        public System.Threading.Tasks.Task AddUserTaskAsync(int taskId, int userId, int assignedBy, byte[] userTaskKey) {
+            return base.Channel.AddUserTaskAsync(taskId, userId, assignedBy, userTaskKey);
+        }
+        
+        public System.DateTime GetServerDateTime() {
+            return base.Channel.GetServerDateTime();
+        }
+        
+        public System.Threading.Tasks.Task<System.DateTime> GetServerDateTimeAsync() {
+            return base.Channel.GetServerDateTimeAsync();
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO[] GetTaskDocuments(int taskId) {
+            return base.Channel.GetTaskDocuments(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO[]> GetTaskDocumentsAsync(int taskId) {
+            return base.Channel.GetTaskDocumentsAsync(taskId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.UserTask GetUserTask(int userId, int taskId) {
+            return base.Channel.GetUserTask(userId, taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.UserTask> GetUserTaskAsync(int userId, int taskId) {
+            return base.Channel.GetUserTaskAsync(userId, taskId);
+        }
+        
+        public void AddLog(QLHS_DR.EOfficeServiceReference.Log log_0) {
+            base.Channel.AddLog(log_0);
+        }
+        
+        public System.Threading.Tasks.Task AddLogAsync(QLHS_DR.EOfficeServiceReference.Log log_0) {
+            return base.Channel.AddLogAsync(log_0);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.PermissionType GetPermissions(int userId) {
+            return base.Channel.GetPermissions(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.PermissionType> GetPermissionsAsync(int userId) {
+            return base.Channel.GetPermissionsAsync(userId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.PermissionType GetTaskPermissions(int userId, int taskId) {
+            return base.Channel.GetTaskPermissions(userId, taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.PermissionType> GetTaskPermissionsAsync(int userId, int taskId) {
+            return base.Channel.GetTaskPermissionsAsync(userId, taskId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User[] GetUserInTask(int taskId) {
+            return base.Channel.GetUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetUserInTaskAsync(int taskId) {
+            return base.Channel.GetUserInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User[] GetPrintableUserInTask(int taskId) {
+            return base.Channel.GetPrintableUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetPrintableUserInTaskAsync(int taskId) {
+            return base.Channel.GetPrintableUserInTaskAsync(taskId);
+        }
+        
+        public void SetPrintableUsersInTask(int taskId, int[] userIds, bool prinable, int changeByUserId) {
+            base.Channel.SetPrintableUsersInTask(taskId, userIds, prinable, changeByUserId);
+        }
+        
+        public System.Threading.Tasks.Task SetPrintableUsersInTaskAsync(int taskId, int[] userIds, bool prinable, int changeByUserId) {
+            return base.Channel.SetPrintableUsersInTaskAsync(taskId, userIds, prinable, changeByUserId);
+        }
+        
+        public void DeleteUserTask(int taskId, int userId, int deletedBy) {
+            base.Channel.DeleteUserTask(taskId, userId, deletedBy);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserTaskAsync(int taskId, int userId, int deletedBy) {
+            return base.Channel.DeleteUserTaskAsync(taskId, userId, deletedBy);
+        }
+        
+        public void AssignUser(int taskId, int userId, int assignedBy) {
+            base.Channel.AssignUser(taskId, userId, assignedBy);
+        }
+        
+        public System.Threading.Tasks.Task AssignUserAsync(int taskId, int userId, int assignedBy) {
+            return base.Channel.AssignUserAsync(taskId, userId, assignedBy);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Task LoadTask(int taskId) {
+            return base.Channel.LoadTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Task> LoadTaskAsync(int taskId) {
+            return base.Channel.LoadTaskAsync(taskId);
+        }
+        
+        public void RevokeTasks(int[] taskIds, int userId) {
+            base.Channel.RevokeTasks(taskIds, userId);
+        }
+        
+        public System.Threading.Tasks.Task RevokeTasksAsync(int[] taskIds, int userId) {
+            return base.Channel.RevokeTasksAsync(taskIds, userId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Log[] GetLogs(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.EOfficeServiceReference.LogType type, int userId, int filterUserId, int fromLogId) {
+            return base.Channel.GetLogs(from, dateTime_0, type, userId, filterUserId, fromLogId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Log[]> GetLogsAsync(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.EOfficeServiceReference.LogType type, int userId, int filterUserId, int fromLogId) {
+            return base.Channel.GetLogsAsync(from, dateTime_0, type, userId, filterUserId, fromLogId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.LoginStatusType TryLogin(string userName, string password) {
+            return base.Channel.TryLogin(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.LoginStatusType> TryLoginAsync(string userName, string password) {
+            return base.Channel.TryLoginAsync(userName, password);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.LoginStatusType ChangePassword(string userName, string oldPassword, string newPassword) {
+            return base.Channel.ChangePassword(userName, oldPassword, newPassword);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.LoginStatusType> ChangePasswordAsync(string userName, string oldPassword, string newPassword) {
+            return base.Channel.ChangePasswordAsync(userName, oldPassword, newPassword);
+        }
+        
+        public void UpdateTask(QLHS_DR.EOfficeServiceReference.Task task, int userId) {
+            base.Channel.UpdateTask(task, userId);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.EOfficeServiceReference.Task task, int userId) {
+            return base.Channel.UpdateTaskAsync(task, userId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User[] GetProcessingUserInTask(int taskId) {
+            return base.Channel.GetProcessingUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetProcessingUserInTaskAsync(int taskId) {
+            return base.Channel.GetProcessingUserInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User[] GetSeenUsersInTask(int taskId) {
+            return base.Channel.GetSeenUsersInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetSeenUsersInTaskAsync(int taskId) {
+            return base.Channel.GetSeenUsersInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.User[] GetPrintedUserInTask(int taskId) {
+            return base.Channel.GetPrintedUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.User[]> GetPrintedUserInTaskAsync(int taskId) {
+            return base.Channel.GetPrintedUserInTaskAsync(taskId);
+        }
+        
+        public void SetSeenUserInTask(int taskId, int userId) {
+            base.Channel.SetSeenUserInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task SetSeenUserInTaskAsync(int taskId, int userId) {
+            return base.Channel.SetSeenUserInTaskAsync(taskId, userId);
+        }
+        
+        public void SetPrintedUserInTask(int taskId, int userId) {
+            base.Channel.SetPrintedUserInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task SetPrintedUserInTaskAsync(int taskId, int userId) {
+            return base.Channel.SetPrintedUserInTaskAsync(taskId, userId);
+        }
+        
+        public void RemoveProcessingUser(int taskId, int userId, int removedBy) {
+            base.Channel.RemoveProcessingUser(taskId, userId, removedBy);
+        }
+        
+        public System.Threading.Tasks.Task RemoveProcessingUserAsync(int taskId, int userId, int removedBy) {
+            return base.Channel.RemoveProcessingUserAsync(taskId, userId, removedBy);
+        }
+        
+        public bool HasSeenInTask(int taskId, int userId) {
+            return base.Channel.HasSeenInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> HasSeenInTaskAsync(int taskId, int userId) {
+            return base.Channel.HasSeenInTaskAsync(taskId, userId);
+        }
+        
+        public bool IsProcessingInTask(int taskId, int userId) {
+            return base.Channel.IsProcessingInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsProcessingInTaskAsync(int taskId, int userId) {
+            return base.Channel.IsProcessingInTaskAsync(taskId, userId);
         }
     }
 }

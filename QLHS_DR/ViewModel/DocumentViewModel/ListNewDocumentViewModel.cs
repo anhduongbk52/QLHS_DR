@@ -3,7 +3,7 @@ using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.Core;
-using QLHS_DR.ServiceReference1;
+using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
 using System;
@@ -24,7 +24,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
     {
         //        
         #region "Properties and Field"
-     
+        private EofficeMainServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
 
@@ -90,8 +90,6 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         }
         #endregion
 
-
-
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand TaskSelectedCommand { get; set; }
@@ -105,14 +103,17 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             }
             try 
             {
-                iReadOnlyListUser = ServiceProxy.Ins.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+                _MyClient.Close();
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }    
+            catch(Exception ex) 
+            { 
+                MessageBox.Show(ex.Message);
+                _MyClient.Abort();
+            }    
             
-
-           
-
-
             ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
             //LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -125,10 +126,12 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 ListUserTaskOfTask = new ObservableCollection<UserTask>();
                 try
                 {
-                    UsersInTask = ServiceProxy.Ins.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
+                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+                    UsersInTask = _MyClient.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
                     foreach (var user in _UsersInTask)
                     {
-                        UserTask userTask = ServiceProxy.Ins.GetUserTask(user.Id, _UserTaskSelected.TaskId);
+                        UserTask userTask = _MyClient.GetUserTask(user.Id, _UserTaskSelected.TaskId);
 
                         if (userTask != null)
                         {
@@ -136,29 +139,34 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                             ListUserTaskOfTask.Add(userTask);
                         }
                     }
+                    _MyClient.Close();
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message); }   
-               
-                
+                catch (Exception ex) 
+                { 
+                    MessageBox.Show(ex.Message);
+                    _MyClient.Abort();
+                }
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
                 try
                 {
-                    PermissionType taskPermissions = ServiceProxy.Ins.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
+                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+                    PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
 
                     bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
                     bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
+                    bool saveable =_UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
 
-
-                    var taskAttachedFileDTOs = ServiceProxy.Ins.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
+                    var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs.Length == 1)
                     {
                         DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
-                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content);
+                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable,saveable);                       
                         pdfViewer.Show();
                     }
-
+                    _MyClient.Close();
                 }
                 catch(Exception ex)
                 { MessageBox.Show(ex.Message); }
@@ -170,12 +178,22 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ObservableCollection<User> GetAllUser()
         {
             ObservableCollection<User> ketqua = new ObservableCollection<User>();
-            var Users = ServiceProxy.Ins.GetUserContacts("duongda");
-
-            foreach (var user in Users)
+            try
             {
-                ketqua.Add(user);
-
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();                
+                var Users = _MyClient.GetUserContacts("duongda");
+                _MyClient.Close();
+                foreach (var user in Users)
+                {
+                    ketqua.Add(user);
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                _MyClient.Abort();
             }
             return ketqua;
         }
@@ -184,19 +202,20 @@ namespace EofficeClient.ViewModel.DocumentViewModel
              List<Task> ketqua = new List<Task>();
             try
             {
-               
-                var Tasks = ServiceProxy.Ins.LoadTasks(userId);
-
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                var Tasks = _MyClient.LoadTasks(userId);
+                _MyClient.Close();
                 foreach (var taks in Tasks)
                 {
                     ketqua.Add(taks);
-
                 }
                 
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                _MyClient.Abort();
             }
             return ketqua;
         }
@@ -210,38 +229,76 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         }
         private byte[] GetHashPasword()
         {
-            byte[] password = Convert.FromBase64String(ServiceProxy.Ins.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
-            return CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
+            byte[] password=null;
+            byte[] ketqua = null;
+            try
+            {
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                password = Convert.FromBase64String(_MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
+                _MyClient.Close();
+                ketqua = CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                _MyClient.Abort();
+            }
+            return ketqua;
         }
         private byte[] GetKeyDecryptOfTask(int taskId)
         {
-            UserTask userTask_0 = ServiceProxy.Ins.GetUserTask(SectionLogin.Ins.CurrentUser.Id, taskId);
-            if (userTask_0 != null)
+            try
             {
-                byte[] hassPasword = GetHashPasword();
-                if (userTask_0.AssignedBy == SectionLogin.Ins.CurrentUser.Id) //Nếu luồng công việc được tạo bởi _CurrentUser
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, taskId);
+                _MyClient.Close();
+                if (userTask_0 != null)
                 {
-                    return CryptoUtil.DecryptByDerivedPassword(hassPasword, userTask_0.TaskKey); //lấy key giải mã là của TaskKey của userTask
+                    byte[] hassPasword = GetHashPasword();
+                    if (userTask_0.AssignedBy == SectionLogin.Ins.CurrentUser.Id) //Nếu luồng công việc được tạo bởi _CurrentUser
+                    {
+                        return CryptoUtil.DecryptByDerivedPassword(hassPasword, userTask_0.TaskKey); //lấy key giải mã là của TaskKey của userTask
+                    }
+                    //Nếu luồng công việc không được tạo bởi _CurrentUser
+                    User user = iReadOnlyListUser.FirstOrDefault((User u) => u.Id == userTask_0.AssignedBy); //Lấy về user chủ nhân của luồng.
+                    if (user.ECPrKeyForFile == null)  //Nếu user không có ECPrKeyForFile
+                    {
+                        byte[] byte_ = method_20(hassPasword);
+                        SetECPrKeyForFile(byte_, user);
+                    }
+                    return CryptoUtil.DecryptWithoutIV(user.ECPrKeyForFile, userTask_0.TaskKey);
                 }
-                //Nếu luồng công việc không được tạo bởi _CurrentUser
-                User user = iReadOnlyListUser.FirstOrDefault((User u) => u.Id == userTask_0.AssignedBy); //Lấy về user chủ nhân của luồng.
-                if (user.ECPrKeyForFile == null)  //Nếu user không có ECPrKeyForFile
-                {
-                    byte[] byte_ = method_20(hassPasword);
-                    SetECPrKeyForFile(byte_, user);
-                }
-                return CryptoUtil.DecryptWithoutIV(user.ECPrKeyForFile, userTask_0.TaskKey);
+                return null;
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                _MyClient.Abort();
             }
             return null;
         }
         private byte[] method_20(byte[] byte_0)
         {
-            User user = SectionLogin.Ins.CurrentUser ?? (SectionLogin.Ins.CurrentUser = ServiceProxy.Ins.GetUserByName(ServiceProxy.Ins.ClientCredentials.UserName.UserName));
-            if (user.ECPrKeyForFile == null)
+            byte[] ketqua = null;
+            try
             {
-                user.ECPrKeyForFile = ServiceProxy.Ins.GetUserECPrKeyFor(user.Id, ServiceProxy.Ins.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password, ECKeyPurpose.FILE);
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                QLHS_DR.EOfficeServiceReference.User user = SectionLogin.Ins.CurrentUser ?? (SectionLogin.Ins.CurrentUser = _MyClient.GetUserByName(_MyClient.ClientCredentials.UserName.UserName));
+                if (user.ECPrKeyForFile == null)
+                {
+                    user.ECPrKeyForFile = _MyClient.GetUserECPrKeyFor(user.Id, _MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password, ECKeyPurpose.FILE);
+                }
+               ketqua= CryptoUtil.DecryptByDerivedPassword(byte_0, user.ECPrKeyForFile);
             }
-            return CryptoUtil.DecryptByDerivedPassword(byte_0, user.ECPrKeyForFile);
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                _MyClient.Abort();
+            }
+            return ketqua;
         }
         private void SetECPrKeyForFile(byte[] byte_0, User user_1)
         {

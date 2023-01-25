@@ -108,6 +108,7 @@
     <Compile Include="View\DocumentView\ListNewDocumentUC.xaml.cs">
       <DependentUpon>ListNewDocumentUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DocumentView\PdfViewerControlEx.cs" />
     <Compile Include="View\DocumentView\PdfViewerWindow.xaml.cs">
       <DependentUpon>PdfViewerWindow.xaml</DependentUpon>
     </Compile>
@@ -169,10 +170,46 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Connected Services\EOfficeServiceReference\EofficeMainService.wsdl" />
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Log.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.LoginStatusType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PermissionType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Task.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\EOfficeServiceReference\Service.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\Service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\Service22.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference1\EEMCDRWcfService.wsdl" />
