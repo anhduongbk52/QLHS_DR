@@ -160,13 +160,17 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     bool saveable =_UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
 
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
+                    _MyClient.SetSeenUserInTask(_UserTaskSelected.TaskId, SectionLogin.Ins.CurrentUser.Id);
+                    _MyClient.Close();
                     if (taskAttachedFileDTOs.Length == 1)
                     {
                         DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
-                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable,saveable);                       
+                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable,saveable);
+                        pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
+                        pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
+                        pdfViewer.UserTaskPrint = _UserTaskSelected;
                         pdfViewer.Show();
                     }
-                    _MyClient.Close();
                 }
                 catch(Exception ex)
                 { MessageBox.Show(ex.Message); }
@@ -185,8 +189,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 foreach (var user in Users)
                 {
                     ketqua.Add(user);
-                }
-                
+                }                
             }
             catch(Exception ex)
             {

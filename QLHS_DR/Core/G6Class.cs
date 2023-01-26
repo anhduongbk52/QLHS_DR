@@ -16,12 +16,12 @@ namespace QLHS_DR.Core
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
         private User user_0;
         private IReadOnlyList<User> ireadOnlyList_0;
-        private EofficeMainServiceClient eemcdrwcfServiceClient_0;
+        private EofficeMainServiceClient _myClient;
 
         //Khoi tao
         public G6Class() //Khởi tạo
         {
-            //imethod_0(client.ClientCredentials.UserName.UserName);
+            _myClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
         }
 
 
@@ -35,17 +35,21 @@ namespace QLHS_DR.Core
         //    });
         //}
         private byte[] GetHashPasword()
-        {
-            byte[] password = Convert.FromBase64String(ServiceProxy.Ins.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
+        {           
+            _myClient.Open();
+            byte[] password = Convert.FromBase64String(_myClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
+            _myClient.Close();
             return CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
         }
         private byte[] method_20(byte[] byte_0)
-        {
-            User user = user_0 ?? (user_0 = ServiceProxy.Ins.GetUserByName(ServiceProxy.Ins.ClientCredentials.UserName.UserName));
+        {         
+            _myClient.Open();
+            User user = user_0 ?? (user_0 = _myClient.GetUserByName(_myClient.ClientCredentials.UserName.UserName));
             if (user.ECPrKeyForFile == null)
             {
-                user.ECPrKeyForFile = ServiceProxy.Ins.GetUserECPrKeyFor(user.Id, ServiceProxy.Ins.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password, ECKeyPurpose.FILE);
+                user.ECPrKeyForFile = _myClient.GetUserECPrKeyFor(user.Id, _myClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password, ECKeyPurpose.FILE);
             }
+            _myClient.Close();
             return CryptoUtil.DecryptByDerivedPassword(byte_0, user.ECPrKeyForFile);
         }
         private void SetECPrKeyForMessage(byte[] byte_0, User user_1)
@@ -65,8 +69,10 @@ namespace QLHS_DR.Core
 
 
         private byte[] method_7(int taskId)
-        {
-            UserTask userTask_0 = ServiceProxy.Ins.GetUserTask(user_0.Id, taskId);
+        {           
+            _myClient.Open();
+            UserTask userTask_0 = _myClient.GetUserTask(user_0.Id, taskId);
+            _myClient.Close();
             if (userTask_0 != null)
             {
                 byte[] array = GetHashPasword();

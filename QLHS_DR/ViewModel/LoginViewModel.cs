@@ -126,7 +126,7 @@ namespace EofficeClient.ViewModel
                 // System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; }; //Igno SSL
                 _MyClient.Open();               
                 User = _MyClient.GetUserByName(_UserName);
-                ServiceProxy.Ins = _MyClient;
+                
                 SectionLogin.Ins.CurrentUser = User;
                 SectionLogin.Ins.Permissions = _MyClient.GetPermissions(User.Id);
                 SectionLogin.Ins.Token = passEncode;

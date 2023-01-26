@@ -1,6 +1,8 @@
 ﻿using DevExpress.ClipboardSource.SpreadsheetML;
 using DevExpress.Mvvm.Native;
 using DevExpress.Xpf.PdfViewer;
+using QLHS_DR.Core;
+using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EofficeCommonLibrary;
+using EofficeClient.Core;
 
 namespace QLHS_DR.View.DocumentView
 {
@@ -32,11 +36,23 @@ namespace QLHS_DR.View.DocumentView
         private bool _CanPrint;
         private bool _CanSave;
         private byte[] contextFile;
-        private string _Url;
-        public string Url
+        private UserTask _UserTaskPrint;
+        public UserTask UserTaskPrint
         {
-            get => _Url;
-            set => _Url = value;
+            get => _UserTaskPrint;
+            set => _UserTaskPrint = value;
+        }
+        private string _TaskName;
+        public string TaskName
+        {
+            get => _TaskName;
+            set => _TaskName = value;
+        }
+        private string _FileName;
+        public string FileName
+        {
+            get => _FileName;
+            set => _FileName = value;
         }
         public PdfViewerWindow(byte[] data, bool canPrint, bool canSave)
         {
@@ -79,11 +95,40 @@ namespace QLHS_DR.View.DocumentView
 
        
         private void pdfViewer_PrintPage(DependencyObject d, PdfPrintPageEventArgs e)
-        {
-            if(e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("pdf") || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("xps"))
+        {            
+            if(e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("pdf") 
+                || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("xps") 
+                || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("onenote"))
             {
-                MessageBox.Show("Bạn không được quyền sử dụng máy in ảo cho tập tin này !");
-                e.Cancel=true;
+                e.Cancel = true;
+                MessageBox.Show("Bạn không được quyền sử dụng máy in ảo cho tập tin này !");               
+            }            
+            else
+            {
+                if (e.PageNumber == e.PageCount)
+                {
+                    Log log = new Log
+                    {
+                        Created = DateTime.Now,
+                        UserId = SectionLogin.Ins.CurrentUser.Id,
+                        LogType = LogType.PRINT_DOCUMENT,
+                        Description = "Người dùng [" + SectionLogin.Ins.CurrentUser.FullName + "] đã thực hiện in [" +
+                                   e.PageCount + "] trang tài liệu [" + _FileName + "] trong luồng công việc [" + _TaskName + "] sử dụng máy in [" + e.PageSettings.PrinterSettings.PrinterName + "].",
+                        IPAddress = EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress()
+                    };
+                    try
+                    {
+                        EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                        _MyClient.Open();
+                        _MyClient.AddLog(log);
+                        _MyClient.SetPrintedUserInTask(_UserTaskPrint.TaskId,SectionLogin.Ins.CurrentUser.Id);
+                        _MyClient.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.InnerException.Message);
+                    }
+                }                    
             }
         }
     }
