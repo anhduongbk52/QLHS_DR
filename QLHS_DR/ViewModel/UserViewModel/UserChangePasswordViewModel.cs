@@ -1,6 +1,5 @@
 ﻿using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.Core;
-using QLHS_DR.ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using QLHS_DR.EOfficeServiceReference;
 
 namespace QLHS_DR.ViewModel.UserViewModel
 {
@@ -49,7 +49,7 @@ namespace QLHS_DR.ViewModel.UserViewModel
             CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             UpdatePasswordCommand = new RelayCommand<Window>((p) => { if (CurrentPassword != null & NewPassword != null & ConfirmPassword != null & ConfirmPassword == NewPassword) return true; else return false; }, (p) =>
             {
-                ServiceReference1.EEMCDRWcfServiceClient client = new ServiceReference1.EEMCDRWcfServiceClient();
+                EofficeMainServiceClient client = new EofficeMainServiceClient();
                 try
                 {
                     client.ClientCredentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;

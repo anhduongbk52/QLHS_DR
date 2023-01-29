@@ -10,7 +10,7 @@
     Name="mainWindow"
     DataContext="{Binding Source={StaticResource Locator},Path=MainViewModel}"
     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
-    Title="MainWindow" Height="800" Width="1000">
+    Title="{Binding TileApplication}" Height="800" Width="1000">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
@@ -39,6 +39,7 @@
             </dxr:RibbonControl.ApplicationMenu>
             <dxr:RibbonControl.PageHeaderItems>
                 <dxb:BarSubItem  Content="{Binding CurrentUser.FullName}"
+                                 x:Name="loginName"
                                  RibbonStyle="SmallWithText"
                                  Glyph="{dx:DXImage SvgImages/Business Objects/BO_Customer.svg}">
                     <dxb:BarButtonItem Command="{Binding LogoutCommand}"
@@ -72,7 +73,7 @@
                 <dxb:BarButtonItem x:Name="printItem" Content="Print" Glyph="{dx:DXImage 'SvgImages/Print/Print.svg'}"/>
             </dxr:RibbonStatusBarControl.RightItems>
         </dxr:RibbonStatusBarControl>
-        <dxwui:HamburgerMenu  DockPanel.Dock="Left" AvailableViewStates="Inline" ViewState="Closed" IsMenuVisible="True">
+        <dxwui:HamburgerMenu  DockPanel.Dock="Left" AvailableViewStates="Inline" ViewState="Closed" IsMenuVisible="False">
             <dxwui:HamburgerMenuNavigationButton Content="{Binding ContentButtonNotCompleted,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Command="{Binding LoadListNewDocument}"></dxwui:HamburgerMenuNavigationButton>
             <dxwui:HamburgerMenuNavigationButton Content="{Binding ContentButtonCompleted}" Command="{Binding LoadListCompltetedDocument}"></dxwui:HamburgerMenuNavigationButton>
             <dxwui:HamburgerMenuNavigationButton Content="{Binding ContentButtonRevoke}" Command="{Binding LoadListRevokeDocument}"></dxwui:HamburgerMenuNavigationButton>

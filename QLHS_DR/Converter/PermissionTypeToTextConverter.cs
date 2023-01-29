@@ -1,4 +1,4 @@
-﻿using QLHS_DR.ServiceReference1;
+﻿using QLHS_DR.EOfficeServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

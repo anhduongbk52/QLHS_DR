@@ -94,6 +94,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand TaskSelectedCommand { get; set; }
         public ICommand OpenFileCommand { get; set; }
+        public ICommand FinishTaskCommand { get; set; }
         #endregion
         public ListNewDocumentViewModel(ObservableCollection<UserTask> userTask) 
         {
@@ -116,10 +117,10 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             
             ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
-            //LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            //{
-            //    ListTaskOfUser = GetAllTaskOfUser(SectionLogin.Ins.CurrentUser.Id).OrderByDescending(x=>x.StartDate).ToList();
-            //});
+            LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                ListTaskOfUser = GetAllTaskOfUser(SectionLogin.Ins.CurrentUser.Id).OrderByDescending(x => x.StartDate).ToList();
+            });
             TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {                
                 
@@ -175,6 +176,21 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 catch(Exception ex)
                 { MessageBox.Show(ex.Message); }
                 
+            });
+            FinishTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && _UserTaskSelected.IsFinish!=true) return true; else return false; }, (p) =>
+            {
+                try
+                {
+                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+                    _MyClient.SetUserTaskFinish(_UserTaskSelected.Id);
+                    ListUserTaskOfUser.Remove(_UserTaskSelected);
+                    _MyClient.Close();
+                    
+                }
+                catch (Exception ex)
+                { MessageBox.Show(ex.Message); }
+
             });
         }      
         public ObservableCollection<User> GetAllUser()

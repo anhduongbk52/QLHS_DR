@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="71a86f96-5a22-4fc3-a4ca-4b9fd25dc8da" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f3ffdea0-a49a-4dff-b2ae-aea0c1ce3d75" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="da5a683d-fe29-4315-8c64-7ea86fb0b761" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
+    <MetadataFile FileName="service31.xsd" MetadataType="Schema" ID="13fa8d70-bdf6-4230-9d7b-f9a28699630d" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
+    <MetadataFile FileName="EofficeService.Model.xsd" MetadataType="Schema" ID="ddcfa65a-feb5-4ada-97a1-3eb56424f0b9" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

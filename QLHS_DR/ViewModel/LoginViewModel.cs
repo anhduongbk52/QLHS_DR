@@ -19,6 +19,9 @@ using QLHS_DR.ViewModel;
 using EofficeClient.Core;
 using DevExpress.XtraExport.Xls;
 using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ViewModel.ChatAppViewModel;
+using QLHS_DR.ChatAppServiceReference;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace EofficeClient.ViewModel
 {
@@ -120,15 +123,14 @@ namespace EofficeClient.ViewModel
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
             
             _MyClient = ServiceHelper.NewEofficeMainServiceClient(_UserName, passEncode);
-
             try
             {
                 // System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; }; //Igno SSL
                 _MyClient.Open();               
-                User = _MyClient.GetUserByName(_UserName);
-                
+                User = _MyClient.GetUserByName(_UserName);                
                 SectionLogin.Ins.CurrentUser = User;
                 SectionLogin.Ins.Permissions = _MyClient.GetPermissions(User.Id);
+                _MyClient.Close();
                 SectionLogin.Ins.Token = passEncode;
                 IsLogin = true;
                 CheckBoxSave(_SaveLogin);
@@ -144,8 +146,29 @@ namespace EofficeClient.ViewModel
                 {
                     ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
                 }
+                //ChatApp Login
+                var uri = "net.tcp://192.168.11.12:8080/EofficeService/Service";
+                var callBack = new InstanceContext(new MessageServiceCallBack());
+                var binding = new NetTcpBinding(SecurityMode.None);
+                var channel = new DuplexChannelFactory<IMessageService>(callBack, binding);
+                var endPoint = new EndpointAddress(uri);
+                var proxy = channel.CreateChannel(endPoint);
+                proxy?.Connect(User.Id);
+
+                //Uri baseAddress = new Uri("net.tcp://192.168.11.12:8080/EofficeService/Service");
+                //NetTcpBinding wsd = new NetTcpBinding();
+                ////wsd.Security = SecurityMode.None;
+                //EndpointAddress ea = new EndpointAddress(baseAddress, EndpointIdentity.CreateDnsIdentity("192.168.11.12:8080"));
+                //MessageServiceClient _ChatClient = new MessageServiceClient(callBack, wsd,ea);
+
+                //////_ChatClient.ClientCredentials.UserName.UserName = _UserName;
+                //////_ChatClient.ClientCredentials.UserName.Password = passEncode;
+                //_ChatClient.Open(); 
+                //_ChatClient.Connect(User.Id);
+                //var enpoint = _ChatClient.Endpoint;
+                              
                 p.Close();
-                //_MyClient.Close();
+                
             }
             catch (TimeoutException exception)
             {

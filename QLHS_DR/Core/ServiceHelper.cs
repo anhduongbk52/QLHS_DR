@@ -1,5 +1,5 @@
-﻿using QLHS_DR.EOfficeServiceReference;
-using QLHS_DR.ServiceReference1;
+﻿using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.EOfficeServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +19,6 @@ namespace EofficeClient.Core
 
         private const string servicePath = "EEMCDRWcfService/service";
 
-        public static EEMCDRWcfServiceClient NewServiceClient(string userName, string password)
-        {
-
-            EEMCDRWcfServiceClient eEMCDRWcfServiceClient = new EEMCDRWcfServiceClient(BindingConfig(), new EndpointAddress(string.Format("{0}://{1}:{2}/{3}", protocol, ipAddress, port, "EEMCDRWcfService/service")));
-            eEMCDRWcfServiceClient.ClientCredentials.UserName.UserName = userName;
-            eEMCDRWcfServiceClient.ClientCredentials.UserName.Password = password;
-            return eEMCDRWcfServiceClient;
-        }
-
         public static EofficeMainServiceClient NewEofficeMainServiceClient(string userName, string password)
         {
 
@@ -36,6 +27,7 @@ namespace EofficeClient.Core
             client.ClientCredentials.UserName.Password = password;
             return client;
         }
+        
 
         private static WSHttpBinding BindingConfig()
         {
@@ -64,7 +56,7 @@ namespace EofficeClient.Core
                     MaxStringContentLength = int.MaxValue
                 }
             };
-        }
+        }        
     }
 
 

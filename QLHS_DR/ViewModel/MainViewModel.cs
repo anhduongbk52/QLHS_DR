@@ -50,8 +50,8 @@ namespace QLHS_DR.ViewModel
         public User CurrentUser { get => _CurrentUser; set { _CurrentUser = value; OnPropertyChanged("CurrentUser"); } }
 
         public bool Isloaded = false;
-        private string? _TileApplication;
-        public string? TileApplication
+        private string _TileApplication;
+        public string TileApplication
         {
             get => _TileApplication;
             set
@@ -156,6 +156,7 @@ namespace QLHS_DR.ViewModel
                         }
                         
                         p.Show();
+
 
                         _ListUserTaskNotFinish = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != TaskStatus.Revoked && x.IsFinish != true).OrderByDescending(x=>x.Task.StartDate).ToObservableCollection();
                         _ListUserTaskFinish = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != TaskStatus.Revoked && x.IsFinish == true).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();

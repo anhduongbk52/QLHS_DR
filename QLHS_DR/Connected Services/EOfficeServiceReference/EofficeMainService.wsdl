@@ -368,6 +368,12 @@
   <wsdl:message name="IEofficeMainService_IsProcessingInTask_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsProcessingInTaskResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetUserTaskFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskFinish" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetUserTaskFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskFinishResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEofficeMainService">
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByName" message="tns:IEofficeMainService_GetUserByName_InputMessage" />
@@ -540,6 +546,10 @@
     <wsdl:operation name="IsProcessingInTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/IsProcessingInTask" message="tns:IEofficeMainService_IsProcessingInTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/IsProcessingInTaskResponse" message="tns:IEofficeMainService_IsProcessingInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinish" message="tns:IEofficeMainService_SetUserTaskFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinishResponse" message="tns:IEofficeMainService_SetUserTaskFinish_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IEofficeMainService" type="tns:IEofficeMainService">
@@ -925,6 +935,15 @@
     </wsdl:operation>
     <wsdl:operation name="IsProcessingInTask">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/IsProcessingInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskFinish">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetUserTaskFinish" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

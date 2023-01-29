@@ -20,14 +20,15 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <dxg:GridControl Grid.Column="0" 
+        <dxg:GridControl Grid.Column="0"  Margin="0"
                          AutoGenerateColumns="None" 
                          ItemsSource="{Binding ListUserTaskOfUser}"
-                         SelectionMode="Row"
+                         SelectionMode="Row"                         
                          SelectedItem="{Binding UserTaskSelected}">
             <dxg:GridControl.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Xem" Command="{Binding OpenFileCommand}"></MenuItem>
+                    <MenuItem Header="Kết thúc" Command="{Binding FinishTaskCommand}"></MenuItem>
                     <MenuItem Header="Thêm bớt người nhận"></MenuItem>
                     <MenuItem Header="Thêm người nhận"></MenuItem>
                 </ContextMenu>
@@ -46,7 +47,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </dxg:GridControl>
-        <dxg:GridControl Grid.Column="1"
+        <dxg:GridControl Grid.Column="1" Margin="0"
                          AutoGenerateColumns="None" 
                          AutoExpandAllGroups="True"
                          ItemsSource="{Binding ListUserTaskOfTask}" 
