@@ -176,6 +176,30 @@
   <wsdl:message name="IEofficeMainService_LoadTasks_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadTasksResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksNotFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksNotFinish" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksNotFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksNotFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFinish" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksRevoked_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksRevoked" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksRevoked_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksRevokedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadAllTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadAllTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllTasksResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_AddTask_InputMessage">
     <wsdl:part name="parameters" element="tns:AddTask" />
   </wsdl:message>
@@ -320,6 +344,12 @@
   <wsdl:message name="IEofficeMainService_UpdateTask_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateUserTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateUserTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserTasksResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetProcessingUserInTask_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProcessingUserInTask" />
   </wsdl:message>
@@ -419,6 +449,22 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasks" message="tns:IEofficeMainService_LoadTasks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksResponse" message="tns:IEofficeMainService_LoadTasks_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LoadTasksNotFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksNotFinish" message="tns:IEofficeMainService_LoadTasksNotFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksNotFinishResponse" message="tns:IEofficeMainService_LoadTasksNotFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksFinish" message="tns:IEofficeMainService_LoadTasksFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksFinishResponse" message="tns:IEofficeMainService_LoadTasksFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksRevoked">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksRevoked" message="tns:IEofficeMainService_LoadTasksRevoked_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksRevokedResponse" message="tns:IEofficeMainService_LoadTasksRevoked_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadAllTasks" message="tns:IEofficeMainService_LoadAllTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadAllTasksResponse" message="tns:IEofficeMainService_LoadAllTasks_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddTask" message="tns:IEofficeMainService_AddTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddTaskResponse" message="tns:IEofficeMainService_AddTask_OutputMessage" />
@@ -514,6 +560,10 @@
     <wsdl:operation name="UpdateTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTask" message="tns:IEofficeMainService_UpdateTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTaskResponse" message="tns:IEofficeMainService_UpdateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateUserTasks" message="tns:IEofficeMainService_UpdateUserTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateUserTasksResponse" message="tns:IEofficeMainService_UpdateUserTasks_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetProcessingUserInTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProcessingUserInTask" message="tns:IEofficeMainService_GetProcessingUserInTask_InputMessage" />
@@ -647,6 +697,42 @@
     </wsdl:operation>
     <wsdl:operation name="LoadTasks">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksNotFinish">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasksNotFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFinish">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasksFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksRevoked">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasksRevoked" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadAllTasks" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -863,6 +949,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateTask">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateUserTasks" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

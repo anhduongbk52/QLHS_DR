@@ -47,5 +47,10 @@ namespace QLHS_DR.View.ChatAppView
                
             }, null, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
         }
+
+        private void ListBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

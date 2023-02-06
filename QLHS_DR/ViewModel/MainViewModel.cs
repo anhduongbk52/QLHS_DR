@@ -25,6 +25,7 @@ using AutoUpdaterDotNET;
 using System.Windows.Forms;
 using QLHS_DR.Properties;
 using TaskStatus = QLHS_DR.EOfficeServiceReference.TaskStatus;
+using QLHS_DR.ViewModel.DocumentViewModel;
 
 namespace QLHS_DR.ViewModel
 {
@@ -32,6 +33,7 @@ namespace QLHS_DR.ViewModel
     {
         #region "Field and properties"
         private Window window;
+        
         private EofficeMainServiceClient _MyClient;
         private ObservableCollection<TabContainer> _Workspaces;
         public ObservableCollection<TabContainer> Workspaces
@@ -46,6 +48,8 @@ namespace QLHS_DR.ViewModel
                 }
             }
         }
+       
+
         private User _CurrentUser;
         public User CurrentUser { get => _CurrentUser; set { _CurrentUser = value; OnPropertyChanged("CurrentUser"); } }
 
@@ -111,21 +115,29 @@ namespace QLHS_DR.ViewModel
         public ICommand LoadListCompltetedDocument { get; set; }
         public ICommand LoadListRevokeDocument { get; set; }
         public ICommand OpenChangePassWordWindowCommand { get; set; }
+
+
         #endregion
+
+        private ListNewDocumentUC listNewDocumentUC;
+        private UserTaskFinishUC userTaskFinishUC;
+        private ListNewDocumentUC listRevokeDocumentUC;
+        private ListNewDocumentUC listAllDocumentUC;
+
+        ListNewDocumentViewModel listNewDocumentViewModel;
+        UserTaskFinishViewModel userTaskFinishViewModel;
+        ListNewDocumentViewModel listRevokeDocumentViewModel;
+        ListNewDocumentViewModel listAllDocumentViewModel; 
         public MainViewModel()
         {
+
             //Settings for update
             string addressUpdateInfo = Settings.Default.AddressUpdateInfo;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
             AutoUpdater.Start(addressUpdateInfo);
 
-
             Workspaces = new ObservableCollection<TabContainer>();
 
-            ObservableCollection<UserTask> _ListUserTaskNotFinish = new ObservableCollection<UserTask>();
-            ObservableCollection<UserTask> _ListUserTaskFinish=new ObservableCollection<UserTask>();
-            ObservableCollection<UserTask> _ListUserTaskRevoked=new ObservableCollection<UserTask>();
-            ObservableCollection<UserTask>  _ListAllUserTask = new ObservableCollection<UserTask>();
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 window = p;
@@ -149,72 +161,11 @@ namespace QLHS_DR.ViewModel
                         if (loginVM.User != null)
                         {
                            
-                            CurrentUser = loginVM.User;
-                            //Group currentGroup = SectionLogin.Ins.CurrentUser.Groups.FirstOrDefault();
-                            //if (currentGroup != null) SectionLogin.Ins.CurrentPermission.GetPermissionByGroup(currentGroup.GroupId);
-                            //else SectionLogin.Ins.CurrentPermission.GetDefaultPermission();
+                            CurrentUser = loginVM.User;                            
                         }
                         
                         p.Show();
-
-
-                        _ListUserTaskNotFinish = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != TaskStatus.Revoked && x.IsFinish != true).OrderByDescending(x=>x.Task.StartDate).ToObservableCollection();
-                        _ListUserTaskFinish = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status != TaskStatus.Revoked && x.IsFinish == true).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
-                        _ListUserTaskRevoked = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
-                        //_ListAllUserTask = GetAllUserTaskOfUser(CurrentUser.Id).Where(x => x.Task.Status == ServiceReference1.TaskStatus.Revoked).OrderByDescending(x => x.Task.StartDate).ToObservableCollection();
-                        Workspaces.Clear();
-
-                        ListNewDocumentUC listNewDocumentUC = new ListNewDocumentUC();
-                        ListNewDocumentUC listCompletedDocumentUC = new ListNewDocumentUC();
-                        ListNewDocumentUC listRevokeDocumentUC = new ListNewDocumentUC();
-                        ListNewDocumentUC listAllDocumentUC = new ListNewDocumentUC();
-
-                        ListNewDocumentViewModel listNewDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskNotFinish);                        
-                        ListNewDocumentViewModel listCompletedDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskFinish);
-                        ListNewDocumentViewModel listRevokeDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskRevoked);
-                        ListNewDocumentViewModel listAllDocumentViewModel = new ListNewDocumentViewModel(_ListUserTaskRevoked);
-
-                        listNewDocumentUC.DataContext = listNewDocumentViewModel;
-                        listCompletedDocumentUC.DataContext = listCompletedDocumentViewModel;
-                        listRevokeDocumentUC.DataContext = listRevokeDocumentViewModel;
-                        listAllDocumentUC.DataContext = listRevokeDocumentViewModel;
-
-                        TabContainer tabItemNew = new TabContainer
-                        {
-                            Header = "Tài liệu chưa xử lý ( "+ _ListUserTaskNotFinish.Count()+" )",
-                            AllowHide = "true",
-                            IsSelected = true,
-                            IsVisible = true,
-                            Content = listNewDocumentUC
-                        };
-                        TabContainer tabItemCompleted = new TabContainer
-                        {
-                            Header = "Tài liệu đã xử lý ( " + _ListUserTaskFinish.Count() + " )",
-                            AllowHide = "true",
-                            IsSelected = false,
-                            IsVisible = true,
-                            Content = listCompletedDocumentUC
-                        };
-                        TabContainer tabItemRevoke = new TabContainer
-                        {
-                            Header = "Tài liệu đã thu hồi ( " + _ListUserTaskRevoked.Count() + " )",
-                            AllowHide = "true",
-                            IsSelected = false,
-                            IsVisible = true,
-                            Content = listRevokeDocumentUC
-                        };
-                        TabContainer tabItemAll = new TabContainer
-                        {
-                            Header = "All ( " + _ListUserTaskRevoked.Count() + " )",
-                            AllowHide = "true",
-                            IsSelected = false,
-                            IsVisible = true,
-                            Content = listAllDocumentUC
-                        };
-                        Workspaces.Add(tabItemNew);
-                        Workspaces.Add(tabItemCompleted);
-                        Workspaces.Add(tabItemRevoke);
-                        Workspaces.Add(tabItemAll);
+                        LoadDefaultTab();
                     }
                     else
                     { p.Close(); }
@@ -223,8 +174,10 @@ namespace QLHS_DR.ViewModel
             LogoutCommand = new RelayCommand<Window>((p) => { if (p == null) return false; else return true; }, (p) =>
             {              
                 Isloaded = false;
-                ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
+                ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);                
                 SectionLogin.Ins = null;
+               
+
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
@@ -240,6 +193,7 @@ namespace QLHS_DR.ViewModel
                             CurrentUser = loginVM.User;
                         }
                         p.Show();
+                        LoadDefaultTab();
                     }
                     else
                     { p.Close(); }
@@ -272,6 +226,62 @@ namespace QLHS_DR.ViewModel
 
         }
         #region "Function"
+        private void LoadDefaultTab()
+        {
+            listNewDocumentUC = new ListNewDocumentUC();
+            userTaskFinishUC = new UserTaskFinishUC();
+            listRevokeDocumentUC = new ListNewDocumentUC();
+            listAllDocumentUC = new ListNewDocumentUC();
+
+            listNewDocumentViewModel = new ListNewDocumentViewModel();
+            userTaskFinishViewModel = new UserTaskFinishViewModel();
+            listRevokeDocumentViewModel = new ListNewDocumentViewModel();
+            listAllDocumentViewModel = new ListNewDocumentViewModel();
+
+            Workspaces.Clear();
+
+            listNewDocumentUC.DataContext = listNewDocumentViewModel;
+            userTaskFinishUC.DataContext = userTaskFinishViewModel;
+            listRevokeDocumentUC.DataContext = listRevokeDocumentViewModel;
+            listAllDocumentUC.DataContext = listRevokeDocumentViewModel;
+
+            TabContainer tabItemNew = new TabContainer
+            {
+                Header = "Tài liệu chưa xử lý",
+                AllowHide = "true",
+                IsSelected = true,
+                IsVisible = true,
+                Content = listNewDocumentUC
+            };
+            TabContainer tabItemCompleted = new TabContainer
+            {
+                Header = "Tài liệu đã xử lý",
+                AllowHide = "true",
+                IsSelected = false,
+                IsVisible = true,
+                Content = userTaskFinishUC
+            };
+            TabContainer tabItemRevoke = new TabContainer
+            {
+                Header = "Tài liệu đã thu hồi",
+                AllowHide = "true",
+                IsSelected = false,
+                IsVisible = true,
+                Content = listRevokeDocumentUC
+            };
+            TabContainer tabItemAll = new TabContainer
+            {
+                Header = "All",
+                AllowHide = "true",
+                IsSelected = false,
+                IsVisible = true,
+                Content = listAllDocumentUC
+            };
+            Workspaces.Add(tabItemNew);
+            Workspaces.Add(tabItemCompleted);
+            Workspaces.Add(tabItemRevoke);
+            Workspaces.Add(tabItemAll);
+        }
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
             if (args.IsUpdateAvailable)
@@ -322,33 +332,6 @@ namespace QLHS_DR.ViewModel
         private static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
         {
             return true;
-        }
-        private ObservableCollection<UserTask> GetAllUserTaskOfUser(int userId)
-        {
-            ObservableCollection<UserTask> ListUserTaskOfUser = new ObservableCollection<UserTask>();
-            try
-            {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                _MyClient.Open();
-               
-                ObservableCollection<EOfficeServiceReference.Task> ListTaskOfUser = _MyClient.LoadTasks(userId).ToObservableCollection();
-                foreach (var task in ListTaskOfUser)
-                {
-                    UserTask userTask = _MyClient.GetUserTask(userId, task.Id);
-                    if (userTask != null)
-                    {
-                        userTask.Task = task;
-                        ListUserTaskOfUser.Add(userTask);
-                    }
-                }
-                _MyClient.Close();
-            }
-            catch(Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message);
-                _MyClient.Abort();
-            }
-            return ListUserTaskOfUser;
-        }
+        }        
     }
 }

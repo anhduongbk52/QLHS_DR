@@ -97,14 +97,18 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
     <Compile Include="Core\AppInfo.cs" />
+    <Compile Include="Core\FileHelper.cs" />
     <Compile Include="Core\G6Class.cs" />
     <Compile Include="Core\SectionLogin.cs" />
     <Compile Include="Core\ServiceHelper.cs" />
     <Compile Include="Core\ServiceProxy.cs" />
+    <Compile Include="SingleInstance.cs" />
+    <Compile Include="User32API.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageServiceCallBack.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ListNewDocumentViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />
@@ -122,6 +126,9 @@
     <Compile Include="View\DocumentView\PdfViewerControlEx.cs" />
     <Compile Include="View\DocumentView\PdfViewerWindow.xaml.cs">
       <DependentUpon>PdfViewerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\UserTaskFinishUC.xaml.cs">
+      <DependentUpon>UserTaskFinishUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -158,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DocumentView\PdfViewerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentView\UserTaskFinishUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

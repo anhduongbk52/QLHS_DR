@@ -35,6 +35,9 @@
   <wsdl:message name="IMessageService_UserConnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UserConnected" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_UserTaskChanged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserTaskChanged" />
+  </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IMessageService">
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/Connect" message="tns:IMessageService_Connect_InputMessage" />
@@ -51,6 +54,9 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UserConnected" message="tns:IMessageService_UserConnected_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserTaskChanged">
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UserTaskChanged" message="tns:IMessageService_UserTaskChanged_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IMessageService" type="tns:IMessageService">
@@ -86,6 +92,12 @@
     </wsdl:operation>
     <wsdl:operation name="UserConnected">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/UserConnected" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserTaskChanged">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UserTaskChanged" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

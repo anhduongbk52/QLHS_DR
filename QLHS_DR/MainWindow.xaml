@@ -64,6 +64,7 @@
                         <dxb:BarButtonItem x:Name="editDocument" Content="Edit Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Dashboards/Edit.svg}"/>
                         <dxb:BarButtonItem x:Name="userInDocument" Content="Add User To Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Department.svg}"/>
                         <dxb:BarButtonItem  Content="Permission for Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/RichEdit/EditRangePermission.svg}"/>
+                        <dxb:BarButtonItem  Command="{Binding RefeshCommand}" Content="Refesh" Glyph="{dx:DXImage 'SvgImages/Actions/Actions_Refresh.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>

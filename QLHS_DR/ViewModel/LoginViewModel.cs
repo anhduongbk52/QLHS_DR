@@ -147,13 +147,14 @@ namespace EofficeClient.ViewModel
                     ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
                 }
                 //ChatApp Login
-                var uri = "net.tcp://192.168.11.12:8080/EofficeService/Service";
-                var callBack = new InstanceContext(new MessageServiceCallBack());
-                var binding = new NetTcpBinding(SecurityMode.None);
-                var channel = new DuplexChannelFactory<IMessageService>(callBack, binding);
-                var endPoint = new EndpointAddress(uri);
-                var proxy = channel.CreateChannel(endPoint);
-                proxy?.Connect(User.Id);
+
+                //var uri = "net.tcp://192.168.11.12:8080/EofficeService/Service";
+                //var callBack = new InstanceContext(new MessageServiceCallBack());
+                //var binding = new NetTcpBinding(SecurityMode.None);
+                //var channel = new DuplexChannelFactory<IMessageService>(callBack, binding);
+                //var endPoint = new EndpointAddress(uri);
+                //var proxy = channel.CreateChannel(endPoint);
+                //proxy?.Connect(User.Id);
 
                 //Uri baseAddress = new Uri("net.tcp://192.168.11.12:8080/EofficeService/Service");
                 //NetTcpBinding wsd = new NetTcpBinding();

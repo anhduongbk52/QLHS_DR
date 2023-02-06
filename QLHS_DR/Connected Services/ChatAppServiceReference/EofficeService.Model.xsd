@@ -427,6 +427,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="AssignedBy" type="xs:int" />
       <xs:element minOccurs="0" name="CanSave" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CanViewAttachedFile" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="HasPrinted" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsFinish" nillable="true" type="xs:boolean" />

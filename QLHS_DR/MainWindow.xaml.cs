@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLHS_DR
 {
@@ -27,7 +28,7 @@ namespace QLHS_DR
     {
         NotifyIcon nIcon = new NotifyIcon();
         public MainWindow()
-        {
+        {           
             InitializeComponent();
             System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
             ni.Icon = new Icon(System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/eemcicon.ico")).Stream);

@@ -16,8 +16,8 @@ namespace QLHS_DR.Converter
         {  
             var permission = (PermissionType)value;
             if (permission == PermissionType.PRINT_DOCUMENT)
-            { 
-                return true; 
+            {
+                return true;
             }
             else return false;
            

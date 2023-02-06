@@ -1818,6 +1818,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         private System.Nullable<bool> CanSaveField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> CanViewAttachedFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool HasPrintedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1885,6 +1888,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.CanSaveField.Equals(value) != true)) {
                     this.CanSaveField = value;
                     this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> CanViewAttachedFile {
+            get {
+                return this.CanViewAttachedFileField;
+            }
+            set {
+                if ((this.CanViewAttachedFileField.Equals(value) != true)) {
+                    this.CanViewAttachedFileField = value;
+                    this.RaisePropertyChanged("CanViewAttachedFile");
                 }
             }
         }
@@ -2523,6 +2539,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/UserConnected")]
         void UserConnected(QLHS_DR.ChatAppServiceReference.User[] users);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/UserTaskChanged")]
+        void UserTaskChanged();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

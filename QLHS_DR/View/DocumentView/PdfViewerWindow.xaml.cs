@@ -69,6 +69,11 @@ namespace QLHS_DR.View.DocumentView
             pdfViewer.DocumentSource = stream;
             pdfViewer.CanPrint = _CanPrint;
             pdfViewer.CanSave= _CanSave;
+            EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+            _MyClient.Open();
+            _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
+            _MyClient.Close();
+            
         }
 
       
