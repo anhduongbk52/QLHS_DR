@@ -121,16 +121,15 @@ namespace QLHS_DR.ViewModel
 
         private ListNewDocumentUC listNewDocumentUC;
         private UserTaskFinishUC userTaskFinishUC;
-        private ListNewDocumentUC listRevokeDocumentUC;
-        private ListNewDocumentUC listAllDocumentUC;
+        private UserTaskRevokedUC userTaskRevokedUC;
+        private AllTaskUC allTaskUC;
 
         ListNewDocumentViewModel listNewDocumentViewModel;
         UserTaskFinishViewModel userTaskFinishViewModel;
-        ListNewDocumentViewModel listRevokeDocumentViewModel;
-        ListNewDocumentViewModel listAllDocumentViewModel; 
+        UserTaskRevokedViewModel userTaskRevokedViewModel;
+        AllTaskViewModel allTaskViewModel; 
         public MainViewModel()
         {
-
             //Settings for update
             string addressUpdateInfo = Settings.Default.AddressUpdateInfo;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
@@ -230,20 +229,20 @@ namespace QLHS_DR.ViewModel
         {
             listNewDocumentUC = new ListNewDocumentUC();
             userTaskFinishUC = new UserTaskFinishUC();
-            listRevokeDocumentUC = new ListNewDocumentUC();
-            listAllDocumentUC = new ListNewDocumentUC();
+            userTaskRevokedUC = new UserTaskRevokedUC();
+            allTaskUC = new AllTaskUC();
 
             listNewDocumentViewModel = new ListNewDocumentViewModel();
             userTaskFinishViewModel = new UserTaskFinishViewModel();
-            listRevokeDocumentViewModel = new ListNewDocumentViewModel();
-            listAllDocumentViewModel = new ListNewDocumentViewModel();
+            userTaskRevokedViewModel = new UserTaskRevokedViewModel();
+            allTaskViewModel = new AllTaskViewModel();
 
             Workspaces.Clear();
 
             listNewDocumentUC.DataContext = listNewDocumentViewModel;
             userTaskFinishUC.DataContext = userTaskFinishViewModel;
-            listRevokeDocumentUC.DataContext = listRevokeDocumentViewModel;
-            listAllDocumentUC.DataContext = listRevokeDocumentViewModel;
+            userTaskRevokedUC.DataContext = userTaskRevokedViewModel;
+            allTaskUC.DataContext = allTaskViewModel;
 
             TabContainer tabItemNew = new TabContainer
             {
@@ -267,7 +266,7 @@ namespace QLHS_DR.ViewModel
                 AllowHide = "true",
                 IsSelected = false,
                 IsVisible = true,
-                Content = listRevokeDocumentUC
+                Content = userTaskRevokedUC
             };
             TabContainer tabItemAll = new TabContainer
             {
@@ -275,7 +274,7 @@ namespace QLHS_DR.ViewModel
                 AllowHide = "true",
                 IsSelected = false,
                 IsVisible = true,
-                Content = listAllDocumentUC
+                Content = allTaskUC
             };
             Workspaces.Add(tabItemNew);
             Workspaces.Add(tabItemCompleted);

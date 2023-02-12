@@ -1,18 +1,18 @@
-﻿<UserControl x:Class="QLHS_DR.View.DocumentView.UserTaskFinishUC"
+﻿<UserControl x:Class="QLHS_DR.View.DocumentView.AllTaskUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
-              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              mc:Ignorable="d" 
-             x:Name="userTaskFinishUC"
+             
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             x:Name="allTaskUC"
+              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              d:DesignHeight="450" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=userTaskFinishUC}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=allTaskUC}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -23,41 +23,21 @@
 
         <dxg:GridControl Grid.Column="0"  Margin="0"
                          AutoGenerateColumns="None" 
-                         ItemsSource="{Binding ListUserTaskOfUser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         ItemsSource="{Binding ListTaskOfUser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                          SelectionMode="Row"                         
-                         SelectedItem="{Binding UserTaskSelected}">
-            <dxg:GridControl.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Xem" Command="{Binding OpenFileCommand}">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="Eye" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Chỉnh sửa người nhận" Command="{Binding OpenReceiveUserManagerCommand}">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="FileExchange" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator Padding="2"/>
-                    <MenuItem Header="Chuyển sang chưua kết thúc" Command="{Binding UnFinishUserTaskCommand}">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="ArrowBack" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </ContextMenu>
-            </dxg:GridControl.ContextMenu>
+                         SelectedItem="{Binding TaskSelected}">
+           
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Task.Subject"  ReadOnly="True" Header="Tên tài liệu"  />
-                <dxg:GridColumn FieldName="Task.Description" ReadOnly="True" Header="Ghi chú" />
-                <dxg:GridColumn FieldName="TimeCreate" ReadOnly="True" Header="Ngày nhận" />
-                <dxg:GridColumn FieldName="Task.StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
+                <dxg:GridColumn FieldName="Subject" ReadOnly="True" Header="Tên tài liệu"  />
+                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Ghi chú" />
+                <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView />
             </dxg:GridControl.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseDown">
-                    <i:InvokeCommandAction Command="{Binding UserTaskSelectedCommand}" />
+                    <i:InvokeCommandAction Command="{Binding TaskSelectedCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </dxg:GridControl>
@@ -65,10 +45,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Content="Lưu" Command="{Binding SavePermissionCommand}" Width="120" Margin="5"></Button>
-                </StackPanel>
+            </Grid.RowDefinitions>          
             <dxg:GridControl Grid.Row="1" Margin="0"
                          AutoGenerateColumns="None" 
                          AutoExpandAllGroups="True"

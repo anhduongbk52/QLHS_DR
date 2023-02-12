@@ -8,6 +8,7 @@ using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
 using QLHS_DR.ViewModel.ChatAppViewModel;
+using QLHS_DR.ViewModel.DocumentViewModel;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
     {     
         #region "Properties and Field"
         private EofficeMainServiceClient _MyClient;
+        MainViewModel dataOfMainWindow;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
         private bool _TrackChange;
@@ -54,20 +56,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     _UserTaskSelected = value; OnPropertyChanged("UserTaskSelected");
                 }
             }
-        }
-        private Task _TaskSelected;
-        public Task TaskSelected
-        {
-            get => _TaskSelected;
-            set
-            {
-                if (_TaskSelected != value)
-                {
-                    _TaskSelected = value; OnPropertyChanged("TaskSelected");
-                }
-            }
-        }
-       
+        }       
         private ObservableCollection<Task> _ListTaskOfUser;
         public ObservableCollection<Task> ListTaskOfUser
         {
@@ -122,23 +111,24 @@ namespace EofficeClient.ViewModel.DocumentViewModel
 
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand TaskSelectedCommand { get; set; }
+        public ICommand UserTaskSelectedCommand { get; set; }
         public ICommand OpenFileCommand { get; set; }
-        public ICommand FinishTaskCommand { get; set; }
+        public ICommand FinishUserTaskCommand { get; set; }
         public ICommand SavePermissionCommand { get; set; }
+        public ICommand AddReceiveDepartmentCommand { get; set; }
+        public ICommand OpenReceiveUserManagerCommand { get; set; }
         #endregion
         public void SetLabelMsg(string message)
         {
-            ListTaskOfUser = GetAllTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-        }
-        
+            ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+        }        
         public ListNewDocumentViewModel() 
         {
             _TrackChange = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
             MessageServiceCallBack.SetDelegate(SetLabelMsg);
             
-            MainViewModel dataOfMainWindow = new MainViewModel();
+            dataOfMainWindow = new MainViewModel();
             
             try 
             {
@@ -147,31 +137,53 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
                 _MyClient.Close();
             }
-            catch(Exception ex) 
-
+            catch(Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
                 _MyClient.Abort();
             }
-            
-            //ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
             {
                 FrameworkElement window = System.Windows.Window.GetWindow(p);
                 dataOfMainWindow = (MainViewModel)window.DataContext;
-                IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-                App.Current.Dispatcher.Invoke((Action)delegate
+                IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);                
+                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
+            });
+            AddReceiveDepartmentCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK)) return true; else return false; }, (p) =>
+            {
+                try
                 {
-                    ListTaskOfUser = GetAllTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-                });
-                
-                var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
-                if (tabNotFinnish != null)
+                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+                   
+                    ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD();
+                    ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new ReceiveDepartmentManagerViewModel();
+                    receiveDepartmentManagerWD.DataContext= receiveDepartmentManagerViewModel;
+                    receiveDepartmentManagerWD.Show();
+                    _MyClient.Close();
+                }
+                catch (Exception ex)
                 {
-                    tabNotFinnish.Header = "Tài liệu chưa xử lý ( " + _ListTaskOfUser.Count() + " )";
+                    System.Windows.MessageBox.Show(ex.Message + " - SavePermissionCommand");
+                    if (ex.InnerException != null)
+                    {
+                        System.Windows.MessageBox.Show(ex.InnerException.StackTrace);
+                    }
+                    _MyClient.Abort();
                 }
             });
+            OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK) && _UserTaskSelected!=null) return true; else return false; }, (p) =>
+            {
+                ReceiveUserManagerWD receiveUserManagerWD = new ReceiveUserManagerWD();
+                ReceiveUserManagerViewModel receiveUserManagerViewModel = new ReceiveUserManagerViewModel(_UserTaskSelected.Task);
+                receiveUserManagerWD.DataContext = receiveUserManagerViewModel;
+                receiveUserManagerWD.ShowDialog();
+                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
+            });
+
             SavePermissionCommand = new RelayCommand<Object>((p) => { if (_IsReadOnlyPermission != true && _TrackChange==true) return true; else return false; }, (p) =>
             {
                 try
@@ -198,33 +210,28 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     _MyClient.Abort();
                 }
             });
-            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {                
                 ListUserTaskOfTask = new ObservableCollection<UserTask>();
                 try
                 {
                     _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-                    UserTaskSelected = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _TaskSelected.Id);
-                    UserTaskSelected.Task = _TaskSelected;
-                    UsersInTask = _MyClient.GetUserInTask(_TaskSelected.Id).ToObservableCollection();
-                    foreach (var user in _UsersInTask)
-                    {
-                        UserTask userTask = _MyClient.GetUserTask(user.Id, _TaskSelected.Id);
-                        if (userTask != null)
-                        {
-                            userTask.User = user;
-                            userTask.PropertyChanged += OnItemPropertyChanged;
-                            ListUserTaskOfTask.Add(userTask);
-                        }
-                    }
+                    var temp = _MyClient.GetAllUserTaskOfTask(_UserTaskSelected.TaskId).ToObservableCollection();
+                    UsersInTask = _MyClient.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
                     _MyClient.Close();
+                    foreach (var userTask in temp)
+                    {
+                        userTask.User = UsersInTask.Where(x=>x.Id== userTask.UserId).FirstOrDefault();
+                        userTask.PropertyChanged += OnItemPropertyChanged;                       
+                    }                   
                     _TrackChange = false;
                     _ListUserTaskOfTaskOrigin = new ObservableCollection<UserTask>(ListUserTaskOfTask);
+                    ListUserTaskOfTask = temp;
                 }
                 catch (Exception ex) 
                 {
-                    System.Windows.MessageBox.Show(ex.Message);
+                    System.Windows.MessageBox.Show(ex.Message+ " Function: UserTaskSelectedCommand");
                     if(ex.InnerException!= null)
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.StackTrace);
@@ -232,7 +239,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     _MyClient.Abort();
                 }
             });
-            OpenFileCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
                 try
                 {
@@ -240,19 +247,20 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     _MyClient.Open();
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
-                        PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _TaskSelected.Id);
+                        PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
                         bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
-                        bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_TaskSelected.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
+                        bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
                         bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
-                        if (_UserTaskSelected.CanViewAttachedFile == true)
-                        {
-                            var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_TaskSelected.Id); //get all file PDF in task
+                        //if (_UserTaskSelected.CanViewAttachedFile == true)
+                            if (true)
+                            {
+                            var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                             if (taskAttachedFileDTOs.Length == 1)
                             {
                                 DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
                                 PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable, saveable);
                                 pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
-                                pdfViewer.TaskName = _TaskSelected.Subject;
+                                pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
                                 pdfViewer.UserTaskPrint = _UserTaskSelected;
                                 pdfViewer.Show();
                             }
@@ -275,20 +283,16 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     _MyClient.Abort();
                 }
             });
-            FinishTaskCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            FinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
                 try
                 {
                     _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-                    _MyClient.SetUserTaskFinish(_TaskSelected.Id, SectionLogin.Ins.CurrentUser.Id);
+                    _MyClient.SetUserTaskFinish(_UserTaskSelected.TaskId, SectionLogin.Ins.CurrentUser.Id, true);
                     _MyClient.Close();
-                    ListTaskOfUser.Remove(_TaskSelected);                  
-                    var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
-                    if (tabNotFinnish != null) 
-                    {           
-                        tabNotFinnish.Header = "Tài liệu chưa xử lý ( " + _ListTaskOfUser.Count() + " )";
-                    }
+                    ListUserTaskOfUser.Remove(_UserTaskSelected);
+                    UpdateHeaderTabControl();
                 }
                 catch (Exception ex)
                 { 
@@ -308,32 +312,15 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             _TrackChange = true;
         }
 
-        //public ObservableCollection<User> GetAllUser()
-        //{
-        //    ObservableCollection<User> ketqua = new ObservableCollection<User>();
-        //    try
-        //    {
-        //        _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-        //        _MyClient.Open();                
-        //        var Users = _MyClient.GetUserContacts("duongda");
-        //        _MyClient.Close();
-        //        foreach (var user in Users)
-        //        {
-        //            ketqua.Add(user);
-        //        }                
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        System.Windows.MessageBox.Show(ex.Message);
-        //        if (ex.InnerException != null)
-        //        {
-        //            System.Windows.MessageBox.Show(ex.InnerException.Message);
-        //        }
-        //        _MyClient.Abort();
-        //    }
-        //    return ketqua;
-        //}
         
+        private void UpdateHeaderTabControl()
+        {
+            var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
+            if (tabNotFinnish != null)
+            {
+                tabNotFinnish.Header = "Tài liệu chưa xử lý ( " + _ListUserTaskOfUser.Count() + " )";
+            }
+        }
         public ObservableCollection<Task> GetAllTaskNotFinishOfUser(int userId)
         {
             ObservableCollection<Task> ketqua = new ObservableCollection<Task>();
@@ -347,6 +334,32 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             catch(Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    System.Windows.MessageBox.Show(ex.InnerException.Message);
+                }
+                _MyClient.Abort();
+            }
+            return ketqua;
+        }
+        public ObservableCollection<UserTask> GetAllUserTaskNotFinishOfUser(int userId)
+        {
+            ObservableCollection<UserTask> ketqua = new ObservableCollection<UserTask>();
+            try
+            {
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                ketqua = _MyClient.GetUserTaskNotFinish(userId).OrderByDescending(x => x.TimeCreate).ToObservableCollection();
+                var tasks = _MyClient.LoadTasksNotFinish(userId);
+                _MyClient.Close();
+                foreach (var usertask in ketqua) 
+                {
+                    usertask.Task = tasks.Where(x=>x.Id==usertask.TaskId).FirstOrDefault();
+                }                
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message+ " - Function: GetAllUserTaskNotFinishOfUser");
                 if (ex.InnerException != null)
                 {
                     System.Windows.MessageBox.Show(ex.InnerException.Message);

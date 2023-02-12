@@ -1,0 +1,39 @@
+﻿<Window x:Class="QLHS_DR.View.DocumentView.ReceiveDepartmentManagerWD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.DocumentView" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        mc:Ignorable="d"
+        Title="Nơi nhận" Height="450" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=userTaskFinishUC}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0"> Nowi nhan</TextBox>
+        <dxg:GridControl Grid.Row="1" Margin="0"
+                         AutoGenerateColumns="None" 
+                         AutoExpandAllGroups="True"
+                         ItemsSource="{Binding ReceiveDepartments,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                         EnableSmartColumnsGeneration="True" 
+                         SelectionMode="Row">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Department.GroupDepartment"  ReadOnly="True" GroupIndex="0"  Header="Khối"  />
+                <dxg:GridColumn FieldName="Department.Name"  ReadOnly="True"  Header="Đơn vị"  />
+                <dxg:GridColumn FieldName="IsReceive"  Header=""      ReadOnly="{Binding IsReadOnlyReceive}" Width="40"/>
+            </dxg:GridControl.Columns>
+
+            <dxg:GridControl.View>
+                <dxg:TableView />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

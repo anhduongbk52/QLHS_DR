@@ -17,11 +17,16 @@ namespace QLHS_DR.Core
         private string _username;
         private string _token;
         private IReadOnlyList<User> _iReadOnlyListUser;
+        private byte[] _HashPasword;
+
+        public byte[] HashPasword { get => _HashPasword; set => _HashPasword = value; }
+
         public FileHelper(string username, string token, IReadOnlyList<User> iReadOnlyListUser)
         {
             _username = username;
             _token = token;
             this._iReadOnlyListUser = iReadOnlyListUser;
+            HashPasword = GetHashPasword();
         }
         private byte[] GetHashPasword()
         {
@@ -56,7 +61,7 @@ namespace QLHS_DR.Core
                 _MyClient.Close();
                 if (userTask_0 != null)
                 {
-                    byte[] hassPasword = GetHashPasword();
+                    byte[] hassPasword = _HashPasword;
                     if (userTask_0.AssignedBy == SectionLogin.Ins.CurrentUser.Id) //Nếu luồng công việc được tạo bởi _CurrentUser
                     {
                         return CryptoUtil.DecryptByDerivedPassword(hassPasword, userTask_0.TaskKey); //lấy key giải mã là của TaskKey của userTask
@@ -83,7 +88,7 @@ namespace QLHS_DR.Core
             }
             return null;
         }
-        private byte[] method_20(byte[] byte_0)
+        public byte[] method_20(byte[] byte_0)
         {
             byte[] ketqua = null;
             try
@@ -108,7 +113,7 @@ namespace QLHS_DR.Core
             }
             return ketqua;
         }
-        private void SetECPrKeyForFile(byte[] byte_0, User user_1)
+        public void SetECPrKeyForFile(byte[] byte_0, User user_1)
         {
             if (user_1.ECPrKeyForFile == null)
             {

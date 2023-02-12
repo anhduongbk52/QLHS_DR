@@ -1,0 +1,36 @@
+﻿<Window x:Class="QLHS_DR.View.DocumentView.DepartmentReceiveManagerWD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
+        mc:Ignorable="d"
+        Title="Nơi nhận tài liệu" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <dxg:GridControl Grid.Row="1" Margin="0"
+                         AutoGenerateColumns="None" 
+                         AutoExpandAllGroups="True"
+                         ItemsSource="{Binding ReceiveDepartments,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                         EnableSmartColumnsGeneration="True" 
+                         SelectionMode="Row">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
+                <dxg:GridColumn FieldName="User.Department" ReadOnly="True" Header="Đơn vị" GroupIndex="0" />
+                <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                <dxg:GridColumn FieldName="CanSave" Header="Cho phép lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>
+                <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
+            </dxg:GridControl.Columns>
+
+            <dxg:GridControl.View>
+                <dxg:TableView />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

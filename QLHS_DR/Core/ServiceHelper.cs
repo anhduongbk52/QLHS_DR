@@ -33,27 +33,21 @@ namespace EofficeClient.Core
         {
             return new WSHttpBinding
             {
-                MaxReceivedMessageSize = 2147483647L,
                 MaxBufferPoolSize = 2147483647L,
+                MaxReceivedMessageSize = 2147483647L,             
                 Security =
-            {
-                Mode = SecurityMode.TransportWithMessageCredential,
-                Transport =
                 {
-                    ClientCredentialType = HttpClientCredentialType.None
+                    Mode = SecurityMode.TransportWithMessageCredential,
+                    Transport = {ClientCredentialType = HttpClientCredentialType.None},
+                    Message = {ClientCredentialType = MessageCredentialType.UserName}
                 },
-                Message =
-                {
-                    ClientCredentialType = MessageCredentialType.UserName
-                }
-            },
                 ReaderQuotas =
                 {
-                    MaxArrayLength = int.MaxValue,
-                    MaxBytesPerRead = int.MaxValue,
                     MaxDepth = int.MaxValue,
-                    MaxNameTableCharCount = int.MaxValue,
-                    MaxStringContentLength = int.MaxValue
+                    MaxStringContentLength = int.MaxValue,
+                    MaxArrayLength = int.MaxValue,
+                    MaxBytesPerRead = int.MaxValue,                    
+                    MaxNameTableCharCount = int.MaxValue                  
                 }
             };
         }        
