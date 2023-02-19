@@ -115,6 +115,7 @@ namespace QLHS_DR.ViewModel
         public ICommand LoadListCompltetedDocument { get; set; }
         public ICommand LoadListRevokeDocument { get; set; }
         public ICommand OpenChangePassWordWindowCommand { get; set; }
+        public ICommand NewTaskCommand { get; set; }
 
 
         #endregion
@@ -127,7 +128,7 @@ namespace QLHS_DR.ViewModel
         ListNewDocumentViewModel listNewDocumentViewModel;
         UserTaskFinishViewModel userTaskFinishViewModel;
         UserTaskRevokedViewModel userTaskRevokedViewModel;
-        AllTaskViewModel allTaskViewModel; 
+        AllTaskViewModel allTaskViewModel;
         public MainViewModel()
         {
             //Settings for update
@@ -220,6 +221,13 @@ namespace QLHS_DR.ViewModel
                 ViewModel.UserViewModel.UserChangePasswordViewModel userChangePasswordViewModel = new UserViewModel.UserChangePasswordViewModel();
                 userChangePasswordWindow.DataContext = userChangePasswordViewModel;
                 userChangePasswordWindow.ShowDialog();
+            });
+            NewTaskCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                NewTaskWindow newTaskWindow = new NewTaskWindow();
+                NewTaskViewModel newTaskViewModel = new NewTaskViewModel();
+                newTaskWindow.DataContext = newTaskViewModel;
+                newTaskWindow.ShowDialog();
             });
 
 

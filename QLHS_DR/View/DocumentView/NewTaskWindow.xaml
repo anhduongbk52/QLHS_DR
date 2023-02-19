@@ -1,0 +1,141 @@
+﻿<Window x:Class="QLHS_DR.View.DocumentView.NewTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.DocumentView" 
+        xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        x:Name="newTaskWindow"
+        Title="Thêm nhiệm vụ mới" Height="450" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            </Style>
+            <CollectionViewSource x:Key="moduls" Source="{Binding ListReceiveDepartment}">
+                <CollectionViewSource.GroupDescriptions>
+                    <PropertyGroupDescription PropertyName=" Department.GroupDepartment.Name" />
+                </CollectionViewSource.GroupDescriptions>
+            </CollectionViewSource>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column ="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="MinHeight" Value="40"></Setter>
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+            </Grid.Resources>
+            <TextBox Grid.Column="0"  Grid.Row="0" Margin="10"
+                     Text="{Binding TaskName}"
+                     materialDesign:HintAssist.Hint="Ghi chú/Mã số"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            </TextBox>
+            <TextBox Name="textBoxDocumentName" 
+                 Grid.Column="0"  Grid.Row="1" Margin="10"
+                 materialDesign:HintAssist.Hint="Nội dung"
+                 Text="{Binding TaskDrecription}"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <DataGrid Grid.Column="0"  Grid.Row="2"
+                      MinHeight="250"
+                      CanUserAddRows="False"
+                      SelectionMode="Single"                      
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding Source={StaticResource moduls}}">
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="True" >
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding ItemCount}"  Foreground="Green" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+                <DataGrid.Columns>                  
+                    <DataGridTextColumn Header="Đơn vị nhận" IsReadOnly="True" Binding="{Binding Department.Name}"/>
+                    <DataGridCheckBoxColumn Width="Auto" Header="Thực hiện"                                          
+                                            Binding="{Binding IsProcessTemp,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  
+                                            ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"/>
+                    <DataGridCheckBoxColumn Width="Auto" Header="Xem để biết"                                          
+                                            Binding="{Binding IsViewOnlyTemp,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  
+                                            ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"/>
+                    <DataGridCheckBoxColumn Width="Auto" Header="Quyền in file"                                             
+                                            Binding="{Binding ReceivedDepartmentDTO.CanPrint,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  
+                                            ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="IsEnabled" Value="{Binding Path=IsEnablePermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                    </DataGridCheckBoxColumn>
+
+                    <DataGridCheckBoxColumn Width="Auto" Header="Quyền lưu file"                                          
+                                            Binding="{Binding ReceivedDepartmentDTO.CanSave,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  
+                                            ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="IsEnabled" Value="{Binding Path=IsEnablePermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                    </DataGridCheckBoxColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Column="0"  Grid.Row="4" Orientation="Horizontal" Margin="10">
+                <Button Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="OK" Margin="10" Width="150" Height="40"></Button>
+                <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="CANCEL" Margin="10" Width="150" Height="40"></Button>
+                <CheckBox Command="{Binding CanSaveFile}" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Cho phép lưu đính kèm" ></CheckBox>
+
+            </StackPanel>
+        </Grid>
+        <dxpdf:PdfViewerControl Name="pdfViwer" DocumentLoaded="PdfViewerControl_DocumentLoaded_1" DocumentSource="{Binding DocumentSourcePdf,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                Grid.Column="1"/>
+    </Grid>
+</Window>

@@ -446,6 +446,18 @@
   <wsdl:message name="IEofficeMainService_SetUserTaskFinish_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetUserTaskFinishResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartmentName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentName" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartmentName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetDepartments_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartments" />
   </wsdl:message>
@@ -469,6 +481,18 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetDepartmentTasks_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartmentTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddDepartmentTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddDepartmentTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewTaskResponse" />
   </wsdl:message>
   <wsdl:portType name="IEofficeMainService">
     <wsdl:operation name="GetUserByName">
@@ -695,6 +719,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinish" message="tns:IEofficeMainService_SetUserTaskFinish_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinishResponse" message="tns:IEofficeMainService_SetUserTaskFinish_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartment" message="tns:IEofficeMainService_GetDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentResponse" message="tns:IEofficeMainService_GetDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentName" message="tns:IEofficeMainService_GetDepartmentName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentNameResponse" message="tns:IEofficeMainService_GetDepartmentName_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetDepartments">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartments" message="tns:IEofficeMainService_GetDepartments_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentsResponse" message="tns:IEofficeMainService_GetDepartments_OutputMessage" />
@@ -710,6 +742,14 @@
     <wsdl:operation name="GetDepartmentTasks">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentTasks" message="tns:IEofficeMainService_GetDepartmentTasks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentTasksResponse" message="tns:IEofficeMainService_GetDepartmentTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentTasks" message="tns:IEofficeMainService_AddDepartmentTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentTasksResponse" message="tns:IEofficeMainService_AddDepartmentTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewTask" message="tns:IEofficeMainService_NewTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewTaskResponse" message="tns:IEofficeMainService_NewTask_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IEofficeMainService" type="tns:IEofficeMainService">
@@ -1219,6 +1259,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentName">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDepartments">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartments" style="document" />
       <wsdl:input>
@@ -1248,6 +1306,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetDepartmentTasks">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddDepartmentTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewTask" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

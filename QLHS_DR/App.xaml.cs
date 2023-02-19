@@ -26,7 +26,10 @@ namespace QLHS_DR
         protected override void OnStartup(StartupEventArgs e)
         {
             if (SingleInstance.AlreadyRunning())
+            {
+                MessageBox.Show("Một phiên bản của phần mềm đang chạy! Vui lòng kiểm tra biểu tượng chương trình ở góc dưới bên phải màn hình");
                 App.Current.Shutdown(); // Just shutdown the current application,if any instance found.
+            }            
             base.OnStartup(e);
         }
     }

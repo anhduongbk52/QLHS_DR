@@ -43,17 +43,38 @@
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ArrowForward" />
                         </MenuItem.Icon>
-                    </MenuItem>                                  
+                    </MenuItem>
+                    <MenuItem Header="Thu hồi tài liệu" Command="{Binding RevokeTaskCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Remove" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </dxg:GridControl.ContextMenu>
-            <dxg:GridControl.Columns>                
+            <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Task.Subject" ReadOnly="True" Header="Tên tài liệu"  />
                 <dxg:GridColumn FieldName="Task.Description" ReadOnly="True" Header="Ghi chú" />
                 <dxg:GridColumn FieldName="TimeCreate" ReadOnly="True" Header="Ngày nhận" />
-                <dxg:GridColumn FieldName="Task.StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
+                <dxg:GridColumn FieldName="Task.StartDate"  ReadOnly="True" Header="Ngày bắt đầu"/>                
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView />
+                <dxg:TableView>
+                    <dxg:TableView.RowStyle>
+                        <Style TargetType="dxg:RowControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Row.Seen}" Value="False">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                   
+                                </DataTrigger>                               
+                            </Style.Triggers>
+                        </Style>
+                    </dxg:TableView.RowStyle>
+                    <!--<dxg:TableView.RowCellStyle>
+                        <Style TargetType="dxg:CellContentPresenter">
+                            <Setter Property="Background" Value="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=dxg:RowControl}}" />
+                        </Style>
+                    </dxg:TableView.RowCellStyle>-->
+                </dxg:TableView>
             </dxg:GridControl.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseDown">
@@ -87,9 +108,7 @@
                     <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
                 </dxg:GridControl.Columns>
 
-                <dxg:GridControl.View>
-                    <dxg:TableView />
-                </dxg:GridControl.View>
+               
             </dxg:GridControl>
         </Grid>
        

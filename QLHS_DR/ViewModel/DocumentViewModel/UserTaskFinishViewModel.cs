@@ -233,7 +233,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         if (true)
                         {
                             var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
-                            if (taskAttachedFileDTOs.Length == 1)
+                            if (taskAttachedFileDTOs!=null && taskAttachedFileDTOs.Length > 0)
                             {
                                 DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
                                 PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable, saveable);
@@ -241,6 +241,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                 pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
                                 pdfViewer.UserTaskPrint = _UserTaskSelected;
                                 pdfViewer.Show();
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show("Không tìm thấy file đính kèm");
                             }
                         }
                         else

@@ -9,16 +9,15 @@
         mc:Ignorable="d"
         Name="pdfViewerWindow"
         Loaded="pdfViewerWindow_Loaded"
-        Title="PDF View" Height="Auto" Width="Auto">
+        Title="Pdf Viewer" Height="Auto" Width="Auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>            
         </Grid.RowDefinitions>
         <local:PdfViewerControlEx x:Name="pdfViewer" CommandBarStyle="Bars" PrintPage="pdfViewer_PrintPage" Grid.Row="0">
             <dxpdf:PdfViewerControl.CommandProvider>
-                <dxpdf:PdfCommandProvider>                   
+                <dxpdf:PdfCommandProvider>
                     <dxpdf:PdfCommandProvider.Actions>
-
                         <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Close}"/>
                         <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Open}"/>
                         <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.OpenFromWeb}"/>
@@ -39,8 +38,7 @@
                         <dxb:UpdateAction Property="dxb:BarButtonItem.Glyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding SmallGlyph}" />
                         <dxb:UpdateAction Property="dxb:BarButtonItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding LargeGlyph}" />
                         <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Caption}" />
-                        <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Hint}" />       
-                       
+                        <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Hint}" />
                     </dxpdf:PdfCommandProvider.Actions>
                 </dxpdf:PdfCommandProvider>
             </dxpdf:PdfViewerControl.CommandProvider>

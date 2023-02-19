@@ -36,7 +36,9 @@ namespace QLHS_DR.View.DocumentView
         private bool _CanPrint;
         private bool _CanSave;
         private byte[] contextFile;
+        
         private UserTask _UserTaskPrint;
+       
         public UserTask UserTaskPrint
         {
             get => _UserTaskPrint;
@@ -73,7 +75,7 @@ namespace QLHS_DR.View.DocumentView
             _MyClient.Open();
             _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
             _MyClient.Close();
-            
+            pdfViewerWindow.Title = _TaskName+ " -------- "+_FileName;
         }
 
       
@@ -135,6 +137,6 @@ namespace QLHS_DR.View.DocumentView
                     }
                 }                    
             }
-        }
+        }        
     }
 }

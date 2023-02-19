@@ -181,8 +181,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     List<int> userIdAddViewFileAble = new List<int>(); //List Id Cac nguoi dung them quyen xem file.
                     List<int> userIdRemoveViewFileAble = new List<int>(); //List Id Cac nguoi dung xoa quyen xem file.
 
-                    byte[] temp2 = fileHelper.GetKeyDecryptOfTask(_Task.Id);
-                    byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => temp2);
+                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(_Task.Id);
+                    byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
 
                     foreach (var receiveuser in ReceiveUsers)
                     {

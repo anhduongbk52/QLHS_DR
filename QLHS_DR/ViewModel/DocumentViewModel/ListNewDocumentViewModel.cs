@@ -117,6 +117,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ICommand SavePermissionCommand { get; set; }
         public ICommand AddReceiveDepartmentCommand { get; set; }
         public ICommand OpenReceiveUserManagerCommand { get; set; }
+        public ICommand RevokeTaskCommand { get; set; }
         #endregion
         public void SetLabelMsg(string message)
         {
@@ -147,7 +148,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             {
                 FrameworkElement window = System.Windows.Window.GetWindow(p);
                 dataOfMainWindow = (MainViewModel)window.DataContext;
-                IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);                
+                IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
                 ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                 UpdateHeaderTabControl();
             });
@@ -255,7 +256,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                             if (true)
                             {
                             var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
-                            if (taskAttachedFileDTOs.Length == 1)
+                            if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                             {
                                 DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
                                 PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable, saveable);
@@ -263,6 +264,11 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                                 pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
                                 pdfViewer.UserTaskPrint = _UserTaskSelected;
                                 pdfViewer.Show();
+                            }
+                            else
+                            {
+                                System.Windows.MessageBox.Show("Không tìm thấy file đính kèm");
+
                             }
                         }
                         else

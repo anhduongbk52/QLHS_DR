@@ -21,5 +21,6 @@ namespace QLHS_DR.View.DocumentView
             CustomPrintCommand = DelegateCommandFactory.Create(() => PrintDocumentCommand.Execute(null), () => PrintDocumentCommand.CanExecute(null) && CanPrint);
             CustomSaveCommand = DelegateCommandFactory.Create(() => SaveAsCommand.Execute(null),() => SaveAsCommand.CanExecute(null) && CanSave);
         }
+
     }
 }
