@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.ServiceModel.Description;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -25,6 +26,30 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class UserTaskFinishViewModel : BaseViewModel
     {
         #region "Properties and Field"
+        private ObservableCollection<Department> _Departments;
+        public ObservableCollection<Department> Departments
+        {
+            get => _Departments;
+            set
+            {
+                if (_Departments != value)
+                {
+                    _Departments = value; OnPropertyChanged("Departments");
+                }
+            }
+        }
+        private ObservableCollection<UserDepartment> _UserDepartments;
+        public ObservableCollection<UserDepartment> UserDepartments
+        {
+            get => _UserDepartments;
+            set
+            {
+                if (_UserDepartments != value)
+                {
+                    _UserDepartments = value; OnPropertyChanged("UserDepartments");
+                }
+            }
+        }
         private EofficeMainServiceClient _MyClient;
         MainViewModel dataOfMainWindow;
         private IReadOnlyList<User> iReadOnlyListUser;
@@ -120,7 +145,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
         }
-
         public UserTaskFinishViewModel()
         {
             _TrackChange = false;
@@ -134,7 +158,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+                Departments = _MyClient.GetDepartments().ToObservableCollection();
+                UserDepartments = _MyClient.LoadUserDepartments().ToObservableCollection();
                 _MyClient.Close();
+                foreach (var ud in _UserDepartments)
+                {
+                    ud.Department = _Departments.Where(x => x.Id == ud.DepartmentId).FirstOrDefault();
+                }
             }
             catch (Exception ex)
             {
@@ -200,9 +230,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     foreach (var userTask in temp)
                     {
                         userTask.User = UsersInTask.Where(x => x.Id == userTask.UserId).FirstOrDefault();
+                        userTask.User.UserDepartments = _UserDepartments.Where(x => x.UserId == userTask.User.Id).ToArray();
                         userTask.PropertyChanged += OnItemPropertyChanged;
                     }
-
                     _TrackChange = false;
                     _ListUserTaskOfTaskOrigin = new ObservableCollection<UserTask>(ListUserTaskOfTask);
                     ListUserTaskOfTask = temp;
@@ -219,51 +249,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
-                try
-                {
-                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                    _MyClient.Open();
-                    App.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
-                        bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
-                        bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
-                        bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
-                        //if (_UserTaskSelected.CanViewAttachedFile == true)
-                        if (true)
-                        {
-                            var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
-                            if (taskAttachedFileDTOs!=null && taskAttachedFileDTOs.Length > 0)
-                            {
-                                DecryptTaskAttachedFile(taskAttachedFileDTOs[0]);
-                                PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0].Content, printable, saveable);
-                                pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
-                                pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
-                                pdfViewer.UserTaskPrint = _UserTaskSelected;
-                                pdfViewer.Show();
-                            }
-                            else
-                            {
-                                System.Windows.MessageBox.Show("Không tìm thấy file đính kèm");
-                            }
-                        }
-                        else
-                        {
-                            System.Windows.MessageBox.Show("Bạn chưa có quyền xem tài liệu này, vui lòng liên hệ quản trị viên!");
-                        }
-                        _MyClient.Close();
-                    });
-
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.Message);
-                    if (ex.InnerException != null)
-                    {
-                        System.Windows.MessageBox.Show(ex.InnerException.Message);
-                    }
-                    _MyClient.Abort();
-                }
+                Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
+                thread5.SetApartmentState(ApartmentState.STA);
+                thread5.IsBackground = true;
+                thread5.Start();
             });
             UnFinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
@@ -289,6 +278,51 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
 
         }
+        private void OpenFilePdf()
+        {
+            try
+            {
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
+                bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
+                bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
+                bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
+                //if (_UserTaskSelected.CanViewAttachedFile == true)
+                if (true)
+                {
+                    var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
+                    if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
+                    {                       
+                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0], printable, saveable,iReadOnlyListUser, _UserTaskSelected);
+                        pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
+                        pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
+                        pdfViewer.UserTaskPrint = _UserTaskSelected;
+                        pdfViewer.Show();
+                        System.Windows.Threading.Dispatcher.Run();
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Không tìm thấy file đính kèm");
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Bạn chưa có quyền xem tài liệu này, vui lòng liên hệ quản trị viên!");
+                }
+                _MyClient.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    System.Windows.MessageBox.Show(ex.InnerException.Message);
+                }
+                _MyClient.Abort();
+            }
+        }
+
         private void UpdateHeaderTabControl()
         {
             var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu đã xử lý")).FirstOrDefault();
@@ -328,11 +362,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
             return ketqua;
         }
-        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO)
+        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {
-            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token, iReadOnlyListUser);
+            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
 
-            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId));
+            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask));
             if (orAdd != null)
             {
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);

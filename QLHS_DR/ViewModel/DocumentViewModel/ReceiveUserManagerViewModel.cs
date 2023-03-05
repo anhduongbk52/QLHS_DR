@@ -131,9 +131,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     System.Windows.MessageBox.Show(ex.Message + "Function: LoadedWindowCommand");
                 }
-
-
-
             });
             SaveCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
@@ -155,7 +152,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _MyClient.Close();
                 }          
                 p.Close();
-            });          
+            });
             CancelCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
                 p.Close();
@@ -165,7 +162,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             try
             {
-                FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token, iReadOnlyListUser);
+                FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                
                 EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
@@ -181,7 +178,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     List<int> userIdAddViewFileAble = new List<int>(); //List Id Cac nguoi dung them quyen xem file.
                     List<int> userIdRemoveViewFileAble = new List<int>(); //List Id Cac nguoi dung xoa quyen xem file.
 
-                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(_Task.Id);
+
+
+                   UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);           
+
+                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(_Task.Id, userTask_0);
                     byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
 
                     foreach (var receiveuser in ReceiveUsers)
@@ -194,9 +195,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             {
                                 if (receiveuser.User.ECPrKeyForFile == null)
                                 {
-                                    byte[] hassPasword = fileHelper.HashPasword; //Ton thoi gian
-                                    byte[] array = fileHelper.method_20(hassPasword);
-                                    fileHelper.SetECPrKeyForFile(array, receiveuser.User);
+                                    byte[] masterKey = fileHelper.MasterKey;
+                                    byte[] ecpr = fileHelper.DecryptECPrKeyForFile(masterKey);
+                                    fileHelper.SetECPrKeyForFile(ecpr, receiveuser.User);
                                 }
                                 byte[] userTaskKey = CryptoUtil.EncryptWithoutIV(receiveuser.User.ECPrKeyForFile, data);
                                 //_MyClient.AddUserTask(_Task.Id, receiveuser.User.Id, SectionLogin.Ins.CurrentUser.Id, userTaskKey);

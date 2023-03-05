@@ -25,6 +25,30 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class UserTaskRevokedViewModel : BaseViewModel
     {
         #region "Properties and Field"
+        private ObservableCollection<Department> _Departments;
+        public ObservableCollection<Department> Departments
+        {
+            get => _Departments;
+            set
+            {
+                if (_Departments != value)
+                {
+                    _Departments = value; OnPropertyChanged("Departments");
+                }
+            }
+        }
+        private ObservableCollection<UserDepartment> _UserDepartments;
+        public ObservableCollection<UserDepartment> UserDepartments
+        {
+            get => _UserDepartments;
+            set
+            {
+                if (_UserDepartments != value)
+                {
+                    _UserDepartments = value; OnPropertyChanged("UserDepartments");
+                }
+            }
+        }
         private EofficeMainServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
@@ -139,7 +163,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+                Departments = _MyClient.GetDepartments().ToObservableCollection();
+                UserDepartments = _MyClient.LoadUserDepartments().ToObservableCollection();
                 _MyClient.Close();
+                foreach (var ud in _UserDepartments)
+                {
+                    ud.Department = _Departments.Where(x => x.Id == ud.DepartmentId).FirstOrDefault();
+                }
             }
             catch (Exception ex)
             {
@@ -164,29 +194,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     tabNotFinnish.Header = "Tài liệu đã thu hồi ( " + _ListTaskOfUser.Count() + " )";
                 }
-            });
-           
+            });           
             TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
-            {
-                ListUserTaskOfTask = new ObservableCollection<UserTask>();
+            {                
                 try
                 {
                     _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     UserTaskSelected = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _TaskSelected.Id);
+                    _MyClient.Close();
                     UserTaskSelected.Task = _TaskSelected;
-                    UsersInTask = _MyClient.GetUserInTask(_TaskSelected.Id).ToObservableCollection();
-                    foreach (var user in _UsersInTask)
-                    {
-                        UserTask userTask = _MyClient.GetUserTask(user.Id, _TaskSelected.Id);
-                        if (userTask != null)
-                        {
-                            userTask.User = user;
-                            ListUserTaskOfTask.Add(userTask);
-                        }
-                    }
-                    _MyClient.Close();                   
-                    _ListUserTaskOfTaskOrigin = new ObservableCollection<UserTask>(ListUserTaskOfTask);
+                    ListUserTaskOfTask = GetUserTasksOfTask(_TaskSelected.Id);
+                    _ListUserTaskOfTaskOrigin = new ObservableCollection<UserTask>(_ListUserTaskOfTask);
                 }
                 catch (Exception ex)
                 {
@@ -199,8 +218,21 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             });
         }
- 
 
+        public ObservableCollection<UserTask> GetUserTasksOfTask(int taskId)
+        {
+            _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+            _MyClient.Open();           
+            UsersInTask = _MyClient.GetUserInTask(taskId).ToObservableCollection();
+            var temp = _MyClient.GetAllUserTaskOfTask(_TaskSelected.Id).ToObservableCollection();
+            _MyClient.Close();
+            foreach (var ut in temp)
+            {
+                ut.User = _UsersInTask.Where(x => x.Id == ut.UserId).FirstOrDefault();
+                ut.User.UserDepartments = _UserDepartments.Where(x => x.UserId == ut.User.Id).ToArray();
+            }
+            return temp;
+        }
         public ObservableCollection<Task> GetAllTaskRevokedOfUser(int userId)
         {
             ObservableCollection<Task> ketqua = new ObservableCollection<Task>();
@@ -222,11 +254,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
             return ketqua;
         }
-        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO)
+        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {
-            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token, iReadOnlyListUser);
+            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
 
-            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId));
+            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask));
             if (orAdd != null)
             {
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);

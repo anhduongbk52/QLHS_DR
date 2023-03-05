@@ -285,6 +285,9 @@
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Department.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.DepartmentTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.GroupDepartment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -297,7 +300,13 @@
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Message.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Permission.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PermissionType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.ReceivedDepartmentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Task.datasource">
@@ -307,6 +316,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserDepartment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserStatus.datasource">
@@ -354,6 +366,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.39</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Security">
+      <Version>4.3.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

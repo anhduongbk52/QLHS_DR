@@ -24,6 +24,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using EofficeCommonLibrary;
 using EofficeClient.Core;
+using System.Windows.Forms;
+using EofficeCommonLibrary.Common.Util;
 
 namespace QLHS_DR.View.DocumentView
 {
@@ -35,8 +37,9 @@ namespace QLHS_DR.View.DocumentView
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _CanPrint;
         private bool _CanSave;
+        private TaskAttachedFileDTO _TaskAttachedFileDTO;
         private byte[] contextFile;
-        
+        private IReadOnlyList<User> _IReadOnlyListUser;
         private UserTask _UserTaskPrint;
        
         public UserTask UserTaskPrint
@@ -56,29 +59,50 @@ namespace QLHS_DR.View.DocumentView
             get => _FileName;
             set => _FileName = value;
         }
-        public PdfViewerWindow(byte[] data, bool canPrint, bool canSave)
-        {
-            _CanPrint = canPrint;
-            _CanSave = canSave;
+        public PdfViewerWindow(TaskAttachedFileDTO taskAttachedFileDTO, bool canPrint, bool canSave, IReadOnlyList<User> iReadOnlyListUser,UserTask userTask)
+        {           
             InitializeComponent();
             pdfViewer.DataContext = this;
-            contextFile = data;
-            
+            _TaskAttachedFileDTO = taskAttachedFileDTO;
+            _UserTaskPrint = userTask;
+            _CanPrint = canPrint;
+            _CanSave = canSave;
         }
         private void pdfViewerWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            MemoryStream stream = new MemoryStream(contextFile);
-            pdfViewer.DocumentSource = stream;
-            pdfViewer.CanPrint = _CanPrint;
-            pdfViewer.CanSave= _CanSave;
-            EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            _MyClient.Open();
-            _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
-            _MyClient.Close();
-            pdfViewerWindow.Title = _TaskName+ " -------- "+_FileName;
+            try
+            {
+                FileName = _TaskAttachedFileDTO.FileName;
+                TaskName = _UserTaskPrint.Task.Subject;
+
+                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
+                MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content);
+                pdfViewer.DocumentSource = stream;
+                pdfViewer.CanPrint = _CanPrint;
+                pdfViewer.CanSave = _CanSave;
+
+                _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
+                _MyClient.Close();
+
+                pdfViewerWindow.Title = _TaskName + " -------- " + _FileName;
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
+            }
         }
 
-      
+        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
+        {
+            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask);
+            if (orAdd != null)
+            {
+                taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
+            }
+        }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -108,7 +132,7 @@ namespace QLHS_DR.View.DocumentView
                 || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("onenote"))
             {
                 e.Cancel = true;
-                MessageBox.Show("Bạn không được quyền sử dụng máy in ảo cho tập tin này !");               
+                System.Windows.MessageBox.Show("Bạn không được quyền sử dụng máy in ảo cho tập tin này !");               
             }            
             else
             {
@@ -133,7 +157,7 @@ namespace QLHS_DR.View.DocumentView
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.InnerException.Message);
+                        System.Windows.MessageBox.Show(ex.InnerException.Message);
                     }
                 }                    
             }

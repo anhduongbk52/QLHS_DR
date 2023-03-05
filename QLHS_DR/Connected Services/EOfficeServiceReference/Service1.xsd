@@ -3,6 +3,74 @@
   <xs:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
   <xs:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
   <xs:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="LoadUserDepartments">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserDepartmentsResult" nillable="true" type="q1:ArrayOfUserDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDepartmentsOfTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDepartmentsOfTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserDepartmentsOfTaskResult" nillable="true" type="q2:ArrayOfUserDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceivedDepartmentDTO">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceivedDepartmentDTOResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetReceivedDepartmentDTOResult" nillable="true" type="q3:ReceivedDepartmentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDepartmentToTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="taskId" nillable="true" type="q4:Task" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="ReceivedDepartmentDTOs" nillable="true" type="q5:ArrayOfReceivedDepartmentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDepartmentToTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionOfUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionOfUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionOfUserResult" nillable="true" type="q6:ArrayOfPermission" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetUserByName">
     <xs:complexType>
       <xs:sequence>
@@ -13,7 +81,7 @@
   <xs:element name="GetUserByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q1:User" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q7:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -27,7 +95,7 @@
   <xs:element name="GetUserByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserByIdResult" nillable="true" type="q2:User" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserByIdResult" nillable="true" type="q8:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -41,14 +109,14 @@
   <xs:element name="GetUserContactsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserContactsResult" nillable="true" type="q3:ArrayOfUser" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserContactsResult" nillable="true" type="q9:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="message" nillable="true" type="q4:Message" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="message" nillable="true" type="q10:Message" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -64,7 +132,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="userId" type="xs:int" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="purpose" type="q5:ECKeyPurpose" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="purpose" type="q11:ECKeyPurpose" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -99,7 +167,7 @@
   <xs:element name="LoadMessagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadMessagesResult" nillable="true" type="q6:ArrayOfMessage" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadMessagesResult" nillable="true" type="q12:ArrayOfMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -113,7 +181,7 @@
   <xs:element name="GetUserStatusResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserStatusResult" type="q7:UserStatus" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserStatusResult" type="q13:UserStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -143,7 +211,7 @@
   <xs:element name="LoadMessagesFromMessageIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadMessagesFromMessageIdResult" nillable="true" type="q8:ArrayOfMessage" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadMessagesFromMessageIdResult" nillable="true" type="q14:ArrayOfMessage" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -157,7 +225,7 @@
   <xs:element name="LoadTasksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksResult" nillable="true" type="q9:ArrayOfTask" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksResult" nillable="true" type="q15:ArrayOfTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -171,7 +239,7 @@
   <xs:element name="LoadTasksNotFinishResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksNotFinishResult" nillable="true" type="q10:ArrayOfTask" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksNotFinishResult" nillable="true" type="q16:ArrayOfTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -185,7 +253,7 @@
   <xs:element name="LoadTasksFinishResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksFinishResult" nillable="true" type="q11:ArrayOfTask" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksFinishResult" nillable="true" type="q17:ArrayOfTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -199,7 +267,7 @@
   <xs:element name="LoadTasksRevokedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksRevokedResult" nillable="true" type="q12:ArrayOfTask" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksRevokedResult" nillable="true" type="q18:ArrayOfTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -211,14 +279,14 @@
   <xs:element name="LoadAllTasksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadAllTasksResult" nillable="true" type="q13:ArrayOfTask" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadAllTasksResult" nillable="true" type="q19:ArrayOfTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddTask">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q14:Task" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q20:Task" />
         <xs:element minOccurs="0" name="ownerTaskKey" nillable="true" type="xs:base64Binary" />
         <xs:element minOccurs="0" name="assignedTaskKey" nillable="true" type="xs:base64Binary" />
       </xs:sequence>
@@ -234,7 +302,7 @@
   <xs:element name="AddTaskAttachedFile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q15:TaskAttachedFileDTO" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q21:TaskAttachedFileDTO" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -255,7 +323,7 @@
   <xs:element name="LoadTasksFromTaskIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksFromTaskIdResult" nillable="true" type="q16:ArrayOfTask" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksFromTaskIdResult" nillable="true" type="q22:ArrayOfTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -276,7 +344,7 @@
   <xs:element name="DeleteTasks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskIds" nillable="true" type="q17:ArrayOfint" />
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskIds" nillable="true" type="q23:ArrayOfint" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -289,7 +357,7 @@
   <xs:element name="DeleteTaskAttachedFiles">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskAttachedFileIds" nillable="true" type="q18:ArrayOfint" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskAttachedFileIds" nillable="true" type="q24:ArrayOfint" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -317,7 +385,7 @@
   <xs:element name="AddUserTasks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="userTasks" nillable="true" type="q19:ArrayOfUserTask" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="userTasks" nillable="true" type="q25:ArrayOfUserTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -350,7 +418,7 @@
   <xs:element name="GetTaskDocumentsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskDocumentsResult" nillable="true" type="q20:ArrayOfTaskAttachedFileDTO" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskDocumentsResult" nillable="true" type="q26:ArrayOfTaskAttachedFileDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -365,7 +433,7 @@
   <xs:element name="GetUserTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskResult" nillable="true" type="q21:UserTask" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskResult" nillable="true" type="q27:UserTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -379,7 +447,7 @@
   <xs:element name="GetAllUserTaskOfTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetAllUserTaskOfTaskResult" nillable="true" type="q22:ArrayOfUserTask" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetAllUserTaskOfTaskResult" nillable="true" type="q28:ArrayOfUserTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -393,7 +461,7 @@
   <xs:element name="GetUserTaskNotFinishResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskNotFinishResult" nillable="true" type="q23:ArrayOfUserTask" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskNotFinishResult" nillable="true" type="q29:ArrayOfUserTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -407,7 +475,7 @@
   <xs:element name="GetUserTaskFinishResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskFinishResult" nillable="true" type="q24:ArrayOfUserTask" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskFinishResult" nillable="true" type="q30:ArrayOfUserTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -421,14 +489,14 @@
   <xs:element name="GetUserTaskRevokedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskRevokedResult" nillable="true" type="q25:ArrayOfUserTask" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskRevokedResult" nillable="true" type="q31:ArrayOfUserTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddLog">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="log_0" nillable="true" type="q26:Log" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="log_0" nillable="true" type="q32:Log" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -447,7 +515,7 @@
   <xs:element name="GetPermissionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionsResult" type="q27:PermissionType" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionsResult" type="q33:PermissionType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -462,7 +530,7 @@
   <xs:element name="GetTaskPermissionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskPermissionsResult" type="q28:PermissionType" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskPermissionsResult" type="q34:PermissionType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -476,7 +544,7 @@
   <xs:element name="GetUserInTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserInTaskResult" nillable="true" type="q29:ArrayOfUser" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserInTaskResult" nillable="true" type="q35:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -490,7 +558,7 @@
   <xs:element name="GetPrintableUserInTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPrintableUserInTaskResult" nillable="true" type="q30:ArrayOfUser" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPrintableUserInTaskResult" nillable="true" type="q36:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -498,7 +566,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="taskId" type="xs:int" />
-        <xs:element xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q31:ArrayOfint" />
+        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q37:ArrayOfint" />
         <xs:element minOccurs="0" name="prinable" type="xs:boolean" />
         <xs:element minOccurs="0" name="changeByUserId" type="xs:int" />
       </xs:sequence>
@@ -513,7 +581,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="taskId" type="xs:int" />
-        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q32:ArrayOfint" />
+        <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q38:ArrayOfint" />
         <xs:element minOccurs="0" name="viewAble" type="xs:boolean" />
         <xs:element minOccurs="0" name="changeByUserId" type="xs:int" />
       </xs:sequence>
@@ -528,7 +596,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="taskId" type="xs:int" />
-        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q33:ArrayOfint" />
+        <xs:element xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q39:ArrayOfint" />
         <xs:element minOccurs="0" name="saveAble" type="xs:boolean" />
         <xs:element minOccurs="0" name="changeByUserId" type="xs:int" />
       </xs:sequence>
@@ -577,14 +645,14 @@
   <xs:element name="LoadTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTaskResult" nillable="true" type="q34:Task" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTaskResult" nillable="true" type="q40:Task" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RevokeTasks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskIds" nillable="true" type="q35:ArrayOfint" />
+        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskIds" nillable="true" type="q41:ArrayOfint" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -594,12 +662,24 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="RevokeTaskByCurrentUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeTaskByCurrentUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetLogs">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="from" type="xs:dateTime" />
         <xs:element minOccurs="0" name="dateTime_0" type="xs:dateTime" />
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="type" type="q36:LogType" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="type" type="q42:LogType" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
         <xs:element minOccurs="0" name="filterUserId" type="xs:int" />
         <xs:element minOccurs="0" name="fromLogId" type="xs:int" />
@@ -609,7 +689,7 @@
   <xs:element name="GetLogsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetLogsResult" nillable="true" type="q37:ArrayOfLog" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetLogsResult" nillable="true" type="q43:ArrayOfLog" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -624,7 +704,7 @@
   <xs:element name="TryLoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="TryLoginResult" type="q38:LoginStatusType" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="TryLoginResult" type="q44:LoginStatusType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -640,14 +720,14 @@
   <xs:element name="ChangePasswordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="ChangePasswordResult" type="q39:LoginStatusType" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="ChangePasswordResult" type="q45:LoginStatusType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateTask">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q40:Task" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q46:Task" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -660,7 +740,7 @@
   <xs:element name="UpdateUserTasks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="userTasks" nillable="true" type="q41:ArrayOfUserTask" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="userTasks" nillable="true" type="q47:ArrayOfUserTask" />
         <xs:element minOccurs="0" name="userId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -682,7 +762,7 @@
   <xs:element name="GetProcessingUserInTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProcessingUserInTaskResult" nillable="true" type="q42:ArrayOfUser" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProcessingUserInTaskResult" nillable="true" type="q48:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -696,7 +776,7 @@
   <xs:element name="GetSeenUsersInTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetSeenUsersInTaskResult" nillable="true" type="q43:ArrayOfUser" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetSeenUsersInTaskResult" nillable="true" type="q49:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -710,7 +790,7 @@
   <xs:element name="GetPrintedUserInTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPrintedUserInTaskResult" nillable="true" type="q44:ArrayOfUser" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPrintedUserInTaskResult" nillable="true" type="q50:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -808,7 +888,7 @@
   <xs:element name="GetDepartmentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentResult" nillable="true" type="q45:Department" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentResult" nillable="true" type="q51:Department" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -834,7 +914,7 @@
   <xs:element name="GetDepartmentsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentsResult" nillable="true" type="q46:ArrayOfDepartment" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentsResult" nillable="true" type="q52:ArrayOfDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -848,7 +928,7 @@
   <xs:element name="GetGroupDepartmentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetGroupDepartmentResult" nillable="true" type="q47:GroupDepartment" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetGroupDepartmentResult" nillable="true" type="q53:GroupDepartment" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -863,25 +943,11 @@
   <xs:element name="GetDepartmentTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentTaskResult" nillable="true" type="q48:GroupDepartment" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentTaskResult" nillable="true" type="q54:DepartmentTask" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetDepartmentTasks">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetDepartmentTasksResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentTasksResult" nillable="true" type="q49:GroupDepartment" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddDepartmentTasks">
+  <xs:element name="AddDepartmentTask">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="taskId" type="xs:int" />
@@ -891,19 +957,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddDepartmentTasksResponse">
+  <xs:element name="AddDepartmentTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AddDepartmentTasksResult" type="xs:int" />
+        <xs:element minOccurs="0" name="AddDepartmentTaskResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="NewTask">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q50:Task" />
-        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="ReceivedDepartmentDTOs" nillable="true" type="q51:ArrayOfReceivedDepartmentDTO" />
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q52:TaskAttachedFileDTO" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q55:Task" />
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="ReceivedDepartmentDTOs" nillable="true" type="q56:ArrayOfReceivedDepartmentDTO" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q57:TaskAttachedFileDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

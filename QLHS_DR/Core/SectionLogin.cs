@@ -1,5 +1,7 @@
 ﻿
+using DevExpress.Data.TreeList;
 using QLHS_DR.EOfficeServiceReference;
+using System.Collections.Generic;
 
 namespace QLHS_DR.Core
 {
@@ -8,6 +10,7 @@ namespace QLHS_DR.Core
         private static SectionLogin _ins;
         public static SectionLogin Ins
         {
+            
             get
             {
                 if (_ins == null)
@@ -20,7 +23,9 @@ namespace QLHS_DR.Core
             }
         }
         public PermissionType Permissions { get; set; }
+        public List<Permission> ListPermissions { get; set; }
         public QLHS_DR.EOfficeServiceReference.User CurrentUser { get; set; }
         internal string Token { get; set; }
+    
     }
 }

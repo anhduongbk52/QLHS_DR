@@ -129,7 +129,8 @@ namespace EofficeClient.ViewModel
                 _MyClient.Open();               
                 User = _MyClient.GetUserByName(_UserName);                
                 SectionLogin.Ins.CurrentUser = User;
-                SectionLogin.Ins.Permissions = _MyClient.GetPermissions(User.Id);
+                SectionLogin.Ins.Permissions = _MyClient.GetPermissions(_User.Id);
+                SectionLogin.Ins.ListPermissions = _MyClient.GetPermissionOfUser(_User.UserName).ToList();
                 _MyClient.Close();
                 SectionLogin.Ins.Token = passEncode;
                 IsLogin = true;

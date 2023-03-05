@@ -24,5 +24,7 @@ namespace QLHS_DR.View.DocumentView
         {
             InitializeComponent();
         }
+
+
     }
 }

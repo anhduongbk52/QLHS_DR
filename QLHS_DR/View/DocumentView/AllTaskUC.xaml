@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
-             mc:Ignorable="d" 
-             
+             mc:Ignorable="d"             
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              x:Name="allTaskUC"
-              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -26,7 +26,26 @@
                          ItemsSource="{Binding ListTaskOfUser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                          SelectionMode="Row"                         
                          SelectedItem="{Binding TaskSelected}">
-           
+            <dxg:GridControl.ContextMenu>
+                <ContextMenu FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
+                    <MenuItem Header="Xem" Command="{Binding OpenFileCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Eye" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Chỉnh sửa người nhận" Command="{Binding OpenReceiveUserManagerCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="FileExchange"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator Padding="2"/>                  
+                    <MenuItem Header="Thu hồi tài liệu" Command="{Binding RevokeTaskCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Remove"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </dxg:GridControl.ContextMenu>
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Subject" ReadOnly="True" Header="Tên tài liệu"  />
                 <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Ghi chú" />
@@ -54,7 +73,7 @@
                          SelectionMode="Row">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
-                    <dxg:GridColumn FieldName="User.Department" ReadOnly="True" Header="Đơn vị" GroupIndex="0" />
+                    <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
                     <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                     <dxg:GridColumn FieldName="CanSave" Header="Cho phép lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                     <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>

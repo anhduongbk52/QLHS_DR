@@ -159,11 +159,9 @@ namespace QLHS_DR.ViewModel
                     if (loginVM.IsLogin)
                     {
                         if (loginVM.User != null)
-                        {
-                           
+                        {                           
                             CurrentUser = loginVM.User;                            
-                        }
-                        
+                        }                        
                         p.Show();
                         LoadDefaultTab();
                     }
@@ -175,8 +173,7 @@ namespace QLHS_DR.ViewModel
             {              
                 Isloaded = false;
                 ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);                
-                SectionLogin.Ins = null;
-               
+                SectionLogin.Ins = null;              
 
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
@@ -189,7 +186,7 @@ namespace QLHS_DR.ViewModel
                     {
                         if (loginVM.User != null)
                         {
-                            SectionLogin.Ins.CurrentUser = loginVM.User;
+                            //SectionLogin.Ins.CurrentUser = loginVM.User;
                             CurrentUser = loginVM.User;
                         }
                         p.Show();
@@ -207,8 +204,6 @@ namespace QLHS_DR.ViewModel
             LoadListCompltetedDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                
-                
-
             });
             LoadListRevokeDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
@@ -222,7 +217,7 @@ namespace QLHS_DR.ViewModel
                 userChangePasswordWindow.DataContext = userChangePasswordViewModel;
                 userChangePasswordWindow.ShowDialog();
             });
-            NewTaskCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            NewTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.CREATE_TASK)) return true; else return false; }, (p) =>
             {
                 NewTaskWindow newTaskWindow = new NewTaskWindow();
                 NewTaskViewModel newTaskViewModel = new NewTaskViewModel();

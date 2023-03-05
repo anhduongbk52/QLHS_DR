@@ -17,28 +17,21 @@ namespace QLHS_DR.Core
         private string _username;
         private string _token;
         private IReadOnlyList<User> _iReadOnlyListUser;
-        private byte[] _HashPasword;
+        private byte[] _MasterKey;
 
-        public byte[] HashPasword { get => _HashPasword; set => _HashPasword = value; }
+        public byte[] MasterKey { get => _MasterKey; set => _MasterKey = value; }
 
-        public FileHelper(string username, string token, IReadOnlyList<User> iReadOnlyListUser)
+        public FileHelper(string username, string token)
         {
-            _username = username;
-            _token = token;
-            this._iReadOnlyListUser = iReadOnlyListUser;
-            HashPasword = GetHashPasword();
-        }
-        private byte[] GetHashPasword()
-        {
-            byte[] password = null;
-            byte[] ketqua = null;
             try
             {
+                _username = username;
+                _token = token;
                 _MyClient = ServiceHelper.NewEofficeMainServiceClient(_username, _token);
                 _MyClient.Open();
-                password = Convert.FromBase64String(_MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
+                this._iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
                 _MyClient.Close();
-                ketqua = CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
+                MasterKey = GetMasterKey();
             }
             catch (Exception ex)
             {
@@ -49,7 +42,30 @@ namespace QLHS_DR.Core
                 }
                 _MyClient.Abort();
             }
-            return ketqua;
+
+        }
+        private byte[] GetMasterKey()
+        {
+            byte[] password = null;
+            byte[] masterKey = null;
+            try
+            {
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(_username, _token);
+                _MyClient.Open();
+                password = Convert.FromBase64String(_MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
+                _MyClient.Close();
+                masterKey = CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    System.Windows.MessageBox.Show(ex.InnerException.Message);
+                }
+                _MyClient.Abort();
+            }
+            return masterKey;
         }
         internal byte[] GetKeyDecryptOfTask(int taskId)
         {
@@ -61,16 +77,16 @@ namespace QLHS_DR.Core
                 _MyClient.Close();
                 if (userTask_0 != null)
                 {
-                    byte[] hassPasword = _HashPasword;
+                    byte[] masterKey = _MasterKey;
                     if (userTask_0.AssignedBy == SectionLogin.Ins.CurrentUser.Id) //Nếu luồng công việc được tạo bởi _CurrentUser
                     {
-                        return CryptoUtil.DecryptByDerivedPassword(hassPasword, userTask_0.TaskKey); //lấy key giải mã là của TaskKey của userTask
+                        return CryptoUtil.DecryptByDerivedPassword(masterKey, userTask_0.TaskKey); //lấy key giải mã là của TaskKey của userTask
                     }
                     //Nếu luồng công việc không được tạo bởi _CurrentUser
                     User user = _iReadOnlyListUser.FirstOrDefault((User u) => u.Id == userTask_0.AssignedBy); //Lấy về user chủ nhân của luồng.
                     if (user.ECPrKeyForFile == null)  //Nếu user không có ECPrKeyForFile
                     {
-                        byte[] byte_ = method_20(hassPasword);
+                        byte[] byte_ = DecryptECPrKeyForFile(masterKey);
                         SetECPrKeyForFile(byte_, user);
                     }
                     return CryptoUtil.DecryptWithoutIV(user.ECPrKeyForFile, userTask_0.TaskKey);
@@ -88,7 +104,40 @@ namespace QLHS_DR.Core
             }
             return null;
         }
-        public byte[] method_20(byte[] byte_0)
+        internal byte[] GetKeyDecryptOfTask(int taskId, UserTask userTask)
+        {
+            try
+            {
+                if (userTask != null)
+                {
+                    byte[] masterKey = _MasterKey;
+                    if (userTask.AssignedBy == SectionLogin.Ins.CurrentUser.Id) //Nếu luồng công việc được tạo bởi _CurrentUser
+                    {
+                        return CryptoUtil.DecryptByDerivedPassword(masterKey, userTask.TaskKey); //lấy key giải mã là của TaskKey của userTask
+                    }
+                    //Nếu luồng công việc không được tạo bởi _CurrentUser
+                    User user = _iReadOnlyListUser.FirstOrDefault((User u) => u.Id == userTask.AssignedBy); //Lấy về user chủ nhân của luồng.
+                    if (user.ECPrKeyForFile == null)  //Nếu user không có ECPrKeyForFile
+                    {
+                        byte[] ecpr = DecryptECPrKeyForFile(masterKey);
+                        SetECPrKeyForFile(ecpr, user);
+                    }
+                    return CryptoUtil.DecryptWithoutIV(user.ECPrKeyForFile, userTask.TaskKey);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    System.Windows.MessageBox.Show(ex.InnerException.Message);
+                }
+                _MyClient.Abort();
+            }
+            return null;
+        }
+        public byte[] DecryptECPrKeyForFile(byte[] masterKey)
         {
             byte[] ketqua = null;
             try
@@ -100,7 +149,7 @@ namespace QLHS_DR.Core
                 {
                     user.ECPrKeyForFile = _MyClient.GetUserECPrKeyFor(user.Id, _MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password, ECKeyPurpose.FILE);
                 }
-                ketqua = CryptoUtil.DecryptByDerivedPassword(byte_0, user.ECPrKeyForFile);
+                ketqua = CryptoUtil.DecryptByDerivedPassword(masterKey, user.ECPrKeyForFile);
             }
             catch (Exception ex)
             {

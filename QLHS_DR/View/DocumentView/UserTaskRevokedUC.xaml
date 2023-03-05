@@ -61,13 +61,12 @@
                          SelectionMode="Row">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
-                    <dxg:GridColumn FieldName="User.Department" ReadOnly="True" Header="Đơn vị" GroupIndex="0" />
+                    <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
                     <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                     <dxg:GridColumn FieldName="CanSave" Header="Cho phép lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                     <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>
                     <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
                 </dxg:GridControl.Columns>
-
                 <dxg:GridControl.View>
                     <dxg:TableView />
                 </dxg:GridControl.View>

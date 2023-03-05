@@ -70,8 +70,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         internal NewTaskViewModel()
         {
 
-            
-
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -95,9 +93,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         };
                         defaultTemp.IsProcessTemp = true;
                     }
-
-
-
                     var defaultTemp1 = ListReceiveDepartment.Where(x => x.Department.Name.Contains(mydeptName)).FirstOrDefault();
                     if (defaultTemp1 != null)
                     {
@@ -107,7 +102,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             CanSave = true,
                             CanViewFileAttachment = true,
                             IndexInTree = 0,
-                            DepartmentId = defaultTemp.Department.Id,
+                            DepartmentId = defaultTemp1.Department.Id,
                             IsProcess = true
                         };
                         defaultTemp1.IsProcessTemp = true;
@@ -154,12 +149,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             if(receiveDept.IsProcessTemp || receiveDept.IsViewOnlyTemp)
                             temDTo.Add(receiveDept.ReceivedDepartmentDTO);
                         }
-
+                        string pathFile = DocumentSourcePdf.ToString();
                         TaskAttachedFileDTO taskAttachedFileDTO = new TaskAttachedFileDTO()
                         {
                             ModifiedBy = SectionLogin.Ins.CurrentUser.Id,
                             FileName = System.IO.Path.GetFileName ( DocumentSourcePdf.ToString()),
-                            Content = File.ReadAllBytes(DocumentSourcePdf.ToString())
+                            Content = File.ReadAllBytes(pathFile),
                         };
 
                         _MyClient.NewTask(task, temDTo.ToArray(), taskAttachedFileDTO);

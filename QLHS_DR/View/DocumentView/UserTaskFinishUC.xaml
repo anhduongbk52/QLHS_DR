@@ -39,7 +39,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator Padding="2"/>
-                    <MenuItem Header="Chuyển sang chưua kết thúc" Command="{Binding UnFinishUserTaskCommand}">
+                    <MenuItem Header="Chuyển sang chưa kết thúc" Command="{Binding UnFinishUserTaskCommand}">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="ArrowBack" />
                         </MenuItem.Icon>
@@ -53,7 +53,17 @@
                 <dxg:GridColumn FieldName="Task.StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView />
+                <dxg:TableView>
+                    <dxg:TableView.RowStyle>
+                        <Style TargetType="dxg:RowControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Row.Seen}" Value="False">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </dxg:TableView.RowStyle>
+                </dxg:TableView>
             </dxg:GridControl.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseDown">
@@ -77,7 +87,7 @@
                          SelectionMode="Row">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
-                    <dxg:GridColumn FieldName="User.Department" ReadOnly="True" Header="Đơn vị" GroupIndex="0" />
+                    <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
                     <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                     <dxg:GridColumn FieldName="CanSave" Header="Cho phép lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                     <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>

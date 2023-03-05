@@ -21,8 +21,8 @@ namespace EofficeClient.Core
 
         public static EofficeMainServiceClient NewEofficeMainServiceClient(string userName, string password)
         {
-
-            EofficeMainServiceClient client = new EofficeMainServiceClient(BindingConfig(), new EndpointAddress(string.Format("{0}://{1}:{2}/{3}", protocol, ipAddress, port, "EofficeService/Service")));
+            EofficeMainServiceClient client = new EofficeMainServiceClient();
+            //EofficeMainServiceClient client = new EofficeMainServiceClient(BindingConfig(), new EndpointAddress(string.Format("{0}://{1}:{2}/{3}", protocol, ipAddress, port, "EofficeService/Service")));
             client.ClientCredentials.UserName.UserName = userName;
             client.ClientCredentials.UserName.Password = password;
             return client;
