@@ -52,17 +52,18 @@
                     <Setter Property="MinHeight" Value="40"></Setter>
                     <Setter Property="Margin" Value="10"></Setter>
                 </Style>
+
             </Grid.Resources>
             <TextBox Grid.Column="0"  Grid.Row="0" Margin="10"
                      Text="{Binding TaskName}"
-                     materialDesign:HintAssist.Hint="Ghi chú/Mã số"
+                     materialDesign:HintAssist.Hint="Mã số"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}">
             </TextBox>
             <TextBox Name="textBoxDocumentName" 
                  Grid.Column="0"  Grid.Row="1" Margin="10"
-                 materialDesign:HintAssist.Hint="Nội dung"
+                 materialDesign:HintAssist.Hint="Tiêu đề"
                  Text="{Binding TaskDrecription}"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>           
             <DataGrid Grid.Column="0"  Grid.Row="2"
                       MinHeight="250"
                       CanUserAddRows="False"
@@ -125,10 +126,13 @@
                             </Style>
                         </DataGridCheckBoxColumn.CellStyle>
                     </DataGridCheckBoxColumn>
-
+                    <DataGridTextColumn Width="Auto" Header="Nội dung yêu cầu"    
+                                            Binding="{Binding JobContent,UpdateSourceTrigger=LostFocus,Mode=TwoWay}"
+                                            
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Grid.Column="0"  Grid.Row="4" Orientation="Horizontal" Margin="10">
+            <StackPanel Grid.Column="0"  Grid.Row="3" Orientation="Horizontal" Margin="10">
                 <Button Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="OK" Margin="10" Width="150" Height="40"></Button>
                 <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="CANCEL" Margin="10" Width="150" Height="40"></Button>
                 <CheckBox Command="{Binding CanSaveFile}" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Cho phép lưu đính kèm" ></CheckBox>

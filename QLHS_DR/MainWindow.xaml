@@ -58,13 +58,14 @@
                 <dxb:BarButtonItemLink BarItemName="newItem"/>
             </dxr:RibbonControl.ToolbarItems>
             <dxr:RibbonDefaultPageCategory>
-                <dxr:RibbonPage Caption="Home">
+                <dxr:RibbonPage Caption="Tài liệu đến">
                     <dxr:RibbonPageGroup Caption="File">
-                        <dxb:BarButtonItem x:Name="newDocument" Command="{Binding NewTaskCommand}" Content="New Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>
-                        <dxb:BarButtonItem x:Name="editDocument" Content="Edit Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Dashboards/Edit.svg}"/>
-                        <dxb:BarButtonItem x:Name="userInDocument" Content="Add User To Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Department.svg}"/>
-                        <dxb:BarButtonItem  Content="Permission for Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/RichEdit/EditRangePermission.svg}"/>
-                        <dxb:BarButtonItem  Command="{Binding RefeshCommand}" Content="Refesh" Glyph="{dx:DXImage 'SvgImages/Actions/Actions_Refresh.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding NewTaskCommand}" Content="New Document" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding LoadListNewDocument}" Content="Tài liệu chưa xử lý" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/RichEdit/NewComment.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding LoadListCompltetedDocument}" Content="Tài liệu đã kết thúc" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Security_Permission_Model.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding LoadListRevokeDocument}" Content="Tài liệu đã thu hồi" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Comments/DeleteComment.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding LoadAllTask}" Content="Toàn bộ tài liệu của TCT" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Reports/PrintAllPages.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding RefeshCommand}" Content="Refesh" Glyph="{dx:DXImage 'SvgImages/Actions/Actions_Refresh.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>

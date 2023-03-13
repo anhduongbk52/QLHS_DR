@@ -2,12 +2,15 @@
 using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
+using Prism.Events;
 using QLHS_DR;
 using QLHS_DR.Core;
 using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
+using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ViewModel.DocumentViewModel;
+using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -20,15 +23,17 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EofficeClient.ViewModel.DocumentViewModel
 {
 
     class ListNewDocumentViewModel : BaseViewModel
-    {     
+    {
         #region "Properties and Field"
+        private readonly IEventAggregator _eventAggregator;
         private EofficeMainServiceClient _MyClient;
-        MainViewModel dataOfMainWindow;
+        
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
         private bool _TrackChange;
@@ -142,19 +147,19 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ICommand OpenReceiveDepartmentManagerCommand { get; set; }
         public ICommand OpenReceiveUserManagerCommand { get; set; }
         public ICommand RevokeTaskCommand { get; set; }
-        public ICommand RefreshCommand { get; set; }
+        public ICommand AddUserOfMyDepartmentToTaskCommand { get; set; }
         #endregion
-        public void SetLabelMsg(string message)
+        //public void SetLabelMsg(string message)
+        //{
+        //    OnLoadUserControl(new object()); // Cập nhật lại dữ liệu
+        //}        
+        public ListNewDocumentViewModel(IEventAggregator eventAggregator)
         {
-            ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-        }        
-        public ListNewDocumentViewModel() 
-        {
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<QLHS_DR.ViewModel.Message.ReloadNewTasksTabEvent>().Subscribe(OnLoadUserControl);
             _TrackChange = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
             //MessageServiceCallBack.SetDelegate(SetLabelMsg);
-            
-            dataOfMainWindow = new MainViewModel();
             
             try 
             {
@@ -175,28 +180,23 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 _MyClient.Abort();
             }
             UsersInTask = new ObservableCollection<User>();
-            RefreshCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {
-                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-                UpdateHeaderTabControl();
-            });
-            LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
-            {
-                FrameworkElement window = System.Windows.Window.GetWindow(p);
-                dataOfMainWindow = (MainViewModel)window.DataContext;
+
+            LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {               
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-                UpdateHeaderTabControl();
+                OnLoadUserControl(new object());
             });
-            OpenReceiveDepartmentManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK)) return true; else return false; }, (p) =>
+            OpenReceiveDepartmentManagerCommand = new RelayCommand<Object>((p) => { if ( _UserTaskSelected != null && SectionLogin.Ins.ListPermissions.Any(x=>x.Code== "taskAddDepartmentToTask")) return true; else return false; }, (p) =>
             {
                 try
-                {                
+                {
                     ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD();
                     ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new ReceiveDepartmentManagerViewModel(_UserTaskSelected);
                     receiveDepartmentManagerViewModel.WindowTitle = _UserTaskSelected.Task.Subject;
                     receiveDepartmentManagerWD.DataContext= receiveDepartmentManagerViewModel;
-                    receiveDepartmentManagerWD.Show();
+                    receiveDepartmentManagerWD.ShowDialog();
+                    ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                    UpdateHeaderTabControl();
                 }
                 catch (Exception ex)
                 {
@@ -207,12 +207,21 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     }                   
                 }
             });
-            OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK) && _UserTaskSelected!=null) return true; else return false; }, (p) =>
+            OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskAddUserToTask") && _UserTaskSelected!=null) return true; else return false; }, (p) =>
             {
                 ReceiveUserManagerWD receiveUserManagerWD = new ReceiveUserManagerWD();
                 ReceiveUserManagerViewModel receiveUserManagerViewModel = new ReceiveUserManagerViewModel(_UserTaskSelected.Task);
                 receiveUserManagerWD.DataContext = receiveUserManagerViewModel;
                 receiveUserManagerWD.ShowDialog();
+                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
+            });
+            AddUserOfMyDepartmentToTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskAddUserOfMyDepartment") && _UserTaskSelected != null) return true; else return false; }, (p) =>
+            {
+                ReceiveUserOfMyDepartmentManagerWD receiveUserOfMyDepartmentManagerWD = new ReceiveUserOfMyDepartmentManagerWD();
+                ReceiveUserOfMyDepartmentManagerViewModel receiveUserOfMyDepartmentManagerViewModel = new ReceiveUserOfMyDepartmentManagerViewModel(_UserTaskSelected.Task);
+                receiveUserOfMyDepartmentManagerWD.DataContext = receiveUserOfMyDepartmentManagerViewModel;
+                receiveUserOfMyDepartmentManagerWD.ShowDialog();
                 ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                 UpdateHeaderTabControl();
             });
@@ -302,7 +311,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     _MyClient.Abort();
                 }
             });
-            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner") && _UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
             {
                 try
                 {
@@ -375,14 +384,19 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         private void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             _TrackChange = true;
-        }        
-        private void UpdateHeaderTabControl()
+        }
+        private void OnLoadUserControl(object obj)
         {
-            var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
-            if (tabNotFinnish != null)
+            App.Current.Dispatcher.Invoke(new Action(() =>
             {
-                tabNotFinnish.Header = "Tài liệu chưa xử lý ( " + _ListUserTaskOfUser.Count() + " )";
-            }
+                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
+            }));
+        }
+        private void UpdateHeaderTabControl()
+        {         
+                var titletabControl = new TitletabControlMessage() { Title = "Tài liệu chưa xử lý ( " + _ListUserTaskOfUser.Count() + " )" };
+               _eventAggregator.GetEvent<NewTasksTabTitleChangedEvent>().Publish(titletabControl);
         }
         public ObservableCollection<Task> GetAllTaskNotFinishOfUser(int userId)
         {
@@ -430,15 +444,6 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 _MyClient.Abort();
             }
             return ketqua;
-        }
-        private void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask) 
-        {
-            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask));
-            if (orAdd != null)
-            {
-                taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
-            }
-        }
+        }       
     }
 }

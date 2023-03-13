@@ -993,6 +993,15 @@ namespace QLHS_DR.ChatAppServiceReference {
         private int AssignedByUserIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanViewFileAttachmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ChatAppServiceReference.Department DepartmentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1000,6 +1009,12 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IndexInTreeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsProcessField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProcessedByUserIdField;
@@ -1032,6 +1047,45 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.AssignedByUserIdField.Equals(value) != true)) {
                     this.AssignedByUserIdField = value;
                     this.RaisePropertyChanged("AssignedByUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanViewFileAttachment {
+            get {
+                return this.CanViewFileAttachmentField;
+            }
+            set {
+                if ((this.CanViewFileAttachmentField.Equals(value) != true)) {
+                    this.CanViewFileAttachmentField = value;
+                    this.RaisePropertyChanged("CanViewFileAttachment");
                 }
             }
         }
@@ -1071,6 +1125,32 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IndexInTree {
+            get {
+                return this.IndexInTreeField;
+            }
+            set {
+                if ((this.IndexInTreeField.Equals(value) != true)) {
+                    this.IndexInTreeField = value;
+                    this.RaisePropertyChanged("IndexInTree");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsProcess {
+            get {
+                return this.IsProcessField;
+            }
+            set {
+                if ((this.IsProcessField.Equals(value) != true)) {
+                    this.IsProcessField = value;
+                    this.RaisePropertyChanged("IsProcess");
                 }
             }
         }
@@ -1325,7 +1405,7 @@ namespace QLHS_DR.ChatAppServiceReference {
         private int RoleIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
+        private QLHS_DR.ChatAppServiceReference.User UserCreateField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1429,14 +1509,14 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
+        public QLHS_DR.ChatAppServiceReference.User UserCreate {
             get {
-                return this.UserField;
+                return this.UserCreateField;
             }
             set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
+                if ((object.ReferenceEquals(this.UserCreateField, value) != true)) {
+                    this.UserCreateField = value;
+                    this.RaisePropertyChanged("UserCreate");
                 }
             }
         }
@@ -1482,6 +1562,12 @@ namespace QLHS_DR.ChatAppServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FileNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1512,6 +1598,32 @@ namespace QLHS_DR.ChatAppServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
             }
         }
         
@@ -1642,6 +1754,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         private System.Nullable<int> AssignedUserIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> CanSaveFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1657,7 +1772,7 @@ namespace QLHS_DR.ChatAppServiceReference {
         private System.Nullable<int> OwnerUserIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PriorityField;
+        private QLHS_DR.ChatAppServiceReference.TaskPriority PriorityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> ReminderField;
@@ -1705,6 +1820,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.AssignedUserIdField.Equals(value) != true)) {
                     this.AssignedUserIdField = value;
                     this.RaisePropertyChanged("AssignedUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> CanSaveFile {
+            get {
+                return this.CanSaveFileField;
+            }
+            set {
+                if ((this.CanSaveFileField.Equals(value) != true)) {
+                    this.CanSaveFileField = value;
+                    this.RaisePropertyChanged("CanSaveFile");
                 }
             }
         }
@@ -1775,7 +1903,7 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Priority {
+        public QLHS_DR.ChatAppServiceReference.TaskPriority Priority {
             get {
                 return this.PriorityField;
             }
@@ -1933,7 +2061,13 @@ namespace QLHS_DR.ChatAppServiceReference {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Position PositionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> PositionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PriorityProcessingField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ChatAppServiceReference.User UserField;
@@ -1991,6 +2125,19 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Position Position {
+            get {
+                return this.PositionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PositionField, value) != true)) {
+                    this.PositionField = value;
+                    this.RaisePropertyChanged("Position");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> PositionId {
             get {
                 return this.PositionIdField;
@@ -1999,6 +2146,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.PositionIdField.Equals(value) != true)) {
                     this.PositionIdField = value;
                     this.RaisePropertyChanged("PositionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PriorityProcessing {
+            get {
+                return this.PriorityProcessingField;
+            }
+            set {
+                if ((this.PriorityProcessingField.Equals(value) != true)) {
+                    this.PriorityProcessingField = value;
+                    this.RaisePropertyChanged("PriorityProcessing");
                 }
             }
         }
@@ -2318,10 +2478,16 @@ namespace QLHS_DR.ChatAppServiceReference {
         private int AssignedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User AssignedByUserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> CanSaveField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<bool> CanViewAttachedFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DoneContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool HasPrintedField;
@@ -2334,6 +2500,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsProcessingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JobContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ChatAppServiceReference.PermissionType PermissionTypeField;
@@ -2351,10 +2520,10 @@ namespace QLHS_DR.ChatAppServiceReference {
         private byte[] TaskKeyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
+        private System.Nullable<System.DateTime> TimeCreateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User User1Field;
+        private QLHS_DR.ChatAppServiceReference.User UserField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
@@ -2383,6 +2552,19 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User AssignedByUser {
+            get {
+                return this.AssignedByUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AssignedByUserField, value) != true)) {
+                    this.AssignedByUserField = value;
+                    this.RaisePropertyChanged("AssignedByUser");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<bool> CanSave {
             get {
                 return this.CanSaveField;
@@ -2404,6 +2586,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.CanViewAttachedFileField.Equals(value) != true)) {
                     this.CanViewAttachedFileField = value;
                     this.RaisePropertyChanged("CanViewAttachedFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DoneContent {
+            get {
+                return this.DoneContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DoneContentField, value) != true)) {
+                    this.DoneContentField = value;
+                    this.RaisePropertyChanged("DoneContent");
                 }
             }
         }
@@ -2456,6 +2651,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.IsProcessingField.Equals(value) != true)) {
                     this.IsProcessingField = value;
                     this.RaisePropertyChanged("IsProcessing");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobContent {
+            get {
+                return this.JobContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobContentField, value) != true)) {
+                    this.JobContentField = value;
+                    this.RaisePropertyChanged("JobContent");
                 }
             }
         }
@@ -2526,6 +2734,19 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimeCreate {
+            get {
+                return this.TimeCreateField;
+            }
+            set {
+                if ((this.TimeCreateField.Equals(value) != true)) {
+                    this.TimeCreateField = value;
+                    this.RaisePropertyChanged("TimeCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public QLHS_DR.ChatAppServiceReference.User User {
             get {
                 return this.UserField;
@@ -2534,19 +2755,6 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((object.ReferenceEquals(this.UserField, value) != true)) {
                     this.UserField = value;
                     this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User1 {
-            get {
-                return this.User1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.User1Field, value) != true)) {
-                    this.User1Field = value;
-                    this.RaisePropertyChanged("User1");
                 }
             }
         }
@@ -2896,6 +3104,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -2971,6 +3182,19 @@ namespace QLHS_DR.ChatAppServiceReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
+            get {
+                return this.UserDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
+                    this.UserDepartmentsField = value;
+                    this.RaisePropertyChanged("UserDepartments");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -2979,6 +3203,24 @@ namespace QLHS_DR.ChatAppServiceReference {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskPriority", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum TaskPriority : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Low = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Normal = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        High = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Urgent = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]

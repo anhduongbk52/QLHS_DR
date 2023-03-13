@@ -9,7 +9,7 @@
     <Window.DataContext>
         <local:MessageViewModel></local:MessageViewModel>
     </Window.DataContext>
-    <Grid Background="Gray" Loaded="Grid_Loaded">
+    <Grid Background="Gray" >
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ListBox Name="ListBox" ScrollViewer.CanContentScroll="False" Margin="5" ItemsSource="{Binding Users}" Loaded="ListBox_Loaded">
+            <ListBox Name="ListBox" ScrollViewer.CanContentScroll="False" Margin="5" ItemsSource="{Binding Users}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>

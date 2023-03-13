@@ -2,12 +2,14 @@
 using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
+using Prism.Events;
 using QLHS_DR;
 using QLHS_DR.Core;
 using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
 using QLHS_DR.ViewModel.ChatAppViewModel;
+using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -25,6 +27,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class UserTaskRevokedViewModel : BaseViewModel
     {
         #region "Properties and Field"
+        private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
         public ObservableCollection<Department> Departments
         {
@@ -147,16 +150,16 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand TaskSelectedCommand { get; set; }  
       
         #endregion
-        public void SetLabelMsg(string message)
-        {
-            ListTaskOfUser = GetAllTaskRevokedOfUser(SectionLogin.Ins.CurrentUser.Id);
-        }
+        //public void SetLabelMsg(string message)
+        //{
+        //    ListTaskOfUser = GetAllTaskRevokedOfUser(SectionLogin.Ins.CurrentUser.Id);
+        //}
 
-        public UserTaskRevokedViewModel()
+        public UserTaskRevokedViewModel(IEventAggregator eventAggregator)
         {
-            MessageServiceCallBack.SetDelegate(SetLabelMsg);
-
-            MainViewModel dataOfMainWindow = new MainViewModel();
+            //MessageServiceCallBack.SetDelegate(SetLabelMsg);
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<ReloadRevokedTasksTabEvent>().Subscribe(OnLoadUserControl);
 
             try
             {
@@ -180,20 +183,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             //ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
-            {
-                FrameworkElement window = System.Windows.Window.GetWindow(p);
-                dataOfMainWindow = (MainViewModel)window.DataContext;
+            {                  
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-                App.Current.Dispatcher.Invoke((Action)delegate
-                {
-                    ListTaskOfUser = GetAllTaskRevokedOfUser(SectionLogin.Ins.CurrentUser.Id);
-                });
-
-                var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu đã thu hồi")).FirstOrDefault();
-                if (tabNotFinnish != null)
-                {
-                    tabNotFinnish.Header = "Tài liệu đã thu hồi ( " + _ListTaskOfUser.Count() + " )";
-                }
+                OnLoadUserControl(new object());
             });           
             TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
             {                
@@ -263,6 +255,16 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
             }
+        }
+        private void OnLoadUserControl(object obj)
+        {
+            ListTaskOfUser = GetAllTaskRevokedOfUser(SectionLogin.Ins.CurrentUser.Id);
+            UpdateHeaderTabControl();
+        }
+        private void UpdateHeaderTabControl()
+        {
+            var titletabControl = new TitletabControlMessage() { Title = "Tài liệu đã thu hồi ( " + _ListTaskOfUser.Count() + " )" };
+            _eventAggregator.GetEvent<RevokedTasksTabTitleChangedEvent>().Publish(titletabControl);
         }
     }
 }

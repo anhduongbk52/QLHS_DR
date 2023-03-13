@@ -11,13 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
-using PermissionType = QLHS_DR.EOfficeServiceReference.PermissionType;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
-{
-    internal class ReceiveUserManagerViewModel:BaseViewModel
+{ 
+    internal class ReceiveUserOfMyDepartmentManagerViewModel : BaseViewModel
     {
         #region "Properties and Field"
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
@@ -36,7 +34,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private IReadOnlyList<User> iReadOnlyListUser;
         //private List<int> _UserNotInTaskIds;
         private EOfficeServiceReference.Task _Task;
-        private ObservableCollection<ReceiveUser> _ReceiveUsers;       
+        private ObservableCollection<ReceiveUser> _ReceiveUsers;
         public ObservableCollection<ReceiveUser> ReceiveUsers
         {
             get => _ReceiveUsers;
@@ -48,7 +46,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-        private string _WindowTittle;    
+        private string _WindowTittle;
         public string WindowTittle
         {
             get => _WindowTittle;
@@ -67,74 +65,70 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand SaveCommand { get; set; }
 
         #endregion
-        internal ReceiveUserManagerViewModel(EOfficeServiceReference.Task task)
+        internal ReceiveUserOfMyDepartmentManagerViewModel(EOfficeServiceReference.Task task)
         {
             _Task = task;
             ReceiveUsers = new ObservableCollection<ReceiveUser>();
-            WindowTittle = "Chỉnh sửa người nhận: " + task.Description + " /-/ " +task.Subject;
+            WindowTittle = "Phân công công việc trong đơn vị: " + task.Description + " /-/ " + task.Subject;
+            try
+            {
+                List<User> usersOfDepartment = new List<User>();
+                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                Department myDepartment = _MyClient.GetDepartment(SectionLogin.Ins.CurrentUser.Id);
+                usersOfDepartment = _MyClient.GetUsersOfDepartment(myDepartment.Id).ToList();
+                var allUserTaskOfTask = _MyClient.GetAllUserTaskOfTask(_Task.Id);
+                foreach (var u in usersOfDepartment)
+                {
+                    PermissionType taskPermissions = _MyClient.GetTaskPermissions(u.Id, _Task.Id);
+                    ReceiveUser receiveUser = new ReceiveUser()
+                    {
+                        IsMainProcess = false,
+                        User = u,
+                        IsReceive = false,
+                        CanSave = false,
+                        CanPrintFile = false,
+                        CanViewFile = false,
+                        ReadOnlyPermission = false
+                    };
+                    var userTask = allUserTaskOfTask.Where(x => x.UserId == u.Id).FirstOrDefault();
+                    if (userTask != null)
+                    {
+                        receiveUser.IsMainProcess = userTask.IsProcessing;
+                        receiveUser.IsReceive = true;
+                        receiveUser.CanSave = userTask.CanSave.Value;
+                        receiveUser.CanPrintFile = taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT);
+                        receiveUser.CanViewFile = userTask.CanViewAttachedFile ?? false; //
+                        receiveUser.JobContent = userTask.JobContent;
+                    }
+                    if (_Task.OwnerUserId == u.Id)
+                    {
+                        receiveUser.IsReceive = true;
+                        receiveUser.CanViewFile = true;
+                        receiveUser.ReadOnlyPermission = true;
+                    }
+                    receiveUser.IsMainProcessChanged = false;
+                    receiveUser.IsReceiveChanged = false;
+                    receiveUser.CanPrintFileChanged = false;
+                    receiveUser.CanViewFileChanged = false;
+                    receiveUser.CanSaveChanged = false;
+                    receiveUser.PropertyChanged += OnItemPropertyChanged;
+                    ReceiveUsers.Add(receiveUser);
+                }
+                _MyClient.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                try
-                {
-                    EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-
-                    _MyClient.Open();
-                    var users = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
-                    int i = users.Length;
-
-                    var allUserTaskOfTask = _MyClient.GetAllUserTaskOfTask(_Task.Id);
-                    iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
-                    if (users != null && allUserTaskOfTask != null)
-                    {
-                        foreach (var u in users)
-                        {
-                            PermissionType taskPermissions = _MyClient.GetTaskPermissions(u.Id, _Task.Id);
-                            ReceiveUser receiveUser = new ReceiveUser()
-                            {
-                                User = u,
-                                IsReceive = false,
-                                CanSave = false,
-                                CanPrintFile = false,
-                                CanViewFile = false,
-                                ReadOnlyPermission = false
-                            };
-                            var userTask = allUserTaskOfTask.Where(x => x.UserId == u.Id).FirstOrDefault();
-                            if (userTask != null)
-                            {
-                                receiveUser.IsReceive = true;
-                                if (userTask.CanSave == true)
-                                {
-                                    receiveUser.CanSave = true;
-                                }
-                                else receiveUser.CanSave = false;
-                                receiveUser.CanPrintFile = taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT);
-                                receiveUser.CanViewFile = userTask.CanViewAttachedFile ?? false; //
-                            }
-                            if (_Task.OwnerUserId == u.Id)
-                            {
-                                receiveUser.IsReceive = true;
-                                receiveUser.CanViewFile = true;
-                                receiveUser.ReadOnlyPermission = true;
-                            }
-                            receiveUser.IsReceiveChanged = false;
-                            receiveUser.CanPrintFileChanged = false;
-                            receiveUser.CanViewFileChanged = false;
-                            receiveUser.CanSaveChanged = false;
-                            receiveUser.PropertyChanged += OnItemPropertyChanged;
-                            ReceiveUsers.Add(receiveUser);
-                        }
-                    }
-                    _MyClient.Close();
-                    _DataChanged = false;
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.Message + "Function: LoadedWindowCommand");
-                }
+               
             });
             SaveCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
-                if(_DataChanged)
+                if (_DataChanged)
                 {
                     Save();
                     EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -150,7 +144,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         }
                     }
                     _MyClient.Close();
-                }          
+                }
                 p.Close();
             });
             CancelCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
@@ -163,7 +157,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             try
             {
                 FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-               
+
                 EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 var allUserTaskOfTask = _MyClient.GetAllUserTaskOfTask(_Task.Id);
@@ -177,10 +171,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     List<int> userIdRemoveSaveAble = new List<int>(); //List Id Cac nguoi dung xoa quyen save.
                     List<int> userIdAddViewFileAble = new List<int>(); //List Id Cac nguoi dung them quyen xem file.
                     List<int> userIdRemoveViewFileAble = new List<int>(); //List Id Cac nguoi dung xoa quyen xem file.
-
-
-
-                   UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);           
+                    List<int> userIdAddIsMainProcess = new List<int>(); //List Id Cac nguoi dung xoa quyen xem file.
+                    List<int> userIdRemoveIsMainProcess = new List<int>(); //List Id Cac nguoi dung xoa quyen xem file.
+                    List<ReceiveUser> receiveUserChangedJobContent = new List<ReceiveUser>(); //List Id Cac nguoi dung xoa quyen xem file.
+                    UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);
 
                     byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(_Task.Id, userTask_0);
                     byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
@@ -200,8 +194,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                     fileHelper.SetECPrKeyForFile(ecpr, receiveuser.User);
                                 }
                                 byte[] userTaskKey = CryptoUtil.EncryptWithoutIV(receiveuser.User.ECPrKeyForFile, data);
-                                //_MyClient.AddUserTask(_Task.Id, receiveuser.User.Id, SectionLogin.Ins.CurrentUser.Id, userTaskKey);
-
+                            
                                 PermissionType permissionType = new PermissionType();
                                 if (receiveuser.CanPrintFile)
                                 {
@@ -218,16 +211,24 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                     Seen = false,
                                     HasPrinted = false,
                                     IsFinish = false,
-
                                     CanSave = receiveuser.CanSave,
                                     CanViewAttachedFile = receiveuser.CanViewFile,
                                     TaskKey = userTaskKey,
+                                    IsProcessing= receiveuser.IsMainProcess,
+                                    JobContent= receiveuser.JobContent
                                 };
-                                newUserTasks.Add(newUserTask);
-                                //_UserNotInTaskIds.Add(receiveuser.User.Id);
+                                newUserTasks.Add(newUserTask);                               
                             }
                             else //Neu nguoi dung da o trong luong cong viec -> thuc hien viec update trang thai cua user;
                             {
+                                if (!receiveuser.IsMainProcess && receiveuser.IsMainProcessChanged) //
+                                {
+                                    userIdRemoveIsMainProcess.Add(receiveuser.User.Id);
+                                }
+                                if (receiveuser.IsMainProcess && receiveuser.IsMainProcessChanged) //
+                                {
+                                    userIdAddIsMainProcess.Add(receiveuser.User.Id);
+                                }
                                 if (!receiveuser.CanViewFile && receiveuser.CanViewFileChanged) //Xoa quyen xem file cua user
                                 {
                                     userIdRemoveViewFileAble.Add(receiveuser.User.Id);
@@ -252,6 +253,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                 {
                                     userIdAddPrintAble.Add(receiveuser.User.Id);
                                 }
+                                if (receiveuser.JobContent!=null && receiveuser.JobContentChanged) //Them quyen luu file cua user
+                                {
+                                    receiveUserChangedJobContent.Add(receiveuser);
+                                }
                             }
                         }
                         else //Xoa user trong luong cong viec
@@ -268,7 +273,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     {
                         _MyClient.AddUserTasks(newUserTasks.ToArray());
                     }
-
+                    if (receiveUserChangedJobContent.Count > 0)
+                    {
+                        foreach(var item in receiveUserChangedJobContent)
+                        {
+                            _MyClient.SetJobContent(_Task.Id,item.User.Id,item.JobContent);
+                        }                        
+                    }
                     if (userIdAddViewFileAble.Count > 0) //Set quyen view file
                     {
                         _MyClient.SetUserTaskViewFileAble(_Task.Id, userIdAddViewFileAble.ToArray(), true, SectionLogin.Ins.CurrentUser.Id);
@@ -293,9 +304,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     {
                         _MyClient.SetUserTaskSaveFileAble(_Task.Id, userIdRemovePrintAble.ToArray(), false, SectionLogin.Ins.CurrentUser.Id);
                     }
+                    if (userIdAddIsMainProcess.Count > 0) 
+                    {
+                        _MyClient.SetUserTaskIsProcess(_Task.Id, userIdRemovePrintAble.ToArray(), true);
+                    }
+                    if (userIdRemoveIsMainProcess.Count > 0)
+                    {
+                        _MyClient.SetUserTaskIsProcess(_Task.Id, userIdRemovePrintAble.ToArray(), false);
+                    }
+                    
                 }
                 _MyClient.Close();
-               
+
             }
             catch (Exception ex)
             {
@@ -308,205 +328,5 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             _DataChanged = true;
         }
     }
-    internal class ReceiveUser : BaseViewModel
-    {
-        private bool _IsMainProcess;
-        public bool IsMainProcess
-        {
-            get => _IsMainProcess;
-            set
-            {
-                if (_IsMainProcess != value)
-                {
-                    _IsMainProcess = value;                   
-                    OnPropertyChanged("IsMainProcess");
-                    IsMainProcessChanged = true;
-                }
-            }
-        }
-        private bool _IsMainProcessChanged;
-        public bool IsMainProcessChanged
-        {
-            get => _IsMainProcessChanged;
-            set
-            {
-                if (_IsMainProcessChanged != value)
-                {
-                    _IsMainProcessChanged = value; OnPropertyChanged("IsMainProcessChanged");
-                }
-            }
-        }
-        private bool _IsReceive;
-        public bool IsReceive
-        {
-            get => _IsReceive;
-            set
-            {
-                if (_IsReceive != value)
-                {                   
-                    _IsReceive = value;
-                    if (!_IsReceive)
-                    {
-                        IsReceive = false;
-                        CanViewFile = false;
-                        CanPrintFile = false;
-                        CanSave = false;
-                    }
-                    OnPropertyChanged("IsReceive");
-                    IsReceiveChanged=true;
-                }
-            }
-        }
-        private bool _IsReceiveChanged;
-        public bool IsReceiveChanged
-        {
-            get => _IsReceiveChanged;
-            set
-            {
-                if (_IsReceiveChanged != value)
-                {
-                    _IsReceiveChanged = value; OnPropertyChanged("IsReceiveChanged");
-                }
-            }
-        }
-        private bool _CanSave;
-        public bool CanSave
-        {
-            get => _CanSave;
-            set
-            {
-                if (_CanSave != value)
-                {
-                    _CanSave = value;
-                    if (_CanSave)
-                    {
-                        IsReceive = true;
-                        CanViewFile = true;
-                        CanPrintFile = true;
-                    }                   
-                    OnPropertyChanged("CanSave");
-                    CanSaveChanged = true;
-                }
-            }
-        }
-        private bool _CanSaveChanged;
-        public bool CanSaveChanged
-        {
-            get => _CanSaveChanged;
-            set
-            {
-                if (_CanSaveChanged != value)
-                {
-                    _CanSaveChanged = value; OnPropertyChanged("CanSaveChanged");
-                }
-            }
-        }
-        private bool _CanViewFile;
-        public bool CanViewFile
-        {
-            get => _CanViewFile;
-            set
-            {
-                if (_CanViewFile != value)
-                {
-                    _CanViewFile = value; OnPropertyChanged("CanViewFile");
-                    CanViewFileChanged = true;
-                }
-            }
-        }
-        private bool _CanViewFileChanged;
-        public bool CanViewFileChanged
-        {
-            get => _CanViewFileChanged;
-            set
-            {
-                if (_CanViewFileChanged != value)
-                {
-                    _CanViewFileChanged = value; OnPropertyChanged("CanViewFileChanged");
-                }
-            }
-        }
-        private bool _CanPrintFile;
-        public bool CanPrintFile
-        {
-            get => _CanPrintFile;
-            set
-            {
-                if (_CanPrintFile != value)
-                {
-                    _CanPrintFile = value;
-                    if (_CanPrintFile)
-                    {
-                        IsReceive = true;
-                        CanViewFile = true;                        
-                    }
-                    OnPropertyChanged("CanPrintFile");
-                    CanPrintFileChanged=true;
-                }
-            }
-        }
-        private bool _CanPrintFileChanged;
-        public bool CanPrintFileChanged
-        {
-            get => _CanPrintFileChanged;
-            set
-            {
-                if (_CanPrintFileChanged != value)
-                {
-                    _CanPrintFileChanged = value; 
-                    OnPropertyChanged("CanPrintFileChanged");
-                }
-            }
-        }
-        private bool _ReadOnlyPermission;
-        public bool ReadOnlyPermission
-        {
-            get => _ReadOnlyPermission;
-            set
-            {
-                if (_ReadOnlyPermission != value)
-                {
-                    _ReadOnlyPermission = value; 
-                    OnPropertyChanged("ReadOnlyPermission");
-                }
-            }
-        }
-        private User _User;
-        public User User
-        {
-            get => _User;
-            set
-            {
-                if (_User != value)
-                {
-                    _User = value; OnPropertyChanged("User");
-                }
-            }
-        }
-        private string _JobContent;
-        public string JobContent
-        {
-            get => _JobContent;
-            set
-            {
-                if (_JobContent != value)
-                {
-                    _JobContent = value; OnPropertyChanged("JobContent");
-                    JobContentChanged = true;
-                }
-            }
-        }
-        private bool _JobContentChanged;
-        public bool JobContentChanged
-        {
-            get => _JobContentChanged;
-            set
-            {
-                if (_JobContentChanged != value)
-                {
-                    _JobContentChanged = value; OnPropertyChanged("JobContent");
-                }
-            }
-        }
-    }
+  
 }

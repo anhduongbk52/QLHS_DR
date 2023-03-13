@@ -88,6 +88,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_Task.Id); //get all file PDF in task
+                    _MyClient.SetSeenUserInTask(_Task.Id, SectionLogin.Ins.CurrentUser.Id);
                     _MyClient.Close();
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
@@ -118,6 +119,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                 temDTo.Add(receiveDept.ReceivedDepartmentDTO);
                         }
                         _MyClient.AddDepartmentToTask(_Task, temDTo.ToArray());
+                        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Bạn có muốn chuyển công việc này sang mục đã kết thúc ?", "?", MessageBoxButton.OKCancel);
+                        if (dialogResult == MessageBoxResult.OK)
+                        {
+                            _MyClient.SetUserTaskFinish(_Task.Id, SectionLogin.Ins.CurrentUser.Id, true);
+                        }
                         _MyClient.Close();
                         p.Close();
                     }

@@ -12,7 +12,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=allTaskUC}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -20,7 +20,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
         <dxg:GridControl Grid.Column="0"  Margin="0"
                          AutoGenerateColumns="None" 
                          ItemsSource="{Binding ListTaskOfUser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
@@ -30,7 +29,7 @@
                 <ContextMenu FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
                     <MenuItem Header="Xem" Command="{Binding OpenFileCommand}">
                         <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="Eye" />
+                            <materialDesign:PackIcon Kind="Eye"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Chỉnh sửa người nhận" Command="{Binding OpenReceiveUserManagerCommand}">
@@ -48,7 +47,7 @@
             </dxg:GridControl.ContextMenu>
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Subject" ReadOnly="True" Header="Tên tài liệu"  />
-                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Ghi chú" />
+                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Mã số" />
                 <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
@@ -81,7 +80,17 @@
                 </dxg:GridControl.Columns>
 
                 <dxg:GridControl.View>
-                    <dxg:TableView />
+                    <dxg:TableView>
+                        <dxg:TableView.RowStyle>
+                            <Style TargetType="dxg:RowControl">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Row.IsProcessing}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:TableView.RowStyle>
+                    </dxg:TableView>
                 </dxg:GridControl.View>
             </dxg:GridControl>
         </Grid>

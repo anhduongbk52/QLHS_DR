@@ -22,6 +22,7 @@ using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ChatAppServiceReference;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Microsoft.Win32;
 
 namespace EofficeClient.ViewModel
 {
@@ -83,6 +84,7 @@ namespace EofficeClient.ViewModel
                 UserName = "";
                 try
                 {
+                    SaveLogin = QLHS_DR.Properties.Settings.Default.StatusSavePass;
                     CredentialData credentialData = ConfigurationUtil.LoadCredentialData(AppInfo.FolderPath);
                     if (credentialData != null)
                     {
@@ -102,6 +104,21 @@ namespace EofficeClient.ViewModel
                 Login(p);
                 if (_SaveLogin)
                 {
+                    try
+                    {
+                        string keyName = "QLHS_DR"; // Tên khóa đăng ký của ứng dụng của bạn 
+                        string appPath = System.Reflection.Assembly.GetEntryAssembly().Location;
+                        RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                        if (rk == null)
+                        {
+                            rk = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
+                        }
+                        rk.SetValue(keyName, appPath);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Exceptiton: " + ex.Message);
+                    }
                     ConfigurationUtil.SaveCredentialData(new CredentialData
                     {
                         Password = _Password,
@@ -111,6 +128,20 @@ namespace EofficeClient.ViewModel
                 else
                 {
                     ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
+                    try
+                    {
+                        string keyName = "QLHS_DR"; // Tên khóa đăng ký của ứng dụng của bạn
+
+                        RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                        if (rk != null)
+                        {
+                            rk.DeleteValue(keyName, false);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Exceptiton: " + ex.Message);
+                    }
                 }
             });
             CloseCommand = new RelayCommand<Window>((w) => { return true; }, (p) => { CheckBoxSave(_SaveLogin); p.Close(); IsLogin = false; });
@@ -156,21 +187,7 @@ namespace EofficeClient.ViewModel
                 //var endPoint = new EndpointAddress(uri);
                 //var proxy = channel.CreateChannel(endPoint);
                 //proxy?.Connect(User.Id);
-
-                //Uri baseAddress = new Uri("net.tcp://192.168.11.12:8080/EofficeService/Service");
-                //NetTcpBinding wsd = new NetTcpBinding();
-                ////wsd.Security = SecurityMode.None;
-                //EndpointAddress ea = new EndpointAddress(baseAddress, EndpointIdentity.CreateDnsIdentity("192.168.11.12:8080"));
-                //MessageServiceClient _ChatClient = new MessageServiceClient(callBack, wsd,ea);
-
-                //////_ChatClient.ClientCredentials.UserName.UserName = _UserName;
-                //////_ChatClient.ClientCredentials.UserName.Password = passEncode;
-                //_ChatClient.Open(); 
-                //_ChatClient.Connect(User.Id);
-                //var enpoint = _ChatClient.Endpoint;
-                              
-                p.Close();
-                
+                p.Close();                
             }
             catch (TimeoutException exception)
             {

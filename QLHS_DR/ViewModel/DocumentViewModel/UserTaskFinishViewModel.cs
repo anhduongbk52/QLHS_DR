@@ -2,12 +2,14 @@
 using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
+using Prism.Events;
 using QLHS_DR;
 using QLHS_DR.Core;
 using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
 using QLHS_DR.ViewModel.ChatAppViewModel;
+using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -26,6 +28,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class UserTaskFinishViewModel : BaseViewModel
     {
         #region "Properties and Field"
+        private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
         public ObservableCollection<Department> Departments
         {
@@ -139,19 +142,22 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand OpenFileCommand { get; set; }
         public ICommand SavePermissionCommand { get; set; }
         public ICommand OpenReceiveUserManagerCommand { get; set; }
+        public ICommand OpenReceiveDepartmentManagerCommand { get; set; }
         public ICommand UnFinishUserTaskCommand { get; set; }
+        public ICommand RevokeTaskCommand { get; set; }
+        public ICommand AddUserOfMyDepartmentToTaskCommand { get; set; }
         #endregion
-        public void SetLabelMsg(string message)
+        //public void SetLabelMsg(string message)
+        //{
+        //    ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+        //}
+        public UserTaskFinishViewModel(IEventAggregator eventAggregator)
         {
-            ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-        }
-        public UserTaskFinishViewModel()
-        {
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<ReloadFinishTasksTabEvent>().Subscribe(OnLoadUserControl);
             _TrackChange = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-            MessageServiceCallBack.SetDelegate(SetLabelMsg);
-
-            dataOfMainWindow = new MainViewModel();
+            //MessageServiceCallBack.SetDelegate(SetLabelMsg);
 
             try
             {
@@ -176,18 +182,45 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
             {
-                FrameworkElement window = System.Windows.Window.GetWindow(p);
-                dataOfMainWindow = (MainViewModel)window.DataContext;
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-                ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-                UpdateHeaderTabControl();
+                OnLoadUserControl(new object());
             });
-            OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK) && _UserTaskSelected != null) return true; else return false; }, (p) =>
+            OpenReceiveDepartmentManagerCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskAddDepartmentToTask")) return true; else return false; }, (p) =>
+            {
+                try
+                {
+                    ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD();
+                    ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new ReceiveDepartmentManagerViewModel(_UserTaskSelected);
+                    receiveDepartmentManagerViewModel.WindowTitle = _UserTaskSelected.Task.Subject;
+                    receiveDepartmentManagerWD.DataContext = receiveDepartmentManagerViewModel;
+                    receiveDepartmentManagerWD.ShowDialog();
+                    ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                    UpdateHeaderTabControl();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message + " - OpenReceiveDepartmentManagerCommand");
+                    if (ex.InnerException != null)
+                    {
+                        System.Windows.MessageBox.Show(ex.InnerException.StackTrace);
+                    }
+                }
+            });
+            OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskAddUserToTask") && _UserTaskSelected != null) return true; else return false; }, (p) =>
             {
                 ReceiveUserManagerWD receiveUserManagerWD = new ReceiveUserManagerWD();
                 ReceiveUserManagerViewModel receiveUserManagerViewModel = new ReceiveUserManagerViewModel(_UserTaskSelected.Task);
                 receiveUserManagerWD.DataContext = receiveUserManagerViewModel;
                 receiveUserManagerWD.ShowDialog();
+                ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
+            });
+            AddUserOfMyDepartmentToTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskAddUserOfMyDepartment") && _UserTaskSelected != null) return true; else return false; }, (p) =>
+            {
+                ReceiveUserOfMyDepartmentManagerWD receiveUserOfMyDepartmentManagerWD = new ReceiveUserOfMyDepartmentManagerWD();
+                ReceiveUserOfMyDepartmentManagerViewModel receiveUserOfMyDepartmentManagerViewModel = new ReceiveUserOfMyDepartmentManagerViewModel(_UserTaskSelected.Task);
+                receiveUserOfMyDepartmentManagerWD.DataContext = receiveUserOfMyDepartmentManagerViewModel;
+                receiveUserOfMyDepartmentManagerWD.ShowDialog();
                 ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                 UpdateHeaderTabControl();
             });
@@ -276,7 +309,31 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
 
             });
-
+            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner")&& _UserTaskSelected.Task.OwnerUserId== SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            {
+                try
+                {
+                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Bạn có muốn thu hồi tài liệu này? Thao tác này sẽ xóa toàn bộ dữ liệu liên quan", "Cảnh báo !", MessageBoxButton.OKCancel);
+                    if (dialogResult == MessageBoxResult.OK)
+                    {
+                        _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                        _MyClient.Open();
+                        _MyClient.RevokeTaskByCurrentUser(_UserTaskSelected.TaskId);
+                        _MyClient.Close();
+                        ListUserTaskOfUser.Remove(_UserTaskSelected);
+                        UpdateHeaderTabControl();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                    if (ex.InnerException != null)
+                    {
+                        System.Windows.MessageBox.Show(ex.InnerException.Message);
+                    }
+                    _MyClient.Abort();
+                }
+            });
         }
         private void OpenFilePdf()
         {
@@ -322,14 +379,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient.Abort();
             }
         }
-
+        private void OnLoadUserControl(object obj)
+        {
+            ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+            UpdateHeaderTabControl();
+        }
         private void UpdateHeaderTabControl()
         {
-            var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("Tài liệu đã xử lý")).FirstOrDefault();
-            if (tabNotFinnish != null)
+            var titletabControl = new TitletabControlMessage()
             {
-                tabNotFinnish.Header = "Tài liệu đã xử lý ( " + _ListUserTaskOfUser.Count() + " )";
-            }
+                Title = "Tài liệu đã xử lý ("+_ListUserTaskOfUser.Count()+")"
+            };
+            _eventAggregator.GetEvent<FinishTasksTabTitleChangedEvent>().Publish(titletabControl);
         }
         private void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

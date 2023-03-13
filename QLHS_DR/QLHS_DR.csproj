@@ -141,10 +141,14 @@
     <Compile Include="ViewModel\DocumentViewModel\NewTaskViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveDepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserManagerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\ReceiveUserOfMyDepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
+    <Compile Include="ViewModel\LoadUserControlEvent.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Message\ControlEvent.cs" />
+    <Compile Include="ViewModel\Message\TitletabControlMessage.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -172,6 +176,9 @@
     </Compile>
     <Compile Include="View\DocumentView\ReceiveUserManagerWD.xaml.cs">
       <DependentUpon>ReceiveUserManagerWD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\ReceiveUserOfMyDepartmentManagerWD.xaml.cs">
+      <DependentUpon>ReceiveUserOfMyDepartmentManagerWD.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\UserTaskFinishUC.xaml.cs">
       <DependentUpon>UserTaskFinishUC.xaml</DependentUpon>
@@ -233,6 +240,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DocumentView\ReceiveUserOfMyDepartmentManagerWD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DocumentView\UserTaskFinishUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,10 +286,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\service.wsdl" />
-    <None Include="Connected Services\ChatAppServiceReference\service3.xsd">
+    <None Include="Connected Services\ChatAppServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ChatAppServiceReference\service31.xsd">
+    <None Include="Connected Services\ChatAppServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\EofficeMainService.wsdl" />
@@ -367,8 +378,20 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.39</Version>
     </PackageReference>
+    <PackageReference Include="Prism.Core">
+      <Version>8.1.97</Version>
+    </PackageReference>
+    <PackageReference Include="SqlTableDependency">
+      <Version>8.5.8</Version>
+    </PackageReference>
     <PackageReference Include="System.Net.Security">
       <Version>4.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="ToastNotifications">
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="ToastNotifications.Messages">
+      <Version>2.5.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

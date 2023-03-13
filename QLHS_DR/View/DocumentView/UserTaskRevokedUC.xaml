@@ -34,9 +34,11 @@
             </dxg:GridControl.ContextMenu>
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Subject" MinWidth="400" ReadOnly="True" Header="Tên tài liệu"  />
-                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Ghi chú" />
+                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Mã số" />
                 <dxg:GridColumn FieldName="Task.TimeCreate" ReadOnly="True" Header="Ngày nhận" />
                 <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
+                <dxg:GridColumn FieldName="JobContent"  ReadOnly="True" Header="Yêu cầu thực hiện"/>
+                <dxg:GridColumn FieldName="Note"  ReadOnly="True" Header="Ghi chú"/>
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView />
@@ -68,7 +70,17 @@
                     <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView />
+                    <dxg:TableView>
+                        <dxg:TableView.RowStyle>
+                            <Style TargetType="dxg:RowControl">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Row.IsProcessing}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:TableView.RowStyle>
+                    </dxg:TableView>
                 </dxg:GridControl.View>
             </dxg:GridControl>
         </Grid>

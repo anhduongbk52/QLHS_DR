@@ -1,4 +1,4 @@
-﻿using QLHS_DR.ChatAppServiceReference;
+﻿//using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.EOfficeServiceReference;
 using System;
 using System.Collections.Generic;

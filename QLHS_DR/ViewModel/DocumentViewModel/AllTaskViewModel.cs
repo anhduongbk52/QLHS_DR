@@ -2,12 +2,15 @@
 using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
+using Prism.Events;
 using QLHS_DR;
+
 using QLHS_DR.Core;
 using QLHS_DR.EOfficeServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
 using QLHS_DR.ViewModel.ChatAppViewModel;
+using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -26,6 +29,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class AllTaskViewModel : BaseViewModel
     {
         #region "Properties and Field"
+      
+        private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
         public ObservableCollection<Department> Departments
         {
@@ -154,11 +159,14 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             ListTaskOfUser = GetAllTask(SectionLogin.Ins.CurrentUser.Id);
         }
-        public AllTaskViewModel()
+       
+        public AllTaskViewModel(IEventAggregator eventAggregator)
         {
             //MessageServiceCallBack.SetDelegate(SetLabelMsg);
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<ReloadAllTaskTabEvent>().Subscribe(OnLoadUserControl);
             IsReadOnlyPermission =  true;
-            MainViewModel dataOfMainWindow = new MainViewModel();
+                              
             try
             {
                 _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -179,21 +187,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
 
             UsersInTask = new ObservableCollection<User>();
-            LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
-            {
-                FrameworkElement window = System.Windows.Window.GetWindow(p);
-                dataOfMainWindow = (MainViewModel)window.DataContext;
+            LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {               
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-                App.Current.Dispatcher.Invoke((Action)delegate
-                {
-                    ListTaskOfUser = GetAllTask(SectionLogin.Ins.CurrentUser.Id);
-                });
-
-                var tabNotFinnish = dataOfMainWindow.Workspaces.Where(x => x.Header.Contains("All")).FirstOrDefault();
-                if (tabNotFinnish != null)
-                {
-                    tabNotFinnish.Header = "All ( " + _ListTaskOfUser.Count() + " )";
-                }
+                OnLoadUserControl(new object());
+                UpdateHeaderTabControl();
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
             {                
@@ -227,6 +225,17 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     }                  
                 }
             }); 
+        }
+
+        private void OnLoadUserControl(object obj)
+        {
+            ListTaskOfUser = GetAllTask(SectionLogin.Ins.CurrentUser.Id);
+            UpdateHeaderTabControl();
+        }
+        private void UpdateHeaderTabControl()
+        {
+            var titletabControl = new TitletabControlMessage() { Title = "All ( " + _ListTaskOfUser.Count() + " )" };
+            _eventAggregator.GetEvent<AllTaskTabTitleChangedEvent>().Publish(titletabControl);
         }
         private void OpenFilePdf()
         {

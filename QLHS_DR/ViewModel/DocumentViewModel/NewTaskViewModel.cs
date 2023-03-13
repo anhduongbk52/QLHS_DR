@@ -2,6 +2,7 @@
 using DevExpress.Pdf.Native.BouncyCastle.Utilities;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
+using Prism.Events;
 using QLHS_DR.Core;
 using QLHS_DR.EOfficeServiceReference;
 using System;
@@ -68,8 +69,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         #endregion
         internal NewTaskViewModel()
-        {
-
+        {            
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);

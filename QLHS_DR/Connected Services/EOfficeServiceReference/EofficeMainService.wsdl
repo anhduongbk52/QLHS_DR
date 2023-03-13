@@ -110,36 +110,6 @@
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IEofficeMainService_LoadUserDepartments_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadUserDepartments" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_LoadUserDepartments_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadUserDepartmentsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetUserDepartmentsOfTask_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetUserDepartmentsOfTask" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetUserDepartmentsOfTask_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetUserDepartmentsOfTaskResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetReceivedDepartmentDTO_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetReceivedDepartmentDTO" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetReceivedDepartmentDTO_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetReceivedDepartmentDTOResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_AddDepartmentToTask_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddDepartmentToTask" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_AddDepartmentToTask_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddDepartmentToTaskResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetPermissionOfUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPermissionOfUser" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetPermissionOfUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPermissionOfUserResponse" />
-  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByName" />
   </wsdl:message>
@@ -368,6 +338,18 @@
   <wsdl:message name="IEofficeMainService_SetUserTaskSaveFileAble_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetUserTaskSaveFileAbleResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetUserTaskIsProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcess" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetUserTaskIsProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetJobContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetJobContent" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetJobContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetJobContentResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_DeleteUserTask_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUserTask" />
   </wsdl:message>
@@ -524,27 +506,43 @@
   <wsdl:message name="IEofficeMainService_NewTask_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewTaskResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadUserDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadUserDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadUserDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadUserDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserDepartmentsOfTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDepartmentsOfTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserDepartmentsOfTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDepartmentsOfTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetReceivedDepartmentDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceivedDepartmentDTO" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetReceivedDepartmentDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceivedDepartmentDTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddDepartmentToTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentToTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddDepartmentToTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentToTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPermissionOfUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionOfUser" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPermissionOfUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionOfUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUsersOfDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersOfDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUsersOfDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersOfDepartmentResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEofficeMainService">
-    <wsdl:operation name="LoadUserDepartments">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadUserDepartments" message="tns:IEofficeMainService_LoadUserDepartments_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadUserDepartmentsResponse" message="tns:IEofficeMainService_LoadUserDepartments_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetUserDepartmentsOfTask">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserDepartmentsOfTask" message="tns:IEofficeMainService_GetUserDepartmentsOfTask_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserDepartmentsOfTaskResponse" message="tns:IEofficeMainService_GetUserDepartmentsOfTask_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetReceivedDepartmentDTO">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetReceivedDepartmentDTO" message="tns:IEofficeMainService_GetReceivedDepartmentDTO_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetReceivedDepartmentDTOResponse" message="tns:IEofficeMainService_GetReceivedDepartmentDTO_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddDepartmentToTask">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentToTask" message="tns:IEofficeMainService_AddDepartmentToTask_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentToTaskResponse" message="tns:IEofficeMainService_AddDepartmentToTask_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPermissionOfUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionOfUser" message="tns:IEofficeMainService_GetPermissionOfUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionOfUserResponse" message="tns:IEofficeMainService_GetPermissionOfUser_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByName" message="tns:IEofficeMainService_GetUserByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByNameResponse" message="tns:IEofficeMainService_GetUserByName_OutputMessage" />
@@ -697,6 +695,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskSaveFileAble" message="tns:IEofficeMainService_SetUserTaskSaveFileAble_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskSaveFileAbleResponse" message="tns:IEofficeMainService_SetUserTaskSaveFileAble_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetUserTaskIsProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskIsProcess" message="tns:IEofficeMainService_SetUserTaskIsProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskIsProcessResponse" message="tns:IEofficeMainService_SetUserTaskIsProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetJobContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetJobContent" message="tns:IEofficeMainService_SetJobContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetJobContentResponse" message="tns:IEofficeMainService_SetJobContent_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteUserTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteUserTask" message="tns:IEofficeMainService_DeleteUserTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteUserTaskResponse" message="tns:IEofficeMainService_DeleteUserTask_OutputMessage" />
@@ -801,55 +807,34 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewTask" message="tns:IEofficeMainService_NewTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewTaskResponse" message="tns:IEofficeMainService_NewTask_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LoadUserDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadUserDepartments" message="tns:IEofficeMainService_LoadUserDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadUserDepartmentsResponse" message="tns:IEofficeMainService_LoadUserDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDepartmentsOfTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserDepartmentsOfTask" message="tns:IEofficeMainService_GetUserDepartmentsOfTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserDepartmentsOfTaskResponse" message="tns:IEofficeMainService_GetUserDepartmentsOfTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceivedDepartmentDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetReceivedDepartmentDTO" message="tns:IEofficeMainService_GetReceivedDepartmentDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetReceivedDepartmentDTOResponse" message="tns:IEofficeMainService_GetReceivedDepartmentDTO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentToTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentToTask" message="tns:IEofficeMainService_AddDepartmentToTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentToTaskResponse" message="tns:IEofficeMainService_AddDepartmentToTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissionOfUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionOfUser" message="tns:IEofficeMainService_GetPermissionOfUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionOfUserResponse" message="tns:IEofficeMainService_GetPermissionOfUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersOfDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersOfDepartment" message="tns:IEofficeMainService_GetUsersOfDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersOfDepartmentResponse" message="tns:IEofficeMainService_GetUsersOfDepartment_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IEofficeMainService" type="tns:IEofficeMainService">
     <wsp:PolicyReference URI="#WSHttpBinding_IEofficeMainService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="LoadUserDepartments">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadUserDepartments" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetUserDepartmentsOfTask">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserDepartmentsOfTask" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetReceivedDepartmentDTO">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetReceivedDepartmentDTO" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddDepartmentToTask">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddDepartmentToTask" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPermissionOfUser">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetPermissionOfUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserByName" style="document" />
       <wsdl:input>
@@ -1192,6 +1177,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetUserTaskIsProcess">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetUserTaskIsProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetJobContent">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetJobContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteUserTask">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteUserTask" style="document" />
       <wsdl:input>
@@ -1419,6 +1422,60 @@
     </wsdl:operation>
     <wsdl:operation name="NewTask">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadUserDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDepartmentsOfTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserDepartmentsOfTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceivedDepartmentDTO">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetReceivedDepartmentDTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentToTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddDepartmentToTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissionOfUser">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetPermissionOfUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersOfDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUsersOfDepartment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
