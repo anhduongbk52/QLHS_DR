@@ -37,6 +37,8 @@ using System.Data.Common;
 using System.ComponentModel;
 using System.Threading;
 using System.Timers;
+using QLHS_DR.ViewModel.ProductViewModel;
+using QLHS_DR.View.ProductView;
 
 namespace QLHS_DR.ViewModel
 {
@@ -139,9 +141,9 @@ namespace QLHS_DR.ViewModel
         public ICommand NewTaskCommand { get; set; }
         public ICommand RefeshCommand { get; set; }
         public ICommand LoadAllTask { get; set; }
-
+        public ICommand OpenTransformerManagerCommand { get; set; }
         #endregion
-        
+
         private ListNewDocumentUC listNewDocumentUC;
         private UserTaskFinishUC userTaskFinishUC;
         private UserTaskRevokedUC userTaskRevokedUC;
@@ -268,7 +270,7 @@ namespace QLHS_DR.ViewModel
                         //_TbRequestSendDocumentDependency.OnChanged += RequestSendDocument_OnChanged;                                                  
                         //_TbRequestSendDocumentDependency.Start();
                         p.Show();
-                        LoadDefaultTab();
+                        //LoadDefaultTab();
                     }
                     else
                     { p.Close(); }
@@ -432,6 +434,31 @@ namespace QLHS_DR.ViewModel
                 newTaskWindow.DataContext = newTaskViewModel;
                 newTaskWindow.ShowDialog();
             });
+            OpenTransformerManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                TabContainer item = Workspaces.Where(x => x.Header.Contains("Danh sách MBA truyền tải")).FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    TransformerManagerViewModel transformerManagerViewModel = new TransformerManagerViewModel(_eventAggregator);
+                    TransformerManagerUC transformerManagerUC = new TransformerManagerUC();
+                    transformerManagerUC.DataContext = transformerManagerViewModel;
+                    TabContainer tabItemNew = new TabContainer
+                    {
+                        Header = "Danh sách MBA truyền tải",
+                        AllowHide = "true",
+                        IsSelected = true,
+                        IsVisible = true,
+                        Content = transformerManagerUC
+                    };
+                    Workspaces.Add(tabItemNew);
+                }
+            });
+
         }
 
         private void backgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
@@ -632,12 +659,12 @@ namespace QLHS_DR.ViewModel
                 return Assembly.GetExecutingAssembly().GetName().Version;
             }
         }
-        private void CertificateValidation()
+        public static void CertificateValidation()
         {
             ServicePointManager.ServerCertificateValidationCallback = (RemoteCertificateValidationCallback)Delegate.Combine(ServicePointManager.ServerCertificateValidationCallback, new RemoteCertificateValidationCallback(IsSSL));
         }
         #endregion
-        private static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
+        public static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
         {
             return true;
         }        

@@ -154,7 +154,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         {
                             ModifiedBy = SectionLogin.Ins.CurrentUser.Id,
                             FileName = System.IO.Path.GetFileName ( DocumentSourcePdf.ToString()),
-                            Content = File.ReadAllBytes(pathFile),
+                            Content = System.IO.File.ReadAllBytes(pathFile),
                         };
 
                         _MyClient.NewTask(task, temDTo.ToArray(), taskAttachedFileDTO);

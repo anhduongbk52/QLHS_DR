@@ -68,6 +68,16 @@
                         <dxb:BarButtonItem Command="{Binding RefeshCommand}" Content="Refesh" Glyph="{dx:DXImage 'SvgImages/Actions/Actions_Refresh.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
+                <dxr:RibbonPage Caption="Quản lý sản phẩm">
+                    <dxr:RibbonPageGroup Caption="Máy biến áp truyền tải">
+                        <dxb:BarButtonItem Command="{Binding OpenTransformerManagerCommand}" Content="Mở danh sách MBA"  LargeGlyph="{dx:DXImage SvgImages/Dashboards/Open.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding NewTransformerCommand}" Content="Thêm mới"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>
+                    </dxr:RibbonPageGroup>
+                    <!--<dxr:RibbonPageGroup Caption="Máy biến áp phân phối">
+                        <dxb:BarButtonItem Command="{Binding OpenDistributionTransformerManagerCommand}" Content="Máy biến áp truyền tải"  LargeGlyph="{dx:DXImage SvgImages/Dashboards/Open.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding NewDistributionTransformerCommand}" Content="Máy biến áp phân phối"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>                      
+                    </dxr:RibbonPageGroup>-->
+                </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
         <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">

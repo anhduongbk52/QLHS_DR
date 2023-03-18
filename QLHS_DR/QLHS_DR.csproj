@@ -149,6 +149,8 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Message\ControlEvent.cs" />
     <Compile Include="ViewModel\Message\TitletabControlMessage.cs" />
+    <Compile Include="ViewModel\ProductTypeWrapper.cs" />
+    <Compile Include="ViewModel\ProductViewModel\TransformerManagerViewModel.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -188,6 +190,9 @@
     </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\TransformerManagerUC.xaml.cs">
+      <DependentUpon>TransformerManagerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView\UserChangePasswordWindow.xaml.cs">
       <DependentUpon>UserChangePasswordWindow.xaml</DependentUpon>
@@ -256,6 +261,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProductView\TransformerManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UserView\UserChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,10 +329,16 @@
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.ReceivedDepartmentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Standard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Task.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TransformerDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.User.datasource">

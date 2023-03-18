@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using QLHS_DR.EOfficeServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,7 +13,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+using DevExpress.Utils;
+using System.ComponentModel.Design;
 
 namespace QLHS_DR
 {
@@ -23,6 +26,7 @@ namespace QLHS_DR
 
     public partial class App : Application
     {
+        public static ServiceContainer Container { get; } = new ServiceContainer();
         protected override void OnStartup(StartupEventArgs e)
         {
             if (SingleInstance.AlreadyRunning())
@@ -30,7 +34,7 @@ namespace QLHS_DR
                 MessageBox.Show("Một phiên bản của phần mềm đang chạy! Vui lòng kiểm tra biểu tượng chương trình ở góc dưới bên phải màn hình");
                 App.Current.Shutdown(); // Just shutdown the current application,if any instance found.
             }            
-            base.OnStartup(e);
+            base.OnStartup(e);           
         }
     }
 }

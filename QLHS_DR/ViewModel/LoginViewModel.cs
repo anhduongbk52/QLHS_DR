@@ -23,6 +23,8 @@ using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ChatAppServiceReference;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Microsoft.Win32;
+using QLHS_DR;
+using DevExpress.Data.Utils;
 
 namespace EofficeClient.ViewModel
 {
@@ -30,6 +32,7 @@ namespace EofficeClient.ViewModel
     class LoginViewModel : BaseViewModel, IDataErrorInfo
     {
         private EofficeMainServiceClient _MyClient;
+       
         public string Error { get { return null; } }
         public string this[string columnName]
         {
@@ -76,6 +79,7 @@ namespace EofficeClient.ViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public LoginViewModel()
         {
+            MainViewModel.CertificateValidation();
             IsLogin = false;
             Password = "";
             UserName = "";
@@ -154,17 +158,28 @@ namespace EofficeClient.ViewModel
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
             
             _MyClient = ServiceHelper.NewEofficeMainServiceClient(_UserName, passEncode);
+           
             try
-            {
-                // System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; }; //Igno SSL
-                _MyClient.Open();               
+            {                 
+
+                _MyClient.Open();
                 User = _MyClient.GetUserByName(_UserName);                
                 SectionLogin.Ins.CurrentUser = User;
                 SectionLogin.Ins.Permissions = _MyClient.GetPermissions(_User.Id);
                 SectionLogin.Ins.ListPermissions = _MyClient.GetPermissionOfUser(_User.UserName).ToList();
+                var temp = App.Container.GetService<IEofficeMainService>();
+                if (temp != null)
+                {
+                     EofficeMainServiceClient _MyClient1;
+                    _MyClient1 = ServiceHelper.NewEofficeMainServiceClient(_UserName, passEncode);
+                    App.Container.AddService(typeof(IEofficeMainService), _MyClient1); //save client to Container
+                }
+               
                 _MyClient.Close();
                 SectionLogin.Ins.Token = passEncode;
                 IsLogin = true;
+                
+
                 CheckBoxSave(_SaveLogin);
                 if (_SaveLogin && IsLogin)
                 {
