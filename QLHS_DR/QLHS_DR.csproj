@@ -555,12 +555,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
-      <Project>{772c7bae-491e-4e58-95c1-e4e8d7be9b9f}</Project>
-      <Name>EofficeCommonLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="eemcicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
