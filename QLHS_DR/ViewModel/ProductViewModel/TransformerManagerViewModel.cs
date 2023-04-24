@@ -15,12 +15,14 @@ using System.Windows;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using DevExpress.Mvvm.POCO;
+using System.ServiceModel;
+using static DevExpress.Data.Filtering.Helpers.SubExprHelper.ThreadHoppingFiltering;
 
 namespace QLHS_DR.ViewModel.ProductViewModel
 {
     class TransformerManagerViewModel : BaseViewModel
     {
-        IEofficeMainService _Client;
+        private IEofficeMainService _Proxy;
         private string _CodeKeyWord;
         public string CodeKeyWord
         {
@@ -91,8 +93,8 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 OnPropertyChanged("SelectedProductTypeWrapper");
             }
         }
-        private Product _SelectedProduct;
-        public Product SelectedProduct
+        private TransformerDTO _SelectedProduct;
+        public TransformerDTO SelectedProduct
         {
             get => _SelectedProduct;
             set
@@ -137,7 +139,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             {
                 _ProductTypeWrappers = value; OnPropertyChanged("ProductTypeWrappers");
             }
-        }
+        }       
 
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand EditProductCommand { get; set; }
@@ -147,23 +149,22 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
         public TransformerManagerViewModel(IEventAggregator eventAggregator)
-        {
+        {           
             try
             {
                 CertificateValidation();
+
+                // Tạo đối tượng ChannelFactory và cung cấp địa chỉ của dịch vụ WCF và thông tin bảo mật nếu cần              
+
                 ProductTypeWrappers = new ObservableCollection<ProductTypeWrapper>()
                 {
                    new ProductTypeWrapper(ProductType.PowerTransformer),
                    new ProductTypeWrapper(ProductType.DistributionTransformer)
                 };
-                SelectedProductTypeWrapper = ProductTypeWrappers[0];
-                _Client = App.Container.GetService<IEofficeMainService>();
-                if(_Client==null)
-                {
-                    _Client = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                    App.Container.AddService(typeof(IEofficeMainService), _Client); //save client to Container
-                }                
-                Standards = _Client.LoadStandards().ToObservableCollection();
+                SelectedProductTypeWrapper = ProductTypeWrappers[0];             
+                Standards = ServiceProxy.Instance.Proxy.LoadStandards().ToObservableCollection();
+                SelectedStandard = Standards.Where(x => x.Name == "NONE").FirstOrDefault();
+                ServiceProxy.Instance.CloseProxy();
             }
             catch (InvalidOperationException ex)
             {
@@ -190,38 +191,44 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             {
                // Products = SearchProducts();
             });
-            //OpenProductCommand = new RelayCommand<DependencyObject>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenPowerTransformer")) return true; else return false; }, (p) =>
-            //{
-            //    FrameworkElement window = System.Windows.Window.GetWindow(p);
-            //    MainViewModel dataOfMainWindow = new MainViewModel();
-            //    dataOfMainWindow = (MainViewModel)window.DataContext;
+            OpenProductCommand = new RelayCommand<DependencyObject>((p) =>
+            {
+                if (((SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenPowerTransformer")&&_SelectedProduct.ProductType==ProductType.PowerTransformer)
+                  ||(SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenDistributionTransformer")&& _SelectedProduct.ProductType == ProductType.DistributionTransformer))&&_SelectedProduct!=null)
+                    return true;else return false; 
+            }, (p) =>
+            {
+                FrameworkElement window = System.Windows.Window.GetWindow(p);
+                MainViewModel dataOfMainWindow = new MainViewModel();
+                dataOfMainWindow = (MainViewModel)window.DataContext;
 
-            //    DetailProductViewModel tabDetailProductVM = new DetailProductViewModel
-            //    {
-            //        Transformer = _SelectedProduct
-            //    };
-            //    VIEW.Products.DetailProductUC detailPowertransformerUC = new VIEW.Products.DetailProductUC();
-            //    detailPowertransformerUC.DataContext = tabDetailProductVM;
+                Product product = ServiceProxy.Instance.Proxy.GetProductById(_SelectedProduct.Id);
+                ServiceProxy.Instance.CloseProxy();
 
-            //    var item = dataOfMainWindow.Workspaces.Where(x => x.Header == _SelectedProduct.Code).FirstOrDefault();
-            //    if (item != null) //Kiểm tra xem đã tồn tại tab có mã số trên chưa
-            //    {
-            //        item.IsVisible = true;
-            //        item.IsSelected = true;
-            //        item.Content = detailPowertransformerUC;
-            //    }
-            //    else
-            //    {
-            //        TabContainer detailPowertransformer = new TabContainer()
-            //        {
-            //            Header = _SelectedProduct.Code,
-            //            IsSelected = true,
-            //            IsVisible = true,
-            //            Content = detailPowertransformerUC
-            //        };
-            //        dataOfMainWindow.Workspaces.Add(detailPowertransformer);
-            //    }
-            //});
+                DetailTransformerViewModel tabDetailProductVM = new DetailTransformerViewModel(product);
+             
+                View.ProductView.DetailTransformerUC detailTransformerUC = new View.ProductView.DetailTransformerUC();
+                detailTransformerUC.DataContext = tabDetailProductVM;
+
+                var item = dataOfMainWindow.Workspaces.Where(x => x.Header == _SelectedProduct.ProductCode).FirstOrDefault();
+                if (item != null) //Kiểm tra xem đã tồn tại tab có mã số trên chưa
+                {
+                    item.IsVisible = true;
+                    item.IsSelected = true;
+                    item.Content = detailTransformerUC;
+                }
+                else
+                {
+                    TabContainer detailPowertransformer = new TabContainer()
+                    {
+                        Header = _SelectedProduct.ProductCode,
+                        IsSelected = true,
+                        IsVisible = true,
+                        Content = detailTransformerUC
+                    };
+                    dataOfMainWindow.Workspaces.Add(detailPowertransformer);
+                }
+            });
             //EditProductCommand = new RelayCommand<PowerTransformer>((p) => { if (p != null && SectionLogin.Ins.CurrentPermission._Permission["productEditProduct"] && SectionLogin.Ins.CurrentPermission._Permission.ContainsKey("productEditProduct")) return true; else return false; }, (p) =>
             //{
             //    ViewModel.Products.EditProductViewModel editProductViewModel = new EditProductViewModel(p);
@@ -274,18 +281,14 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         {
             ObservableCollection<TransformerDTO> ketqua = new ObservableCollection<TransformerDTO>();
             try
-            {    
-                if(_Client== null)
-                {
-                    _Client = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                    App.Container.AddService(typeof(IEofficeMainService), _Client); //save client to Container
-                }                
-                ketqua = _Client.SearchTransformer(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeWrapper?.EnumValue ?? 0, _SelectedStandard?.Id ?? 0).ToObservableCollection();
-
-            }
-            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);                
+                // Tạo đối tượng proxy từ ChannelFactory               
+                ketqua = ServiceProxy.Instance.Proxy.SearchTransformer(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeWrapper?.EnumValue ?? 0, _SelectedStandard?.Id ?? 0).ToObservableCollection();
+                ServiceProxy.Instance.CloseProxy();
+            }
+            catch (CommunicationException ex)
+            {
+                ServiceProxy.Instance.RenewProxy();
             }
             return ketqua;
         }

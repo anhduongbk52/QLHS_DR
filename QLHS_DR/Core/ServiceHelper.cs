@@ -1,9 +1,11 @@
 ﻿//using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using QLHS_DR.EOfficeServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +29,14 @@ namespace EofficeClient.Core
             client.ClientCredentials.UserName.Password = password;
             return client;
         }
-        
+
+        public static ChannelFactory<IEofficeMainService> NewChannelFactory ()
+        {
+            ChannelFactory<IEofficeMainService>  ret = new ChannelFactory<IEofficeMainService>("WSHttpBinding_IEofficeMainService");
+            ret.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
+            ret.Credentials.UserName.Password = SectionLogin.Ins.Token;
+            return ret;
+        }
 
         private static WSHttpBinding BindingConfig()
         {

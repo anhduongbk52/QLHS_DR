@@ -26,6 +26,11 @@ using EofficeCommonLibrary;
 using EofficeClient.Core;
 using System.Windows.Forms;
 using EofficeCommonLibrary.Common.Util;
+using System.Drawing;
+using DevExpress.Pdf;
+
+using System.Diagnostics;
+using Syncfusion.Pdf.Parsing;
 
 namespace QLHS_DR.View.DocumentView
 {
@@ -34,6 +39,8 @@ namespace QLHS_DR.View.DocumentView
     /// </summary>
     public partial class PdfViewerWindow : Window
     {
+        const float DrawingDpi = 72f;
+        EofficeMainServiceClient _MyClient;
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _CanPrint;
         private bool _CanSave;
@@ -75,11 +82,30 @@ namespace QLHS_DR.View.DocumentView
                 FileName = _TaskAttachedFileDTO.FileName;
                 TaskName = _UserTaskPrint.Task.Subject;
 
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
                 MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content);
-                pdfViewer.DocumentSource = stream;
+
+                MemoryStream outputStream = new MemoryStream();
+                using(PdfDocumentProcessor processor = new PdfDocumentProcessor())
+                {
+                    processor.LoadDocument(stream);
+
+                    using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(80, System.Drawing.Color.Blue)))
+                        AddGraphics(processor,SectionLogin.Ins.CurrentUser.FullName+ " - Time: " +DateTime.Now.ToString()+" IP: "+ EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress(), textBrush);
+                    processor.SaveDocument(outputStream);
+                    if (processor.Document.Pages.Count > 0)
+                    {
+                        pdfViewer.DocumentSource = outputStream;
+                    }
+                    else
+                    {
+                        // Do something if the document does not contain any pages
+                    }
+                }             
+               
+                
                 pdfViewer.CanPrint = _CanPrint;
                 pdfViewer.CanSave = _CanSave;
 
@@ -87,9 +113,11 @@ namespace QLHS_DR.View.DocumentView
                 _MyClient.Close();
 
                 pdfViewerWindow.Title = _TaskName + " -------- " + _FileName;
+               
             }
             catch(Exception ex)
             {
+                _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
             }
         }
@@ -123,9 +151,8 @@ namespace QLHS_DR.View.DocumentView
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
        
-        private void pdfViewer_PrintPage(DependencyObject d, PdfPrintPageEventArgs e)
+        private void pdfViewer_PrintPage(DependencyObject d, DevExpress.Xpf.PdfViewer.PdfPrintPageEventArgs e)
         {            
             if(e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("pdf") 
                 || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("xps") 
@@ -161,6 +188,52 @@ namespace QLHS_DR.View.DocumentView
                     }
                 }                    
             }
-        }        
+        }
+        static SizeF PrepareGraphics(PdfPage page, PdfGraphics graphics)
+        {
+            PdfRectangle cropBox = page.CropBox;
+            float cropBoxWidth = (float)cropBox.Width;
+            float cropBoxHeight = (float)cropBox.Height;
+
+            switch (page.Rotate)
+            {
+                case 90:
+                    graphics.RotateTransform(-90);
+                    graphics.TranslateTransform(-cropBoxHeight, 0);
+                    return new SizeF(cropBoxHeight, cropBoxWidth);
+                case 180:
+                    graphics.RotateTransform(-180);
+                    graphics.TranslateTransform(-cropBoxWidth, -cropBoxHeight);
+                    return new SizeF(cropBoxWidth, cropBoxHeight);
+                case 270:
+                    graphics.RotateTransform(-270);
+                    graphics.TranslateTransform(0, -cropBoxWidth);
+                    return new SizeF(cropBoxHeight, cropBoxWidth);
+            }
+            return new SizeF(cropBoxWidth, cropBoxHeight);
+        }
+        void AddGraphics(PdfDocumentProcessor processor, string text, SolidBrush textBrush)
+        {
+            IList<PdfPage> pages = processor.Document.Pages;
+            for (int i = 0; i < pages.Count; i++)
+            {
+                PdfPage page = pages[i];
+                using (PdfGraphics graphics = processor.CreateGraphics())
+                {
+                    SizeF actualPageSize = PrepareGraphics(page, graphics);
+                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");                   
+                    using (Font font = new Font(fontFamily, 10, System.Drawing.FontStyle.Bold))
+                    {
+                        SizeF textSize = graphics.MeasureString(text, font, PdfStringFormat.GenericDefault);
+                        PointF topLeft = new PointF(0, 0);
+                        PointF bottomRight = new PointF(actualPageSize.Width - textSize.Width, actualPageSize.Height - textSize.Height);
+                        graphics.DrawString(text, font, textBrush, bottomRight);
+                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);                       
+                        graphics.AddToPageForeground(page, DrawingDpi, DrawingDpi);
+                    }
+                }
+            }
+        }
+     
     }
 }

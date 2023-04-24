@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              
              mc:Ignorable="d" 
-             Name="TransformerManager"
+             Name="transformerManager"
              d:DesignHeight="450" 
              d:DesignWidth="1200">
     <i:Interaction.Triggers>
@@ -121,24 +121,7 @@
                     BorderThickness="0"
                     MinWidth="200"                    
                     VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone
-                    Grid.Row="5"
-                    Mode="Standard"
-                    Padding="8 4 8 4"
-                    CornerRadius="2"
-                    Panel.ZIndex="1"
-                    Margin="5 5 5 5"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                <TextBox
-                    Text="{Binding ConnectionSymbol,UpdateSourceTrigger=PropertyChanged}"
-                    Margin="8 0 0 0"
-                    materialDesign:HintAssist.Hint="Tổ đấu dây" 
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    BorderThickness="0"
-                    MinWidth="200"                    
-                    VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
+            </materialDesign:ColorZone>           
             <materialDesign:ColorZone
                     Grid.Row="6"
                     Mode="Standard"
@@ -150,7 +133,6 @@
                 <ComboBox
                     ItemsSource="{Binding Standards}"
                     DisplayMemberPath="Name"
-                    SelectedIndex="0"
                     SelectedItem="{Binding SelectedStandard}"
                     Margin="8 0 0 0"                    
                     materialDesign:HintAssist.Hint="Tiêu chuẩn chế tạo"
@@ -203,14 +185,14 @@
                     <GridViewColumn DisplayMemberBinding="{Binding ProductName}" Header="Công suất" Width="Auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding RatedVoltage}" Header="Điện áp"  Width="Auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Station}" Header="Trạm"  Width="Auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Standard.Name}" Header="Tiêu chuẩn"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding StandardName}" Header="Tiêu chuẩn"/>
                     <GridViewColumn DisplayMemberBinding="{Binding ConnectionSymbol}" Header="TĐD"  Width="Auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Note}" Header="Ghi chú"  Width="Auto"/>
                 </GridView>
             </ListView.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{Binding OpenProductCommand}" CommandParameter="{Binding ElementName=productManagerUc}"/>
+                    <i:InvokeCommandAction Command="{Binding OpenProductCommand}" CommandParameter="{Binding ElementName=transformerManager}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>

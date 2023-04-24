@@ -3,6 +3,7 @@
   <wsp:Policy wsu:Id="WSHttpBinding_IEofficeMainService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
         <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
           <wsp:Policy>
             <sp:TransportToken>
@@ -106,10 +107,34 @@
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
-      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
-      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IEofficeMainService_GetDepartmentName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentName" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartmentName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetGroupDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetGroupDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartmentTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartmentTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentTaskResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_AddDepartmentTask_InputMessage">
     <wsdl:part name="parameters" element="tns:AddDepartmentTask" />
   </wsdl:message>
@@ -152,17 +177,17 @@
   <wsdl:message name="IEofficeMainService_GetPermissionOfUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPermissionOfUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetUsersOfDepartment_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetUsersOfDepartment" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetUsersOfDepartment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetUsersOfDepartmentResponse" />
-  </wsdl:message>
   <wsdl:message name="IEofficeMainService_UploadTransformerManual_InputMessage">
     <wsdl:part name="parameters" element="tns:UploadTransformerManual" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_UploadTransformerManual_OutputMessage">
     <wsdl:part name="parameters" element="tns:UploadTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UploadTransformerManual1_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadTransformerManual1" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UploadTransformerManual1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadTransformerManual1Response" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_SearchTransformer_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchTransformer" />
@@ -170,17 +195,251 @@
   <wsdl:message name="IEofficeMainService_SearchTransformer_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchTransformerResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetTransformerDTOByProductCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTransformerDTOByProductCode" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetTransformerDTOByProductCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTransformerDTOByProductCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_LoadStandards_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadStandards" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_LoadStandards_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadStandardsResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProductById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProductById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProductByProductCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByProductCode" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProductByProductCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByProductCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadContracts_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadContracts" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadContracts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadContractsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DownloadTransformerManualFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFile" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DownloadTransformerManualFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DownloadContractFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContractFile" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DownloadContractFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContractFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadDoctitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDoctitle" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadDoctitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDoctitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetDeletedTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetDeletedTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetDeletedContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedContract" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetDeletedContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewTransformer_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewTransformer" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewTransformer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewTransformerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateTransformer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTransformer" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateTransformer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTransformerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RemoveProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProduct" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RemoveProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LockProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockProduct" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LockProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UnLockProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockProduct" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UnLockProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UploadContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadContract" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UploadContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadPublishDocumentDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadPublishDocumentDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadPublishDocumentDTODeleteds_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTODeleteds" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadPublishDocumentDTODeleteds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTODeletedsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddPublishDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPublishDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddPublishDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPublishDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetDeletedPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetDeletedPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeletedPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletedPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeletedPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletedPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdatePublishDocumentInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePublishDocumentInfo" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdatePublishDocumentInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePublishDocumentInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RestorePublishDocumentDeleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:RestorePublishDocumentDeleted" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_RestorePublishDocumentDeleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestorePublishDocumentDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_CheckExistRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckExistRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_CheckExistRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckExistRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestSendDocumentsOfMyDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentsOfMyDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestSendDocumentsOfMyDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentsOfMyDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestSendDocumentDTOOfRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentDTOOfRequest" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestSendDocumentDTOOfRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentDTOOfRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestSendDocumentToDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentToDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestSendDocumentToDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentToDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateRequestSendDocumentToDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateRequestSendDocumentToDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetRevokedRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRevokedRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetRevokedRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRevokedRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ProcessRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ProcessRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LockUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockUser" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LockUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UnLockUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockUser" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UnLockUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_EditTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_EditTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTransformerManualResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByName" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserByName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUsersOfDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersOfDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUsersOfDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersOfDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserById" />
@@ -247,6 +506,12 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_LoadTasksNotFinish_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadTasksNotFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadTasksCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMeResponse" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_LoadTasksFinish_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadTasksFinish" />
@@ -343,6 +608,12 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserTaskNotFinish_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserTaskNotFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserTaskCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetUserTaskCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskCreateByMeResponse" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserTaskFinish_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserTaskFinish" />
@@ -536,31 +807,23 @@
   <wsdl:message name="IEofficeMainService_GetDepartment_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartmentName_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartmentName" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartmentName_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartmentNameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartments_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartments" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartments_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartmentsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetGroupDepartment_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGroupDepartment" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetGroupDepartment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGroupDepartmentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartmentTask_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartmentTask" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartmentTask_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartmentTaskResponse" />
-  </wsdl:message>
   <wsdl:portType name="IEofficeMainService">
+    <wsdl:operation name="GetDepartmentName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentName" message="tns:IEofficeMainService_GetDepartmentName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentNameResponse" message="tns:IEofficeMainService_GetDepartmentName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartments" message="tns:IEofficeMainService_GetDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentsResponse" message="tns:IEofficeMainService_GetDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetGroupDepartment" message="tns:IEofficeMainService_GetGroupDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetGroupDepartmentResponse" message="tns:IEofficeMainService_GetGroupDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentTask" message="tns:IEofficeMainService_GetDepartmentTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentTaskResponse" message="tns:IEofficeMainService_GetDepartmentTask_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddDepartmentTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentTask" message="tns:IEofficeMainService_AddDepartmentTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddDepartmentTaskResponse" message="tns:IEofficeMainService_AddDepartmentTask_OutputMessage" />
@@ -589,25 +852,181 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionOfUser" message="tns:IEofficeMainService_GetPermissionOfUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPermissionOfUserResponse" message="tns:IEofficeMainService_GetPermissionOfUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetUsersOfDepartment">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersOfDepartment" message="tns:IEofficeMainService_GetUsersOfDepartment_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersOfDepartmentResponse" message="tns:IEofficeMainService_GetUsersOfDepartment_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="UploadTransformerManual">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UploadTransformerManual" message="tns:IEofficeMainService_UploadTransformerManual_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UploadTransformerManualResponse" message="tns:IEofficeMainService_UploadTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadTransformerManual1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UploadTransformerManual1" message="tns:IEofficeMainService_UploadTransformerManual1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UploadTransformerManual1Response" message="tns:IEofficeMainService_UploadTransformerManual1_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SearchTransformer">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SearchTransformer" message="tns:IEofficeMainService_SearchTransformer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SearchTransformerResponse" message="tns:IEofficeMainService_SearchTransformer_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetTransformerDTOByProductCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetTransformerDTOByProductCode" message="tns:IEofficeMainService_GetTransformerDTOByProductCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetTransformerDTOByProductCodeResponse" message="tns:IEofficeMainService_GetTransformerDTOByProductCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LoadStandards">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadStandards" message="tns:IEofficeMainService_LoadStandards_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadStandardsResponse" message="tns:IEofficeMainService_LoadStandards_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductById" message="tns:IEofficeMainService_GetProductById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByIdResponse" message="tns:IEofficeMainService_GetProductById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductByProductCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByProductCode" message="tns:IEofficeMainService_GetProductByProductCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByProductCodeResponse" message="tns:IEofficeMainService_GetProductByProductCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTransformerManual" message="tns:IEofficeMainService_LoadTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTransformerManualResponse" message="tns:IEofficeMainService_LoadTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadContracts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadContracts" message="tns:IEofficeMainService_LoadContracts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadContractsResponse" message="tns:IEofficeMainService_LoadContracts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadTransformerManualFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DownloadTransformerManualFile" message="tns:IEofficeMainService_DownloadTransformerManualFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DownloadTransformerManualFileResponse" message="tns:IEofficeMainService_DownloadTransformerManualFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContractFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DownloadContractFile" message="tns:IEofficeMainService_DownloadContractFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DownloadContractFileResponse" message="tns:IEofficeMainService_DownloadContractFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDoctitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadDoctitle" message="tns:IEofficeMainService_LoadDoctitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadDoctitleResponse" message="tns:IEofficeMainService_LoadDoctitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetDeletedTransformerManual" message="tns:IEofficeMainService_SetDeletedTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetDeletedTransformerManualResponse" message="tns:IEofficeMainService_SetDeletedTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetDeletedContract" message="tns:IEofficeMainService_SetDeletedContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetDeletedContractResponse" message="tns:IEofficeMainService_SetDeletedContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewTransformer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewTransformer" message="tns:IEofficeMainService_NewTransformer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewTransformerResponse" message="tns:IEofficeMainService_NewTransformer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransformer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTransformer" message="tns:IEofficeMainService_UpdateTransformer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTransformerResponse" message="tns:IEofficeMainService_UpdateTransformer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/RemoveProduct" message="tns:IEofficeMainService_RemoveProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/RemoveProductResponse" message="tns:IEofficeMainService_RemoveProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LockProduct" message="tns:IEofficeMainService_LockProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LockProductResponse" message="tns:IEofficeMainService_LockProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnLockProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UnLockProduct" message="tns:IEofficeMainService_UnLockProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UnLockProductResponse" message="tns:IEofficeMainService_UnLockProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UploadContract" message="tns:IEofficeMainService_UploadContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UploadContractResponse" message="tns:IEofficeMainService_UploadContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewPublishDocument" message="tns:IEofficeMainService_NewPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewPublishDocumentResponse" message="tns:IEofficeMainService_NewPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadPublishDocumentDTOs" message="tns:IEofficeMainService_LoadPublishDocumentDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadPublishDocumentDTOsResponse" message="tns:IEofficeMainService_LoadPublishDocumentDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTODeleteds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadPublishDocumentDTODeleteds" message="tns:IEofficeMainService_LoadPublishDocumentDTODeleteds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadPublishDocumentDTODeletedsResponse" message="tns:IEofficeMainService_LoadPublishDocumentDTODeleteds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPublishDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddPublishDocuments" message="tns:IEofficeMainService_AddPublishDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddPublishDocumentsResponse" message="tns:IEofficeMainService_AddPublishDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetDeletedPublishDocument" message="tns:IEofficeMainService_SetDeletedPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetDeletedPublishDocumentResponse" message="tns:IEofficeMainService_SetDeletedPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletedPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeletedPublishDocument" message="tns:IEofficeMainService_DeletedPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeletedPublishDocumentResponse" message="tns:IEofficeMainService_DeletedPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePublishDocumentInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdatePublishDocumentInfo" message="tns:IEofficeMainService_UpdatePublishDocumentInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdatePublishDocumentInfoResponse" message="tns:IEofficeMainService_UpdatePublishDocumentInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestorePublishDocumentDeleted">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/RestorePublishDocumentDeleted" message="tns:IEofficeMainService_RestorePublishDocumentDeleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/RestorePublishDocumentDeletedResponse" message="tns:IEofficeMainService_RestorePublishDocumentDeleted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewRequestSendDocument" message="tns:IEofficeMainService_NewRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewRequestSendDocumentResponse" message="tns:IEofficeMainService_NewRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckExistRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/CheckExistRequestSendDocument" message="tns:IEofficeMainService_CheckExistRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/CheckExistRequestSendDocumentResponse" message="tns:IEofficeMainService_CheckExistRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentsOfMyDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentsOfMyDepartment" message="tns:IEofficeMainService_LoadRequestSendDocumentsOfMyDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentsOfMyDepartmentResponse" message="tns:IEofficeMainService_LoadRequestSendDocumentsOfMyDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentDTOOfRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentDTOOfRequest" message="tns:IEofficeMainService_LoadRequestSendDocumentDTOOfRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentDTOOfRequestResponse" message="tns:IEofficeMainService_LoadRequestSendDocumentDTOOfRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentToDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentToDepartments" message="tns:IEofficeMainService_LoadRequestSendDocumentToDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentToDepartmentsResponse" message="tns:IEofficeMainService_LoadRequestSendDocumentToDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments" message="tns:IEofficeMainService_UpdateRequestSendDocumentToDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartmentsResponse" message="tns:IEofficeMainService_UpdateRequestSendDocumentToDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRevokedRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocument" message="tns:IEofficeMainService_SetRevokedRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocumentResponse" message="tns:IEofficeMainService_SetRevokedRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument" message="tns:IEofficeMainService_ProcessRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocumentResponse" message="tns:IEofficeMainService_ProcessRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPublishDocument" message="tns:IEofficeMainService_GetPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetPublishDocumentResponse" message="tns:IEofficeMainService_GetPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocument" message="tns:IEofficeMainService_UpdateRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentResponse" message="tns:IEofficeMainService_UpdateRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LockUser" message="tns:IEofficeMainService_LockUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LockUserResponse" message="tns:IEofficeMainService_LockUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UnLockUser" message="tns:IEofficeMainService_UnLockUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UnLockUserResponse" message="tns:IEofficeMainService_UnLockUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/EditTransformerManual" message="tns:IEofficeMainService_EditTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/EditTransformerManualResponse" message="tns:IEofficeMainService_EditTransformerManual_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByName" message="tns:IEofficeMainService_GetUserByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByNameResponse" message="tns:IEofficeMainService_GetUserByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersOfDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersOfDepartment" message="tns:IEofficeMainService_GetUsersOfDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersOfDepartmentResponse" message="tns:IEofficeMainService_GetUsersOfDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsers" message="tns:IEofficeMainService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUsersResponse" message="tns:IEofficeMainService_GetUsers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserById">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserById" message="tns:IEofficeMainService_GetUserById_InputMessage" />
@@ -652,6 +1071,10 @@
     <wsdl:operation name="LoadTasksNotFinish">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksNotFinish" message="tns:IEofficeMainService_LoadTasksNotFinish_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksNotFinishResponse" message="tns:IEofficeMainService_LoadTasksNotFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksCreateByMe" message="tns:IEofficeMainService_LoadTasksCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksCreateByMeResponse" message="tns:IEofficeMainService_LoadTasksCreateByMe_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoadTasksFinish">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTasksFinish" message="tns:IEofficeMainService_LoadTasksFinish_InputMessage" />
@@ -716,6 +1139,10 @@
     <wsdl:operation name="GetUserTaskNotFinish">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTaskNotFinish" message="tns:IEofficeMainService_GetUserTaskNotFinish_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTaskNotFinishResponse" message="tns:IEofficeMainService_GetUserTaskNotFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTaskCreateByMe" message="tns:IEofficeMainService_GetUserTaskCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTaskCreateByMeResponse" message="tns:IEofficeMainService_GetUserTaskCreateByMe_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserTaskFinish">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTaskFinish" message="tns:IEofficeMainService_GetUserTaskFinish_InputMessage" />
@@ -845,26 +1272,46 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartment" message="tns:IEofficeMainService_GetDepartment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentResponse" message="tns:IEofficeMainService_GetDepartment_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDepartmentName">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentName" message="tns:IEofficeMainService_GetDepartmentName_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentNameResponse" message="tns:IEofficeMainService_GetDepartmentName_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDepartments">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartments" message="tns:IEofficeMainService_GetDepartments_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentsResponse" message="tns:IEofficeMainService_GetDepartments_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGroupDepartment">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetGroupDepartment" message="tns:IEofficeMainService_GetGroupDepartment_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetGroupDepartmentResponse" message="tns:IEofficeMainService_GetGroupDepartment_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDepartmentTask">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentTask" message="tns:IEofficeMainService_GetDepartmentTask_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentTaskResponse" message="tns:IEofficeMainService_GetDepartmentTask_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IEofficeMainService" type="tns:IEofficeMainService">
     <wsp:PolicyReference URI="#WSHttpBinding_IEofficeMainService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDepartmentName">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetGroupDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddDepartmentTask">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddDepartmentTask" style="document" />
       <wsdl:input>
@@ -928,8 +1375,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUsersOfDepartment">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUsersOfDepartment" style="document" />
+    <wsdl:operation name="UploadTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UploadTransformerManual" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -937,8 +1384,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UploadTransformerManual">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UploadTransformerManual" style="document" />
+    <wsdl:operation name="UploadTransformerManual1">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UploadTransformerManual1" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -955,6 +1402,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTransformerDTOByProductCode">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetTransformerDTOByProductCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="LoadStandards">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadStandards" style="document" />
       <wsdl:input>
@@ -964,8 +1420,350 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetProductById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductByProductCode">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetProductByProductCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadContracts">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadContracts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadTransformerManualFile">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DownloadTransformerManualFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContractFile">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DownloadContractFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDoctitle">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadDoctitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetDeletedTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedContract">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetDeletedContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewTransformer">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewTransformer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransformer">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateTransformer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProduct">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/RemoveProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LockProduct">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LockProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockProduct">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UnLockProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadContract">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UploadContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTOs">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadPublishDocumentDTOs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTODeleteds">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadPublishDocumentDTODeleteds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPublishDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddPublishDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetDeletedPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletedPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeletedPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePublishDocumentInfo">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdatePublishDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestorePublishDocumentDeleted">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/RestorePublishDocumentDeleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckExistRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/CheckExistRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentsOfMyDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentsOfMyDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentDTOOfRequest">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentDTOOfRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentToDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadRequestSendDocumentToDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRevokedRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LockUser">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LockUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UnLockUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/EditTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersOfDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUsersOfDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1065,6 +1863,15 @@
     </wsdl:operation>
     <wsdl:operation name="LoadTasksNotFinish">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasksNotFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTasksCreateByMe" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1209,6 +2016,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserTaskNotFinish">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserTaskNotFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetUserTaskCreateByMe" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1497,42 +2313,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetDepartment">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartment" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDepartmentName">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentName" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDepartments">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartments" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGroupDepartment">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetGroupDepartment" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDepartmentTask">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentTask" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

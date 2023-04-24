@@ -43,13 +43,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         private Object _DocumentSourcePdf;
         public Object DocumentSourcePdf 
-        { 
+        {
             get => _DocumentSourcePdf; 
             set 
             { 
                 _DocumentSourcePdf = value;
                 OnPropertyChanged("DocumentSourcePdf"); 
-            } 
+            }
         }
         private bool _CanSaveFile;
         public bool CanSaveFile

@@ -65,6 +65,10 @@
     <StartupObject>QLHS_DR.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Docs.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.Docs.v21.2.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.2.Drawing, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Controls.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -79,12 +83,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.Xpf.LayoutControl.v21.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.PdfViewer.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Ribbon.v21.2" />
     <Reference Include="DevExpress.Printing.v21.2.Core" />
     <Reference Include="DevExpress.Images.v21.2" />
     <Reference Include="DevExpress.Mvvm.v21.2" />
     <Reference Include="DevExpress.Xpf.Themes.Office2019Colorful.v21.2" />
+    <Reference Include="DevExpress.XtraNavBar.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -126,6 +132,7 @@
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
     <Compile Include="Core\AppInfo.cs" />
+    <Compile Include="Core\DocScan.cs" />
     <Compile Include="Core\FileHelper.cs" />
     <Compile Include="Core\G6Class.cs" />
     <Compile Include="Core\SectionLogin.cs" />
@@ -136,12 +143,16 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageServiceCallBack.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageViewModel.cs" />
+    <Compile Include="ViewModel\ContractViewModel\AddContractViewModel.cs" />
+    <Compile Include="ViewModel\ContractViewModel\ListContractViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\AllTaskViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\EditStampViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ListNewDocumentViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\NewTaskViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveDepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserOfMyDepartmentManagerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
     <Compile Include="ViewModel\LoadUserControlEvent.cs" />
@@ -150,8 +161,12 @@
     <Compile Include="ViewModel\Message\ControlEvent.cs" />
     <Compile Include="ViewModel\Message\TitletabControlMessage.cs" />
     <Compile Include="ViewModel\ProductTypeWrapper.cs" />
+    <Compile Include="ViewModel\ProductViewModel\DetailTransformerViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\ListTransformerManualViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\TransformerManagerViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\UploadTransformerManualViewModel.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />
+    <Compile Include="ViewModel\TransformerManualViewModel\EditTransformerManualViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\ChatAppView\ChatAppWindow.xaml.cs">
@@ -160,8 +175,20 @@
     <Compile Include="View\ChatAppView\ChatLayoutUC.xaml.cs">
       <DependentUpon>ChatLayoutUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ContractView\AddContractWindow.xaml.cs">
+      <DependentUpon>AddContractWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContractView\ContractViewPdf.xaml.cs">
+      <DependentUpon>ContractViewPdf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContractView\ListContractUC.xaml.cs">
+      <DependentUpon>ListContractUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DocumentView\AllTaskUC.xaml.cs">
       <DependentUpon>AllTaskUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\EditStampWindow.xaml.cs">
+      <DependentUpon>EditStampWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\ListNewDocumentUC.xaml.cs">
       <DependentUpon>ListNewDocumentUC.xaml</DependentUpon>
@@ -191,8 +218,23 @@
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProductView\DetailTransformerUC.xaml.cs">
+      <DependentUpon>DetailTransformerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\ListTransformerManualUC.xaml.cs">
+      <DependentUpon>ListTransformerManualUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProductView\TransformerManagerUC.xaml.cs">
       <DependentUpon>TransformerManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\TransformerManualViewPdf.xaml.cs">
+      <DependentUpon>TransformerManualViewPdf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\UploadTransformerManualWindow.xaml.cs">
+      <DependentUpon>UploadTransformerManualWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransformerManualView\EditTransformerManualWindow.xaml.cs">
+      <DependentUpon>EditTransformerManualWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView\UserChangePasswordWindow.xaml.cs">
       <DependentUpon>UserChangePasswordWindow.xaml</DependentUpon>
@@ -221,7 +263,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ContractView\AddContractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContractView\ContractViewPdf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContractView\ListContractUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DocumentView\AllTaskUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentView\EditStampWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,7 +319,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProductView\DetailTransformerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\ListTransformerManualUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProductView\TransformerManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\TransformerManualViewPdf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\UploadTransformerManualWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TransformerManualView\EditTransformerManualWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -302,10 +380,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\EofficeMainService.wsdl" />
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Contract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Department.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.DepartmentTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.DocTittle.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.GroupDepartment.datasource">
@@ -326,7 +410,25 @@
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PermissionType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PublishDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PublishDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.ReceivedDepartmentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.RequestSendDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.RequestSendDocumentToDepartment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Standard.datasource">
@@ -339,6 +441,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TransformerDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TransformerManualDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.User.datasource">
@@ -398,6 +503,9 @@
     </PackageReference>
     <PackageReference Include="SqlTableDependency">
       <Version>8.5.8</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Pdf.Net.Core">
+      <Version>21.1.37</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Security">
       <Version>4.3.2</Version>

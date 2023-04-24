@@ -8,6 +8,7 @@
         xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
+        WindowState="Maximized"
         x:Name="newTaskWindow"
         Title="Thêm nhiệm vụ mới" Height="450" Width="800">
     <i:Interaction.Triggers>

@@ -1,4 +1,5 @@
-﻿using DevExpress.Xpf.Core;
+﻿using DevExpress.Mvvm;
+using DevExpress.Xpf.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace QLHS_DR
             base.OnStateChanged(e);
         }
         protected override void OnClosing(CancelEventArgs e)
-        {
+        {            
             Environment.Exit(Environment.ExitCode);
             base.OnClosing(e);
         }

@@ -60,6 +60,7 @@ namespace QLHS_DR.ViewModel.UserViewModel
                     if (client.ChangePassword(SectionLogin.Ins.CurrentUser.UserName, hashOldPass, hashNewPass) == LoginStatusType.SUCCESS)
                     {
                         SectionLogin.Ins.CurrentUser.Password = CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_CurrentPassword));
+                        SectionLogin.Ins.Token = hashNewPass;
                         MessageBox.Show("Đổi mật khẩu thành công");
                         p.Close();
                     }

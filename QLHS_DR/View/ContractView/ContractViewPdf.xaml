@@ -1,0 +1,52 @@
+﻿<Window x:Class="QLHS_DR.View.ContractView.ContractViewPdf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.ContractView"
+        xmlns:local1="clr-namespace:QLHS_DR.View.DocumentView"
+        xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
+        mc:Ignorable="d"
+         Loaded="pdfViewerWindow_Loaded"
+        Title="ContractViewPdf" Height="450" Width="800">
+    <dx:LoadingDecorator IsSplashScreenShown="{Binding IsBusy}" Name="loadingDecorator" OwnerLock="LoadingContent">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <local1:PdfViewerControlEx x:Name="pdfViewer2" CommandBarStyle="Bars" Grid.Row="0">
+                <dxpdf:PdfViewerControl.CommandProvider>
+                    <dxpdf:PdfCommandProvider>
+                        <dxpdf:PdfCommandProvider.Actions>
+                            <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Close}"/>
+                            <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Open}"/>
+                            <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.OpenFromWeb}"/>
+
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}"
+                                              ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomPrintCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Glyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding SmallGlyph}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding LargeGlyph}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Caption}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Hint}" />
+
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.PrintContext}"  
+                                          ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomPrintCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.PrintContext}" ValueBinding="{Binding Caption}" />
+
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}"  
+                                          ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomSaveCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Glyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding SmallGlyph}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding LargeGlyph}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Caption}" />
+                            <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Hint}" />
+                        </dxpdf:PdfCommandProvider.Actions>
+                    </dxpdf:PdfCommandProvider>
+                </dxpdf:PdfViewerControl.CommandProvider>
+            </local1:PdfViewerControlEx>
+        </Grid>
+    </dx:LoadingDecorator>
+
+</Window>
+

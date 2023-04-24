@@ -39,6 +39,10 @@ using System.Threading;
 using System.Timers;
 using QLHS_DR.ViewModel.ProductViewModel;
 using QLHS_DR.View.ProductView;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using DevExpress.XtraPrinting.Native;
+using DevExpress.Data.Browsing;
 
 namespace QLHS_DR.ViewModel
 {
@@ -142,6 +146,8 @@ namespace QLHS_DR.ViewModel
         public ICommand RefeshCommand { get; set; }
         public ICommand LoadAllTask { get; set; }
         public ICommand OpenTransformerManagerCommand { get; set; }
+        public ICommand EditStampCommand { get; set; }
+        public ICommand LoadTaskCreateByMe { get; set; }
         #endregion
 
         private ListNewDocumentUC listNewDocumentUC;
@@ -150,9 +156,12 @@ namespace QLHS_DR.ViewModel
         private AllTaskUC allTaskUC;
 
         ListNewDocumentViewModel listNewDocumentViewModel;
+        TaskCreateByMeViewModel taskCreateByMeViewModel;
         UserTaskFinishViewModel userTaskFinishViewModel;
         UserTaskRevokedViewModel userTaskRevokedViewModel;
         AllTaskViewModel allTaskViewModel;
+
+        ChannelFactory<IEofficeMainService> _ChannelFactory;
         public MainViewModel()
         {
            
@@ -245,10 +254,11 @@ namespace QLHS_DR.ViewModel
                         }
                         try
                         {
-                            EofficeMainServiceClient _client = ServiceHelper.NewEofficeMainServiceClient(_CurrentUser.UserName, SectionLogin.Ins.Token);
-                            _client.Open();
-                            _OldUserTasks = _client.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
-                            _client.Close();
+                            _ChannelFactory = ServiceHelper.NewChannelFactory();
+                            var _proxy = _ChannelFactory.CreateChannel();
+                            ((IClientChannel)_proxy).Open();
+                            _OldUserTasks = _proxy.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
+                            ((IClientChannel)_proxy).Close();
 
                             //--------------------Check New Message------------------------//
                             backgroundWorker = new BackgroundWorker
@@ -303,6 +313,13 @@ namespace QLHS_DR.ViewModel
                     { p.Close(); }
                 }
             });
+            EditStampCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                EditStampViewModel editStampViewModel = new EditStampViewModel();
+                EditStampWindow editStampWindow = new EditStampWindow( );
+                editStampWindow.DataContext = editStampViewModel;
+                editStampWindow.ShowDialog();
+            });
             RefeshCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 TabContainer item = Workspaces.Where(x => x.IsSelected==true && x.IsVisible).FirstOrDefault();
@@ -348,7 +365,29 @@ namespace QLHS_DR.ViewModel
                     };
                     Workspaces.Add(tabItemNew);
                 }
-
+            });
+            LoadTaskCreateByMe = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                TabContainer item = Workspaces.Where(x => x.Header.Contains("Tài liệu tạo bởi tôi")).FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    taskCreateByMeViewModel = new TaskCreateByMeViewModel(_eventAggregator);
+                    listNewDocumentUC.DataContext = taskCreateByMeViewModel;
+                    TabContainer tabItemNew = new TabContainer
+                    {
+                        Header = "Tài liệu tạo bởi tôi",
+                        AllowHide = "true",
+                        IsSelected = true,
+                        IsVisible = true,
+                        Content = listNewDocumentUC
+                    };
+                    Workspaces.Add(tabItemNew);
+                }
             });
             LoadListCompltetedDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
@@ -436,7 +475,7 @@ namespace QLHS_DR.ViewModel
             });
             OpenTransformerManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                TabContainer item = Workspaces.Where(x => x.Header.Contains("Danh sách MBA truyền tải")).FirstOrDefault();
+                TabContainer item = Workspaces.Where(x => x.Header.Contains("Danh sách MBA")).FirstOrDefault();
                 if (item != null)
                 {
                     item.IsSelected = true;
@@ -449,7 +488,7 @@ namespace QLHS_DR.ViewModel
                     transformerManagerUC.DataContext = transformerManagerViewModel;
                     TabContainer tabItemNew = new TabContainer
                     {
-                        Header = "Danh sách MBA truyền tải",
+                        Header = "Danh sách MBA",
                         AllowHide = "true",
                         IsSelected = true,
                         IsVisible = true,
@@ -458,7 +497,6 @@ namespace QLHS_DR.ViewModel
                     Workspaces.Add(tabItemNew);
                 }
             });
-
         }
 
         private void backgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
@@ -466,7 +504,7 @@ namespace QLHS_DR.ViewModel
             try
             {
                 System.Timers.Timer timer = new System.Timers.Timer();
-                timer.Interval = 60000; // set the interval to 1 minute
+                timer.Interval = 1800000; // set the interval to 1 minute
                 timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
                 timer.Enabled = true;
             }
@@ -476,19 +514,23 @@ namespace QLHS_DR.ViewModel
             }
         }
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
+        {             
+            if ((_ChannelFactory == null) ||(_ChannelFactory.State == CommunicationState.Faulted) ||(_ChannelFactory.State != CommunicationState.Opened))
+            {
+                _ChannelFactory = ServiceHelper.NewChannelFactory();
+            }
+            IEofficeMainService proxy = _ChannelFactory.CreateChannel();    
             try
             {
-                EofficeMainServiceClient _client = ServiceHelper.NewEofficeMainServiceClient(_CurrentUser.UserName, SectionLogin.Ins.Token);
-                _client.Open();
-                ObservableCollection<UserTask> newUserTasks = _client.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
+                ((IClientChannel)proxy).Open();
+                ObservableCollection<UserTask> newUserTasks = proxy.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
                 if (newUserTasks != null && _OldUserTasks != null)
                 {
                     if (newUserTasks.Count > _OldUserTasks.Count)
                     {
                         for (int i = _OldUserTasks.Count; i < newUserTasks.Count; i++)
                         {
-                            EOfficeServiceReference.Task task = _client.LoadTask(newUserTasks[i].TaskId);
+                            EOfficeServiceReference.Task task = proxy.LoadTask(newUserTasks[i].TaskId);
                             string message = "Có tài liệu vừa được gửi tới bạn: " + task.Subject;
                             System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                             {
@@ -496,14 +538,15 @@ namespace QLHS_DR.ViewModel
                             }));
                         }
                     }
-                }
-                _client.Close();
-                _OldUserTasks = newUserTasks;                
+                }                
+                ((IClientChannel)proxy).Close();
+                _OldUserTasks = newUserTasks;
             }
             catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
+            {             
+                ((IClientChannel)proxy).Abort();
+            }     
+            
         }
         //private void RequestSendDocument_OnChanged(object sender, RecordChangedEventArgs<UserTask> e)
         //{
@@ -531,7 +574,6 @@ namespace QLHS_DR.ViewModel
         //    {
         //        System.Windows.Forms.MessageBox.Show(ex.Message);
         //    }
-
         //}
         #region "Function"
         private void LoadDefaultTab()

@@ -1,0 +1,57 @@
+﻿<Window x:Class="QLHS_DR.View.DocumentView.EditStampWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Name="pdfViewerWindow"
+        Title="EditStamp Window" Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <local:PdfViewerControlEx x:Name="pdfViewer" DocumentLoaded="pdfViewer_DocumentLoaded" DocumentSource="{Binding PathFile,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" CommandBarStyle="Ribbon" Grid.Column="0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="DocumentLoaded">
+                    <i:InvokeCommandAction Command="{Binding DocumentLoadedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </local:PdfViewerControlEx>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Width:" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+            <Label Grid.Row="1" Grid.Column="0" Content="Heigh:" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+            <Label Grid.Row="2" Grid.Column="0" Content="Page With:" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+            <Label Grid.Row="3" Grid.Column="0" Content="Page Heigh:" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+            <Label Grid.Row="4" Grid.Column="0" Content="Start X:" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+            <Label Grid.Row="5" Grid.Column="0" Content="Start Y:" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+            <TextBox Text="{Binding Stamp_Width}"  Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
+            <TextBox Text="{Binding Stamp_Heigh}" Grid.Row="1" Grid.Column="1" Margin="5"></TextBox>
+            <TextBox Text="{Binding Page_Width}"  Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>
+            <TextBox Text="{Binding Page_Heigh}" Grid.Row="3" Grid.Column="1" Margin="5"></TextBox>
+            <TextBox Text="{Binding StartX}"  Grid.Row="4" Grid.Column="1" Margin="5"></TextBox>
+            <TextBox Text="{Binding StartY}" Grid.Row="5" Grid.Column="1" Margin="5"></TextBox>
+            <StackPanel Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical">
+                <Button Command="{Binding ReDrawStamp}" Content="Apply" Margin="5"></Button>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Window>

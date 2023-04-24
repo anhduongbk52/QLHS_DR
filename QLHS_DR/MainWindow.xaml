@@ -64,7 +64,11 @@
                         <dxb:BarButtonItem Command="{Binding LoadListNewDocument}" Content="Tài liệu chưa xử lý" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/RichEdit/NewComment.svg}"/>
                         <dxb:BarButtonItem Command="{Binding LoadListCompltetedDocument}" Content="Tài liệu đã kết thúc" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Security_Permission_Model.svg}"/>
                         <dxb:BarButtonItem Command="{Binding LoadListRevokeDocument}" Content="Tài liệu đã thu hồi" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Comments/DeleteComment.svg}"/>
+                        <!--<dxb:BarButtonItem Command="{Binding LoadTaskCreateByMe}" Content="Tài liệu được ban hành bởi bạn" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Reports/PrintAllPages.svg}"/>
+                        
+                        <dxb:BarButtonItem Command="{Binding LoadTaskCreateByMyDepartment}" Content="Tài liệu được ban hành bởi đơn vị" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Reports/PrintAllPages.svg}"/>-->
                         <dxb:BarButtonItem Command="{Binding LoadAllTask}" Content="Toàn bộ tài liệu của TCT" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Reports/PrintAllPages.svg}"/>
+
                         <dxb:BarButtonItem Command="{Binding RefeshCommand}" Content="Refesh" Glyph="{dx:DXImage 'SvgImages/Actions/Actions_Refresh.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
@@ -72,6 +76,8 @@
                     <dxr:RibbonPageGroup Caption="Máy biến áp truyền tải">
                         <dxb:BarButtonItem Command="{Binding OpenTransformerManagerCommand}" Content="Mở danh sách MBA"  LargeGlyph="{dx:DXImage SvgImages/Dashboards/Open.svg}"/>
                         <dxb:BarButtonItem Command="{Binding NewTransformerCommand}" Content="Thêm mới"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>
+                        <!--<dxb:BarButtonItem Command="{Binding EditStampCommand}" Content="Chỉnh sửa dấu hiệu lực"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>-->
+
                     </dxr:RibbonPageGroup>
                     <!--<dxr:RibbonPageGroup Caption="Máy biến áp phân phối">
                         <dxb:BarButtonItem Command="{Binding OpenDistributionTransformerManagerCommand}" Content="Máy biến áp truyền tải"  LargeGlyph="{dx:DXImage SvgImages/Dashboards/Open.svg}"/>

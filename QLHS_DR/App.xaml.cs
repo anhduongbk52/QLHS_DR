@@ -15,6 +15,8 @@ using System.Windows.Interop;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DevExpress.Utils;
 using System.ComponentModel.Design;
+using DevExpress.Xpf.Core;
+using DevExpress.Mvvm;
 
 namespace QLHS_DR
 {
@@ -26,15 +28,25 @@ namespace QLHS_DR
 
     public partial class App : Application
     {
-        public static ServiceContainer Container { get; } = new ServiceContainer();
         protected override void OnStartup(StartupEventArgs e)
         {
             if (SingleInstance.AlreadyRunning())
             {
                 MessageBox.Show("Một phiên bản của phần mềm đang chạy! Vui lòng kiểm tra biểu tượng chương trình ở góc dưới bên phải màn hình");
                 App.Current.Shutdown(); // Just shutdown the current application,if any instance found.
-            }            
-            base.OnStartup(e);           
+            }
+            var viewModel = new DXSplashScreenViewModel
+            {
+                Copyright = "Copyright @EEMC",
+                IsIndeterminate = true,
+                Title = "Luân chuyển tài liệu",
+                Subtitle = "Loading...",
+                Logo = null
+            };
+            var splashScreen = SplashScreenManager.CreateThemed(viewModel, false);
+            splashScreen.ShowOnStartup();
+            base.OnStartup(e);
+            
         }
     }
 }

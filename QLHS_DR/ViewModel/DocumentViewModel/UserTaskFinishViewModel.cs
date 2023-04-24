@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
 using System.Threading;
@@ -30,6 +31,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         #region "Properties and Field"
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
+
+        ChannelFactory<IEofficeMainService> _ChannelFactory;
+        IEofficeMainService _Proxy;
+
         public ObservableCollection<Department> Departments
         {
             get => _Departments;
@@ -252,6 +257,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
+
                 ListUserTaskOfTask = new ObservableCollection<UserTask>();
                 try
                 {

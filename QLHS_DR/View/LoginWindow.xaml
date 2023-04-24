@@ -13,56 +13,58 @@
         DataContext="{Binding Source={StaticResource Locator},Path=LoginViewModel}"
         AllowsTransparency="True"      
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=loginWindow}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid Width="320" Height="240">
-        <materialDesign:Card  HorizontalAlignment="Stretch" 
+    <dx:LoadingDecorator Grid.Column="0"  IsSplashScreenShown="{Binding IsBusy}" Name="loadingDecorator" OwnerLock="LoadingContent">
+        <Grid Width="320" Height="240">
+            <materialDesign:Card  HorizontalAlignment="Stretch" 
                               VerticalAlignment="Stretch">
-            <Grid>
-                <Grid.Resources>
-                    <Style TargetType="Grid">
-                        <Setter Property="Margin" 
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="Grid">
+                            <Setter Property="Margin" 
                                 Value="0 0 0 0"></Setter>
-                    </Style>
-                </Grid.Resources>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <TextBox TabIndex="0" 
+                    <TextBox TabIndex="0" 
                          Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged,Delay=1000,ValidatesOnDataErrors=True}" 
                          Margin="10" Grid.Row="0" 
                          materialDesign:HintAssist.Hint="Tên đăng nhập"  
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <PasswordBox TabIndex="1" Margin="10" Grid.Row="1" x:Name="FloatingPasswordBox" 
+                    <PasswordBox TabIndex="1" Margin="10" Grid.Row="1" x:Name="FloatingPasswordBox" 
                              materialDesign:HintAssist.Hint="Mật khẩu"  
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PasswordChanged">
-                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PasswordChanged">
+                                <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
                                                    CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 
-                </PasswordBox>
-                <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <CheckBox TabIndex="2" Margin="20,5,10,5" IsChecked="{Binding SaveLogin}"></CheckBox>
-                    <TextBlock Margin="5" Height="20" Text="Ghi nhớ thông tin đăng nhập"></TextBlock>
-                </StackPanel>
-                <Grid  Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button TabIndex="3" x:Name="btnSubmit"
+                    </PasswordBox>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <CheckBox TabIndex="2" Margin="20,5,10,5" IsChecked="{Binding SaveLogin}"></CheckBox>
+                        <TextBlock Margin="5" Height="20" Text="Ghi nhớ thông tin đăng nhập"></TextBlock>
+                    </StackPanel>
+                    <Grid  Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button TabIndex="3" x:Name="btnSubmit"
                             IsDefault="True"
                             Grid.Column="0" 
                             Style="{StaticResource MaterialDesignRaisedAccentButton}" 
@@ -71,14 +73,15 @@
                             ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                             Command="{Binding LoginCommand}"
                             CommandParameter="{Binding ElementName=loginWindow}"/>
-                    <Button TabIndex="4" Grid.Column="1"  
+                        <Button TabIndex="4" Grid.Column="1"  
                             Style="{StaticResource MaterialDesignRaisedAccentButton}" 
                             Content="Thoát"   Width="120" 
                             ToolTip="Resource name: MaterialDesignRaisedAccentButton"
                             Command="{Binding CloseCommand}"
                             CommandParameter="{Binding ElementName=loginWindow}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </materialDesign:Card>
-    </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </dx:LoadingDecorator>
 </Window>
