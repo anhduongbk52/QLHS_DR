@@ -148,6 +148,7 @@ namespace QLHS_DR.ViewModel
         public ICommand OpenTransformerManagerCommand { get; set; }
         public ICommand EditStampCommand { get; set; }
         public ICommand LoadTaskCreateByMe { get; set; }
+        public ICommand SetTotalPageOfTaskAttackedFileCommand { get; set; }
         #endregion
 
         private ListNewDocumentUC listNewDocumentUC;
@@ -272,7 +273,7 @@ namespace QLHS_DR.ViewModel
                             }
                         }
                         catch(Exception ex)
-                        { 
+                        {                            
                             System.Windows.Forms.MessageBox.Show(ex.Message);
                         }
                        
@@ -497,6 +498,32 @@ namespace QLHS_DR.ViewModel
                     Workspaces.Add(tabItemNew);
                 }
             });
+            SetTotalPageOfTaskAttackedFileCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
+                {
+                    _ChannelFactory = ServiceHelper.NewChannelFactory();
+                }
+                IEofficeMainService proxy = _ChannelFactory.CreateChannel();
+                try
+                {
+                    ((IClientChannel)proxy).Open();
+                    ObservableCollection<UserTask> newUserTasks = proxy.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
+
+
+
+                    proxy.SetTotlPageForAttackedFile(0, 0);
+
+
+                    ((IClientChannel)proxy).Close();
+                    _OldUserTasks = newUserTasks;
+                }
+                catch (Exception ex)
+                {
+                    ((IClientChannel)proxy).Abort();
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+            });
         }
 
         private void backgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
@@ -504,7 +531,7 @@ namespace QLHS_DR.ViewModel
             try
             {
                 System.Timers.Timer timer = new System.Timers.Timer();
-                timer.Interval = 1800000; // set the interval to 1 minute
+                timer.Interval = 300000; // set the interval to 1 minute
                 timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
                 timer.Enabled = true;
             }

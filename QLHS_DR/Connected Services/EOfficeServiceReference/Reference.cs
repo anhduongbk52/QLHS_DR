@@ -2673,6 +2673,9 @@ namespace QLHS_DR.EOfficeServiceReference {
         private int TaskIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TotalPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.EOfficeServiceReference.User UserField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -2798,6 +2801,19 @@ namespace QLHS_DR.EOfficeServiceReference {
                 if ((this.TaskIdField.Equals(value) != true)) {
                     this.TaskIdField = value;
                     this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TotalPage {
+            get {
+                return this.TotalPageField;
+            }
+            set {
+                if ((this.TotalPageField.Equals(value) != true)) {
+                    this.TotalPageField = value;
+                    this.RaisePropertyChanged("TotalPage");
                 }
             }
         }
@@ -8377,6 +8393,12 @@ namespace QLHS_DR.EOfficeServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/EditTransformerManual", ReplyAction="http://tempuri.org/IEofficeMainService/EditTransformerManualResponse")]
         System.Threading.Tasks.Task EditTransformerManualAsync(int fileId, string description, int docTitleId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile", ReplyAction="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFileResponse")]
+        void SetTotlPageForAttackedFile(int taskAttackedFileId, int totalPage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile", ReplyAction="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFileResponse")]
+        System.Threading.Tasks.Task SetTotlPageForAttackedFileAsync(int taskAttackedFileId, int totalPage);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserByName", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserByNameResponse")]
         QLHS_DR.EOfficeServiceReference.User GetUserByName(string username);
         
@@ -9203,6 +9225,14 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         public System.Threading.Tasks.Task EditTransformerManualAsync(int fileId, string description, int docTitleId) {
             return base.Channel.EditTransformerManualAsync(fileId, description, docTitleId);
+        }
+        
+        public void SetTotlPageForAttackedFile(int taskAttackedFileId, int totalPage) {
+            base.Channel.SetTotlPageForAttackedFile(taskAttackedFileId, totalPage);
+        }
+        
+        public System.Threading.Tasks.Task SetTotlPageForAttackedFileAsync(int taskAttackedFileId, int totalPage) {
+            return base.Channel.SetTotlPageForAttackedFileAsync(taskAttackedFileId, totalPage);
         }
         
         public QLHS_DR.EOfficeServiceReference.User GetUserByName(string username) {

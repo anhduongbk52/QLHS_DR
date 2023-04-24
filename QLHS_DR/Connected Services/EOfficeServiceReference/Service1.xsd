@@ -728,6 +728,19 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetTotlPageForAttackedFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskAttackedFileId" type="xs:int" />
+        <xs:element minOccurs="0" name="totalPage" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTotlPageForAttackedFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetUserByName">
     <xs:complexType>
       <xs:sequence>

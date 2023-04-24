@@ -423,6 +423,12 @@
   <wsdl:message name="IEofficeMainService_EditTransformerManual_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditTransformerManualResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetTotlPageForAttackedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTotlPageForAttackedFile" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetTotlPageForAttackedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTotlPageForAttackedFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByName" />
   </wsdl:message>
@@ -1015,6 +1021,10 @@
     <wsdl:operation name="EditTransformerManual">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/EditTransformerManual" message="tns:IEofficeMainService_EditTransformerManual_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/EditTransformerManualResponse" message="tns:IEofficeMainService_EditTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTotlPageForAttackedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile" message="tns:IEofficeMainService_SetTotlPageForAttackedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFileResponse" message="tns:IEofficeMainService_SetTotlPageForAttackedFile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByName" message="tns:IEofficeMainService_GetUserByName_InputMessage" />
@@ -1737,6 +1747,15 @@
     </wsdl:operation>
     <wsdl:operation name="EditTransformerManual">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/EditTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTotlPageForAttackedFile">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
