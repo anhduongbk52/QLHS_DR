@@ -111,6 +111,12 @@
       <xsd:import schemaLocation="https://192.168.11.12:8888/EofficeService/Service?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IEofficeMainService_GetDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetDepartmentName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartmentName" />
   </wsdl:message>
@@ -381,6 +387,12 @@
   <wsdl:message name="IEofficeMainService_UpdateRequestSendDocumentToDepartments_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartmentsResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateRequestSendDocumentToDepartments1_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartments1" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateRequestSendDocumentToDepartments1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartments1Response" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_SetRevokedRequestSendDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:SetRevokedRequestSendDocument" />
   </wsdl:message>
@@ -428,6 +440,24 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_SetTotlPageForAttackedFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetTotlPageForAttackedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_CountPrintDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_CountPrintDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_CountPrintDocument1_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocument1" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_CountPrintDocument1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocument1Response" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetCountPrintDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountPrintDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetCountPrintDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountPrintDocumentResponse" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByName" />
@@ -747,6 +777,12 @@
   <wsdl:message name="IEofficeMainService_UpdateTask_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateTaskAndTaskAttackedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAndTaskAttackedFile" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateTaskAndTaskAttackedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAndTaskAttackedFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_UpdateUserTasks_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUserTasks" />
   </wsdl:message>
@@ -807,13 +843,11 @@
   <wsdl:message name="IEofficeMainService_SetUserTaskFinish_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetUserTaskFinishResponse" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartment_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartment" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetDepartment_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
-  </wsdl:message>
   <wsdl:portType name="IEofficeMainService">
+    <wsdl:operation name="GetDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartment" message="tns:IEofficeMainService_GetDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentResponse" message="tns:IEofficeMainService_GetDepartment_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetDepartmentName">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentName" message="tns:IEofficeMainService_GetDepartmentName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentNameResponse" message="tns:IEofficeMainService_GetDepartmentName_OutputMessage" />
@@ -994,6 +1028,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments" message="tns:IEofficeMainService_UpdateRequestSendDocumentToDepartments_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartmentsResponse" message="tns:IEofficeMainService_UpdateRequestSendDocumentToDepartments_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1" message="tns:IEofficeMainService_UpdateRequestSendDocumentToDepartments1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1Response" message="tns:IEofficeMainService_UpdateRequestSendDocumentToDepartments1_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SetRevokedRequestSendDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocument" message="tns:IEofficeMainService_SetRevokedRequestSendDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocumentResponse" message="tns:IEofficeMainService_SetRevokedRequestSendDocument_OutputMessage" />
@@ -1025,6 +1063,18 @@
     <wsdl:operation name="SetTotlPageForAttackedFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile" message="tns:IEofficeMainService_SetTotlPageForAttackedFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFileResponse" message="tns:IEofficeMainService_SetTotlPageForAttackedFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountPrintDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/CountPrintDocument" message="tns:IEofficeMainService_CountPrintDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/CountPrintDocumentResponse" message="tns:IEofficeMainService_CountPrintDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountPrintDocument1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/CountPrintDocument1" message="tns:IEofficeMainService_CountPrintDocument1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/CountPrintDocument1Response" message="tns:IEofficeMainService_CountPrintDocument1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountPrintDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetCountPrintDocument" message="tns:IEofficeMainService_GetCountPrintDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetCountPrintDocumentResponse" message="tns:IEofficeMainService_GetCountPrintDocument_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserByName" message="tns:IEofficeMainService_GetUserByName_InputMessage" />
@@ -1238,6 +1288,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTask" message="tns:IEofficeMainService_UpdateTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTaskResponse" message="tns:IEofficeMainService_UpdateTask_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAndTaskAttackedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFile" message="tns:IEofficeMainService_UpdateTaskAndTaskAttackedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFileResponse" message="tns:IEofficeMainService_UpdateTaskAndTaskAttackedFile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateUserTasks">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateUserTasks" message="tns:IEofficeMainService_UpdateUserTasks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateUserTasksResponse" message="tns:IEofficeMainService_UpdateUserTasks_OutputMessage" />
@@ -1278,14 +1332,19 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinish" message="tns:IEofficeMainService_SetUserTaskFinish_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinishResponse" message="tns:IEofficeMainService_SetUserTaskFinish_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDepartment">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartment" message="tns:IEofficeMainService_GetDepartment_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetDepartmentResponse" message="tns:IEofficeMainService_GetDepartment_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IEofficeMainService" type="tns:IEofficeMainService">
     <wsp:PolicyReference URI="#WSHttpBinding_IEofficeMainService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDepartmentName">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartmentName" style="document" />
       <wsdl:input>
@@ -1691,6 +1750,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments1">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetRevokedRequestSendDocument">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocument" style="document" />
       <wsdl:input>
@@ -1756,6 +1824,33 @@
     </wsdl:operation>
     <wsdl:operation name="SetTotlPageForAttackedFile">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountPrintDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/CountPrintDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountPrintDocument1">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/CountPrintDocument1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountPrintDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetCountPrintDocument" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2240,6 +2335,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAndTaskAttackedFile">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateUserTasks">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateUserTasks" style="document" />
       <wsdl:input>
@@ -2323,15 +2427,6 @@
     </wsdl:operation>
     <wsdl:operation name="SetUserTaskFinish">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetUserTaskFinish" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDepartment">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetDepartment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

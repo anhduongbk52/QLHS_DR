@@ -5,7 +5,7 @@ using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
 using QLHS_DR;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
 using QLHS_DR.ViewModel.ChatAppViewModel;
@@ -32,9 +32,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
 
-        ChannelFactory<IEofficeMainService> _ChannelFactory;
-        IEofficeMainService _Proxy;
-
         public ObservableCollection<Department> Departments
         {
             get => _Departments;
@@ -58,7 +55,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-        private EofficeMainServiceClient _MyClient;
+        private MessageServiceClient _MyClient;
         MainViewModel dataOfMainWindow;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
@@ -166,7 +163,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
                 Departments = _MyClient.GetDepartments().ToObservableCollection();
@@ -233,7 +230,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     if (_MyClient.UpdateUserTasks(_ListUserTaskOfTask.ToArray(), SectionLogin.Ins.CurrentUser.Id))
                     {
@@ -258,10 +255,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
 
-                ListUserTaskOfTask = new ObservableCollection<UserTask>();
+                ListUserTaskOfTask = new ObservableCollection<UserTask>();                
                 try
                 {
-                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     var temp = _MyClient.GetAllUserTaskOfTask(_UserTaskSelected.TaskId).ToObservableCollection();
                     UsersInTask = _MyClient.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
@@ -297,7 +294,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     _MyClient.SetUserTaskFinish(_UserTaskSelected.TaskId, SectionLogin.Ins.CurrentUser.Id,false);
                     _MyClient.Close();
@@ -322,7 +319,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Bạn có muốn thu hồi tài liệu này? Thao tác này sẽ xóa toàn bộ dữ liệu liên quan", "Cảnh báo !", MessageBoxButton.OKCancel);
                     if (dialogResult == MessageBoxResult.OK)
                     {
-                        _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                        _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                         _MyClient.Open();
                         _MyClient.RevokeTaskByCurrentUser(_UserTaskSelected.TaskId);
                         _MyClient.Close();
@@ -345,7 +342,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
                 bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
@@ -356,12 +353,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
-                    {                       
-                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0], printable, saveable,iReadOnlyListUser, _UserTaskSelected);
-                        pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
-                        pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
-                        pdfViewer.UserTaskPrint = _UserTaskSelected;
-                        pdfViewer.Show();
+                    {
+                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected);
+                        taskAttackFileViewerViewModel.FileName = taskAttachedFileDTOs[0].FileName;
+                        taskAttackFileViewerViewModel.TaskName = _UserTaskSelected.Task.Subject;
+
+                        TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
+                        taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
+                        taskAttackFileViewerWindow.Show();
+
                         System.Windows.Threading.Dispatcher.Run();
                     }
                     else
@@ -408,7 +408,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             ObservableCollection<UserTask> ketqua = new ObservableCollection<UserTask>();
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 ketqua = _MyClient.GetUserTaskFinish(userId).OrderByDescending(x => x.TimeCreate).ToObservableCollection();
                 var tasks = _MyClient.LoadTasksFinish(userId);

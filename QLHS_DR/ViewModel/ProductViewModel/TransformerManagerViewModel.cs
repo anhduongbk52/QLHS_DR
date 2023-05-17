@@ -4,7 +4,7 @@ using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using Prism.Events;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
 {
     class TransformerManagerViewModel : BaseViewModel
     {
-        private IEofficeMainService _Proxy;
+        private MessageServiceClient _Proxy;
         private string _CodeKeyWord;
         public string CodeKeyWord
         {
@@ -103,8 +103,8 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 OnPropertyChanged("SelectedProduct");
             }
         }
-        private QLHS_DR.EOfficeServiceReference.Standard _SelectedStandard;
-        public QLHS_DR.EOfficeServiceReference.Standard SelectedStandard
+        private QLHS_DR.ChatAppServiceReference.Standard _SelectedStandard;
+        public QLHS_DR.ChatAppServiceReference.Standard SelectedStandard
         {
             get => _SelectedStandard;
             set
@@ -122,8 +122,8 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 _Products = value; OnPropertyChanged("Products");
             }
         }
-        private ObservableCollection<QLHS_DR.EOfficeServiceReference.Standard> _Standards;
-        public ObservableCollection<QLHS_DR.EOfficeServiceReference.Standard> Standards
+        private ObservableCollection<QLHS_DR.ChatAppServiceReference.Standard> _Standards;
+        public ObservableCollection<QLHS_DR.ChatAppServiceReference.Standard> Standards
         {
             get => _Standards;
             set
@@ -152,26 +152,22 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         {           
             try
             {
-                CertificateValidation();
-
-                // Tạo đối tượng ChannelFactory và cung cấp địa chỉ của dịch vụ WCF và thông tin bảo mật nếu cần              
-
-                ProductTypeWrappers = new ObservableCollection<ProductTypeWrapper>()
+                _Proxy = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _Proxy.Open();
+               ProductTypeWrappers = new ObservableCollection<ProductTypeWrapper>()
                 {
                    new ProductTypeWrapper(ProductType.PowerTransformer),
                    new ProductTypeWrapper(ProductType.DistributionTransformer)
                 };
-                SelectedProductTypeWrapper = ProductTypeWrappers[0];             
-                Standards = ServiceProxy.Instance.Proxy.LoadStandards().ToObservableCollection();
+                SelectedProductTypeWrapper = ProductTypeWrappers[0];
+                
+                Standards = _Proxy.LoadStandards().ToObservableCollection();
                 SelectedStandard = Standards.Where(x => x.Name == "NONE").FirstOrDefault();
-                ServiceProxy.Instance.CloseProxy();
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                _Proxy.Close();
+            }          
             catch (Exception ex)
             {
+                _Proxy.Abort();
                 MessageBox.Show(ex.Message);
             }
           
@@ -202,8 +198,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 MainViewModel dataOfMainWindow = new MainViewModel();
                 dataOfMainWindow = (MainViewModel)window.DataContext;
 
-                Product product = ServiceProxy.Instance.Proxy.GetProductById(_SelectedProduct.Id);
-                ServiceProxy.Instance.CloseProxy();
+                Product product = GetProductById(_SelectedProduct.Id);
 
                 DetailTransformerViewModel tabDetailProductVM = new DetailTransformerViewModel(product);
              
@@ -282,15 +277,33 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             ObservableCollection<TransformerDTO> ketqua = new ObservableCollection<TransformerDTO>();
             try
             {
-                // Tạo đối tượng proxy từ ChannelFactory               
-                ketqua = ServiceProxy.Instance.Proxy.SearchTransformer(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeWrapper?.EnumValue ?? 0, _SelectedStandard?.Id ?? 0).ToObservableCollection();
-                ServiceProxy.Instance.CloseProxy();
+                _Proxy = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _Proxy.Open();             
+                ketqua = _Proxy.SearchTransformer(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeWrapper?.EnumValue ?? 0, _SelectedStandard?.Id ?? 0).ToObservableCollection();
+                _Proxy.Close();
             }
             catch (CommunicationException ex)
             {
-                ServiceProxy.Instance.RenewProxy();
+                _Proxy.Abort();
             }
             return ketqua;
+        }
+        private Product GetProductById(int productId)
+        {
+            Product ketqua = new Product();
+            try
+            {
+                _Proxy = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _Proxy.Open();              
+                ketqua = _Proxy.GetProductById(productId);
+                _Proxy.Close();
+            }
+            catch (Exception ex)
+            {
+                _Proxy.Abort();
+            }
+            return ketqua;
+
         }
         private void CertificateValidation()
         {

@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
+using EofficeClient.Core;
 
 namespace QLHS_DR.ViewModel.UserViewModel
 {
@@ -49,11 +50,9 @@ namespace QLHS_DR.ViewModel.UserViewModel
             CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             UpdatePasswordCommand = new RelayCommand<Window>((p) => { if (CurrentPassword != null & NewPassword != null & ConfirmPassword != null & ConfirmPassword == NewPassword) return true; else return false; }, (p) =>
             {
-                EofficeMainServiceClient client = new EofficeMainServiceClient();
+                MessageServiceClient client = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
                 {
-                    client.ClientCredentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-                    client.ClientCredentials.UserName.Password = System.Text.Encoding.UTF8.GetString(SectionLogin.Ins.CurrentUser.Password);
                     client.Open();
                     string hashOldPass = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_CurrentPassword), CryptoUtil.GetSalt(SectionLogin.Ins.CurrentUser.UserName)));
                     string hashNewPass = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_NewPassword), CryptoUtil.GetSalt(SectionLogin.Ins.CurrentUser.UserName)));
@@ -62,20 +61,12 @@ namespace QLHS_DR.ViewModel.UserViewModel
                         SectionLogin.Ins.CurrentUser.Password = CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_CurrentPassword));
                         SectionLogin.Ins.Token = hashNewPass;
                         MessageBox.Show("Đổi mật khẩu thành công");
-                        p.Close();
                     }
+                    else MessageBox.Show("Thao tác thất bại, vui lòng thử lại!");
+                    p.Close();
                 }
-                catch (TimeoutException exception)
-                {
-                    MessageBox.Show(exception.Message);
-                    client.Abort();
-                }
-                catch (MessageSecurityException exception)
-                {
-                    MessageBox.Show(exception.InnerException.Message);
-                    client.Abort();
-                }
-                catch (CommunicationException exception)
+              
+                catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message);
                     client.Abort();

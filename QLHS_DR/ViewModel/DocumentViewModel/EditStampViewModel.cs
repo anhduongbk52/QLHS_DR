@@ -1,4 +1,4 @@
-﻿using QLHS_DR.EOfficeServiceReference;
+﻿using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -256,8 +256,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         graphics.DrawRectangle(pen, new RectangleF(_StartX, _StartY, _Stamp_Width, _Stamp_Heigh));
                      
                         graphics.AddToPageForeground(page, DrawingDpi, DrawingDpi);
-
-
                     }
                                  
                 }

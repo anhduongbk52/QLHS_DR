@@ -4,7 +4,7 @@ using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -35,6 +35,22 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _TaskDrecription = value; 
                 OnPropertyChanged("TaskDrecription");
             } 
+        }
+        private ObservableCollection<int> _ConfidentialLevels;
+        public ObservableCollection<int> ConfidentialLevels 
+        { 
+            get => _ConfidentialLevels; 
+            set { _ConfidentialLevels = value; OnPropertyChanged("ConfidentialLevels"); }
+        }
+        private int _ConfidentialSelected;
+        public int ConfidentialSelected
+        {
+            get => _ConfidentialSelected;
+            set
+            {
+                _ConfidentialSelected = value;
+                OnPropertyChanged("ConfidentialSelected");
+            }
         }
 
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
@@ -72,7 +88,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {            
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                ConfidentialLevels = new ObservableCollection<int>() { 0, 1, 2, 3 };
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
                 {
                     ListReceiveDepartment = GetReceiveDepartments();
@@ -122,7 +139,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             OkCommand = new RelayCommand<Window>((p) => { if (_DocumentSourcePdf!=null && _TaskDrecription!=null && _TaskName!=null) return true; else return false; }, (p) =>
             {
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
 
                 try
                 {
@@ -155,6 +172,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             ModifiedBy = SectionLogin.Ins.CurrentUser.Id,
                             FileName = System.IO.Path.GetFileName ( DocumentSourcePdf.ToString()),
                             Content = System.IO.File.ReadAllBytes(pathFile),
+                            ConfidentialLevel = _ConfidentialSelected
                         };
 
                         _MyClient.NewTask(task, temDTo.ToArray(), taskAttachedFileDTO);
@@ -183,7 +201,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             ObservableCollection<ReceiveDepartment> result = new ObservableCollection<ReceiveDepartment>();
             try
             {
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 var departments = _MyClient.GetDepartments();                
                
@@ -208,7 +226,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             ReceivedDepartmentDTO = receivedDepartmentDTO
                         });
                     }
-
                 }
                 _MyClient.Close();
             }

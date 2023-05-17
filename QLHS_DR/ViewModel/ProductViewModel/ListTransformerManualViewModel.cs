@@ -1,5 +1,5 @@
 ﻿using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using EofficeClient.Core;
 using QLHS_DR.View.ProductView;
 using System;
@@ -71,15 +71,18 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             });
             RemoveFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productRemoveTransformerManual") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productRemoveTransformerManualOfOwner") && _SelectedTransformerManual.UserCreateId==SectionLogin.Ins.CurrentUser.Id)) return true; else return false; }, (p) =>
             {
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
                 {
-                   ServiceProxy.Instance.Proxy.SetDeletedTransformerManual(_SelectedTransformerManual.TransformerManualId);
+                    _MyClient.Open();
+                    _MyClient.SetDeletedTransformerManual(_SelectedTransformerManual.TransformerManualId);
+                    _MyClient.Close();
                     MessageBox.Show("Xóa thành công");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    ServiceProxy.Instance.RenewProxy();
+                    _MyClient.Abort();
                 }
             });
             ChangeFileHoSoCommand = new RelayCommand<Object>((p) => { if (_SelectedTransformerManual!=null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile") || ( _SelectedTransformerManual.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
@@ -92,14 +95,18 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         }
         private ObservableCollection<TransformerManualDTO> LoadTransformerManual()
         {
+            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+
             ObservableCollection<TransformerManualDTO> ketqua = new ObservableCollection<TransformerManualDTO>();
             try
             {
-                ketqua= ServiceProxy.Instance.Proxy.LoadTransformerManual(_Product.Id).ToObservableCollection();                
+                _MyClient.Open();
+                ketqua = _MyClient.LoadTransformerManual(_Product.Id).ToObservableCollection();
+                _MyClient.Close();
             }            
             catch (CommunicationException ex)
             {
-                ServiceProxy.Instance.RenewProxy();
+                _MyClient.Abort();
             }
             return ketqua;
         }          

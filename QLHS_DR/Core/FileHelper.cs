@@ -1,6 +1,6 @@
 ﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace QLHS_DR.Core
 {
     internal class FileHelper
     {
-        private EofficeMainServiceClient _MyClient;
+        private MessageServiceClient _MyClient;
         private string _username;
         private string _token;
         private IReadOnlyList<User> _iReadOnlyListUser;
@@ -27,7 +27,7 @@ namespace QLHS_DR.Core
             {
                 _username = username;
                 _token = token;
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(_username, _token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(_username, _token);
                 _MyClient.Open();
                 this._iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
                 _MyClient.Close();
@@ -50,7 +50,7 @@ namespace QLHS_DR.Core
             byte[] masterKey = null;
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(_username, _token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(_username, _token);
                 _MyClient.Open();
                 password = Convert.FromBase64String(_MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
                 _MyClient.Close();
@@ -71,7 +71,7 @@ namespace QLHS_DR.Core
         {
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, taskId);
                 _MyClient.Close();
@@ -136,15 +136,15 @@ namespace QLHS_DR.Core
                 _MyClient.Abort();
             }
             return null;
-        }
+        }        
         public byte[] DecryptECPrKeyForFile(byte[] masterKey)
         {
             byte[] ketqua = null;
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
-                QLHS_DR.EOfficeServiceReference.User user = SectionLogin.Ins.CurrentUser ?? (SectionLogin.Ins.CurrentUser = _MyClient.GetUserByName(_MyClient.ClientCredentials.UserName.UserName));
+                User user = SectionLogin.Ins.CurrentUser ?? (SectionLogin.Ins.CurrentUser = _MyClient.GetUserByName(_MyClient.ClientCredentials.UserName.UserName));
                 if (user.ECPrKeyForFile == null)
                 {
                     user.ECPrKeyForFile = _MyClient.GetUserECPrKeyFor(user.Id, _MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password, ECKeyPurpose.FILE);

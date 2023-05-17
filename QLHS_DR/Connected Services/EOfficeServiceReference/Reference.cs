@@ -965,6 +965,9 @@ namespace QLHS_DR.EOfficeServiceReference {
         private QLHS_DR.EOfficeServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartmentsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> RequireStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool RevokedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1183,6 +1186,19 @@ namespace QLHS_DR.EOfficeServiceReference {
                 if ((object.ReferenceEquals(this.RequestSendDocumentToDepartmentsField, value) != true)) {
                     this.RequestSendDocumentToDepartmentsField = value;
                     this.RaisePropertyChanged("RequestSendDocumentToDepartments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> RequireStamp {
+            get {
+                return this.RequireStampField;
+            }
+            set {
+                if ((this.RequireStampField.Equals(value) != true)) {
+                    this.RequireStampField = value;
+                    this.RaisePropertyChanged("RequireStamp");
                 }
             }
         }
@@ -2652,6 +2668,9 @@ namespace QLHS_DR.EOfficeServiceReference {
         private System.Nullable<int> CanSaveField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfidentialLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FileNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2710,6 +2729,19 @@ namespace QLHS_DR.EOfficeServiceReference {
                 if ((this.CanSaveField.Equals(value) != true)) {
                     this.CanSaveField = value;
                     this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfidentialLevel {
+            get {
+                return this.ConfidentialLevelField;
+            }
+            set {
+                if ((this.ConfidentialLevelField.Equals(value) != true)) {
+                    this.ConfidentialLevelField = value;
+                    this.RaisePropertyChanged("ConfidentialLevel");
                 }
             }
         }
@@ -2903,6 +2935,9 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserTaskPrintManager[] UserTaskPrintManagersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3144,6 +3179,19 @@ namespace QLHS_DR.EOfficeServiceReference {
                 if ((this.UserIdField.Equals(value) != true)) {
                     this.UserIdField = value;
                     this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserTaskPrintManager[] UserTaskPrintManagers {
+            get {
+                return this.UserTaskPrintManagersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTaskPrintManagersField, value) != true)) {
+                    this.UserTaskPrintManagersField = value;
+                    this.RaisePropertyChanged("UserTaskPrintManagers");
                 }
             }
         }
@@ -6658,6 +6706,195 @@ namespace QLHS_DR.EOfficeServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserTaskPrintManager", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class UserTaskPrintManager : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PrintCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PrintedRevokedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrinterNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> RevokedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> SuccessField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> TimePrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.EOfficeServiceReference.UserTask UserTaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserTaskIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageNumber {
+            get {
+                return this.PageNumberField;
+            }
+            set {
+                if ((this.PageNumberField.Equals(value) != true)) {
+                    this.PageNumberField = value;
+                    this.RaisePropertyChanged("PageNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PrintCount {
+            get {
+                return this.PrintCountField;
+            }
+            set {
+                if ((this.PrintCountField.Equals(value) != true)) {
+                    this.PrintCountField = value;
+                    this.RaisePropertyChanged("PrintCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PrintedRevoked {
+            get {
+                return this.PrintedRevokedField;
+            }
+            set {
+                if ((this.PrintedRevokedField.Equals(value) != true)) {
+                    this.PrintedRevokedField = value;
+                    this.RaisePropertyChanged("PrintedRevoked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrinterName {
+            get {
+                return this.PrinterNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrinterNameField, value) != true)) {
+                    this.PrinterNameField = value;
+                    this.RaisePropertyChanged("PrinterName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Revoked {
+            get {
+                return this.RevokedField;
+            }
+            set {
+                if ((this.RevokedField.Equals(value) != true)) {
+                    this.RevokedField = value;
+                    this.RaisePropertyChanged("Revoked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Success {
+            get {
+                return this.SuccessField;
+            }
+            set {
+                if ((this.SuccessField.Equals(value) != true)) {
+                    this.SuccessField = value;
+                    this.RaisePropertyChanged("Success");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimePrint {
+            get {
+                return this.TimePrintField;
+            }
+            set {
+                if ((this.TimePrintField.Equals(value) != true)) {
+                    this.TimePrintField = value;
+                    this.RaisePropertyChanged("TimePrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.EOfficeServiceReference.UserTask UserTask {
+            get {
+                return this.UserTaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTaskField, value) != true)) {
+                    this.UserTaskField = value;
+                    this.RaisePropertyChanged("UserTask");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserTaskId {
+            get {
+                return this.UserTaskIdField;
+            }
+            set {
+                if ((this.UserTaskIdField.Equals(value) != true)) {
+                    this.UserTaskIdField = value;
+                    this.RaisePropertyChanged("UserTaskId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ReceivedDepartmentDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
     public partial class ReceivedDepartmentDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -6807,6 +7044,9 @@ namespace QLHS_DR.EOfficeServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfidentialLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] ContentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -6828,6 +7068,19 @@ namespace QLHS_DR.EOfficeServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfidentialLevel {
+            get {
+                return this.ConfidentialLevelField;
+            }
+            set {
+                if ((this.ConfidentialLevelField.Equals(value) != true)) {
+                    this.ConfidentialLevelField = value;
+                    this.RaisePropertyChanged("ConfidentialLevel");
+                }
             }
         }
         
@@ -8073,6 +8326,12 @@ namespace QLHS_DR.EOfficeServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EOfficeServiceReference.IEofficeMainService")]
     public interface IEofficeMainService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetDepartment", ReplyAction="http://tempuri.org/IEofficeMainService/GetDepartmentResponse")]
+        QLHS_DR.EOfficeServiceReference.Department GetDepartment(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetDepartment", ReplyAction="http://tempuri.org/IEofficeMainService/GetDepartmentResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Department> GetDepartmentAsync(int userId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetDepartmentName", ReplyAction="http://tempuri.org/IEofficeMainService/GetDepartmentNameResponse")]
         string GetDepartmentName(int userId);
         
@@ -8351,6 +8610,14 @@ namespace QLHS_DR.EOfficeServiceReference {
             "onse")]
         System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartmentsAsync(int requestId, QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1Res" +
+            "ponse")]
+        void UpdateRequestSendDocumentToDepartments1(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateRequestSendDocumentToDepartments1Res" +
+            "ponse")]
+        System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartments1Async(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocument", ReplyAction="http://tempuri.org/IEofficeMainService/SetRevokedRequestSendDocumentResponse")]
         void SetRevokedRequestSendDocument(int requestId, bool isRevoked);
         
@@ -8398,6 +8665,24 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFile", ReplyAction="http://tempuri.org/IEofficeMainService/SetTotlPageForAttackedFileResponse")]
         System.Threading.Tasks.Task SetTotlPageForAttackedFileAsync(int taskAttackedFileId, int totalPage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/CountPrintDocument", ReplyAction="http://tempuri.org/IEofficeMainService/CountPrintDocumentResponse")]
+        void CountPrintDocument(int userTaskId, int pageNumber, int printCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/CountPrintDocument", ReplyAction="http://tempuri.org/IEofficeMainService/CountPrintDocumentResponse")]
+        System.Threading.Tasks.Task CountPrintDocumentAsync(int userTaskId, int pageNumber, int printCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/CountPrintDocument1", ReplyAction="http://tempuri.org/IEofficeMainService/CountPrintDocument1Response")]
+        void CountPrintDocument1(int userTaskId, int pageNumber, int printCount, bool success, string printerName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/CountPrintDocument1", ReplyAction="http://tempuri.org/IEofficeMainService/CountPrintDocument1Response")]
+        System.Threading.Tasks.Task CountPrintDocument1Async(int userTaskId, int pageNumber, int printCount, bool success, string printerName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetCountPrintDocument", ReplyAction="http://tempuri.org/IEofficeMainService/GetCountPrintDocumentResponse")]
+        int GetCountPrintDocument(int userTaskId, int pageNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetCountPrintDocument", ReplyAction="http://tempuri.org/IEofficeMainService/GetCountPrintDocumentResponse")]
+        System.Threading.Tasks.Task<int> GetCountPrintDocumentAsync(int userTaskId, int pageNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetUserByName", ReplyAction="http://tempuri.org/IEofficeMainService/GetUserByNameResponse")]
         QLHS_DR.EOfficeServiceReference.User GetUserByName(string username);
@@ -8717,6 +9002,12 @@ namespace QLHS_DR.EOfficeServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateTask", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateTaskResponse")]
         System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.EOfficeServiceReference.Task task, int userId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFile", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFileResponse")]
+        void UpdateTaskAndTaskAttackedFile(QLHS_DR.EOfficeServiceReference.Task task, QLHS_DR.EOfficeServiceReference.TaskAttachedFile taskAttachedFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFile", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateTaskAndTaskAttackedFileResponse")]
+        System.Threading.Tasks.Task UpdateTaskAndTaskAttackedFileAsync(QLHS_DR.EOfficeServiceReference.Task task, QLHS_DR.EOfficeServiceReference.TaskAttachedFile taskAttachedFile);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/UpdateUserTasks", ReplyAction="http://tempuri.org/IEofficeMainService/UpdateUserTasksResponse")]
         bool UpdateUserTasks(QLHS_DR.EOfficeServiceReference.UserTask[] userTasks, int userId);
         
@@ -8776,12 +9067,6 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/SetUserTaskFinish", ReplyAction="http://tempuri.org/IEofficeMainService/SetUserTaskFinishResponse")]
         System.Threading.Tasks.Task SetUserTaskFinishAsync(int taskId, int userId, bool isFinish);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetDepartment", ReplyAction="http://tempuri.org/IEofficeMainService/GetDepartmentResponse")]
-        QLHS_DR.EOfficeServiceReference.Department GetDepartment(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEofficeMainService/GetDepartment", ReplyAction="http://tempuri.org/IEofficeMainService/GetDepartmentResponse")]
-        System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Department> GetDepartmentAsync(int userId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -8809,6 +9094,14 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         public EofficeMainServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public QLHS_DR.EOfficeServiceReference.Department GetDepartment(int userId) {
+            return base.Channel.GetDepartment(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Department> GetDepartmentAsync(int userId) {
+            return base.Channel.GetDepartmentAsync(userId);
         }
         
         public string GetDepartmentName(int userId) {
@@ -9171,6 +9464,14 @@ namespace QLHS_DR.EOfficeServiceReference {
             return base.Channel.UpdateRequestSendDocumentToDepartmentsAsync(requestId, requestSendDocumentDTOs);
         }
         
+        public void UpdateRequestSendDocumentToDepartments1(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            base.Channel.UpdateRequestSendDocumentToDepartments1(requestId, confidentialLevel, requestSendDocumentDTOs);
+        }
+        
+        public System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartments1Async(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            return base.Channel.UpdateRequestSendDocumentToDepartments1Async(requestId, confidentialLevel, requestSendDocumentDTOs);
+        }
+        
         public void SetRevokedRequestSendDocument(int requestId, bool isRevoked) {
             base.Channel.SetRevokedRequestSendDocument(requestId, isRevoked);
         }
@@ -9233,6 +9534,30 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         public System.Threading.Tasks.Task SetTotlPageForAttackedFileAsync(int taskAttackedFileId, int totalPage) {
             return base.Channel.SetTotlPageForAttackedFileAsync(taskAttackedFileId, totalPage);
+        }
+        
+        public void CountPrintDocument(int userTaskId, int pageNumber, int printCount) {
+            base.Channel.CountPrintDocument(userTaskId, pageNumber, printCount);
+        }
+        
+        public System.Threading.Tasks.Task CountPrintDocumentAsync(int userTaskId, int pageNumber, int printCount) {
+            return base.Channel.CountPrintDocumentAsync(userTaskId, pageNumber, printCount);
+        }
+        
+        public void CountPrintDocument1(int userTaskId, int pageNumber, int printCount, bool success, string printerName) {
+            base.Channel.CountPrintDocument1(userTaskId, pageNumber, printCount, success, printerName);
+        }
+        
+        public System.Threading.Tasks.Task CountPrintDocument1Async(int userTaskId, int pageNumber, int printCount, bool success, string printerName) {
+            return base.Channel.CountPrintDocument1Async(userTaskId, pageNumber, printCount, success, printerName);
+        }
+        
+        public int GetCountPrintDocument(int userTaskId, int pageNumber) {
+            return base.Channel.GetCountPrintDocument(userTaskId, pageNumber);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetCountPrintDocumentAsync(int userTaskId, int pageNumber) {
+            return base.Channel.GetCountPrintDocumentAsync(userTaskId, pageNumber);
         }
         
         public QLHS_DR.EOfficeServiceReference.User GetUserByName(string username) {
@@ -9659,6 +9984,14 @@ namespace QLHS_DR.EOfficeServiceReference {
             return base.Channel.UpdateTaskAsync(task, userId);
         }
         
+        public void UpdateTaskAndTaskAttackedFile(QLHS_DR.EOfficeServiceReference.Task task, QLHS_DR.EOfficeServiceReference.TaskAttachedFile taskAttachedFile) {
+            base.Channel.UpdateTaskAndTaskAttackedFile(task, taskAttachedFile);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTaskAndTaskAttackedFileAsync(QLHS_DR.EOfficeServiceReference.Task task, QLHS_DR.EOfficeServiceReference.TaskAttachedFile taskAttachedFile) {
+            return base.Channel.UpdateTaskAndTaskAttackedFileAsync(task, taskAttachedFile);
+        }
+        
         public bool UpdateUserTasks(QLHS_DR.EOfficeServiceReference.UserTask[] userTasks, int userId) {
             return base.Channel.UpdateUserTasks(userTasks, userId);
         }
@@ -9737,14 +10070,6 @@ namespace QLHS_DR.EOfficeServiceReference {
         
         public System.Threading.Tasks.Task SetUserTaskFinishAsync(int taskId, int userId, bool isFinish) {
             return base.Channel.SetUserTaskFinishAsync(taskId, userId, isFinish);
-        }
-        
-        public QLHS_DR.EOfficeServiceReference.Department GetDepartment(int userId) {
-            return base.Channel.GetDepartment(userId);
-        }
-        
-        public System.Threading.Tasks.Task<QLHS_DR.EOfficeServiceReference.Department> GetDepartmentAsync(int userId) {
-            return base.Channel.GetDepartmentAsync(userId);
         }
     }
 }

@@ -14,7 +14,7 @@ using QLHS_DR.View;
 using EofficeClient.ViewModel;
 using QLHS_DR.View.DocumentView;
 using EofficeClient.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using DevExpress.Mvvm.Native;
 using EofficeClient.ViewModel.DocumentViewModel;
 using AutoUpdaterDotNET;
@@ -43,6 +43,12 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using DevExpress.XtraPrinting.Native;
 using DevExpress.Data.Browsing;
+using DevExpress.Pdf;
+using System.Drawing;
+using System.IO;
+using System.Net.Http;
+using System.Diagnostics;
+using TableDependency.SqlClient.Base;
 
 namespace QLHS_DR.ViewModel
 {
@@ -51,7 +57,7 @@ namespace QLHS_DR.ViewModel
         private BackgroundWorker backgroundWorker;
         ObservableCollection<UserTask> _OldUserTasks;
 
-        string _ConnectionString = @"data source=***;initial catalog=EEMCDR;persist security info=true;user id=***;password=***";
+        string _ConnectionString = "";
         private readonly IEventAggregator _eventAggregator;
         private readonly SubscriptionToken _subscriptionToken;
 
@@ -59,10 +65,10 @@ namespace QLHS_DR.ViewModel
 
         Notifier notifierForNormalUser;
         MessageOptions optionsForNormalUser;
-        private SqlTableDependency<UserTask> _TbRequestSendDocumentDependency;
+        private SqlTableDependency<NortifyUserTask> _TbRequestSendDocumentDependency;
 
         private Window window;
-        private EofficeMainServiceClient _MyClient;
+        private MessageServiceClient _MyClient;
         private ObservableCollection<TabContainer> _Workspaces;
         public ObservableCollection<TabContainer> Workspaces
         {
@@ -149,6 +155,8 @@ namespace QLHS_DR.ViewModel
         public ICommand EditStampCommand { get; set; }
         public ICommand LoadTaskCreateByMe { get; set; }
         public ICommand SetTotalPageOfTaskAttackedFileCommand { get; set; }
+        public ICommand OpenRevokedPrintedDocumentManagerCommand { get; set; }
+        public ICommand OpenDocumentPrintedByUserWindowCommand { get; set; }
         #endregion
 
         private ListNewDocumentUC listNewDocumentUC;
@@ -160,21 +168,16 @@ namespace QLHS_DR.ViewModel
         TaskCreateByMeViewModel taskCreateByMeViewModel;
         UserTaskFinishViewModel userTaskFinishViewModel;
         UserTaskRevokedViewModel userTaskRevokedViewModel;
-        AllTaskViewModel allTaskViewModel;
-
-        ChannelFactory<IEofficeMainService> _ChannelFactory;
+        AllTaskViewModel allTaskViewModel;       
         public MainViewModel()
-        {
-           
+        {          
 
             //--------------------Message between Viewmodels------------------------//
-
             _eventAggregator = new EventAggregator();
             allTaskUC = new AllTaskUC();
             listNewDocumentUC = new ListNewDocumentUC();
             userTaskFinishUC = new UserTaskFinishUC();
             userTaskRevokedUC = new UserTaskRevokedUC();
-
             // Lấy sự kiện TitleTabControlMessage từ EventAggregator
             _eventAggregator.GetEvent<NewTasksTabTitleChangedEvent>().Subscribe(HandleNewTasksTabTitleChangedMessage);
             _eventAggregator.GetEvent<FinishTasksTabTitleChangedEvent>().Subscribe(HandleFinishTasksTabTitleChangedMessage);
@@ -226,7 +229,7 @@ namespace QLHS_DR.ViewModel
             string addressUpdateInfo = Settings.Default.AddressUpdateInfo;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
             AutoUpdater.Start(addressUpdateInfo);
-
+           
             Workspaces = new ObservableCollection<TabContainer>();
 
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -255,12 +258,10 @@ namespace QLHS_DR.ViewModel
                         }
                         try
                         {
-                            _ChannelFactory = ServiceHelper.NewChannelFactory();
-                            var _proxy = _ChannelFactory.CreateChannel();
-                            ((IClientChannel)_proxy).Open();
-                            _OldUserTasks = _proxy.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
-                            ((IClientChannel)_proxy).Close();
-
+                            _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                            _MyClient.Open();
+                            _OldUserTasks = _MyClient.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
+                            _MyClient.Close();
                             //--------------------Check New Message------------------------//
                             backgroundWorker = new BackgroundWorker
                             {
@@ -271,15 +272,27 @@ namespace QLHS_DR.ViewModel
                             {
                                 backgroundWorker.RunWorkerAsync();
                             }
+
+                            var mapper = new ModelToTableMapper<NortifyUserTask>();
+                            mapper.AddMapping(c => c.Id, "Id");
+                            mapper.AddMapping(c => c.UserId, "UserId");
+                            mapper.AddMapping(c => c.TaskId, "TaskId");
+                            mapper.AddMapping(c => c.AssignedById, "AssignedById");
+                            mapper.AddMapping(c => c.ProductCode, "ProductCode");
+                            mapper.AddMapping(c => c.Subject, "Subject");
+                            mapper.AddMapping(c => c.Actived, "Actived");
+                            mapper.AddMapping(c => c.TimeCreate, "TimeCreate");
+                            //_TbRequestSendDocumentDependency = new SqlTableDependency<NortifyUserTask>(_ConnectionString, tableName: "NortifyUserTask", schemaName: "dbo");
+                            //_TbRequestSendDocumentDependency.OnChanged += RequestSendDocument_OnChanged;
+                            //_TbRequestSendDocumentDependency.OnError += RequestSendDocument_OnError;
+                            //_TbRequestSendDocumentDependency.Start();
                         }
                         catch(Exception ex)
-                        {                            
+                        {
+                            _MyClient.Abort();
                             System.Windows.Forms.MessageBox.Show(ex.Message);
                         }
                        
-                        //_TbRequestSendDocumentDependency = new SqlTableDependency<UserTask>(_ConnectionString, tableName: "UserTask", schemaName: "dbo");
-                        //_TbRequestSendDocumentDependency.OnChanged += RequestSendDocument_OnChanged;                                                  
-                        //_TbRequestSendDocumentDependency.Start();
                         p.Show();
                         //LoadDefaultTab();
                     }
@@ -474,6 +487,20 @@ namespace QLHS_DR.ViewModel
                 newTaskWindow.DataContext = newTaskViewModel;
                 newTaskWindow.ShowDialog();
             });
+            OpenRevokedPrintedDocumentManagerCommand = new RelayCommand<Object>((p) => { if (true) return true; else return false; }, (p) =>
+            {
+                RevokedPrintedDocumentManagerWD window = new RevokedPrintedDocumentManagerWD();
+                RevokedPrintedDocumentManagerViewModel model = new RevokedPrintedDocumentManagerViewModel();
+                window.DataContext = model;
+                window.ShowDialog();
+            });
+            OpenDocumentPrintedByUserWindowCommand = new RelayCommand<Object>((p) => { if (true) return true; else return false; }, (p) =>
+            {
+                DocumentPrintedByUserWindow window = new DocumentPrintedByUserWindow();
+                DocumentPrintedByUserViewModel model = new DocumentPrintedByUserViewModel();
+                window.DataContext = model;
+                window.ShowDialog();
+            });
             OpenTransformerManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 TabContainer item = Workspaces.Where(x => x.Header.Contains("Danh sách MBA")).FirstOrDefault();
@@ -497,35 +524,23 @@ namespace QLHS_DR.ViewModel
                     };
                     Workspaces.Add(tabItemNew);
                 }
-            });
-            SetTotalPageOfTaskAttackedFileCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {
-                if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                {
-                    _ChannelFactory = ServiceHelper.NewChannelFactory();
-                }
-                IEofficeMainService proxy = _ChannelFactory.CreateChannel();
-                try
-                {
-                    ((IClientChannel)proxy).Open();
-                    ObservableCollection<UserTask> newUserTasks = proxy.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
-
-
-
-                    proxy.SetTotlPageForAttackedFile(0, 0);
-
-
-                    ((IClientChannel)proxy).Close();
-                    _OldUserTasks = newUserTasks;
-                }
-                catch (Exception ex)
-                {
-                    ((IClientChannel)proxy).Abort();
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-            });
+            });            
         }
 
+        //private void RequestSendDocument_OnError(object sender, TableDependency.SqlClient.Base.EventArgs.ErrorEventArgs e)
+        //{
+        //    string errorMessage = e.Error.Message; // Thông báo lỗi   
+        //}
+
+        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
+        {
+            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask);
+            if (orAdd != null)
+            {
+                taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
+            }
+        }
         private void backgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -541,23 +556,19 @@ namespace QLHS_DR.ViewModel
             }
         }
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {             
-            if ((_ChannelFactory == null) ||(_ChannelFactory.State == CommunicationState.Faulted) ||(_ChannelFactory.State != CommunicationState.Opened))
-            {
-                _ChannelFactory = ServiceHelper.NewChannelFactory();
-            }
-            IEofficeMainService proxy = _ChannelFactory.CreateChannel();    
+        {
+            MessageServiceClient _MyClient1 = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             try
             {
-                ((IClientChannel)proxy).Open();
-                ObservableCollection<UserTask> newUserTasks = proxy.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
+                _MyClient1.Open();
+                ObservableCollection<UserTask> newUserTasks = _MyClient1.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
                 if (newUserTasks != null && _OldUserTasks != null)
                 {
                     if (newUserTasks.Count > _OldUserTasks.Count)
                     {
                         for (int i = _OldUserTasks.Count; i < newUserTasks.Count; i++)
                         {
-                            EOfficeServiceReference.Task task = proxy.LoadTask(newUserTasks[i].TaskId);
+                            Task task = _MyClient1.LoadTask(newUserTasks[i].TaskId);
                             string message = "Có tài liệu vừa được gửi tới bạn: " + task.Subject;
                             System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                             {
@@ -565,39 +576,34 @@ namespace QLHS_DR.ViewModel
                             }));
                         }
                     }
-                }                
-                ((IClientChannel)proxy).Close();
+                }
+                _MyClient1.Close();
                 _OldUserTasks = newUserTasks;
             }
             catch (Exception ex)
-            {             
-                ((IClientChannel)proxy).Abort();
-            }     
-            
+            {
+                _MyClient1.Abort();
+            }
         }
-        //private void RequestSendDocument_OnChanged(object sender, RecordChangedEventArgs<UserTask> e)
+        //private void RequestSendDocument_OnChanged(object sender, RecordChangedEventArgs<NortifyUserTask> e)
         //{
         //    try
         //    {
         //        if (e.ChangeType != TableDependency.SqlClient.Base.Enums.ChangeType.None)
         //        {
         //            var entry = e.Entity;
-        //            if (e.ChangeType == TableDependency.SqlClient.Base.Enums.ChangeType.Insert && entry.UserId==_CurrentUser.Id)
-        //            {
-        //                _MyClient = ServiceHelper.NewEofficeMainServiceClient(_CurrentUser.UserName, SectionLogin.Ins.Token);
-        //                _MyClient.Open();
-        //                EOfficeServiceReference.Task task = _MyClient.LoadTask(entry.TaskId);
-        //                 _MyClient.Close();
-        //                string message = "Có tài liệu vừa được gửi tới bạn: " + task.Subject;
+        //            if (e.ChangeType == TableDependency.SqlClient.Base.Enums.ChangeType.Insert && entry.UserId == _CurrentUser.Id)
+        //            {                       
+        //                string message = "Tài liệu MS: "+ entry.ProductCode +" : "+ entry .Subject+  " vừa được gửi tới bạn." ;
 
         //                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
         //                {
         //                    notifierForNormalUser.ShowInformation(message, optionsForNormalUser);
-        //                }));
+        //                }));  
         //            }
         //        }
         //    }
-        //    catch(Exception ex)
+        //    catch (Exception ex)
         //    {
         //        System.Windows.Forms.MessageBox.Show(ex.Message);
         //    }
@@ -690,32 +696,30 @@ namespace QLHS_DR.ViewModel
         {
             if (args.IsUpdateAvailable)
             {
-                DialogResult dialogResult;
-                dialogResult = System.Windows.Forms.MessageBox.Show($@"Bạn ơi, phần mềm của bạn có phiên bản mới {args.CurrentVersion}. Phiên bản bạn đang sử dụng hiện tại  {args.InstalledVersion}. Bạn có muốn cập nhật phần mềm không?", @"Cập nhật phần mềm",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Information);
+                //DialogResult dialogResult;
+                //dialogResult = System.Windows.Forms.MessageBox.Show($@"Bạn ơi, phần mềm của bạn có phiên bản mới {args.CurrentVersion}. Phiên bản bạn đang sử dụng hiện tại  {args.InstalledVersion}. Bạn có muốn cập nhật phần mềm không?", @"Cập nhật phần mềm",
+                //            MessageBoxButtons.YesNo,
+                //            MessageBoxIcon.Information);
 
-                if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
-                {
+                //if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
+                //{
                     try
                     {
+                        Process.Start(args.ChangelogURL);
+
                         if (AutoUpdater.DownloadUpdate(args))
                         {
                             window.Close();
                         }
+                        //AutoUpdater.BasicAuthChangeLog();
                     }
                     catch (Exception exception)
                     {
                         System.Windows.Forms.MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                     }
-                }
-            }
-            //else
-            //{
-            //    System.Windows.Forms.MessageBox.Show(@"Phiên bản bạn đang sử dụng đã được cập nhật mới nhất.", @"Cập nhật phần mềm",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+                //}
+            }           
         }
         private Version GetRunningVersion()
         {
@@ -736,6 +740,18 @@ namespace QLHS_DR.ViewModel
         public static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
         {
             return true;
-        }        
+        }
+        public class NortifyUserTask
+        {
+            public int Id { get; set; }
+            public int UserId { get; set; }
+            public int TaskId { get; set; }
+            public int AssignedById { get; set; }
+            public bool Actived { get; set; }
+            public int TimeCreate { get; set; }
+            public string ProductCode { get; set; }
+            public string Subject { get; set; }
+
+        }
     }
 }

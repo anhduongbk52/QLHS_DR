@@ -1,6 +1,6 @@
 ﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -16,12 +16,12 @@ namespace QLHS_DR.Core
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
         private User user_0;
         private IReadOnlyList<User> ireadOnlyList_0;
-        private EofficeMainServiceClient _myClient;
+        private MessageServiceClient _myClient;
 
         //Khoi tao
         public G6Class() //Khởi tạo
         {
-            _myClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+            _myClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
         }
 
 

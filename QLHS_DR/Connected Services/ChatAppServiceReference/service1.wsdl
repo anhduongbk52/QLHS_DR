@@ -1,0 +1,2616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="MessageService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IMessageService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                </msf:SslTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp>
+            </sp:IncludeTimestamp>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body>
+                      </sp:Body>
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+                      </sp:Header>
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body>
+                      </sp:Body>
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                            </msf:SslTransportSecurity>
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256>
+                            </sp:Basic256>
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict>
+                            </sp:Strict>
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp>
+                        </sp:IncludeTimestamp>
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:SignedSupportingTokens>
+                      <wsp:Policy>
+                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                          <wsp:Policy>
+                            <sp:WssUsernameToken10>
+                            </sp:WssUsernameToken10>
+                          </wsp:Policy>
+                        </sp:UsernameToken>
+                      </wsp:Policy>
+                    </sp:SignedSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy>
+                      </wsp:Policy>
+                    </sp:Wss11>
+                    <sp:Trust10>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens>
+                        </sp:MustSupportIssuedTokens>
+                        <sp:RequireClientEntropy>
+                        </sp:RequireClientEntropy>
+                        <sp:RequireServerEntropy>
+                        </sp:RequireServerEntropy>
+                      </wsp:Policy>
+                    </sp:Trust10>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+          </wsp:Policy>
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens>
+            </sp:MustSupportIssuedTokens>
+            <sp:RequireClientEntropy>
+            </sp:RequireClientEntropy>
+            <sp:RequireServerEntropy>
+            </sp:RequireServerEntropy>
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMessageService_CountPrintDocument1_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocument1" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_CountPrintDocument1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocument1Response" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetCountPrintDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountPrintDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetCountPrintDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountPrintDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateTaskAndTaskAttackedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAndTaskAttackedFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateTaskAndTaskAttackedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAndTaskAttackedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProcessingUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessingUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProcessingUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessingUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetSeenUsersInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeenUsersInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetSeenUsersInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeenUsersInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPrintedUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintedUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPrintedUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintedUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetSeenUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSeenUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetSeenUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSeenUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetPrintedUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintedUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetPrintedUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintedUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveProcessingUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProcessingUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveProcessingUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProcessingUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_HasSeenInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasSeenInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_HasSeenInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasSeenInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_IsProcessingInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsProcessingInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_IsProcessingInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsProcessingInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskFinish" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentName" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetGroupDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetGroupDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddDepartmentTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddDepartmentTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetReceivedDepartmentDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceivedDepartmentDTO" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetReceivedDepartmentDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceivedDepartmentDTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddDepartmentToTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentToTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddDepartmentToTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDepartmentToTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPermissionOfUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionOfUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPermissionOfUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionOfUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadTransformerManual1_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadTransformerManual1" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadTransformerManual1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadTransformerManual1Response" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SearchTransformer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTransformer" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SearchTransformer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTransformerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTransformerDTOByProductCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTransformerDTOByProductCode" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTransformerDTOByProductCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTransformerDTOByProductCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadStandards_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadStandards" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadStandards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadStandardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProductById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProductById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProductByProductCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByProductCode" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProductByProductCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByProductCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadContracts_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadContracts" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadContracts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadContractsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadTransformerManualFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadTransformerManualFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadContractFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContractFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadContractFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContractFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadDoctitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDoctitle" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadDoctitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDoctitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedContract" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewTransformer_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewTransformer" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewTransformer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewTransformerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateTransformer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTransformer" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateTransformer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTransformerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LockProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LockProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UnLockProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UnLockProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadContract" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadPublishDocumentDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadPublishDocumentDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadPublishDocumentDTODeleteds_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTODeleteds" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadPublishDocumentDTODeleteds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPublishDocumentDTODeletedsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddPublishDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPublishDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddPublishDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPublishDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeletedPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletedPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeletedPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletedPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdatePublishDocumentInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePublishDocumentInfo" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdatePublishDocumentInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePublishDocumentInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RestorePublishDocumentDeleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:RestorePublishDocumentDeleted" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RestorePublishDocumentDeleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestorePublishDocumentDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_CheckExistRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckExistRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_CheckExistRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckExistRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadRequestSendDocumentsOfMyDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentsOfMyDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadRequestSendDocumentsOfMyDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentsOfMyDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadRequestSendDocumentDTOOfRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentDTOOfRequest" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadRequestSendDocumentDTOOfRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentDTOOfRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadRequestSendDocumentToDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentToDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadRequestSendDocumentToDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestSendDocumentToDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateRequestSendDocumentToDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateRequestSendDocumentToDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateRequestSendDocumentToDepartments1_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartments1" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateRequestSendDocumentToDepartments1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentToDepartments1Response" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetRevokedRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRevokedRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetRevokedRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRevokedRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ProcessRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ProcessRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPublishDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublishDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPublishDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublishDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateRequestSendDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateRequestSendDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LockUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LockUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UnLockUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UnLockUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnLockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_EditTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_EditTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTransformerManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetTotlPageForAttackedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTotlPageForAttackedFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetTotlPageForAttackedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTotlPageForAttackedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_CountPrintDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_CountPrintDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountPrintDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetConnectedUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectedUsers" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetConnectedUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConnectedUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTaskByConfidentialLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTaskByConfidentialLevel" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTaskByConfidentialLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTaskByConfidentialLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadUserTaskOfMyByConfidentialLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadUserTaskOfMyByConfidentialLevel" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadUserTaskOfMyByConfidentialLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadUserTaskOfMyByConfidentialLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetAllUserTaskOfTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserTaskOfTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetAllUserTaskOfTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUserTaskOfTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskNotFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskNotFinish" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskNotFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskNotFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksNotFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksNotFinish" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksNotFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksNotFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateUserTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserTasks" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateUserTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskPermissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskPermissions" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskPermissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ConfirmDisposedPrintedDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmDisposedPrintedDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ConfirmDisposedPrintedDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmDisposedPrintedDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskAttachedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskAttachedFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskAttachedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskAttachedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskPrintManagers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskPrintManagers" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskPrintManagers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskPrintManagersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RevokeTaskByCurrentUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTaskByCurrentUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RevokeTaskByCurrentUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTaskByCurrentUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserContacts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserContacts" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserContacts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadUserDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadUserDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadUserDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadUserDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserDepartmentsOfTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDepartmentsOfTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserDepartmentsOfTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDepartmentsOfTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByName" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUsersOfDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersOfDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUsersOfDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersOfDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserById" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserECPrKeyFor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserECPrKeyFor" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserECPrKeyFor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserECPrKeyForResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessages" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserLastOnline_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLastOnline" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserLastOnline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLastOnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadMessagesFromMessageId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesFromMessageId" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadMessagesFromMessageId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesFromMessageIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasks" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFinish" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksRevoked_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksRevoked" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksRevoked_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksRevokedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadAllTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllTasks" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadAllTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadAllTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddTaskAttachedFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskAttachedFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddTaskAttachedFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskAttachedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksFromTaskId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFromTaskId" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksFromTaskId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFromTaskIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_IsExistTaskName_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistTaskName" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_IsExistTaskName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistTaskNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTasks" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteTaskAttachedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteTaskAttachedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddUserTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTasks" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddUserTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetServerDateTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerDateTime" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetServerDateTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskCreateByMeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskFinish" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskFinishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskRevoked_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskRevoked" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserTaskRevoked_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTaskRevokedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLog" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPermissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissions" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPermissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPrintableUserInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintableUserInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPrintableUserInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintableUserInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetPrintableUsersInTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintableUsersInTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetPrintableUsersInTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPrintableUsersInTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskViewFileAble_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskViewFileAble" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskViewFileAble_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskViewFileAbleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskSaveFileAble_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskSaveFileAble" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskSaveFileAble_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskSaveFileAbleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskIsProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcess" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskIsProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetJobContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetJobContent" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetJobContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetJobContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AssignUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AssignUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RevokeTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTasks" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RevokeTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RevokeTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetLogs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogs" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetLogs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_TryLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:TryLogin" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_TryLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TryLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMessageService">
+    <wsdl:operation name="CountPrintDocument1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/CountPrintDocument1" message="tns:IMessageService_CountPrintDocument1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/CountPrintDocument1Response" message="tns:IMessageService_CountPrintDocument1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountPrintDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetCountPrintDocument" message="tns:IMessageService_GetCountPrintDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetCountPrintDocumentResponse" message="tns:IMessageService_GetCountPrintDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateTask" message="tns:IMessageService_UpdateTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateTaskResponse" message="tns:IMessageService_UpdateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAndTaskAttackedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFile" message="tns:IMessageService_UpdateTaskAndTaskAttackedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFileResponse" message="tns:IMessageService_UpdateTaskAndTaskAttackedFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetProcessingUserInTask" message="tns:IMessageService_GetProcessingUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetProcessingUserInTaskResponse" message="tns:IMessageService_GetProcessingUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeenUsersInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetSeenUsersInTask" message="tns:IMessageService_GetSeenUsersInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetSeenUsersInTaskResponse" message="tns:IMessageService_GetSeenUsersInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintedUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPrintedUserInTask" message="tns:IMessageService_GetPrintedUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPrintedUserInTaskResponse" message="tns:IMessageService_GetPrintedUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSeenUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetSeenUserInTask" message="tns:IMessageService_SetSeenUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetSeenUserInTaskResponse" message="tns:IMessageService_SetSeenUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintedUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetPrintedUserInTask" message="tns:IMessageService_SetPrintedUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetPrintedUserInTaskResponse" message="tns:IMessageService_SetPrintedUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProcessingUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveProcessingUser" message="tns:IMessageService_RemoveProcessingUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveProcessingUserResponse" message="tns:IMessageService_RemoveProcessingUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasSeenInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/HasSeenInTask" message="tns:IMessageService_HasSeenInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/HasSeenInTaskResponse" message="tns:IMessageService_HasSeenInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsProcessingInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/IsProcessingInTask" message="tns:IMessageService_IsProcessingInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/IsProcessingInTaskResponse" message="tns:IMessageService_IsProcessingInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskFinish" message="tns:IMessageService_SetUserTaskFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskFinishResponse" message="tns:IMessageService_SetUserTaskFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartment" message="tns:IMessageService_GetDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentResponse" message="tns:IMessageService_GetDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentName" message="tns:IMessageService_GetDepartmentName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentNameResponse" message="tns:IMessageService_GetDepartmentName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetGroupDepartment" message="tns:IMessageService_GetGroupDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetGroupDepartmentResponse" message="tns:IMessageService_GetGroupDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentTask" message="tns:IMessageService_GetDepartmentTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentTaskResponse" message="tns:IMessageService_GetDepartmentTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddDepartmentTask" message="tns:IMessageService_AddDepartmentTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddDepartmentTaskResponse" message="tns:IMessageService_AddDepartmentTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewTask" message="tns:IMessageService_NewTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewTaskResponse" message="tns:IMessageService_NewTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceivedDepartmentDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetReceivedDepartmentDTO" message="tns:IMessageService_GetReceivedDepartmentDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetReceivedDepartmentDTOResponse" message="tns:IMessageService_GetReceivedDepartmentDTO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentToTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddDepartmentToTask" message="tns:IMessageService_AddDepartmentToTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddDepartmentToTaskResponse" message="tns:IMessageService_AddDepartmentToTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissionOfUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPermissionOfUser" message="tns:IMessageService_GetPermissionOfUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPermissionOfUserResponse" message="tns:IMessageService_GetPermissionOfUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UploadTransformerManual" message="tns:IMessageService_UploadTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UploadTransformerManualResponse" message="tns:IMessageService_UploadTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadTransformerManual1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UploadTransformerManual1" message="tns:IMessageService_UploadTransformerManual1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UploadTransformerManual1Response" message="tns:IMessageService_UploadTransformerManual1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchTransformer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SearchTransformer" message="tns:IMessageService_SearchTransformer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SearchTransformerResponse" message="tns:IMessageService_SearchTransformer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransformerDTOByProductCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetTransformerDTOByProductCode" message="tns:IMessageService_GetTransformerDTOByProductCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetTransformerDTOByProductCodeResponse" message="tns:IMessageService_GetTransformerDTOByProductCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadStandards">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadStandards" message="tns:IMessageService_LoadStandards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadStandardsResponse" message="tns:IMessageService_LoadStandards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetProductById" message="tns:IMessageService_GetProductById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetProductByIdResponse" message="tns:IMessageService_GetProductById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductByProductCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetProductByProductCode" message="tns:IMessageService_GetProductByProductCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetProductByProductCodeResponse" message="tns:IMessageService_GetProductByProductCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTransformerManual" message="tns:IMessageService_LoadTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTransformerManualResponse" message="tns:IMessageService_LoadTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadContracts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadContracts" message="tns:IMessageService_LoadContracts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadContractsResponse" message="tns:IMessageService_LoadContracts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadTransformerManualFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadTransformerManualFile" message="tns:IMessageService_DownloadTransformerManualFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadTransformerManualFileResponse" message="tns:IMessageService_DownloadTransformerManualFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContractFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadContractFile" message="tns:IMessageService_DownloadContractFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadContractFileResponse" message="tns:IMessageService_DownloadContractFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDoctitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadDoctitle" message="tns:IMessageService_LoadDoctitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadDoctitleResponse" message="tns:IMessageService_LoadDoctitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeletedTransformerManual" message="tns:IMessageService_SetDeletedTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeletedTransformerManualResponse" message="tns:IMessageService_SetDeletedTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeletedContract" message="tns:IMessageService_SetDeletedContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeletedContractResponse" message="tns:IMessageService_SetDeletedContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewTransformer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewTransformer" message="tns:IMessageService_NewTransformer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewTransformerResponse" message="tns:IMessageService_NewTransformer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransformer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateTransformer" message="tns:IMessageService_UpdateTransformer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateTransformerResponse" message="tns:IMessageService_UpdateTransformer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveProduct" message="tns:IMessageService_RemoveProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveProductResponse" message="tns:IMessageService_RemoveProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LockProduct" message="tns:IMessageService_LockProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LockProductResponse" message="tns:IMessageService_LockProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnLockProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UnLockProduct" message="tns:IMessageService_UnLockProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UnLockProductResponse" message="tns:IMessageService_UnLockProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UploadContract" message="tns:IMessageService_UploadContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UploadContractResponse" message="tns:IMessageService_UploadContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewPublishDocument" message="tns:IMessageService_NewPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewPublishDocumentResponse" message="tns:IMessageService_NewPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTOs" message="tns:IMessageService_LoadPublishDocumentDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTOsResponse" message="tns:IMessageService_LoadPublishDocumentDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTODeleteds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeleteds" message="tns:IMessageService_LoadPublishDocumentDTODeleteds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeletedsResponse" message="tns:IMessageService_LoadPublishDocumentDTODeleteds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPublishDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddPublishDocuments" message="tns:IMessageService_AddPublishDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddPublishDocumentsResponse" message="tns:IMessageService_AddPublishDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeletedPublishDocument" message="tns:IMessageService_SetDeletedPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeletedPublishDocumentResponse" message="tns:IMessageService_SetDeletedPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletedPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeletedPublishDocument" message="tns:IMessageService_DeletedPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeletedPublishDocumentResponse" message="tns:IMessageService_DeletedPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePublishDocumentInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdatePublishDocumentInfo" message="tns:IMessageService_UpdatePublishDocumentInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdatePublishDocumentInfoResponse" message="tns:IMessageService_UpdatePublishDocumentInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RestorePublishDocumentDeleted">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RestorePublishDocumentDeleted" message="tns:IMessageService_RestorePublishDocumentDeleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RestorePublishDocumentDeletedResponse" message="tns:IMessageService_RestorePublishDocumentDeleted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewRequestSendDocument" message="tns:IMessageService_NewRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewRequestSendDocumentResponse" message="tns:IMessageService_NewRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckExistRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/CheckExistRequestSendDocument" message="tns:IMessageService_CheckExistRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/CheckExistRequestSendDocumentResponse" message="tns:IMessageService_CheckExistRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentsOfMyDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartment" message="tns:IMessageService_LoadRequestSendDocumentsOfMyDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartmentResponse" message="tns:IMessageService_LoadRequestSendDocumentsOfMyDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentDTOOfRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequest" message="tns:IMessageService_LoadRequestSendDocumentDTOOfRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequestResponse" message="tns:IMessageService_LoadRequestSendDocumentDTOOfRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentToDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartments" message="tns:IMessageService_LoadRequestSendDocumentToDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartmentsResponse" message="tns:IMessageService_LoadRequestSendDocumentToDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments" message="tns:IMessageService_UpdateRequestSendDocumentToDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartmentsResponse" message="tns:IMessageService_UpdateRequestSendDocumentToDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1" message="tns:IMessageService_UpdateRequestSendDocumentToDepartments1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1Response" message="tns:IMessageService_UpdateRequestSendDocumentToDepartments1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRevokedRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetRevokedRequestSendDocument" message="tns:IMessageService_SetRevokedRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetRevokedRequestSendDocumentResponse" message="tns:IMessageService_SetRevokedRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument" message="tns:IMessageService_ProcessRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestSendDocumentResponse" message="tns:IMessageService_ProcessRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPublishDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPublishDocument" message="tns:IMessageService_GetPublishDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPublishDocumentResponse" message="tns:IMessageService_GetPublishDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateRequestSendDocument" message="tns:IMessageService_UpdateRequestSendDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentResponse" message="tns:IMessageService_UpdateRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LockUser" message="tns:IMessageService_LockUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LockUserResponse" message="tns:IMessageService_LockUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UnLockUser" message="tns:IMessageService_UnLockUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UnLockUserResponse" message="tns:IMessageService_UnLockUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/EditTransformerManual" message="tns:IMessageService_EditTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/EditTransformerManualResponse" message="tns:IMessageService_EditTransformerManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTotlPageForAttackedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetTotlPageForAttackedFile" message="tns:IMessageService_SetTotlPageForAttackedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetTotlPageForAttackedFileResponse" message="tns:IMessageService_SetTotlPageForAttackedFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountPrintDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/CountPrintDocument" message="tns:IMessageService_CountPrintDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/CountPrintDocumentResponse" message="tns:IMessageService_CountPrintDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/Connect" message="tns:IMessageService_Connect_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SendMessage" message="tns:IMessageService_SendMessage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectedUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetConnectedUsers" message="tns:IMessageService_GetConnectedUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetConnectedUsersResponse" message="tns:IMessageService_GetConnectedUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTaskByConfidentialLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevel" message="tns:IMessageService_LoadTaskByConfidentialLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevelResponse" message="tns:IMessageService_LoadTaskByConfidentialLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserTaskOfMyByConfidentialLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevel" message="tns:IMessageService_LoadUserTaskOfMyByConfidentialLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevelResponse" message="tns:IMessageService_LoadUserTaskOfMyByConfidentialLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserTaskOfTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetAllUserTaskOfTask" message="tns:IMessageService_GetAllUserTaskOfTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetAllUserTaskOfTaskResponse" message="tns:IMessageService_GetAllUserTaskOfTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskNotFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskNotFinish" message="tns:IMessageService_GetUserTaskNotFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskNotFinishResponse" message="tns:IMessageService_GetUserTaskNotFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksNotFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksNotFinish" message="tns:IMessageService_LoadTasksNotFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksNotFinishResponse" message="tns:IMessageService_LoadTasksNotFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateUserTasks" message="tns:IMessageService_UpdateUserTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateUserTasksResponse" message="tns:IMessageService_UpdateUserTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTask" message="tns:IMessageService_LoadTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTaskResponse" message="tns:IMessageService_LoadTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetTaskDocument" message="tns:IMessageService_GetTaskDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetTaskDocumentResponse" message="tns:IMessageService_GetTaskDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetTaskDocuments" message="tns:IMessageService_GetTaskDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetTaskDocumentsResponse" message="tns:IMessageService_GetTaskDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPermissions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetTaskPermissions" message="tns:IMessageService_GetTaskPermissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetTaskPermissionsResponse" message="tns:IMessageService_GetTaskPermissions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmDisposedPrintedDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocument" message="tns:IMessageService_ConfirmDisposedPrintedDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocumentResponse" message="tns:IMessageService_ConfirmDisposedPrintedDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskAttachedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetTaskAttachedFile" message="tns:IMessageService_GetTaskAttachedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetTaskAttachedFileResponse" message="tns:IMessageService_GetTaskAttachedFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskPrintManagers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskPrintManagers" message="tns:IMessageService_GetUserTaskPrintManagers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskPrintManagersResponse" message="tns:IMessageService_GetUserTaskPrintManagers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTaskByCurrentUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RevokeTaskByCurrentUser" message="tns:IMessageService_RevokeTaskByCurrentUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RevokeTaskByCurrentUserResponse" message="tns:IMessageService_RevokeTaskByCurrentUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUsers" message="tns:IMessageService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUsersResponse" message="tns:IMessageService_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContacts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserContacts" message="tns:IMessageService_GetUserContacts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserContactsResponse" message="tns:IMessageService_GetUserContacts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartments" message="tns:IMessageService_GetDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsResponse" message="tns:IMessageService_GetDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadUserDepartments" message="tns:IMessageService_LoadUserDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadUserDepartmentsResponse" message="tns:IMessageService_LoadUserDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDepartmentsOfTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserDepartmentsOfTask" message="tns:IMessageService_GetUserDepartmentsOfTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserDepartmentsOfTaskResponse" message="tns:IMessageService_GetUserDepartmentsOfTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserByName" message="tns:IMessageService_GetUserByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserByNameResponse" message="tns:IMessageService_GetUserByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersOfDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUsersOfDepartment" message="tns:IMessageService_GetUsersOfDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUsersOfDepartmentResponse" message="tns:IMessageService_GetUsersOfDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserById" message="tns:IMessageService_GetUserById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserByIdResponse" message="tns:IMessageService_GetUserById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserECPrKeyFor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserECPrKeyFor" message="tns:IMessageService_GetUserECPrKeyFor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserECPrKeyForResponse" message="tns:IMessageService_GetUserECPrKeyFor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/Logout" message="tns:IMessageService_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LogoutResponse" message="tns:IMessageService_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadMessages" message="tns:IMessageService_LoadMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadMessagesResponse" message="tns:IMessageService_LoadMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserStatus" message="tns:IMessageService_GetUserStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserStatusResponse" message="tns:IMessageService_GetUserStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLastOnline">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserLastOnline" message="tns:IMessageService_GetUserLastOnline_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserLastOnlineResponse" message="tns:IMessageService_GetUserLastOnline_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessagesFromMessageId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageId" message="tns:IMessageService_LoadMessagesFromMessageId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageIdResponse" message="tns:IMessageService_LoadMessagesFromMessageId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasks" message="tns:IMessageService_LoadTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksResponse" message="tns:IMessageService_LoadTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksCreateByMe" message="tns:IMessageService_LoadTasksCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksCreateByMeResponse" message="tns:IMessageService_LoadTasksCreateByMe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFinish" message="tns:IMessageService_LoadTasksFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFinishResponse" message="tns:IMessageService_LoadTasksFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksRevoked">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksRevoked" message="tns:IMessageService_LoadTasksRevoked_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksRevokedResponse" message="tns:IMessageService_LoadTasksRevoked_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadAllTasks" message="tns:IMessageService_LoadAllTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadAllTasksResponse" message="tns:IMessageService_LoadAllTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddTask" message="tns:IMessageService_AddTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddTaskResponse" message="tns:IMessageService_AddTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskAttachedFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddTaskAttachedFile" message="tns:IMessageService_AddTaskAttachedFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddTaskAttachedFileResponse" message="tns:IMessageService_AddTaskAttachedFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFromTaskId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFromTaskId" message="tns:IMessageService_LoadTasksFromTaskId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFromTaskIdResponse" message="tns:IMessageService_LoadTasksFromTaskId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsExistTaskName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/IsExistTaskName" message="tns:IMessageService_IsExistTaskName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/IsExistTaskNameResponse" message="tns:IMessageService_IsExistTaskName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteTasks" message="tns:IMessageService_DeleteTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteTasksResponse" message="tns:IMessageService_DeleteTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskAttachedFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteTaskAttachedFiles" message="tns:IMessageService_DeleteTaskAttachedFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteTaskAttachedFilesResponse" message="tns:IMessageService_DeleteTaskAttachedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddUserTask" message="tns:IMessageService_AddUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddUserTaskResponse" message="tns:IMessageService_AddUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddUserTasks" message="tns:IMessageService_AddUserTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddUserTasksResponse" message="tns:IMessageService_AddUserTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerDateTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetServerDateTime" message="tns:IMessageService_GetServerDateTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetServerDateTimeResponse" message="tns:IMessageService_GetServerDateTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserTask" message="tns:IMessageService_GetUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskResponse" message="tns:IMessageService_GetUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskCreateByMe" message="tns:IMessageService_GetUserTaskCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskCreateByMeResponse" message="tns:IMessageService_GetUserTaskCreateByMe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskFinish" message="tns:IMessageService_GetUserTaskFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskFinishResponse" message="tns:IMessageService_GetUserTaskFinish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskRevoked">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskRevoked" message="tns:IMessageService_GetUserTaskRevoked_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserTaskRevokedResponse" message="tns:IMessageService_GetUserTaskRevoked_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddLog" message="tns:IMessageService_AddLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddLogResponse" message="tns:IMessageService_AddLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPermissions" message="tns:IMessageService_GetPermissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPermissionsResponse" message="tns:IMessageService_GetPermissions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserInTask" message="tns:IMessageService_GetUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserInTaskResponse" message="tns:IMessageService_GetUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintableUserInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPrintableUserInTask" message="tns:IMessageService_GetPrintableUserInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPrintableUserInTaskResponse" message="tns:IMessageService_GetPrintableUserInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintableUsersInTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetPrintableUsersInTask" message="tns:IMessageService_SetPrintableUsersInTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetPrintableUsersInTaskResponse" message="tns:IMessageService_SetPrintableUsersInTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskViewFileAble">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskViewFileAble" message="tns:IMessageService_SetUserTaskViewFileAble_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskViewFileAbleResponse" message="tns:IMessageService_SetUserTaskViewFileAble_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskSaveFileAble">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskSaveFileAble" message="tns:IMessageService_SetUserTaskSaveFileAble_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskSaveFileAbleResponse" message="tns:IMessageService_SetUserTaskSaveFileAble_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskIsProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskIsProcess" message="tns:IMessageService_SetUserTaskIsProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskIsProcessResponse" message="tns:IMessageService_SetUserTaskIsProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetJobContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetJobContent" message="tns:IMessageService_SetJobContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetJobContentResponse" message="tns:IMessageService_SetJobContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteUserTask" message="tns:IMessageService_DeleteUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteUserTaskResponse" message="tns:IMessageService_DeleteUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AssignUser" message="tns:IMessageService_AssignUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AssignUserResponse" message="tns:IMessageService_AssignUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RevokeTasks" message="tns:IMessageService_RevokeTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RevokeTasksResponse" message="tns:IMessageService_RevokeTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetLogs" message="tns:IMessageService_GetLogs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetLogsResponse" message="tns:IMessageService_GetLogs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TryLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/TryLogin" message="tns:IMessageService_TryLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/TryLoginResponse" message="tns:IMessageService_TryLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ChangePassword" message="tns:IMessageService_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ChangePasswordResponse" message="tns:IMessageService_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IMessageService" type="tns:IMessageService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IMessageService_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CountPrintDocument1">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/CountPrintDocument1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountPrintDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetCountPrintDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAndTaskAttackedFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetProcessingUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeenUsersInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetSeenUsersInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintedUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPrintedUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSeenUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetSeenUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintedUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetPrintedUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProcessingUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveProcessingUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasSeenInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/HasSeenInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsProcessingInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/IsProcessingInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskFinish">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetUserTaskFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentName">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartmentName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetGroupDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartmentTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddDepartmentTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceivedDepartmentDTO">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetReceivedDepartmentDTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDepartmentToTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddDepartmentToTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissionOfUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPermissionOfUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UploadTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadTransformerManual1">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UploadTransformerManual1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchTransformer">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SearchTransformer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransformerDTOByProductCode">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetTransformerDTOByProductCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadStandards">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadStandards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetProductById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductByProductCode">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetProductByProductCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadContracts">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadContracts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadTransformerManualFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadTransformerManualFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContractFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadContractFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDoctitle">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadDoctitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeletedTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedContract">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeletedContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewTransformer">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewTransformer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTransformer">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateTransformer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LockProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LockProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UnLockProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadContract">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UploadContract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTOs">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadPublishDocumentDTOs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPublishDocumentDTODeleteds">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeleteds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPublishDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddPublishDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeletedPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletedPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeletedPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePublishDocumentInfo">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdatePublishDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestorePublishDocumentDeleted">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RestorePublishDocumentDeleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckExistRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/CheckExistRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentsOfMyDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentDTOOfRequest">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestSendDocumentToDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocumentToDepartments1">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRevokedRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetRevokedRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/ProcessRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPublishDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPublishDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRequestSendDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LockUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LockUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UnLockUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/EditTransformerManual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTotlPageForAttackedFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetTotlPageForAttackedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountPrintDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/CountPrintDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectedUsers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetConnectedUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTaskByConfidentialLevel">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserTaskOfMyByConfidentialLevel">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserTaskOfTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetAllUserTaskOfTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskNotFinish">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserTaskNotFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksNotFinish">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksNotFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTasks">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateUserTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetTaskDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetTaskDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPermissions">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetTaskPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmDisposedPrintedDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskAttachedFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetTaskAttachedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskPrintManagers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserTaskPrintManagers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTaskByCurrentUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RevokeTaskByCurrentUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContacts">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadUserDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadUserDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDepartmentsOfTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserDepartmentsOfTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByName">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersOfDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUsersOfDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserECPrKeyFor">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserECPrKeyFor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessages">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLastOnline">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserLastOnline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessagesFromMessageId">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadMessagesFromMessageId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasks">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksCreateByMe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFinish">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksRevoked">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksRevoked" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadAllTasks">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadAllTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskAttachedFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddTaskAttachedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFromTaskId">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksFromTaskId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistTaskName">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/IsExistTaskName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTasks">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskAttachedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteTaskAttachedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTasks">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddUserTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerDateTime">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetServerDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserTaskCreateByMe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskFinish">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserTaskFinish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTaskRevoked">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserTaskRevoked" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLog">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPermissions">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintableUserInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPrintableUserInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPrintableUsersInTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetPrintableUsersInTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskViewFileAble">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetUserTaskViewFileAble" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskSaveFileAble">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetUserTaskSaveFileAble" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskIsProcess">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetUserTaskIsProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetJobContent">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetJobContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AssignUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeTasks">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RevokeTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetLogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TryLogin">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/TryLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessageService">
+    <wsdl:port name="NetTcpBinding_IMessageService" binding="tns:NetTcpBinding_IMessageService">
+      <soap12:address location="net.tcp://192.168.11.12:8880/EofficeService/Service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.11.12:8880/EofficeService/Service</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>MyMachine</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

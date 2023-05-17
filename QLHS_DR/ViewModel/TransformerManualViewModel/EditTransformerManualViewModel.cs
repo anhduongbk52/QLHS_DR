@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,15 +98,18 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
             });
             SaveCommand = new RelayCommand<System.Windows.Window>((p) => { if (p!=null) return true; else return false; }, (p) =>
             {
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
                 {
-                    ServiceProxy.Instance.Proxy.EditTransformerManual(fileId,_Description,_ContentTypeSelected.Id);
-                    ServiceProxy.Instance.CloseProxy();
+                    _MyClient.Open();
+                    _MyClient.EditTransformerManual(fileId,_Description,_ContentTypeSelected.Id);
+                    _MyClient.Close();
                     System.Windows.MessageBox.Show("Cập nhật thành công");
                     p.Close();
                 }
                 catch (Exception ex)
                 {
+                    _MyClient.Abort();
                     System.Windows.MessageBox.Show("Thao tác thất bại, vui lòng thử lại");
                     System.Windows.MessageBox.Show(ex.Message);
                 }
@@ -124,13 +128,17 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
         }
         private ObservableCollection<DocTittle> LoadAllContents()
         {
+            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             ObservableCollection<DocTittle> ketqua = new ObservableCollection<DocTittle>();
             try
             {
-                ketqua = ServiceProxy.Instance.Proxy.LoadDoctitle().ToObservableCollection();
+                _MyClient.Open();
+                ketqua = _MyClient.LoadDoctitle().ToObservableCollection();
+                _MyClient.Close();
             }
             catch (Exception ex)
             {
+                _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message);
             }
             return ketqua;

@@ -1,7 +1,7 @@
 ﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,11 +9,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using PermissionType = QLHS_DR.EOfficeServiceReference.PermissionType;
+using PermissionType = QLHS_DR.ChatAppServiceReference.PermissionType;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
@@ -35,7 +34,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         }
         private IReadOnlyList<User> iReadOnlyListUser;
         //private List<int> _UserNotInTaskIds;
-        private EOfficeServiceReference.Task _Task;
+        private Task _Task;
         private ObservableCollection<ReceiveUser> _ReceiveUsers;       
         public ObservableCollection<ReceiveUser> ReceiveUsers
         {
@@ -67,7 +66,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand SaveCommand { get; set; }
 
         #endregion
-        internal ReceiveUserManagerViewModel(EOfficeServiceReference.Task task)
+        internal ReceiveUserManagerViewModel(Task task)
         {
             _Task = task;
             ReceiveUsers = new ObservableCollection<ReceiveUser>();
@@ -76,7 +75,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
 
                     _MyClient.Open();
                     var users = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
@@ -137,7 +136,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 if(_DataChanged)
                 {
                     Save();
-                    EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     UserTask myUserTask = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);
 
@@ -164,7 +163,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 var allUserTaskOfTask = _MyClient.GetAllUserTaskOfTask(_Task.Id);
 

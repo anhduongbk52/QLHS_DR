@@ -28,12 +28,18 @@
                          AutoGenerateColumns="None"
                          ItemsSource="{Binding ListUserTaskOfUser,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                          SelectionMode="Row"
+                         SelectedItems="{Binding UserTaskSelecteds}"
                          SelectedItem="{Binding UserTaskSelected}">
                 <dxg:GridControl.ContextMenu>
                     <ContextMenu FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
                         <MenuItem Header="Xem" Command="{Binding OpenFileCommand}" CommandParameter="{Binding ElementName=ListUserTaskUC}">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="Eye" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Chỉnh sửa" Command="{Binding EditTaskCommand}" CommandParameter="{Binding ElementName=ListUserTaskUC}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="Edit" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator Padding="2"/>

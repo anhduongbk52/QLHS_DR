@@ -19,13 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="4286722a-616e-49ae-b284-a8008aff66f9" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3d6f0646-142f-44e3-be49-574b7245be51" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="42620fca-d8fe-4569-ab65-86dd04119bb6" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
-    <MetadataFile FileName="EofficeService.Model.xsd" MetadataType="Schema" ID="8c91e949-55d5-40ba-a6eb-8e8e2524aafb" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8080/EofficeService/Service/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="6435792a-a464-4de6-8749-5b4a0125746b" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="1ef5e9bd-3b79-4d90-b2b7-019f770117cc" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="ad3c3736-7daa-433f-9bc3-970958566dc9" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
+    <MetadataFile FileName="EofficeService.Model1.xsd" MetadataType="Schema" ID="06e3b450-fca6-410d-b3c9-d40527416fe5" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="90de3f56-1274-40a7-af69-62a6151ed128" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
+    <MetadataFile FileName="EEMCDatabaseLibrary.Model.Database.DataType.xsd" MetadataType="Schema" ID="52d97b8c-4fef-4535-8da9-d2b57654b908" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

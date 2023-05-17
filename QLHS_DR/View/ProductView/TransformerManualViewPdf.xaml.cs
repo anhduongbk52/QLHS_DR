@@ -2,7 +2,7 @@
 using DevExpress.Xpf.Core;
 using EofficeClient.Core;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +30,7 @@ namespace QLHS_DR.View.ProductView
     /// </summary>
     public partial class TransformerManualViewPdf : Window
     {
-        ChannelFactory<IEofficeMainService> _ChannelFactory;
+        MessageServiceClient _MyClient;
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _CanPrint;
         private bool _CanSave;       
@@ -62,24 +62,22 @@ namespace QLHS_DR.View.ProductView
         {
             try
             {
-                //loadingDecorator.IsSplashScreenShown = true;
                 IsBusy = true;
                 pdfViewer1.CanPrint = _CanPrint;
                 pdfViewer1.CanSave = _CanSave;
 
-                _ChannelFactory = new ChannelFactory<IEofficeMainService>("WSHttpBinding_IEofficeMainService");
-                _ChannelFactory.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-                _ChannelFactory.Credentials.UserName.Password = SectionLogin.Ins.Token;
-                var _proxy = _ChannelFactory.CreateChannel();
-                ((IClientChannel)_proxy).Open();
-                _ContextFile = _proxy.DownloadTransformerManualFile(_TransformerManualDTO.TransformerManualId);
-                ((IClientChannel)_proxy).Close();
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+
+                _ContextFile = _MyClient.DownloadTransformerManualFile(_TransformerManualDTO.TransformerManualId);
+                _MyClient.Close();
                 MemoryStream ms = new MemoryStream(_ContextFile);
                 pdfViewer1.DocumentSource = ms;
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
+                _MyClient.Abort();
+                MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
             }
             finally
             {

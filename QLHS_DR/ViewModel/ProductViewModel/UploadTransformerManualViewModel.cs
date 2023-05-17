@@ -2,7 +2,7 @@
 using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -141,29 +141,36 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         }
         private ObservableCollection<DocTittle> LoadAllContents()
         {
+            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             ObservableCollection<DocTittle> ketqua = new ObservableCollection<DocTittle>();
             try
             {
-                ketqua = ServiceProxy.Instance.Proxy.LoadDoctitle().ToObservableCollection();
+                _MyClient.Open();
+                ketqua = _MyClient.LoadDoctitle().ToObservableCollection();
+                _MyClient.Close();
             }
             catch(Exception ex)
             {
+                _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message);
             }
             return ketqua;
         }
         private void UploadTransformerManual(Window window)
-        {           
+        {
+            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             try
             {
+                _MyClient.Open();
                 byte[] fileData = System.IO.File.ReadAllBytes(_FilePath);
-                ServiceProxy.Instance.Proxy.UploadTransformerManual1(fileData,Path.GetFileName(_FilePath), _ContentTypeSelected.Title,_ProductCode,_Description,false);
-                ServiceProxy.Instance.CloseProxy();
+                _MyClient.UploadTransformerManual1(fileData,Path.GetFileName(_FilePath), _ContentTypeSelected.Title,_ProductCode,_Description,false);
+                _MyClient.Close();
                 System.Windows.MessageBox.Show("Tải lên thành công");
                 window.Close();
             }
             catch (Exception ex)
             {
+                _MyClient.Abort();
                 System.Windows.MessageBox.Show("Thao tác thất bại, vui lòng thử lại");
                 System.Windows.MessageBox.Show(ex.Message);
             }

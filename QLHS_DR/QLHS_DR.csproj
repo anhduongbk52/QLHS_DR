@@ -96,6 +96,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
@@ -137,7 +139,8 @@
     <Compile Include="Core\G6Class.cs" />
     <Compile Include="Core\SectionLogin.cs" />
     <Compile Include="Core\ServiceHelper.cs" />
-    <Compile Include="Core\ServiceProxy.cs" />
+    <Compile Include="CustomControl\PdfViewerControl1.cs" />
+    <Compile Include="CustomControl\PdfViewerControlForTask.cs" />
     <Compile Include="SingleInstance.cs" />
     <Compile Include="User32API.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -146,12 +149,15 @@
     <Compile Include="ViewModel\ContractViewModel\AddContractViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel\ListContractViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\AllTaskViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\DocumentPrintedByUserViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\EditStampViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ListNewDocumentViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\NewTaskViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveDepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserOfMyDepartmentManagerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\RevokedPrintedDocumentManagerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\TaskAttackFileViewerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
@@ -187,8 +193,14 @@
     <Compile Include="View\DocumentView\AllTaskUC.xaml.cs">
       <DependentUpon>AllTaskUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DocumentView\DocumentPrintedByUserWindow.xaml.cs">
+      <DependentUpon>DocumentPrintedByUserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DocumentView\EditStampWindow.xaml.cs">
       <DependentUpon>EditStampWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\EditTaskWindow.xaml.cs">
+      <DependentUpon>EditTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\ListNewDocumentUC.xaml.cs">
       <DependentUpon>ListNewDocumentUC.xaml</DependentUpon>
@@ -208,6 +220,12 @@
     </Compile>
     <Compile Include="View\DocumentView\ReceiveUserOfMyDepartmentManagerWD.xaml.cs">
       <DependentUpon>ReceiveUserOfMyDepartmentManagerWD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\RevokedPrintedDocumentManagerWD.xaml.cs">
+      <DependentUpon>RevokedPrintedDocumentManagerWD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\TaskAttackFileViewerWindow.xaml.cs">
+      <DependentUpon>TaskAttackFileViewerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\UserTaskFinishUC.xaml.cs">
       <DependentUpon>UserTaskFinishUC.xaml</DependentUpon>
@@ -255,6 +273,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ChatAppView\ChatAppWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,7 +301,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DocumentView\DocumentPrintedByUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DocumentView\EditStampWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentView\EditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +334,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DocumentView\ReceiveUserOfMyDepartmentManagerWD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentView\RevokedPrintedDocumentManagerWD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentView\TaskAttackFileViewerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,17 +404,104 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\ChatAppServiceReference\EofficeService.Model.xsd">
+    <None Include="Connected Services\ChatAppServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\EEMCDatabaseLibrary.Model.Database.DataType.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\EofficeService.Model1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Contract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Department.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DepartmentTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DocTittle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.GroupDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Log.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.LoginStatusType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Permission.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PermissionType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PublishDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PublishDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestSendDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Standard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Task.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TaskAttachedFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TransformerDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TransformerManualDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ChatAppServiceReference\service.wsdl" />
-    <None Include="Connected Services\ChatAppServiceReference\service.xsd">
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserTaskPrintManager.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\service1.wsdl" />
+    <None Include="Connected Services\ChatAppServiceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ChatAppServiceReference\service1.xsd">
+    <None Include="Connected Services\ChatAppServiceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EOfficeServiceReference\EofficeMainService.wsdl" />
@@ -570,6 +695,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EofficeCommonLibrary\EofficeCommonLibrary.csproj">
+      <Project>{772c7bae-491e-4e58-95c1-e4e8d7be9b9f}</Project>
+      <Name>EofficeCommonLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,5 +1,5 @@
 ﻿using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using EofficeClient.Core;
 
 namespace QLHS_DR.ViewModel.ContractViewModel
 {
     internal class AddContractViewModel : BaseViewModel
     {
         #region "Properties and Filed"
-        ChannelFactory<IEofficeMainService> _ChannelFactory;
-        IEofficeMainService _Proxy;
+        MessageServiceClient _MyClient;
         private bool status = false;
         public bool Status { get; set; }
         private int _ProgessBarValue;
@@ -126,22 +126,13 @@ namespace QLHS_DR.ViewModel.ContractViewModel
         #endregion
         public AddContractViewModel(TransformerDTO transformerDTO)
         {
+            
             try
             {
-                if (_ChannelFactory == null || _ChannelFactory.State == CommunicationState.Faulted || _ChannelFactory.State != CommunicationState.Opened)
-                {
-                    _ChannelFactory = new ChannelFactory<IEofficeMainService>("WSHttpBinding_IEofficeMainService");
-                    _ChannelFactory.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-                    _ChannelFactory.Credentials.UserName.Password = SectionLogin.Ins.Token;
-                }
-                else if (_ChannelFactory.State == CommunicationState.Closed)
-                {
-                    _ChannelFactory.Open();
-                }
-                _Proxy = _ChannelFactory.CreateChannel();
-                ((IClientChannel)_Proxy).Open();
-                Product = _Proxy.GetProductById(transformerDTO.Id);
-                ((IClientChannel)_Proxy).Close();
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();               
+                Product = _MyClient.GetProductById(transformerDTO.Id);
+                _MyClient.Close();
 
                 Products = new ObservableCollection<Product>();
                 if (_Product != null)
@@ -149,38 +140,25 @@ namespace QLHS_DR.ViewModel.ContractViewModel
                     Products.Add(_Product);
                 }
             }
-            catch (CommunicationException ex)
+            catch (Exception ex)
             {
-                ((IClientChannel)_Proxy).Abort();
-                _ChannelFactory.Abort();
-                if (ex.InnerException != null)
-                {
-                    System.Windows.MessageBox.Show(ex.InnerException.Message);
-                }
-                else System.Windows.MessageBox.Show(ex.Message);
+                _MyClient.Abort();
+                System.Windows.MessageBox.Show(ex.Message);
             }
 
             AddPowerTransformerCodeToListCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { if (DocScan.IsTransformerCode(p?.Text)) return true; else return false; }, (p) =>
             {
                 try
                 {
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
                     List<string> singleCodes = DocScan.GetTransformerCodeSingle(p.Text); // Lấy về tập hợp các mã số có trong mã số đầy đủ
-                    if (_ChannelFactory == null || _ChannelFactory.State == CommunicationState.Faulted || _ChannelFactory.State != CommunicationState.Opened)
-                    {
-                        _ChannelFactory = new ChannelFactory<IEofficeMainService>("WSHttpBinding_IEofficeMainService");
-                        _ChannelFactory.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-                        _ChannelFactory.Credentials.UserName.Password = SectionLogin.Ins.Token;
-                    }
-                    else if (_ChannelFactory.State == CommunicationState.Closed)
-                    {
-                        _ChannelFactory.Open();
-                    }
-                    _Proxy = _ChannelFactory.CreateChannel();
-                    ((IClientChannel)_Proxy).Open();
+
+                    _MyClient.Open();
 
                     foreach (var code in singleCodes)
                     {
-                        Product product = _Proxy.GetProductByProductCode(code);
+                        Product product = _MyClient.GetProductByProductCode(code);
                         if (product != null && !Products.Any(x => x.Id == product.Id))
                         {
                             if (product != null)
@@ -190,17 +168,12 @@ namespace QLHS_DR.ViewModel.ContractViewModel
                             else System.Windows.MessageBox.Show("Máy biến áp MS: " + code + " chưa được khởi tạo");
                         }
                     }
-                    ((IClientChannel)_Proxy).Close();
+                    _MyClient.Close();
                 }
-                catch (CommunicationException ex)
+                catch (Exception ex)
                 {
-                    ((IClientChannel)_Proxy).Abort();
-                    _ChannelFactory.Abort();
-                    if (ex.InnerException != null)
-                    {
-                        System.Windows.MessageBox.Show(ex.InnerException.Message);
-                    }
-                    else System.Windows.MessageBox.Show(ex.Message);
+                    _MyClient.Abort();
+                    System.Windows.MessageBox.Show(ex.Message);
                 }
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -230,37 +203,22 @@ namespace QLHS_DR.ViewModel.ContractViewModel
             {
                 try
                 {
-                    byte[] fileData = System.IO.File.ReadAllBytes(_FilePath);
-                    if (_ChannelFactory == null || _ChannelFactory.State == CommunicationState.Faulted || _ChannelFactory.State != CommunicationState.Opened)
-                    {
-                        _ChannelFactory = new ChannelFactory<IEofficeMainService>("WSHttpBinding_IEofficeMainService");
-                        _ChannelFactory.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-                        _ChannelFactory.Credentials.UserName.Password = SectionLogin.Ins.Token;
-                    }
-                    else if (_ChannelFactory.State == CommunicationState.Closed)
-                    {
-                        _ChannelFactory.Open();
-                    }
-                    _Proxy = _ChannelFactory.CreateChannel();
-                    ((IClientChannel)_Proxy).Open();
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+                    byte[] fileData = System.IO.File.ReadAllBytes(_FilePath);                  
 
                     foreach (var item in _Products)
                     {
-                        _Proxy.UploadContract(fileData, item.Id, _ContractName, System.IO.Path.GetFileName(_FilePath), _ContractDescription, false);
+                        _MyClient.UploadContract(fileData, item.Id, _ContractName, System.IO.Path.GetFileName(_FilePath), _ContractDescription, false);
                     }
-                    ((IClientChannel)_Proxy).Close();
+                    _MyClient.Close();
                     System.Windows.MessageBox.Show("Tải lên thành công.");
                     p.Close();
                 }
-                catch (CommunicationException ex)
+                catch (Exception ex)
                 {
-                    ((IClientChannel)_Proxy).Abort();
-                    _ChannelFactory.Abort();
-                    if (ex.InnerException != null)
-                    {
-                        System.Windows.MessageBox.Show(ex.InnerException.Message);
-                    }
-                    else System.Windows.MessageBox.Show(ex.Message);
+                    _MyClient.Abort();
+                    System.Windows.MessageBox.Show(ex.Message);
                 }
             });
         }

@@ -15,1734 +15,6 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] DataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FromUserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime SentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatusField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ToUserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User User1Field;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Data {
-            get {
-                return this.DataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DataField, value) != true)) {
-                    this.DataField = value;
-                    this.RaisePropertyChanged("Data");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FromUserId {
-            get {
-                return this.FromUserIdField;
-            }
-            set {
-                if ((this.FromUserIdField.Equals(value) != true)) {
-                    this.FromUserIdField = value;
-                    this.RaisePropertyChanged("FromUserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Sent {
-            get {
-                return this.SentField;
-            }
-            set {
-                if ((this.SentField.Equals(value) != true)) {
-                    this.SentField = value;
-                    this.RaisePropertyChanged("Sent");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Status {
-            get {
-                return this.StatusField;
-            }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ToUserId {
-            get {
-                return this.ToUserIdField;
-            }
-            set {
-                if ((this.ToUserIdField.Equals(value) != true)) {
-                    this.ToUserIdField = value;
-                    this.RaisePropertyChanged("ToUserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User1 {
-            get {
-                return this.User1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.User1Field, value) != true)) {
-                    this.User1Field = value;
-                    this.RaisePropertyChanged("User1");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AttemptCountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] AvatarField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> BirthDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] CertificateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CitizenIdentificationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Configuration[] ConfigurationsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DepartmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ECPrKeyForFileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ECPrKeyForMsgField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ECPuKeyForFileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ECPuKeyForMsgField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> HireDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HomeTownField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> LastLoginField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Log[] LogsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] MasterKeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Message[] MessagesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Message[] Messages1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MobiphoneNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] OldECPrKeyForFileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] OldECPrKeyForMsgField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] OldECPuKeyForFileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] OldECPuKeyForMsgField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.RolePermissionD[] RolePermissionDsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StateIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserStatus StatusField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.TaskAttachedFile[] TaskAttachedFilesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Task[] TasksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Task[] Tasks1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TitleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserPermission[] UserPermissionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserRole[] UserRolesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserTask[] UserTasksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserTask[] UserTasks1Field;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AttemptCount {
-            get {
-                return this.AttemptCountField;
-            }
-            set {
-                if ((this.AttemptCountField.Equals(value) != true)) {
-                    this.AttemptCountField = value;
-                    this.RaisePropertyChanged("AttemptCount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Avatar {
-            get {
-                return this.AvatarField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AvatarField, value) != true)) {
-                    this.AvatarField = value;
-                    this.RaisePropertyChanged("Avatar");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> BirthDate {
-            get {
-                return this.BirthDateField;
-            }
-            set {
-                if ((this.BirthDateField.Equals(value) != true)) {
-                    this.BirthDateField = value;
-                    this.RaisePropertyChanged("BirthDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Certificate {
-            get {
-                return this.CertificateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CertificateField, value) != true)) {
-                    this.CertificateField = value;
-                    this.RaisePropertyChanged("Certificate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CitizenIdentification {
-            get {
-                return this.CitizenIdentificationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CitizenIdentificationField, value) != true)) {
-                    this.CitizenIdentificationField = value;
-                    this.RaisePropertyChanged("CitizenIdentification");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Configuration[] Configurations {
-            get {
-                return this.ConfigurationsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ConfigurationsField, value) != true)) {
-                    this.ConfigurationsField = value;
-                    this.RaisePropertyChanged("Configurations");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Department {
-            get {
-                return this.DepartmentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
-                    this.DepartmentField = value;
-                    this.RaisePropertyChanged("Department");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasks {
-            get {
-                return this.DepartmentTasksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentTasksField, value) != true)) {
-                    this.DepartmentTasksField = value;
-                    this.RaisePropertyChanged("DepartmentTasks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ECPrKeyForFile {
-            get {
-                return this.ECPrKeyForFileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ECPrKeyForFileField, value) != true)) {
-                    this.ECPrKeyForFileField = value;
-                    this.RaisePropertyChanged("ECPrKeyForFile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ECPrKeyForMsg {
-            get {
-                return this.ECPrKeyForMsgField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ECPrKeyForMsgField, value) != true)) {
-                    this.ECPrKeyForMsgField = value;
-                    this.RaisePropertyChanged("ECPrKeyForMsg");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ECPuKeyForFile {
-            get {
-                return this.ECPuKeyForFileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ECPuKeyForFileField, value) != true)) {
-                    this.ECPuKeyForFileField = value;
-                    this.RaisePropertyChanged("ECPuKeyForFile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ECPuKeyForMsg {
-            get {
-                return this.ECPuKeyForMsgField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ECPuKeyForMsgField, value) != true)) {
-                    this.ECPuKeyForMsgField = value;
-                    this.RaisePropertyChanged("ECPuKeyForMsg");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> HireDate {
-            get {
-                return this.HireDateField;
-            }
-            set {
-                if ((this.HireDateField.Equals(value) != true)) {
-                    this.HireDateField = value;
-                    this.RaisePropertyChanged("HireDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string HomeTown {
-            get {
-                return this.HomeTownField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HomeTownField, value) != true)) {
-                    this.HomeTownField = value;
-                    this.RaisePropertyChanged("HomeTown");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> LastLogin {
-            get {
-                return this.LastLoginField;
-            }
-            set {
-                if ((this.LastLoginField.Equals(value) != true)) {
-                    this.LastLoginField = value;
-                    this.RaisePropertyChanged("LastLogin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Log[] Logs {
-            get {
-                return this.LogsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LogsField, value) != true)) {
-                    this.LogsField = value;
-                    this.RaisePropertyChanged("Logs");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] MasterKey {
-            get {
-                return this.MasterKeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MasterKeyField, value) != true)) {
-                    this.MasterKeyField = value;
-                    this.RaisePropertyChanged("MasterKey");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Message[] Messages {
-            get {
-                return this.MessagesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
-                    this.MessagesField = value;
-                    this.RaisePropertyChanged("Messages");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Message[] Messages1 {
-            get {
-                return this.Messages1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Messages1Field, value) != true)) {
-                    this.Messages1Field = value;
-                    this.RaisePropertyChanged("Messages1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MobiphoneNumber {
-            get {
-                return this.MobiphoneNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MobiphoneNumberField, value) != true)) {
-                    this.MobiphoneNumberField = value;
-                    this.RaisePropertyChanged("MobiphoneNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] OldECPrKeyForFile {
-            get {
-                return this.OldECPrKeyForFileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OldECPrKeyForFileField, value) != true)) {
-                    this.OldECPrKeyForFileField = value;
-                    this.RaisePropertyChanged("OldECPrKeyForFile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] OldECPrKeyForMsg {
-            get {
-                return this.OldECPrKeyForMsgField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OldECPrKeyForMsgField, value) != true)) {
-                    this.OldECPrKeyForMsgField = value;
-                    this.RaisePropertyChanged("OldECPrKeyForMsg");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] OldECPuKeyForFile {
-            get {
-                return this.OldECPuKeyForFileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OldECPuKeyForFileField, value) != true)) {
-                    this.OldECPuKeyForFileField = value;
-                    this.RaisePropertyChanged("OldECPuKeyForFile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] OldECPuKeyForMsg {
-            get {
-                return this.OldECPuKeyForMsgField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OldECPuKeyForMsgField, value) != true)) {
-                    this.OldECPuKeyForMsgField = value;
-                    this.RaisePropertyChanged("OldECPuKeyForMsg");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.RolePermissionD[] RolePermissionDs {
-            get {
-                return this.RolePermissionDsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolePermissionDsField, value) != true)) {
-                    this.RolePermissionDsField = value;
-                    this.RaisePropertyChanged("RolePermissionDs");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> StateId {
-            get {
-                return this.StateIdField;
-            }
-            set {
-                if ((this.StateIdField.Equals(value) != true)) {
-                    this.StateIdField = value;
-                    this.RaisePropertyChanged("StateId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserStatus Status {
-            get {
-                return this.StatusField;
-            }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.TaskAttachedFile[] TaskAttachedFiles {
-            get {
-                return this.TaskAttachedFilesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TaskAttachedFilesField, value) != true)) {
-                    this.TaskAttachedFilesField = value;
-                    this.RaisePropertyChanged("TaskAttachedFiles");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Task[] Tasks {
-            get {
-                return this.TasksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TasksField, value) != true)) {
-                    this.TasksField = value;
-                    this.RaisePropertyChanged("Tasks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Task[] Tasks1 {
-            get {
-                return this.Tasks1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Tasks1Field, value) != true)) {
-                    this.Tasks1Field = value;
-                    this.RaisePropertyChanged("Tasks1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Title {
-            get {
-                return this.TitleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
-                    this.TitleField = value;
-                    this.RaisePropertyChanged("Title");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
-            get {
-                return this.UserDepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
-                    this.UserDepartmentsField = value;
-                    this.RaisePropertyChanged("UserDepartments");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserName {
-            get {
-                return this.UserNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
-                    this.UserNameField = value;
-                    this.RaisePropertyChanged("UserName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserPermission[] UserPermissions {
-            get {
-                return this.UserPermissionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserPermissionsField, value) != true)) {
-                    this.UserPermissionsField = value;
-                    this.RaisePropertyChanged("UserPermissions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserRole[] UserRoles {
-            get {
-                return this.UserRolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserRolesField, value) != true)) {
-                    this.UserRolesField = value;
-                    this.RaisePropertyChanged("UserRoles");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserTask[] UserTasks {
-            get {
-                return this.UserTasksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserTasksField, value) != true)) {
-                    this.UserTasksField = value;
-                    this.RaisePropertyChanged("UserTasks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserTask[] UserTasks1 {
-            get {
-                return this.UserTasks1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserTasks1Field, value) != true)) {
-                    this.UserTasks1Field = value;
-                    this.RaisePropertyChanged("UserTasks1");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Configuration", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class Configuration : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ConfigByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ConfigKeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ConfigValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> ModifiedDateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ConfigBy {
-            get {
-                return this.ConfigByField;
-            }
-            set {
-                if ((this.ConfigByField.Equals(value) != true)) {
-                    this.ConfigByField = value;
-                    this.RaisePropertyChanged("ConfigBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ConfigKey {
-            get {
-                return this.ConfigKeyField;
-            }
-            set {
-                if ((this.ConfigKeyField.Equals(value) != true)) {
-                    this.ConfigKeyField = value;
-                    this.RaisePropertyChanged("ConfigKey");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] ConfigValue {
-            get {
-                return this.ConfigValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ConfigValueField, value) != true)) {
-                    this.ConfigValueField = value;
-                    this.RaisePropertyChanged("ConfigValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> ModifiedDateTime {
-            get {
-                return this.ModifiedDateTimeField;
-            }
-            set {
-                if ((this.ModifiedDateTimeField.Equals(value) != true)) {
-                    this.ModifiedDateTimeField = value;
-                    this.RaisePropertyChanged("ModifiedDateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DepartmentTask", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class DepartmentTask : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AssignedByUserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CanPrintField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CanSaveField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool CanViewFileAttachmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Department DepartmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DepartmentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IndexInTreeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsProcessField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProcessedByUserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Task TaskField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TaskIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AssignedByUserId {
-            get {
-                return this.AssignedByUserIdField;
-            }
-            set {
-                if ((this.AssignedByUserIdField.Equals(value) != true)) {
-                    this.AssignedByUserIdField = value;
-                    this.RaisePropertyChanged("AssignedByUserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CanPrint {
-            get {
-                return this.CanPrintField;
-            }
-            set {
-                if ((this.CanPrintField.Equals(value) != true)) {
-                    this.CanPrintField = value;
-                    this.RaisePropertyChanged("CanPrint");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CanSave {
-            get {
-                return this.CanSaveField;
-            }
-            set {
-                if ((this.CanSaveField.Equals(value) != true)) {
-                    this.CanSaveField = value;
-                    this.RaisePropertyChanged("CanSave");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool CanViewFileAttachment {
-            get {
-                return this.CanViewFileAttachmentField;
-            }
-            set {
-                if ((this.CanViewFileAttachmentField.Equals(value) != true)) {
-                    this.CanViewFileAttachmentField = value;
-                    this.RaisePropertyChanged("CanViewFileAttachment");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Department Department {
-            get {
-                return this.DepartmentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
-                    this.DepartmentField = value;
-                    this.RaisePropertyChanged("Department");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DepartmentId {
-            get {
-                return this.DepartmentIdField;
-            }
-            set {
-                if ((this.DepartmentIdField.Equals(value) != true)) {
-                    this.DepartmentIdField = value;
-                    this.RaisePropertyChanged("DepartmentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IndexInTree {
-            get {
-                return this.IndexInTreeField;
-            }
-            set {
-                if ((this.IndexInTreeField.Equals(value) != true)) {
-                    this.IndexInTreeField = value;
-                    this.RaisePropertyChanged("IndexInTree");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsProcess {
-            get {
-                return this.IsProcessField;
-            }
-            set {
-                if ((this.IsProcessField.Equals(value) != true)) {
-                    this.IsProcessField = value;
-                    this.RaisePropertyChanged("IsProcess");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProcessedByUserId {
-            get {
-                return this.ProcessedByUserIdField;
-            }
-            set {
-                if ((this.ProcessedByUserIdField.Equals(value) != true)) {
-                    this.ProcessedByUserIdField = value;
-                    this.RaisePropertyChanged("ProcessedByUserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Task Task {
-            get {
-                return this.TaskField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
-                    this.TaskField = value;
-                    this.RaisePropertyChanged("Task");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskId {
-            get {
-                return this.TaskIdField;
-            }
-            set {
-                if ((this.TaskIdField.Equals(value) != true)) {
-                    this.TaskIdField = value;
-                    this.RaisePropertyChanged("TaskId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Log", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class Log : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CreatedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IPAddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.LogType LogTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> PortField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Created {
-            get {
-                return this.CreatedField;
-            }
-            set {
-                if ((this.CreatedField.Equals(value) != true)) {
-                    this.CreatedField = value;
-                    this.RaisePropertyChanged("Created");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string IPAddress {
-            get {
-                return this.IPAddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IPAddressField, value) != true)) {
-                    this.IPAddressField = value;
-                    this.RaisePropertyChanged("IPAddress");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.LogType LogType {
-            get {
-                return this.LogTypeField;
-            }
-            set {
-                if ((this.LogTypeField.Equals(value) != true)) {
-                    this.LogTypeField = value;
-                    this.RaisePropertyChanged("LogType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Port {
-            get {
-                return this.PortField;
-            }
-            set {
-                if ((this.PortField.Equals(value) != true)) {
-                    this.PortField = value;
-                    this.RaisePropertyChanged("Port");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserId {
-            get {
-                return this.UserIdField;
-            }
-            set {
-                if ((this.UserIdField.Equals(value) != true)) {
-                    this.UserIdField = value;
-                    this.RaisePropertyChanged("UserId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RolePermissionD", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class RolePermissionD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreateByUserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateCreateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Permission PermissionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PermissionIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Role RoleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoleIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserCreateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CreateByUserId {
-            get {
-                return this.CreateByUserIdField;
-            }
-            set {
-                if ((this.CreateByUserIdField.Equals(value) != true)) {
-                    this.CreateByUserIdField = value;
-                    this.RaisePropertyChanged("CreateByUserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateCreate {
-            get {
-                return this.DateCreateField;
-            }
-            set {
-                if ((this.DateCreateField.Equals(value) != true)) {
-                    this.DateCreateField = value;
-                    this.RaisePropertyChanged("DateCreate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Permission Permission {
-            get {
-                return this.PermissionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PermissionField, value) != true)) {
-                    this.PermissionField = value;
-                    this.RaisePropertyChanged("Permission");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PermissionId {
-            get {
-                return this.PermissionIdField;
-            }
-            set {
-                if ((this.PermissionIdField.Equals(value) != true)) {
-                    this.PermissionIdField = value;
-                    this.RaisePropertyChanged("PermissionId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Role Role {
-            get {
-                return this.RoleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
-                    this.RoleField = value;
-                    this.RaisePropertyChanged("Role");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RoleId {
-            get {
-                return this.RoleIdField;
-            }
-            set {
-                if ((this.RoleIdField.Equals(value) != true)) {
-                    this.RoleIdField = value;
-                    this.RaisePropertyChanged("RoleId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User UserCreate {
-            get {
-                return this.UserCreateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserCreateField, value) != true)) {
-                    this.UserCreateField = value;
-                    this.RaisePropertyChanged("UserCreate");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.FlagsAttribute()]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserStatus", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    public enum UserStatus : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DEACTIVE = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ACTIVED = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ONLINE = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        OFFLINE = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        NOT_LOGGED_YET = 8,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAttachedFile", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class TaskAttachedFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CanPrintField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CanSaveField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FileNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FilePathField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> ModifiedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ModifiedByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Task TaskField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TaskIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CanPrint {
-            get {
-                return this.CanPrintField;
-            }
-            set {
-                if ((this.CanPrintField.Equals(value) != true)) {
-                    this.CanPrintField = value;
-                    this.RaisePropertyChanged("CanPrint");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> CanSave {
-            get {
-                return this.CanSaveField;
-            }
-            set {
-                if ((this.CanSaveField.Equals(value) != true)) {
-                    this.CanSaveField = value;
-                    this.RaisePropertyChanged("CanSave");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FileName {
-            get {
-                return this.FileNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
-                    this.FileNameField = value;
-                    this.RaisePropertyChanged("FileName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FilePath {
-            get {
-                return this.FilePathField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
-                    this.FilePathField = value;
-                    this.RaisePropertyChanged("FilePath");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> Modified {
-            get {
-                return this.ModifiedField;
-            }
-            set {
-                if ((this.ModifiedField.Equals(value) != true)) {
-                    this.ModifiedField = value;
-                    this.RaisePropertyChanged("Modified");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ModifiedBy {
-            get {
-                return this.ModifiedByField;
-            }
-            set {
-                if ((this.ModifiedByField.Equals(value) != true)) {
-                    this.ModifiedByField = value;
-                    this.RaisePropertyChanged("ModifiedBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Task Task {
-            get {
-                return this.TaskField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
-                    this.TaskField = value;
-                    this.RaisePropertyChanged("Task");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskId {
-            get {
-                return this.TaskIdField;
-            }
-            set {
-                if ((this.TaskIdField.Equals(value) != true)) {
-                    this.TaskIdField = value;
-                    this.RaisePropertyChanged("TaskId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Task", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
     public partial class Task : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2044,6 +316,2741 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AttemptCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] AvatarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> BirthDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] CertificateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CitizenIdentificationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Configuration[] ConfigurationsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Contract[] ContractsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPrKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPrKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPuKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ECPuKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.File[] FilesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> HireDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HomeTownField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> LastLoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Log[] LogsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] MasterKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Message[] MessagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Message[] Messages1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobiphoneNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPrKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPrKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPuKeyForFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] OldECPuKeyForMsgField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Product[] ProductsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocumentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments3Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocumentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RolePermissionD[] RolePermissionDsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Standard[] StandardsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserStatus StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.TaskAttachedFile[] TaskAttachedFilesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Task[] TasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Task[] Tasks1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserPermission[] UserPermissionsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserRole[] UserRolesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserTask[] UserTasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserTask[] UserTasks1Field;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AttemptCount {
+            get {
+                return this.AttemptCountField;
+            }
+            set {
+                if ((this.AttemptCountField.Equals(value) != true)) {
+                    this.AttemptCountField = value;
+                    this.RaisePropertyChanged("AttemptCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Avatar {
+            get {
+                return this.AvatarField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AvatarField, value) != true)) {
+                    this.AvatarField = value;
+                    this.RaisePropertyChanged("Avatar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> BirthDate {
+            get {
+                return this.BirthDateField;
+            }
+            set {
+                if ((this.BirthDateField.Equals(value) != true)) {
+                    this.BirthDateField = value;
+                    this.RaisePropertyChanged("BirthDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Certificate {
+            get {
+                return this.CertificateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CertificateField, value) != true)) {
+                    this.CertificateField = value;
+                    this.RaisePropertyChanged("Certificate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CitizenIdentification {
+            get {
+                return this.CitizenIdentificationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CitizenIdentificationField, value) != true)) {
+                    this.CitizenIdentificationField = value;
+                    this.RaisePropertyChanged("CitizenIdentification");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Configuration[] Configurations {
+            get {
+                return this.ConfigurationsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConfigurationsField, value) != true)) {
+                    this.ConfigurationsField = value;
+                    this.RaisePropertyChanged("Configurations");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Contract[] Contracts {
+            get {
+                return this.ContractsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContractsField, value) != true)) {
+                    this.ContractsField = value;
+                    this.RaisePropertyChanged("Contracts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasks {
+            get {
+                return this.DepartmentTasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentTasksField, value) != true)) {
+                    this.DepartmentTasksField = value;
+                    this.RaisePropertyChanged("DepartmentTasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPrKeyForFile {
+            get {
+                return this.ECPrKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPrKeyForFileField, value) != true)) {
+                    this.ECPrKeyForFileField = value;
+                    this.RaisePropertyChanged("ECPrKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPrKeyForMsg {
+            get {
+                return this.ECPrKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPrKeyForMsgField, value) != true)) {
+                    this.ECPrKeyForMsgField = value;
+                    this.RaisePropertyChanged("ECPrKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPuKeyForFile {
+            get {
+                return this.ECPuKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPuKeyForFileField, value) != true)) {
+                    this.ECPuKeyForFileField = value;
+                    this.RaisePropertyChanged("ECPuKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ECPuKeyForMsg {
+            get {
+                return this.ECPuKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ECPuKeyForMsgField, value) != true)) {
+                    this.ECPuKeyForMsgField = value;
+                    this.RaisePropertyChanged("ECPuKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.File[] Files {
+            get {
+                return this.FilesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilesField, value) != true)) {
+                    this.FilesField = value;
+                    this.RaisePropertyChanged("Files");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> HireDate {
+            get {
+                return this.HireDateField;
+            }
+            set {
+                if ((this.HireDateField.Equals(value) != true)) {
+                    this.HireDateField = value;
+                    this.RaisePropertyChanged("HireDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HomeTown {
+            get {
+                return this.HomeTownField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HomeTownField, value) != true)) {
+                    this.HomeTownField = value;
+                    this.RaisePropertyChanged("HomeTown");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> LastLogin {
+            get {
+                return this.LastLoginField;
+            }
+            set {
+                if ((this.LastLoginField.Equals(value) != true)) {
+                    this.LastLoginField = value;
+                    this.RaisePropertyChanged("LastLogin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Log[] Logs {
+            get {
+                return this.LogsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LogsField, value) != true)) {
+                    this.LogsField = value;
+                    this.RaisePropertyChanged("Logs");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] MasterKey {
+            get {
+                return this.MasterKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MasterKeyField, value) != true)) {
+                    this.MasterKeyField = value;
+                    this.RaisePropertyChanged("MasterKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Message[] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Message[] Messages1 {
+            get {
+                return this.Messages1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Messages1Field, value) != true)) {
+                    this.Messages1Field = value;
+                    this.RaisePropertyChanged("Messages1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MobiphoneNumber {
+            get {
+                return this.MobiphoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobiphoneNumberField, value) != true)) {
+                    this.MobiphoneNumberField = value;
+                    this.RaisePropertyChanged("MobiphoneNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPrKeyForFile {
+            get {
+                return this.OldECPrKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPrKeyForFileField, value) != true)) {
+                    this.OldECPrKeyForFileField = value;
+                    this.RaisePropertyChanged("OldECPrKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPrKeyForMsg {
+            get {
+                return this.OldECPrKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPrKeyForMsgField, value) != true)) {
+                    this.OldECPrKeyForMsgField = value;
+                    this.RaisePropertyChanged("OldECPrKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPuKeyForFile {
+            get {
+                return this.OldECPuKeyForFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPuKeyForFileField, value) != true)) {
+                    this.OldECPuKeyForFileField = value;
+                    this.RaisePropertyChanged("OldECPuKeyForFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] OldECPuKeyForMsg {
+            get {
+                return this.OldECPuKeyForMsgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldECPuKeyForMsgField, value) != true)) {
+                    this.OldECPuKeyForMsgField = value;
+                    this.RaisePropertyChanged("OldECPuKeyForMsg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Product[] Products {
+            get {
+                return this.ProductsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments {
+            get {
+                return this.PublishDocumentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocumentsField, value) != true)) {
+                    this.PublishDocumentsField = value;
+                    this.RaisePropertyChanged("PublishDocuments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments1 {
+            get {
+                return this.PublishDocuments1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocuments1Field, value) != true)) {
+                    this.PublishDocuments1Field = value;
+                    this.RaisePropertyChanged("PublishDocuments1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments2 {
+            get {
+                return this.PublishDocuments2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocuments2Field, value) != true)) {
+                    this.PublishDocuments2Field = value;
+                    this.RaisePropertyChanged("PublishDocuments2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocument[] PublishDocuments3 {
+            get {
+                return this.PublishDocuments3Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocuments3Field, value) != true)) {
+                    this.PublishDocuments3Field = value;
+                    this.RaisePropertyChanged("PublishDocuments3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments {
+            get {
+                return this.RequestSendDocumentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentsField, value) != true)) {
+                    this.RequestSendDocumentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocuments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments1 {
+            get {
+                return this.RequestSendDocuments1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocuments1Field, value) != true)) {
+                    this.RequestSendDocuments1Field = value;
+                    this.RaisePropertyChanged("RequestSendDocuments1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RolePermissionD[] RolePermissionDs {
+            get {
+                return this.RolePermissionDsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolePermissionDsField, value) != true)) {
+                    this.RolePermissionDsField = value;
+                    this.RaisePropertyChanged("RolePermissionDs");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Standard[] Standards {
+            get {
+                return this.StandardsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StandardsField, value) != true)) {
+                    this.StandardsField = value;
+                    this.RaisePropertyChanged("Standards");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StateId {
+            get {
+                return this.StateIdField;
+            }
+            set {
+                if ((this.StateIdField.Equals(value) != true)) {
+                    this.StateIdField = value;
+                    this.RaisePropertyChanged("StateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserStatus Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.TaskAttachedFile[] TaskAttachedFiles {
+            get {
+                return this.TaskAttachedFilesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskAttachedFilesField, value) != true)) {
+                    this.TaskAttachedFilesField = value;
+                    this.RaisePropertyChanged("TaskAttachedFiles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Task[] Tasks {
+            get {
+                return this.TasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TasksField, value) != true)) {
+                    this.TasksField = value;
+                    this.RaisePropertyChanged("Tasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Task[] Tasks1 {
+            get {
+                return this.Tasks1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Tasks1Field, value) != true)) {
+                    this.Tasks1Field = value;
+                    this.RaisePropertyChanged("Tasks1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
+            get {
+                return this.UserDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
+                    this.UserDepartmentsField = value;
+                    this.RaisePropertyChanged("UserDepartments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserPermission[] UserPermissions {
+            get {
+                return this.UserPermissionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserPermissionsField, value) != true)) {
+                    this.UserPermissionsField = value;
+                    this.RaisePropertyChanged("UserPermissions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserRole[] UserRoles {
+            get {
+                return this.UserRolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserRolesField, value) != true)) {
+                    this.UserRolesField = value;
+                    this.RaisePropertyChanged("UserRoles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserTask[] UserTasks {
+            get {
+                return this.UserTasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTasksField, value) != true)) {
+                    this.UserTasksField = value;
+                    this.RaisePropertyChanged("UserTasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserTask[] UserTasks1 {
+            get {
+                return this.UserTasks1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTasks1Field, value) != true)) {
+                    this.UserTasks1Field = value;
+                    this.RaisePropertyChanged("UserTasks1");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DepartmentTask", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class DepartmentTask : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AssignedByUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanViewFileAttachmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Department DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IndexInTreeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsProcessField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProcessedByUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Task TaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AssignedByUserId {
+            get {
+                return this.AssignedByUserIdField;
+            }
+            set {
+                if ((this.AssignedByUserIdField.Equals(value) != true)) {
+                    this.AssignedByUserIdField = value;
+                    this.RaisePropertyChanged("AssignedByUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanViewFileAttachment {
+            get {
+                return this.CanViewFileAttachmentField;
+            }
+            set {
+                if ((this.CanViewFileAttachmentField.Equals(value) != true)) {
+                    this.CanViewFileAttachmentField = value;
+                    this.RaisePropertyChanged("CanViewFileAttachment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Department Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IndexInTree {
+            get {
+                return this.IndexInTreeField;
+            }
+            set {
+                if ((this.IndexInTreeField.Equals(value) != true)) {
+                    this.IndexInTreeField = value;
+                    this.RaisePropertyChanged("IndexInTree");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsProcess {
+            get {
+                return this.IsProcessField;
+            }
+            set {
+                if ((this.IsProcessField.Equals(value) != true)) {
+                    this.IsProcessField = value;
+                    this.RaisePropertyChanged("IsProcess");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProcessedByUserId {
+            get {
+                return this.ProcessedByUserIdField;
+            }
+            set {
+                if ((this.ProcessedByUserIdField.Equals(value) != true)) {
+                    this.ProcessedByUserIdField = value;
+                    this.RaisePropertyChanged("ProcessedByUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Task Task {
+            get {
+                return this.TaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
+                    this.TaskField = value;
+                    this.RaisePropertyChanged("Task");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskPriority", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum TaskPriority : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Low = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Normal = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        High = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Urgent = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskStatus", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum TaskStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NotStarted = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Completed = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InProgess = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NeedAssistance = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Deferred = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Revoked = 5,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAttachedFile", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TaskAttachedFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfidentialLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FilePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ModifiedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Task TaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TotalPageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfidentialLevel {
+            get {
+                return this.ConfidentialLevelField;
+            }
+            set {
+                if ((this.ConfidentialLevelField.Equals(value) != true)) {
+                    this.ConfidentialLevelField = value;
+                    this.RaisePropertyChanged("ConfidentialLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath {
+            get {
+                return this.FilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Modified {
+            get {
+                return this.ModifiedField;
+            }
+            set {
+                if ((this.ModifiedField.Equals(value) != true)) {
+                    this.ModifiedField = value;
+                    this.RaisePropertyChanged("Modified");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ModifiedBy {
+            get {
+                return this.ModifiedByField;
+            }
+            set {
+                if ((this.ModifiedByField.Equals(value) != true)) {
+                    this.ModifiedByField = value;
+                    this.RaisePropertyChanged("ModifiedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Task Task {
+            get {
+                return this.TaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
+                    this.TaskField = value;
+                    this.RaisePropertyChanged("Task");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TotalPage {
+            get {
+                return this.TotalPageField;
+            }
+            set {
+                if ((this.TotalPageField.Equals(value) != true)) {
+                    this.TotalPageField = value;
+                    this.RaisePropertyChanged("TotalPage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserTask", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class UserTask : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AssignedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User AssignedByUserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> CanViewAttachedFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DoneContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasPrintedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsFinishField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsProcessingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JobContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PermissionType PermissionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool SeenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Task TaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] TaskKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> TimeCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserTaskPrintManager[] UserTaskPrintManagersField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AssignedBy {
+            get {
+                return this.AssignedByField;
+            }
+            set {
+                if ((this.AssignedByField.Equals(value) != true)) {
+                    this.AssignedByField = value;
+                    this.RaisePropertyChanged("AssignedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User AssignedByUser {
+            get {
+                return this.AssignedByUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AssignedByUserField, value) != true)) {
+                    this.AssignedByUserField = value;
+                    this.RaisePropertyChanged("AssignedByUser");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> CanViewAttachedFile {
+            get {
+                return this.CanViewAttachedFileField;
+            }
+            set {
+                if ((this.CanViewAttachedFileField.Equals(value) != true)) {
+                    this.CanViewAttachedFileField = value;
+                    this.RaisePropertyChanged("CanViewAttachedFile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DoneContent {
+            get {
+                return this.DoneContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DoneContentField, value) != true)) {
+                    this.DoneContentField = value;
+                    this.RaisePropertyChanged("DoneContent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasPrinted {
+            get {
+                return this.HasPrintedField;
+            }
+            set {
+                if ((this.HasPrintedField.Equals(value) != true)) {
+                    this.HasPrintedField = value;
+                    this.RaisePropertyChanged("HasPrinted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsFinish {
+            get {
+                return this.IsFinishField;
+            }
+            set {
+                if ((this.IsFinishField.Equals(value) != true)) {
+                    this.IsFinishField = value;
+                    this.RaisePropertyChanged("IsFinish");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsProcessing {
+            get {
+                return this.IsProcessingField;
+            }
+            set {
+                if ((this.IsProcessingField.Equals(value) != true)) {
+                    this.IsProcessingField = value;
+                    this.RaisePropertyChanged("IsProcessing");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobContent {
+            get {
+                return this.JobContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobContentField, value) != true)) {
+                    this.JobContentField = value;
+                    this.RaisePropertyChanged("JobContent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PermissionType PermissionType {
+            get {
+                return this.PermissionTypeField;
+            }
+            set {
+                if ((this.PermissionTypeField.Equals(value) != true)) {
+                    this.PermissionTypeField = value;
+                    this.RaisePropertyChanged("PermissionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Seen {
+            get {
+                return this.SeenField;
+            }
+            set {
+                if ((this.SeenField.Equals(value) != true)) {
+                    this.SeenField = value;
+                    this.RaisePropertyChanged("Seen");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Task Task {
+            get {
+                return this.TaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
+                    this.TaskField = value;
+                    this.RaisePropertyChanged("Task");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] TaskKey {
+            get {
+                return this.TaskKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TaskKeyField, value) != true)) {
+                    this.TaskKeyField = value;
+                    this.RaisePropertyChanged("TaskKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimeCreate {
+            get {
+                return this.TimeCreateField;
+            }
+            set {
+                if ((this.TimeCreateField.Equals(value) != true)) {
+                    this.TimeCreateField = value;
+                    this.RaisePropertyChanged("TimeCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserTaskPrintManager[] UserTaskPrintManagers {
+            get {
+                return this.UserTaskPrintManagersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTaskPrintManagersField, value) != true)) {
+                    this.UserTaskPrintManagersField = value;
+                    this.RaisePropertyChanged("UserTaskPrintManagers");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Department", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Department : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroupDepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool LockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ManagerPositionId1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ManagerPositionId2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartmentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocumentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasks {
+            get {
+                return this.DepartmentTasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentTasksField, value) != true)) {
+                    this.DepartmentTasksField = value;
+                    this.RaisePropertyChanged("DepartmentTasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartment {
+            get {
+                return this.GroupDepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupDepartmentField, value) != true)) {
+                    this.GroupDepartmentField = value;
+                    this.RaisePropertyChanged("GroupDepartment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroupDepartmentId {
+            get {
+                return this.GroupDepartmentIdField;
+            }
+            set {
+                if ((this.GroupDepartmentIdField.Equals(value) != true)) {
+                    this.GroupDepartmentIdField = value;
+                    this.RaisePropertyChanged("GroupDepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Locked {
+            get {
+                return this.LockedField;
+            }
+            set {
+                if ((this.LockedField.Equals(value) != true)) {
+                    this.LockedField = value;
+                    this.RaisePropertyChanged("Locked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition1 {
+            get {
+                return this.ManagerPosition1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ManagerPosition1Field, value) != true)) {
+                    this.ManagerPosition1Field = value;
+                    this.RaisePropertyChanged("ManagerPosition1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition2 {
+            get {
+                return this.ManagerPosition2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ManagerPosition2Field, value) != true)) {
+                    this.ManagerPosition2Field = value;
+                    this.RaisePropertyChanged("ManagerPosition2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ManagerPositionId1 {
+            get {
+                return this.ManagerPositionId1Field;
+            }
+            set {
+                if ((this.ManagerPositionId1Field.Equals(value) != true)) {
+                    this.ManagerPositionId1Field = value;
+                    this.RaisePropertyChanged("ManagerPositionId1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ManagerPositionId2 {
+            get {
+                return this.ManagerPositionId2Field;
+            }
+            set {
+                if ((this.ManagerPositionId2Field.Equals(value) != true)) {
+                    this.ManagerPositionId2Field = value;
+                    this.RaisePropertyChanged("ManagerPositionId2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartments {
+            get {
+                return this.RequestSendDocumentToDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentToDepartmentsField, value) != true)) {
+                    this.RequestSendDocumentToDepartmentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocumentToDepartments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments {
+            get {
+                return this.RequestSendDocumentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentsField, value) != true)) {
+                    this.RequestSendDocumentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocuments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
+            get {
+                return this.UserDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
+                    this.UserDepartmentsField = value;
+                    this.RaisePropertyChanged("UserDepartments");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GroupDepartment", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class GroupDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Department[] DepartmentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Department[] Departments {
+            get {
+                return this.DepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentsField, value) != true)) {
+                    this.DepartmentsField = value;
+                    this.RaisePropertyChanged("Departments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Position", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Position : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Department[] DepartmentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Department[] Departments1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Department[] Departments {
+            get {
+                return this.DepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentsField, value) != true)) {
+                    this.DepartmentsField = value;
+                    this.RaisePropertyChanged("Departments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Department[] Departments1 {
+            get {
+                return this.Departments1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Departments1Field, value) != true)) {
+                    this.Departments1Field = value;
+                    this.RaisePropertyChanged("Departments1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
+            get {
+                return this.UserDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
+                    this.UserDepartmentsField = value;
+                    this.RaisePropertyChanged("UserDepartments");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestSendDocumentToDepartment", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class RequestSendDocumentToDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanForwardField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanReadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Department DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocument RequestSendDocumentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RequestSendDocumentIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanForward {
+            get {
+                return this.CanForwardField;
+            }
+            set {
+                if ((this.CanForwardField.Equals(value) != true)) {
+                    this.CanForwardField = value;
+                    this.RaisePropertyChanged("CanForward");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanRead {
+            get {
+                return this.CanReadField;
+            }
+            set {
+                if ((this.CanReadField.Equals(value) != true)) {
+                    this.CanReadField = value;
+                    this.RaisePropertyChanged("CanRead");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Department Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDone {
+            get {
+                return this.IsDoneField;
+            }
+            set {
+                if ((this.IsDoneField.Equals(value) != true)) {
+                    this.IsDoneField = value;
+                    this.RaisePropertyChanged("IsDone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument RequestSendDocument {
+            get {
+                return this.RequestSendDocumentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentField, value) != true)) {
+                    this.RequestSendDocumentField = value;
+                    this.RaisePropertyChanged("RequestSendDocument");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RequestSendDocumentId {
+            get {
+                return this.RequestSendDocumentIdField;
+            }
+            set {
+                if ((this.RequestSendDocumentIdField.Equals(value) != true)) {
+                    this.RequestSendDocumentIdField = value;
+                    this.RaisePropertyChanged("RequestSendDocumentId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestSendDocument", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class RequestSendDocument : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfidentialLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Department DepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentOwnerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocumentNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DoneDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> EndDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsDoneField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsExperiedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PiorityIndexField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocument PublishDocumentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PublishDocumentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartmentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> RequireStampField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool RevokedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TaskIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserCreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User WorkUserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> WorkUserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfidentialLevel {
+            get {
+                return this.ConfidentialLevelField;
+            }
+            set {
+                if ((this.ConfidentialLevelField.Equals(value) != true)) {
+                    this.ConfidentialLevelField = value;
+                    this.RaisePropertyChanged("ConfidentialLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Department Department {
+            get {
+                return this.DepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentField, value) != true)) {
+                    this.DepartmentField = value;
+                    this.RaisePropertyChanged("Department");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentOwnerId {
+            get {
+                return this.DepartmentOwnerIdField;
+            }
+            set {
+                if ((this.DepartmentOwnerIdField.Equals(value) != true)) {
+                    this.DepartmentOwnerIdField = value;
+                    this.RaisePropertyChanged("DepartmentOwnerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocumentName {
+            get {
+                return this.DocumentNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentNameField, value) != true)) {
+                    this.DocumentNameField = value;
+                    this.RaisePropertyChanged("DocumentName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DoneDate {
+            get {
+                return this.DoneDateField;
+            }
+            set {
+                if ((this.DoneDateField.Equals(value) != true)) {
+                    this.DoneDateField = value;
+                    this.RaisePropertyChanged("DoneDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> EndDate {
+            get {
+                return this.EndDateField;
+            }
+            set {
+                if ((this.EndDateField.Equals(value) != true)) {
+                    this.EndDateField = value;
+                    this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsDone {
+            get {
+                return this.IsDoneField;
+            }
+            set {
+                if ((this.IsDoneField.Equals(value) != true)) {
+                    this.IsDoneField = value;
+                    this.RaisePropertyChanged("IsDone");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsExperied {
+            get {
+                return this.IsExperiedField;
+            }
+            set {
+                if ((this.IsExperiedField.Equals(value) != true)) {
+                    this.IsExperiedField = value;
+                    this.RaisePropertyChanged("IsExperied");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PiorityIndex {
+            get {
+                return this.PiorityIndexField;
+            }
+            set {
+                if ((this.PiorityIndexField.Equals(value) != true)) {
+                    this.PiorityIndexField = value;
+                    this.RaisePropertyChanged("PiorityIndex");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductCode {
+            get {
+                return this.ProductCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductCodeField, value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocument PublishDocument {
+            get {
+                return this.PublishDocumentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocumentField, value) != true)) {
+                    this.PublishDocumentField = value;
+                    this.RaisePropertyChanged("PublishDocument");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PublishDocumentId {
+            get {
+                return this.PublishDocumentIdField;
+            }
+            set {
+                if ((this.PublishDocumentIdField.Equals(value) != true)) {
+                    this.PublishDocumentIdField = value;
+                    this.RaisePropertyChanged("PublishDocumentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartments {
+            get {
+                return this.RequestSendDocumentToDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentToDepartmentsField, value) != true)) {
+                    this.RequestSendDocumentToDepartmentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocumentToDepartments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> RequireStamp {
+            get {
+                return this.RequireStampField;
+            }
+            set {
+                if ((this.RequireStampField.Equals(value) != true)) {
+                    this.RequireStampField = value;
+                    this.RaisePropertyChanged("RequireStamp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Revoked {
+            get {
+                return this.RevokedField;
+            }
+            set {
+                if ((this.RevokedField.Equals(value) != true)) {
+                    this.RevokedField = value;
+                    this.RaisePropertyChanged("Revoked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User UserCreate {
+            get {
+                return this.UserCreateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserCreateField, value) != true)) {
+                    this.UserCreateField = value;
+                    this.RaisePropertyChanged("UserCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User WorkUser {
+            get {
+                return this.WorkUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WorkUserField, value) != true)) {
+                    this.WorkUserField = value;
+                    this.RaisePropertyChanged("WorkUser");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> WorkUserId {
+            get {
+                return this.WorkUserIdField;
+            }
+            set {
+                if ((this.WorkUserIdField.Equals(value) != true)) {
+                    this.WorkUserIdField = value;
+                    this.RaisePropertyChanged("WorkUserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserDepartment", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
     public partial class UserDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2197,6 +3204,1840 @@ namespace QLHS_DR.ChatAppServiceReference {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Configuration", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Configuration : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfigByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ConfigKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ConfigValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfigBy {
+            get {
+                return this.ConfigByField;
+            }
+            set {
+                if ((this.ConfigByField.Equals(value) != true)) {
+                    this.ConfigByField = value;
+                    this.RaisePropertyChanged("ConfigBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ConfigKey {
+            get {
+                return this.ConfigKeyField;
+            }
+            set {
+                if ((this.ConfigKeyField.Equals(value) != true)) {
+                    this.ConfigKeyField = value;
+                    this.RaisePropertyChanged("ConfigKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] ConfigValue {
+            get {
+                return this.ConfigValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConfigValueField, value) != true)) {
+                    this.ConfigValueField = value;
+                    this.RaisePropertyChanged("ConfigValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ModifiedDateTime {
+            get {
+                return this.ModifiedDateTimeField;
+            }
+            set {
+                if ((this.ModifiedDateTimeField.Equals(value) != true)) {
+                    this.ModifiedDateTimeField = value;
+                    this.RaisePropertyChanged("ModifiedDateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Contract", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Contract : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContractDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContractNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FilePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Product ProductField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserUploadIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContractDescription {
+            get {
+                return this.ContractDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContractDescriptionField, value) != true)) {
+                    this.ContractDescriptionField = value;
+                    this.RaisePropertyChanged("ContractDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ContractName {
+            get {
+                return this.ContractNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContractNameField, value) != true)) {
+                    this.ContractNameField = value;
+                    this.RaisePropertyChanged("ContractName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath {
+            get {
+                return this.FilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Product Product {
+            get {
+                return this.ProductField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductField, value) != true)) {
+                    this.ProductField = value;
+                    this.RaisePropertyChanged("Product");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserUploadId {
+            get {
+                return this.UserUploadIdField;
+            }
+            set {
+                if ((this.UserUploadIdField.Equals(value) != true)) {
+                    this.UserUploadIdField = value;
+                    this.RaisePropertyChanged("UserUploadId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="File", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class File : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] DecryptKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FilePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ModifiedByUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ModifiedTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.TransformerManual[] TransformerManualsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserCreateIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateTime {
+            get {
+                return this.CreateTimeField;
+            }
+            set {
+                if ((this.CreateTimeField.Equals(value) != true)) {
+                    this.CreateTimeField = value;
+                    this.RaisePropertyChanged("CreateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] DecryptKey {
+            get {
+                return this.DecryptKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DecryptKeyField, value) != true)) {
+                    this.DecryptKeyField = value;
+                    this.RaisePropertyChanged("DecryptKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath {
+            get {
+                return this.FilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ModifiedByUserId {
+            get {
+                return this.ModifiedByUserIdField;
+            }
+            set {
+                if ((this.ModifiedByUserIdField.Equals(value) != true)) {
+                    this.ModifiedByUserIdField = value;
+                    this.RaisePropertyChanged("ModifiedByUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ModifiedTime {
+            get {
+                return this.ModifiedTimeField;
+            }
+            set {
+                if ((this.ModifiedTimeField.Equals(value) != true)) {
+                    this.ModifiedTimeField = value;
+                    this.RaisePropertyChanged("ModifiedTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.TransformerManual[] TransformerManuals {
+            get {
+                return this.TransformerManualsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransformerManualsField, value) != true)) {
+                    this.TransformerManualsField = value;
+                    this.RaisePropertyChanged("TransformerManuals");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Log", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Log : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IPAddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.LogType LogTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PortField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IPAddress {
+            get {
+                return this.IPAddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IPAddressField, value) != true)) {
+                    this.IPAddressField = value;
+                    this.RaisePropertyChanged("IPAddress");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.LogType LogType {
+            get {
+                return this.LogTypeField;
+            }
+            set {
+                if ((this.LogTypeField.Equals(value) != true)) {
+                    this.LogTypeField = value;
+                    this.RaisePropertyChanged("LogType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Port {
+            get {
+                return this.PortField;
+            }
+            set {
+                if ((this.PortField.Equals(value) != true)) {
+                    this.PortField = value;
+                    this.RaisePropertyChanged("Port");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Message : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] DataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User FromUserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FromUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime SentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User ToUserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ToUserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataField, value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User FromUser {
+            get {
+                return this.FromUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FromUserField, value) != true)) {
+                    this.FromUserField = value;
+                    this.RaisePropertyChanged("FromUser");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FromUserId {
+            get {
+                return this.FromUserIdField;
+            }
+            set {
+                if ((this.FromUserIdField.Equals(value) != true)) {
+                    this.FromUserIdField = value;
+                    this.RaisePropertyChanged("FromUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Sent {
+            get {
+                return this.SentField;
+            }
+            set {
+                if ((this.SentField.Equals(value) != true)) {
+                    this.SentField = value;
+                    this.RaisePropertyChanged("Sent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User ToUser {
+            get {
+                return this.ToUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ToUserField, value) != true)) {
+                    this.ToUserField = value;
+                    this.RaisePropertyChanged("ToUser");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ToUserId {
+            get {
+                return this.ToUserIdField;
+            }
+            set {
+                if ((this.ToUserIdField.Equals(value) != true)) {
+                    this.ToUserIdField = value;
+                    this.RaisePropertyChanged("ToUserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Product", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Product : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Contract[] ContractsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateCreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.ProductType ProductTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocumentOfProduct[] PublishDocumentOfProductsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.TransformerInfo TransformerInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TransformerInfoIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.TransformerManual[] TransformerManualsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserCreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> YearOfManufactureField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Contract[] Contracts {
+            get {
+                return this.ContractsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContractsField, value) != true)) {
+                    this.ContractsField = value;
+                    this.RaisePropertyChanged("Contracts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreated {
+            get {
+                return this.DateCreatedField;
+            }
+            set {
+                if ((this.DateCreatedField.Equals(value) != true)) {
+                    this.DateCreatedField = value;
+                    this.RaisePropertyChanged("DateCreated");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Note {
+            get {
+                return this.NoteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
+                    this.NoteField = value;
+                    this.RaisePropertyChanged("Note");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductCode {
+            get {
+                return this.ProductCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductCodeField, value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductName {
+            get {
+                return this.ProductNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
+                    this.ProductNameField = value;
+                    this.RaisePropertyChanged("ProductName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.ProductType ProductType {
+            get {
+                return this.ProductTypeField;
+            }
+            set {
+                if ((this.ProductTypeField.Equals(value) != true)) {
+                    this.ProductTypeField = value;
+                    this.RaisePropertyChanged("ProductType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocumentOfProduct[] PublishDocumentOfProducts {
+            get {
+                return this.PublishDocumentOfProductsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocumentOfProductsField, value) != true)) {
+                    this.PublishDocumentOfProductsField = value;
+                    this.RaisePropertyChanged("PublishDocumentOfProducts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.TransformerInfo TransformerInfo {
+            get {
+                return this.TransformerInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransformerInfoField, value) != true)) {
+                    this.TransformerInfoField = value;
+                    this.RaisePropertyChanged("TransformerInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> TransformerInfoId {
+            get {
+                return this.TransformerInfoIdField;
+            }
+            set {
+                if ((this.TransformerInfoIdField.Equals(value) != true)) {
+                    this.TransformerInfoIdField = value;
+                    this.RaisePropertyChanged("TransformerInfoId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.TransformerManual[] TransformerManuals {
+            get {
+                return this.TransformerManualsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransformerManualsField, value) != true)) {
+                    this.TransformerManualsField = value;
+                    this.RaisePropertyChanged("TransformerManuals");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> YearOfManufacture {
+            get {
+                return this.YearOfManufactureField;
+            }
+            set {
+                if ((this.YearOfManufactureField.Equals(value) != true)) {
+                    this.YearOfManufactureField = value;
+                    this.RaisePropertyChanged("YearOfManufacture");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PublishDocument", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class PublishDocument : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User CheckerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CheckerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateUploadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateValidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User DesignerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DesignerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocumentNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameWithExField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FtpPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> LastModifyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User ManagerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ManagerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocumentOfProduct[] PublishDocumentOfProductsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocumentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserCreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User Checker {
+            get {
+                return this.CheckerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CheckerField, value) != true)) {
+                    this.CheckerField = value;
+                    this.RaisePropertyChanged("Checker");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CheckerId {
+            get {
+                return this.CheckerIdField;
+            }
+            set {
+                if ((this.CheckerIdField.Equals(value) != true)) {
+                    this.CheckerIdField = value;
+                    this.RaisePropertyChanged("CheckerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateUpload {
+            get {
+                return this.DateUploadField;
+            }
+            set {
+                if ((this.DateUploadField.Equals(value) != true)) {
+                    this.DateUploadField = value;
+                    this.RaisePropertyChanged("DateUpload");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateValid {
+            get {
+                return this.DateValidField;
+            }
+            set {
+                if ((this.DateValidField.Equals(value) != true)) {
+                    this.DateValidField = value;
+                    this.RaisePropertyChanged("DateValid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User Designer {
+            get {
+                return this.DesignerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DesignerField, value) != true)) {
+                    this.DesignerField = value;
+                    this.RaisePropertyChanged("Designer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DesignerId {
+            get {
+                return this.DesignerIdField;
+            }
+            set {
+                if ((this.DesignerIdField.Equals(value) != true)) {
+                    this.DesignerIdField = value;
+                    this.RaisePropertyChanged("DesignerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocumentName {
+            get {
+                return this.DocumentNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentNameField, value) != true)) {
+                    this.DocumentNameField = value;
+                    this.RaisePropertyChanged("DocumentName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileNameWithEx {
+            get {
+                return this.FileNameWithExField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameWithExField, value) != true)) {
+                    this.FileNameWithExField = value;
+                    this.RaisePropertyChanged("FileNameWithEx");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FtpPath {
+            get {
+                return this.FtpPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FtpPathField, value) != true)) {
+                    this.FtpPathField = value;
+                    this.RaisePropertyChanged("FtpPath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Hash {
+            get {
+                return this.HashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashField, value) != true)) {
+                    this.HashField = value;
+                    this.RaisePropertyChanged("Hash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> LastModify {
+            get {
+                return this.LastModifyField;
+            }
+            set {
+                if ((this.LastModifyField.Equals(value) != true)) {
+                    this.LastModifyField = value;
+                    this.RaisePropertyChanged("LastModify");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User Manager {
+            get {
+                return this.ManagerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ManagerField, value) != true)) {
+                    this.ManagerField = value;
+                    this.RaisePropertyChanged("Manager");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ManagerId {
+            get {
+                return this.ManagerIdField;
+            }
+            set {
+                if ((this.ManagerIdField.Equals(value) != true)) {
+                    this.ManagerIdField = value;
+                    this.RaisePropertyChanged("ManagerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Note {
+            get {
+                return this.NoteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
+                    this.NoteField = value;
+                    this.RaisePropertyChanged("Note");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocumentOfProduct[] PublishDocumentOfProducts {
+            get {
+                return this.PublishDocumentOfProductsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocumentOfProductsField, value) != true)) {
+                    this.PublishDocumentOfProductsField = value;
+                    this.RaisePropertyChanged("PublishDocumentOfProducts");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments {
+            get {
+                return this.RequestSendDocumentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentsField, value) != true)) {
+                    this.RequestSendDocumentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocuments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User UserCreate {
+            get {
+                return this.UserCreateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserCreateField, value) != true)) {
+                    this.UserCreateField = value;
+                    this.RaisePropertyChanged("UserCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RolePermissionD", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class RolePermissionD : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreateByUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Permission PermissionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PermissionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Role RoleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserCreateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreateByUserId {
+            get {
+                return this.CreateByUserIdField;
+            }
+            set {
+                if ((this.CreateByUserIdField.Equals(value) != true)) {
+                    this.CreateByUserIdField = value;
+                    this.RaisePropertyChanged("CreateByUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Permission Permission {
+            get {
+                return this.PermissionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PermissionField, value) != true)) {
+                    this.PermissionField = value;
+                    this.RaisePropertyChanged("Permission");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PermissionId {
+            get {
+                return this.PermissionIdField;
+            }
+            set {
+                if ((this.PermissionIdField.Equals(value) != true)) {
+                    this.PermissionIdField = value;
+                    this.RaisePropertyChanged("PermissionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Role Role {
+            get {
+                return this.RoleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
+                    this.RoleField = value;
+                    this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int RoleId {
+            get {
+                return this.RoleIdField;
+            }
+            set {
+                if ((this.RoleIdField.Equals(value) != true)) {
+                    this.RoleIdField = value;
+                    this.RaisePropertyChanged("RoleId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User UserCreate {
+            get {
+                return this.UserCreateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserCreateField, value) != true)) {
+                    this.UserCreateField = value;
+                    this.RaisePropertyChanged("UserCreate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Standard", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Standard : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CreateByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.TransformerInfo[] TransformerInfoesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserCreateIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreateBy {
+            get {
+                return this.CreateByField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreateByField, value) != true)) {
+                    this.CreateByField = value;
+                    this.RaisePropertyChanged("CreateBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Note {
+            get {
+                return this.NoteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
+                    this.NoteField = value;
+                    this.RaisePropertyChanged("Note");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.TransformerInfo[] TransformerInfoes {
+            get {
+                return this.TransformerInfoesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransformerInfoesField, value) != true)) {
+                    this.TransformerInfoesField = value;
+                    this.RaisePropertyChanged("TransformerInfoes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserStatus", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum UserStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DEACTIVE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ACTIVED = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ONLINE = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OFFLINE = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NOT_LOGGED_YET = 8,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2467,66 +5308,60 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserTask", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransformerInfo", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
-    public partial class UserTask : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class TransformerInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AssignedByField;
+        private string ConnectionSymbolField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User AssignedByUserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> CanSaveField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> CanViewAttachedFileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DoneContentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool HasPrintedField;
+        private string CoolingMethodField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<bool> IsFinishField;
+        private string NoteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsProcessingField;
+        private System.Nullable<int> NumberOfPhaseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string JobContentField;
+        private System.Nullable<int> NumberOfWindingField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.PermissionType PermissionTypeField;
+        private string PowerTransportField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool SeenField;
+        private QLHS_DR.ChatAppServiceReference.Product[] ProductsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Task TaskField;
+        private string RatedFrequencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TaskIdField;
+        private string RatedPowerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] TaskKeyField;
+        private string RatedVoltageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> TimeCreateField;
+        private QLHS_DR.ChatAppServiceReference.Standard StandardField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
+        private System.Nullable<int> StandardIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIdField;
+        private string StationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnitPowerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VoltageRatioField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -2539,79 +5374,27 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AssignedBy {
+        public string ConnectionSymbol {
             get {
-                return this.AssignedByField;
+                return this.ConnectionSymbolField;
             }
             set {
-                if ((this.AssignedByField.Equals(value) != true)) {
-                    this.AssignedByField = value;
-                    this.RaisePropertyChanged("AssignedBy");
+                if ((object.ReferenceEquals(this.ConnectionSymbolField, value) != true)) {
+                    this.ConnectionSymbolField = value;
+                    this.RaisePropertyChanged("ConnectionSymbol");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User AssignedByUser {
+        public string CoolingMethod {
             get {
-                return this.AssignedByUserField;
+                return this.CoolingMethodField;
             }
             set {
-                if ((object.ReferenceEquals(this.AssignedByUserField, value) != true)) {
-                    this.AssignedByUserField = value;
-                    this.RaisePropertyChanged("AssignedByUser");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> CanSave {
-            get {
-                return this.CanSaveField;
-            }
-            set {
-                if ((this.CanSaveField.Equals(value) != true)) {
-                    this.CanSaveField = value;
-                    this.RaisePropertyChanged("CanSave");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> CanViewAttachedFile {
-            get {
-                return this.CanViewAttachedFileField;
-            }
-            set {
-                if ((this.CanViewAttachedFileField.Equals(value) != true)) {
-                    this.CanViewAttachedFileField = value;
-                    this.RaisePropertyChanged("CanViewAttachedFile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DoneContent {
-            get {
-                return this.DoneContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DoneContentField, value) != true)) {
-                    this.DoneContentField = value;
-                    this.RaisePropertyChanged("DoneContent");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasPrinted {
-            get {
-                return this.HasPrintedField;
-            }
-            set {
-                if ((this.HasPrintedField.Equals(value) != true)) {
-                    this.HasPrintedField = value;
-                    this.RaisePropertyChanged("HasPrinted");
+                if ((object.ReferenceEquals(this.CoolingMethodField, value) != true)) {
+                    this.CoolingMethodField = value;
+                    this.RaisePropertyChanged("CoolingMethod");
                 }
             }
         }
@@ -2630,567 +5413,170 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<bool> IsFinish {
+        public string Note {
             get {
-                return this.IsFinishField;
+                return this.NoteField;
             }
             set {
-                if ((this.IsFinishField.Equals(value) != true)) {
-                    this.IsFinishField = value;
-                    this.RaisePropertyChanged("IsFinish");
+                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
+                    this.NoteField = value;
+                    this.RaisePropertyChanged("Note");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsProcessing {
+        public System.Nullable<int> NumberOfPhase {
             get {
-                return this.IsProcessingField;
+                return this.NumberOfPhaseField;
             }
             set {
-                if ((this.IsProcessingField.Equals(value) != true)) {
-                    this.IsProcessingField = value;
-                    this.RaisePropertyChanged("IsProcessing");
+                if ((this.NumberOfPhaseField.Equals(value) != true)) {
+                    this.NumberOfPhaseField = value;
+                    this.RaisePropertyChanged("NumberOfPhase");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string JobContent {
+        public System.Nullable<int> NumberOfWinding {
             get {
-                return this.JobContentField;
+                return this.NumberOfWindingField;
             }
             set {
-                if ((object.ReferenceEquals(this.JobContentField, value) != true)) {
-                    this.JobContentField = value;
-                    this.RaisePropertyChanged("JobContent");
+                if ((this.NumberOfWindingField.Equals(value) != true)) {
+                    this.NumberOfWindingField = value;
+                    this.RaisePropertyChanged("NumberOfWinding");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.PermissionType PermissionType {
+        public string PowerTransport {
             get {
-                return this.PermissionTypeField;
+                return this.PowerTransportField;
             }
             set {
-                if ((this.PermissionTypeField.Equals(value) != true)) {
-                    this.PermissionTypeField = value;
-                    this.RaisePropertyChanged("PermissionType");
+                if ((object.ReferenceEquals(this.PowerTransportField, value) != true)) {
+                    this.PowerTransportField = value;
+                    this.RaisePropertyChanged("PowerTransport");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Seen {
+        public QLHS_DR.ChatAppServiceReference.Product[] Products {
             get {
-                return this.SeenField;
+                return this.ProductsField;
             }
             set {
-                if ((this.SeenField.Equals(value) != true)) {
-                    this.SeenField = value;
-                    this.RaisePropertyChanged("Seen");
+                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
+                    this.ProductsField = value;
+                    this.RaisePropertyChanged("Products");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Task Task {
+        public string RatedFrequency {
             get {
-                return this.TaskField;
+                return this.RatedFrequencyField;
             }
             set {
-                if ((object.ReferenceEquals(this.TaskField, value) != true)) {
-                    this.TaskField = value;
-                    this.RaisePropertyChanged("Task");
+                if ((object.ReferenceEquals(this.RatedFrequencyField, value) != true)) {
+                    this.RatedFrequencyField = value;
+                    this.RaisePropertyChanged("RatedFrequency");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TaskId {
+        public string RatedPower {
             get {
-                return this.TaskIdField;
+                return this.RatedPowerField;
             }
             set {
-                if ((this.TaskIdField.Equals(value) != true)) {
-                    this.TaskIdField = value;
-                    this.RaisePropertyChanged("TaskId");
+                if ((object.ReferenceEquals(this.RatedPowerField, value) != true)) {
+                    this.RatedPowerField = value;
+                    this.RaisePropertyChanged("RatedPower");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] TaskKey {
+        public string RatedVoltage {
             get {
-                return this.TaskKeyField;
+                return this.RatedVoltageField;
             }
             set {
-                if ((object.ReferenceEquals(this.TaskKeyField, value) != true)) {
-                    this.TaskKeyField = value;
-                    this.RaisePropertyChanged("TaskKey");
+                if ((object.ReferenceEquals(this.RatedVoltageField, value) != true)) {
+                    this.RatedVoltageField = value;
+                    this.RaisePropertyChanged("RatedVoltage");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> TimeCreate {
+        public QLHS_DR.ChatAppServiceReference.Standard Standard {
             get {
-                return this.TimeCreateField;
+                return this.StandardField;
             }
             set {
-                if ((this.TimeCreateField.Equals(value) != true)) {
-                    this.TimeCreateField = value;
-                    this.RaisePropertyChanged("TimeCreate");
+                if ((object.ReferenceEquals(this.StandardField, value) != true)) {
+                    this.StandardField = value;
+                    this.RaisePropertyChanged("Standard");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
+        public System.Nullable<int> StandardId {
             get {
-                return this.UserField;
+                return this.StandardIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
+                if ((this.StandardIdField.Equals(value) != true)) {
+                    this.StandardIdField = value;
+                    this.RaisePropertyChanged("StandardId");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserId {
+        public string Station {
             get {
-                return this.UserIdField;
+                return this.StationField;
             }
             set {
-                if ((this.UserIdField.Equals(value) != true)) {
-                    this.UserIdField = value;
-                    this.RaisePropertyChanged("UserId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Department", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class Department : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GroupDepartmentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ManagerPositionId1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ManagerPositionId2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code {
-            get {
-                return this.CodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
-                    this.CodeField = value;
-                    this.RaisePropertyChanged("Code");
+                if ((object.ReferenceEquals(this.StationField, value) != true)) {
+                    this.StationField = value;
+                    this.RaisePropertyChanged("Station");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasks {
+        public string UnitPower {
             get {
-                return this.DepartmentTasksField;
+                return this.UnitPowerField;
             }
             set {
-                if ((object.ReferenceEquals(this.DepartmentTasksField, value) != true)) {
-                    this.DepartmentTasksField = value;
-                    this.RaisePropertyChanged("DepartmentTasks");
+                if ((object.ReferenceEquals(this.UnitPowerField, value) != true)) {
+                    this.UnitPowerField = value;
+                    this.RaisePropertyChanged("UnitPower");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartment {
+        public string VoltageRatio {
             get {
-                return this.GroupDepartmentField;
+                return this.VoltageRatioField;
             }
             set {
-                if ((object.ReferenceEquals(this.GroupDepartmentField, value) != true)) {
-                    this.GroupDepartmentField = value;
-                    this.RaisePropertyChanged("GroupDepartment");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GroupDepartmentId {
-            get {
-                return this.GroupDepartmentIdField;
-            }
-            set {
-                if ((this.GroupDepartmentIdField.Equals(value) != true)) {
-                    this.GroupDepartmentIdField = value;
-                    this.RaisePropertyChanged("GroupDepartmentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition1 {
-            get {
-                return this.ManagerPosition1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManagerPosition1Field, value) != true)) {
-                    this.ManagerPosition1Field = value;
-                    this.RaisePropertyChanged("ManagerPosition1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition2 {
-            get {
-                return this.ManagerPosition2Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManagerPosition2Field, value) != true)) {
-                    this.ManagerPosition2Field = value;
-                    this.RaisePropertyChanged("ManagerPosition2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ManagerPositionId1 {
-            get {
-                return this.ManagerPositionId1Field;
-            }
-            set {
-                if ((this.ManagerPositionId1Field.Equals(value) != true)) {
-                    this.ManagerPositionId1Field = value;
-                    this.RaisePropertyChanged("ManagerPositionId1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ManagerPositionId2 {
-            get {
-                return this.ManagerPositionId2Field;
-            }
-            set {
-                if ((this.ManagerPositionId2Field.Equals(value) != true)) {
-                    this.ManagerPositionId2Field = value;
-                    this.RaisePropertyChanged("ManagerPositionId2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
-            get {
-                return this.UserDepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
-                    this.UserDepartmentsField = value;
-                    this.RaisePropertyChanged("UserDepartments");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GroupDepartment", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class GroupDepartment : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Department[] DepartmentsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code {
-            get {
-                return this.CodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
-                    this.CodeField = value;
-                    this.RaisePropertyChanged("Code");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Department[] Departments {
-            get {
-                return this.DepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentsField, value) != true)) {
-                    this.DepartmentsField = value;
-                    this.RaisePropertyChanged("Departments");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Position", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class Position : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Department[] DepartmentsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Department[] Departments1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code {
-            get {
-                return this.CodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
-                    this.CodeField = value;
-                    this.RaisePropertyChanged("Code");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Department[] Departments {
-            get {
-                return this.DepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentsField, value) != true)) {
-                    this.DepartmentsField = value;
-                    this.RaisePropertyChanged("Departments");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Department[] Departments1 {
-            get {
-                return this.Departments1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Departments1Field, value) != true)) {
-                    this.Departments1Field = value;
-                    this.RaisePropertyChanged("Departments1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
-            get {
-                return this.UserDepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
-                    this.UserDepartmentsField = value;
-                    this.RaisePropertyChanged("UserDepartments");
+                if ((object.ReferenceEquals(this.VoltageRatioField, value) != true)) {
+                    this.VoltageRatioField = value;
+                    this.RaisePropertyChanged("VoltageRatio");
                 }
             }
         }
@@ -3207,110 +5593,468 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.FlagsAttribute()]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TaskPriority", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    public enum TaskPriority : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum ProductType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Low = 0,
+        General = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Normal = 1,
+        PowerTransformer = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        High = 2,
+        DistributionTransformer = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Urgent = 3,
+        CurrentTransformer = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VoltageTransformer = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MOF1 = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MOF3 = 6,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.FlagsAttribute()]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TaskStatus", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    public enum TaskStatus : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="PublishDocumentOfProduct", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class PublishDocumentOfProduct : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        NotStarted = 0,
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Completed = 1,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        InProgess = 2,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> InvalidFromField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        NeedAssistance = 3,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDeletedField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Deferred = 4,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsInvalidField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Revoked = 5,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Product ProductField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublishDocument PublishDocumentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PublishDocumentIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> InvalidFrom {
+            get {
+                return this.InvalidFromField;
+            }
+            set {
+                if ((this.InvalidFromField.Equals(value) != true)) {
+                    this.InvalidFromField = value;
+                    this.RaisePropertyChanged("InvalidFrom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDeleted {
+            get {
+                return this.IsDeletedField;
+            }
+            set {
+                if ((this.IsDeletedField.Equals(value) != true)) {
+                    this.IsDeletedField = value;
+                    this.RaisePropertyChanged("IsDeleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsInvalid {
+            get {
+                return this.IsInvalidField;
+            }
+            set {
+                if ((this.IsInvalidField.Equals(value) != true)) {
+                    this.IsInvalidField = value;
+                    this.RaisePropertyChanged("IsInvalid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Product Product {
+            get {
+                return this.ProductField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductField, value) != true)) {
+                    this.ProductField = value;
+                    this.RaisePropertyChanged("Product");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.PublishDocument PublishDocument {
+            get {
+                return this.PublishDocumentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PublishDocumentField, value) != true)) {
+                    this.PublishDocumentField = value;
+                    this.RaisePropertyChanged("PublishDocument");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PublishDocumentId {
+            get {
+                return this.PublishDocumentIdField;
+            }
+            set {
+                if ((this.PublishDocumentIdField.Equals(value) != true)) {
+                    this.PublishDocumentIdField = value;
+                    this.RaisePropertyChanged("PublishDocumentId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.FlagsAttribute()]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PermissionType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    public enum PermissionType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransformerManual", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TransformerManual : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        NONE = 0,
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        CREATE_USER = 1,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DocTitleIdField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        EDIT_USER = 2,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.DocTittle DocTittleField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DELETE_USER = 4,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.File FileField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        LOCK_USER = 8,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileIdField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        UNLOCK_USER = 16,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        VIEW_LOG = 32,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDeletedField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        PRINT_DOCUMENT = 64,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Product ProductField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        START_SERVICE = 128,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        STOP_SERVICE = 256,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> VersionField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        VIEW_DOCUMENT = 512,
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        SEND_DOCUMENT = 1024,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DocTitleId {
+            get {
+                return this.DocTitleIdField;
+            }
+            set {
+                if ((this.DocTitleIdField.Equals(value) != true)) {
+                    this.DocTitleIdField = value;
+                    this.RaisePropertyChanged("DocTitleId");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        RECEIVE_DOCUMENT = 2048,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.DocTittle DocTittle {
+            get {
+                return this.DocTittleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocTittleField, value) != true)) {
+                    this.DocTittleField = value;
+                    this.RaisePropertyChanged("DocTittle");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        REVIEW_DOCUMENT = 4096,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.File File {
+            get {
+                return this.FileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileField, value) != true)) {
+                    this.FileField = value;
+                    this.RaisePropertyChanged("File");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        SIGN_DOCUMENT = 8192,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileId {
+            get {
+                return this.FileIdField;
+            }
+            set {
+                if ((this.FileIdField.Equals(value) != true)) {
+                    this.FileIdField = value;
+                    this.RaisePropertyChanged("FileId");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        CHANGE_PERMISSION = 16384,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        CREATE_TASK = 32768,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDeleted {
+            get {
+                return this.IsDeletedField;
+            }
+            set {
+                if ((this.IsDeletedField.Equals(value) != true)) {
+                    this.IsDeletedField = value;
+                    this.RaisePropertyChanged("IsDeleted");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        DELETE_TASK = 65536,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Product Product {
+            get {
+                return this.ProductField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductField, value) != true)) {
+                    this.ProductField = value;
+                    this.RaisePropertyChanged("Product");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ADD_USER_TO_TASK = 131072,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ADD_DOCUMENT_TO_TASK = 262144,
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DocTittle", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class DocTittle : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> OrderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ParentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.TransformerManual[] TransformerManualsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Order {
+            get {
+                return this.OrderField;
+            }
+            set {
+                if ((this.OrderField.Equals(value) != true)) {
+                    this.OrderField = value;
+                    this.RaisePropertyChanged("Order");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ParentId {
+            get {
+                return this.ParentIdField;
+            }
+            set {
+                if ((this.ParentIdField.Equals(value) != true)) {
+                    this.ParentIdField = value;
+                    this.RaisePropertyChanged("ParentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.TransformerManual[] TransformerManuals {
+            get {
+                return this.TransformerManualsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TransformerManualsField, value) != true)) {
+                    this.TransformerManualsField = value;
+                    this.RaisePropertyChanged("TransformerManuals");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -3894,9 +6638,2127 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PermissionType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum PermissionType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NONE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CREATE_USER = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EDIT_USER = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_USER = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LOCK_USER = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UNLOCK_USER = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VIEW_LOG = 32,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PRINT_DOCUMENT = 64,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        START_SERVICE = 128,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        STOP_SERVICE = 256,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VIEW_DOCUMENT = 512,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SEND_DOCUMENT = 1024,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RECEIVE_DOCUMENT = 2048,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        REVIEW_DOCUMENT = 4096,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SIGN_DOCUMENT = 8192,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CHANGE_PERMISSION = 16384,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CREATE_TASK = 32768,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DELETE_TASK = 65536,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ADD_USER_TO_TASK = 131072,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ADD_DOCUMENT_TO_TASK = 262144,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserTaskPrintManager", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class UserTaskPrintManager : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PageNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PrintCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PrintedRevokedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrinterNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> RevokedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> SuccessField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> TimeDisposedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> TimePrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserDisposedIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserTask UserTaskField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserTaskIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PageNumber {
+            get {
+                return this.PageNumberField;
+            }
+            set {
+                if ((this.PageNumberField.Equals(value) != true)) {
+                    this.PageNumberField = value;
+                    this.RaisePropertyChanged("PageNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PrintCount {
+            get {
+                return this.PrintCountField;
+            }
+            set {
+                if ((this.PrintCountField.Equals(value) != true)) {
+                    this.PrintCountField = value;
+                    this.RaisePropertyChanged("PrintCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PrintedRevoked {
+            get {
+                return this.PrintedRevokedField;
+            }
+            set {
+                if ((this.PrintedRevokedField.Equals(value) != true)) {
+                    this.PrintedRevokedField = value;
+                    this.RaisePropertyChanged("PrintedRevoked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrinterName {
+            get {
+                return this.PrinterNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrinterNameField, value) != true)) {
+                    this.PrinterNameField = value;
+                    this.RaisePropertyChanged("PrinterName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Revoked {
+            get {
+                return this.RevokedField;
+            }
+            set {
+                if ((this.RevokedField.Equals(value) != true)) {
+                    this.RevokedField = value;
+                    this.RaisePropertyChanged("Revoked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Success {
+            get {
+                return this.SuccessField;
+            }
+            set {
+                if ((this.SuccessField.Equals(value) != true)) {
+                    this.SuccessField = value;
+                    this.RaisePropertyChanged("Success");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimeDisposed {
+            get {
+                return this.TimeDisposedField;
+            }
+            set {
+                if ((this.TimeDisposedField.Equals(value) != true)) {
+                    this.TimeDisposedField = value;
+                    this.RaisePropertyChanged("TimeDisposed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> TimePrint {
+            get {
+                return this.TimePrintField;
+            }
+            set {
+                if ((this.TimePrintField.Equals(value) != true)) {
+                    this.TimePrintField = value;
+                    this.RaisePropertyChanged("TimePrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserDisposedId {
+            get {
+                return this.UserDisposedIdField;
+            }
+            set {
+                if ((this.UserDisposedIdField.Equals(value) != true)) {
+                    this.UserDisposedIdField = value;
+                    this.RaisePropertyChanged("UserDisposedId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserTask UserTask {
+            get {
+                return this.UserTaskField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserTaskField, value) != true)) {
+                    this.UserTaskField = value;
+                    this.RaisePropertyChanged("UserTask");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserTaskId {
+            get {
+                return this.UserTaskIdField;
+            }
+            set {
+                if ((this.UserTaskIdField.Equals(value) != true)) {
+                    this.UserTaskIdField = value;
+                    this.RaisePropertyChanged("UserTaskId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReceivedDepartmentDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class ReceivedDepartmentDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanViewFileAttachmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IndexInTreeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsProcessField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsViewOnlyField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanViewFileAttachment {
+            get {
+                return this.CanViewFileAttachmentField;
+            }
+            set {
+                if ((this.CanViewFileAttachmentField.Equals(value) != true)) {
+                    this.CanViewFileAttachmentField = value;
+                    this.RaisePropertyChanged("CanViewFileAttachment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IndexInTree {
+            get {
+                return this.IndexInTreeField;
+            }
+            set {
+                if ((this.IndexInTreeField.Equals(value) != true)) {
+                    this.IndexInTreeField = value;
+                    this.RaisePropertyChanged("IndexInTree");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsProcess {
+            get {
+                return this.IsProcessField;
+            }
+            set {
+                if ((this.IsProcessField.Equals(value) != true)) {
+                    this.IsProcessField = value;
+                    this.RaisePropertyChanged("IsProcess");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsViewOnly {
+            get {
+                return this.IsViewOnlyField;
+            }
+            set {
+                if ((this.IsViewOnlyField.Equals(value) != true)) {
+                    this.IsViewOnlyField = value;
+                    this.RaisePropertyChanged("IsViewOnly");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TaskAttachedFileDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TaskAttachedFileDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ConfidentialLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ModifiedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaskIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ConfidentialLevel {
+            get {
+                return this.ConfidentialLevelField;
+            }
+            set {
+                if ((this.ConfidentialLevelField.Equals(value) != true)) {
+                    this.ConfidentialLevelField = value;
+                    this.RaisePropertyChanged("ConfidentialLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ModifiedBy {
+            get {
+                return this.ModifiedByField;
+            }
+            set {
+                if ((this.ModifiedByField.Equals(value) != true)) {
+                    this.ModifiedByField = value;
+                    this.RaisePropertyChanged("ModifiedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TaskId {
+            get {
+                return this.TaskIdField;
+            }
+            set {
+                if ((this.TaskIdField.Equals(value) != true)) {
+                    this.TaskIdField = value;
+                    this.RaisePropertyChanged("TaskId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransformerDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TransformerDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ConnectionSymbolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CoolingMethodField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateCreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DesignFilePdfCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumberOfPhaseField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> NumberOfWindingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PowerTransportField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.ProductType ProductTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RatedFrequencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RatedPowerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RatedPowerAndUnitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RatedVoltageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StandardIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StandardNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TransformerManualCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UnitPowerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserCreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VoltageRatioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YearOfManufactureField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ConnectionSymbol {
+            get {
+                return this.ConnectionSymbolField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConnectionSymbolField, value) != true)) {
+                    this.ConnectionSymbolField = value;
+                    this.RaisePropertyChanged("ConnectionSymbol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CoolingMethod {
+            get {
+                return this.CoolingMethodField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CoolingMethodField, value) != true)) {
+                    this.CoolingMethodField = value;
+                    this.RaisePropertyChanged("CoolingMethod");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreated {
+            get {
+                return this.DateCreatedField;
+            }
+            set {
+                if ((this.DateCreatedField.Equals(value) != true)) {
+                    this.DateCreatedField = value;
+                    this.RaisePropertyChanged("DateCreated");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DesignFilePdfCount {
+            get {
+                return this.DesignFilePdfCountField;
+            }
+            set {
+                if ((this.DesignFilePdfCountField.Equals(value) != true)) {
+                    this.DesignFilePdfCountField = value;
+                    this.RaisePropertyChanged("DesignFilePdfCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Note {
+            get {
+                return this.NoteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
+                    this.NoteField = value;
+                    this.RaisePropertyChanged("Note");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NumberOfPhase {
+            get {
+                return this.NumberOfPhaseField;
+            }
+            set {
+                if ((this.NumberOfPhaseField.Equals(value) != true)) {
+                    this.NumberOfPhaseField = value;
+                    this.RaisePropertyChanged("NumberOfPhase");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> NumberOfWinding {
+            get {
+                return this.NumberOfWindingField;
+            }
+            set {
+                if ((this.NumberOfWindingField.Equals(value) != true)) {
+                    this.NumberOfWindingField = value;
+                    this.RaisePropertyChanged("NumberOfWinding");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PowerTransport {
+            get {
+                return this.PowerTransportField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PowerTransportField, value) != true)) {
+                    this.PowerTransportField = value;
+                    this.RaisePropertyChanged("PowerTransport");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductCode {
+            get {
+                return this.ProductCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductCodeField, value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductName {
+            get {
+                return this.ProductNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
+                    this.ProductNameField = value;
+                    this.RaisePropertyChanged("ProductName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.ProductType ProductType {
+            get {
+                return this.ProductTypeField;
+            }
+            set {
+                if ((this.ProductTypeField.Equals(value) != true)) {
+                    this.ProductTypeField = value;
+                    this.RaisePropertyChanged("ProductType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RatedFrequency {
+            get {
+                return this.RatedFrequencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RatedFrequencyField, value) != true)) {
+                    this.RatedFrequencyField = value;
+                    this.RaisePropertyChanged("RatedFrequency");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RatedPower {
+            get {
+                return this.RatedPowerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RatedPowerField, value) != true)) {
+                    this.RatedPowerField = value;
+                    this.RaisePropertyChanged("RatedPower");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RatedPowerAndUnit {
+            get {
+                return this.RatedPowerAndUnitField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RatedPowerAndUnitField, value) != true)) {
+                    this.RatedPowerAndUnitField = value;
+                    this.RaisePropertyChanged("RatedPowerAndUnit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RatedVoltage {
+            get {
+                return this.RatedVoltageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RatedVoltageField, value) != true)) {
+                    this.RatedVoltageField = value;
+                    this.RaisePropertyChanged("RatedVoltage");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StandardId {
+            get {
+                return this.StandardIdField;
+            }
+            set {
+                if ((this.StandardIdField.Equals(value) != true)) {
+                    this.StandardIdField = value;
+                    this.RaisePropertyChanged("StandardId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StandardName {
+            get {
+                return this.StandardNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StandardNameField, value) != true)) {
+                    this.StandardNameField = value;
+                    this.RaisePropertyChanged("StandardName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Station {
+            get {
+                return this.StationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StationField, value) != true)) {
+                    this.StationField = value;
+                    this.RaisePropertyChanged("Station");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TransformerManualCount {
+            get {
+                return this.TransformerManualCountField;
+            }
+            set {
+                if ((this.TransformerManualCountField.Equals(value) != true)) {
+                    this.TransformerManualCountField = value;
+                    this.RaisePropertyChanged("TransformerManualCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UnitPower {
+            get {
+                return this.UnitPowerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UnitPowerField, value) != true)) {
+                    this.UnitPowerField = value;
+                    this.RaisePropertyChanged("UnitPower");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VoltageRatio {
+            get {
+                return this.VoltageRatioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VoltageRatioField, value) != true)) {
+                    this.VoltageRatioField = value;
+                    this.RaisePropertyChanged("VoltageRatio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int YearOfManufacture {
+            get {
+                return this.YearOfManufactureField;
+            }
+            set {
+                if ((this.YearOfManufactureField.Equals(value) != true)) {
+                    this.YearOfManufactureField = value;
+                    this.RaisePropertyChanged("YearOfManufacture");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransformerManualDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class TransformerManualDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DocTitleIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsDeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TransformerManualIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserCreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> VersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DocTitleId {
+            get {
+                return this.DocTitleIdField;
+            }
+            set {
+                if ((this.DocTitleIdField.Equals(value) != true)) {
+                    this.DocTitleIdField = value;
+                    this.RaisePropertyChanged("DocTitleId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileId {
+            get {
+                return this.FileIdField;
+            }
+            set {
+                if ((this.FileIdField.Equals(value) != true)) {
+                    this.FileIdField = value;
+                    this.RaisePropertyChanged("FileId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsDeleted {
+            get {
+                return this.IsDeletedField;
+            }
+            set {
+                if ((this.IsDeletedField.Equals(value) != true)) {
+                    this.IsDeletedField = value;
+                    this.RaisePropertyChanged("IsDeleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int No {
+            get {
+                return this.NoField;
+            }
+            set {
+                if ((this.NoField.Equals(value) != true)) {
+                    this.NoField = value;
+                    this.RaisePropertyChanged("No");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TitleName {
+            get {
+                return this.TitleNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleNameField, value) != true)) {
+                    this.TitleNameField = value;
+                    this.RaisePropertyChanged("TitleName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TransformerManualId {
+            get {
+                return this.TransformerManualIdField;
+            }
+            set {
+                if ((this.TransformerManualIdField.Equals(value) != true)) {
+                    this.TransformerManualIdField = value;
+                    this.RaisePropertyChanged("TransformerManualId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PublishDocumentDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class PublishDocumentDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CheckerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CheckerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateUploadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DateValidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DesignerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DesignerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DocumentNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameWithExField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FptPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> LastModifyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ManagerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ManagerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NoteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] ProductIdsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserCreateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> UserCreateIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int VersionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Checker {
+            get {
+                return this.CheckerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CheckerField, value) != true)) {
+                    this.CheckerField = value;
+                    this.RaisePropertyChanged("Checker");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CheckerId {
+            get {
+                return this.CheckerIdField;
+            }
+            set {
+                if ((this.CheckerIdField.Equals(value) != true)) {
+                    this.CheckerIdField = value;
+                    this.RaisePropertyChanged("CheckerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateUpload {
+            get {
+                return this.DateUploadField;
+            }
+            set {
+                if ((this.DateUploadField.Equals(value) != true)) {
+                    this.DateUploadField = value;
+                    this.RaisePropertyChanged("DateUpload");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DateValid {
+            get {
+                return this.DateValidField;
+            }
+            set {
+                if ((this.DateValidField.Equals(value) != true)) {
+                    this.DateValidField = value;
+                    this.RaisePropertyChanged("DateValid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Designer {
+            get {
+                return this.DesignerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DesignerField, value) != true)) {
+                    this.DesignerField = value;
+                    this.RaisePropertyChanged("Designer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DesignerId {
+            get {
+                return this.DesignerIdField;
+            }
+            set {
+                if ((this.DesignerIdField.Equals(value) != true)) {
+                    this.DesignerIdField = value;
+                    this.RaisePropertyChanged("DesignerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DocumentName {
+            get {
+                return this.DocumentNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentNameField, value) != true)) {
+                    this.DocumentNameField = value;
+                    this.RaisePropertyChanged("DocumentName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileNameWithEx {
+            get {
+                return this.FileNameWithExField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameWithExField, value) != true)) {
+                    this.FileNameWithExField = value;
+                    this.RaisePropertyChanged("FileNameWithEx");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FptPath {
+            get {
+                return this.FptPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FptPathField, value) != true)) {
+                    this.FptPathField = value;
+                    this.RaisePropertyChanged("FptPath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Hash {
+            get {
+                return this.HashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HashField, value) != true)) {
+                    this.HashField = value;
+                    this.RaisePropertyChanged("Hash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> LastModify {
+            get {
+                return this.LastModifyField;
+            }
+            set {
+                if ((this.LastModifyField.Equals(value) != true)) {
+                    this.LastModifyField = value;
+                    this.RaisePropertyChanged("LastModify");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Manager {
+            get {
+                return this.ManagerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ManagerField, value) != true)) {
+                    this.ManagerField = value;
+                    this.RaisePropertyChanged("Manager");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ManagerId {
+            get {
+                return this.ManagerIdField;
+            }
+            set {
+                if ((this.ManagerIdField.Equals(value) != true)) {
+                    this.ManagerIdField = value;
+                    this.RaisePropertyChanged("ManagerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Note {
+            get {
+                return this.NoteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
+                    this.NoteField = value;
+                    this.RaisePropertyChanged("Note");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] ProductIds {
+            get {
+                return this.ProductIdsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductIdsField, value) != true)) {
+                    this.ProductIdsField = value;
+                    this.RaisePropertyChanged("ProductIds");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserCreate {
+            get {
+                return this.UserCreateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserCreateField, value) != true)) {
+                    this.UserCreateField = value;
+                    this.RaisePropertyChanged("UserCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version {
+            get {
+                return this.VersionField;
+            }
+            set {
+                if ((this.VersionField.Equals(value) != true)) {
+                    this.VersionField = value;
+                    this.RaisePropertyChanged("Version");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestSendDocumentDTO", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class RequestSendDocumentDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanForwardField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanPrintField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanReadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CanSaveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DepartmentIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanForward {
+            get {
+                return this.CanForwardField;
+            }
+            set {
+                if ((this.CanForwardField.Equals(value) != true)) {
+                    this.CanForwardField = value;
+                    this.RaisePropertyChanged("CanForward");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanPrint {
+            get {
+                return this.CanPrintField;
+            }
+            set {
+                if ((this.CanPrintField.Equals(value) != true)) {
+                    this.CanPrintField = value;
+                    this.RaisePropertyChanged("CanPrint");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanRead {
+            get {
+                return this.CanReadField;
+            }
+            set {
+                if ((this.CanReadField.Equals(value) != true)) {
+                    this.CanReadField = value;
+                    this.RaisePropertyChanged("CanRead");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanSave {
+            get {
+                return this.CanSaveField;
+            }
+            set {
+                if ((this.CanSaveField.Equals(value) != true)) {
+                    this.CanSaveField = value;
+                    this.RaisePropertyChanged("CanSave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DepartmentId {
+            get {
+                return this.DepartmentIdField;
+            }
+            set {
+                if ((this.DepartmentIdField.Equals(value) != true)) {
+                    this.DepartmentIdField = value;
+                    this.RaisePropertyChanged("DepartmentId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ECKeyPurpose", Namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataTy" +
+        "pe")]
+    public enum ECKeyPurpose : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MESSAGE = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FILE = 1,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginStatusType", Namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataTy" +
+        "pe")]
+    public enum LoginStatusType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        BAD_INPUT = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UNKNOWN_USER = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WRONG_PASSWORD = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        USER_LOCKED = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MAX_ATTEMPT = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SUCCESS = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FAILED = 6,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatAppServiceReference.IMessageService", CallbackContract=typeof(QLHS_DR.ChatAppServiceReference.IMessageServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatAppServiceReference.IMessageService")]
     public interface IMessageService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/CountPrintDocument1", ReplyAction="http://tempuri.org/IMessageService/CountPrintDocument1Response")]
+        void CountPrintDocument1(int userTaskId, int pageNumber, int printCount, bool success, string printerName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/CountPrintDocument1", ReplyAction="http://tempuri.org/IMessageService/CountPrintDocument1Response")]
+        System.Threading.Tasks.Task CountPrintDocument1Async(int userTaskId, int pageNumber, int printCount, bool success, string printerName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetCountPrintDocument", ReplyAction="http://tempuri.org/IMessageService/GetCountPrintDocumentResponse")]
+        int GetCountPrintDocument(int userTaskId, int pageNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetCountPrintDocument", ReplyAction="http://tempuri.org/IMessageService/GetCountPrintDocumentResponse")]
+        System.Threading.Tasks.Task<int> GetCountPrintDocumentAsync(int userTaskId, int pageNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateTask", ReplyAction="http://tempuri.org/IMessageService/UpdateTaskResponse")]
+        void UpdateTask(QLHS_DR.ChatAppServiceReference.Task task, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateTask", ReplyAction="http://tempuri.org/IMessageService/UpdateTaskResponse")]
+        System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.ChatAppServiceReference.Task task, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFile", ReplyAction="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFileResponse")]
+        void UpdateTaskAndTaskAttackedFile(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.TaskAttachedFile taskAttachedFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFile", ReplyAction="http://tempuri.org/IMessageService/UpdateTaskAndTaskAttackedFileResponse")]
+        System.Threading.Tasks.Task UpdateTaskAndTaskAttackedFileAsync(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.TaskAttachedFile taskAttachedFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetProcessingUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetProcessingUserInTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetProcessingUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetProcessingUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetProcessingUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetProcessingUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetSeenUsersInTask", ReplyAction="http://tempuri.org/IMessageService/GetSeenUsersInTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetSeenUsersInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetSeenUsersInTask", ReplyAction="http://tempuri.org/IMessageService/GetSeenUsersInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetSeenUsersInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPrintedUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetPrintedUserInTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetPrintedUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPrintedUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetPrintedUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetPrintedUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetSeenUserInTask", ReplyAction="http://tempuri.org/IMessageService/SetSeenUserInTaskResponse")]
+        void SetSeenUserInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetSeenUserInTask", ReplyAction="http://tempuri.org/IMessageService/SetSeenUserInTaskResponse")]
+        System.Threading.Tasks.Task SetSeenUserInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetPrintedUserInTask", ReplyAction="http://tempuri.org/IMessageService/SetPrintedUserInTaskResponse")]
+        void SetPrintedUserInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetPrintedUserInTask", ReplyAction="http://tempuri.org/IMessageService/SetPrintedUserInTaskResponse")]
+        System.Threading.Tasks.Task SetPrintedUserInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveProcessingUser", ReplyAction="http://tempuri.org/IMessageService/RemoveProcessingUserResponse")]
+        void RemoveProcessingUser(int taskId, int userId, int removedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveProcessingUser", ReplyAction="http://tempuri.org/IMessageService/RemoveProcessingUserResponse")]
+        System.Threading.Tasks.Task RemoveProcessingUserAsync(int taskId, int userId, int removedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/HasSeenInTask", ReplyAction="http://tempuri.org/IMessageService/HasSeenInTaskResponse")]
+        bool HasSeenInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/HasSeenInTask", ReplyAction="http://tempuri.org/IMessageService/HasSeenInTaskResponse")]
+        System.Threading.Tasks.Task<bool> HasSeenInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/IsProcessingInTask", ReplyAction="http://tempuri.org/IMessageService/IsProcessingInTaskResponse")]
+        bool IsProcessingInTask(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/IsProcessingInTask", ReplyAction="http://tempuri.org/IMessageService/IsProcessingInTaskResponse")]
+        System.Threading.Tasks.Task<bool> IsProcessingInTaskAsync(int taskId, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskFinish", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskFinishResponse")]
+        void SetUserTaskFinish(int taskId, int userId, bool isFinish);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskFinish", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskFinishResponse")]
+        System.Threading.Tasks.Task SetUserTaskFinishAsync(int taskId, int userId, bool isFinish);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartment", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentResponse")]
+        QLHS_DR.ChatAppServiceReference.Department GetDepartment(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartment", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Department> GetDepartmentAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartmentName", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentNameResponse")]
+        string GetDepartmentName(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartmentName", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentNameResponse")]
+        System.Threading.Tasks.Task<string> GetDepartmentNameAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetGroupDepartment", ReplyAction="http://tempuri.org/IMessageService/GetGroupDepartmentResponse")]
+        QLHS_DR.ChatAppServiceReference.GroupDepartment GetGroupDepartment(int groupDepartmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetGroupDepartment", ReplyAction="http://tempuri.org/IMessageService/GetGroupDepartmentResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.GroupDepartment> GetGroupDepartmentAsync(int groupDepartmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartmentTask", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.DepartmentTask GetDepartmentTask(int departmentId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartmentTask", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.DepartmentTask> GetDepartmentTaskAsync(int departmentId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddDepartmentTask", ReplyAction="http://tempuri.org/IMessageService/AddDepartmentTaskResponse")]
+        int AddDepartmentTask(int taskId, int departmentId, int assignedByUserId, int processedByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddDepartmentTask", ReplyAction="http://tempuri.org/IMessageService/AddDepartmentTaskResponse")]
+        System.Threading.Tasks.Task<int> AddDepartmentTaskAsync(int taskId, int departmentId, int assignedByUserId, int processedByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewTask", ReplyAction="http://tempuri.org/IMessageService/NewTaskResponse")]
+        void NewTask(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewTask", ReplyAction="http://tempuri.org/IMessageService/NewTaskResponse")]
+        System.Threading.Tasks.Task NewTaskAsync(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetReceivedDepartmentDTO", ReplyAction="http://tempuri.org/IMessageService/GetReceivedDepartmentDTOResponse")]
+        QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO GetReceivedDepartmentDTO(int departmentId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetReceivedDepartmentDTO", ReplyAction="http://tempuri.org/IMessageService/GetReceivedDepartmentDTOResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO> GetReceivedDepartmentDTOAsync(int departmentId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddDepartmentToTask", ReplyAction="http://tempuri.org/IMessageService/AddDepartmentToTaskResponse")]
+        void AddDepartmentToTask(QLHS_DR.ChatAppServiceReference.Task taskId, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddDepartmentToTask", ReplyAction="http://tempuri.org/IMessageService/AddDepartmentToTaskResponse")]
+        System.Threading.Tasks.Task AddDepartmentToTaskAsync(QLHS_DR.ChatAppServiceReference.Task taskId, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPermissionOfUser", ReplyAction="http://tempuri.org/IMessageService/GetPermissionOfUserResponse")]
+        QLHS_DR.ChatAppServiceReference.Permission[] GetPermissionOfUser(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPermissionOfUser", ReplyAction="http://tempuri.org/IMessageService/GetPermissionOfUserResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Permission[]> GetPermissionOfUserAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UploadTransformerManual", ReplyAction="http://tempuri.org/IMessageService/UploadTransformerManualResponse")]
+        bool UploadTransformerManual(byte[] content, string fileName, string title, string transformerCode, bool isDeleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UploadTransformerManual", ReplyAction="http://tempuri.org/IMessageService/UploadTransformerManualResponse")]
+        System.Threading.Tasks.Task<bool> UploadTransformerManualAsync(byte[] content, string fileName, string title, string transformerCode, bool isDeleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UploadTransformerManual1", ReplyAction="http://tempuri.org/IMessageService/UploadTransformerManual1Response")]
+        bool UploadTransformerManual1(byte[] content, string fileName, string title, string transformerCode, string description, bool isDeleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UploadTransformerManual1", ReplyAction="http://tempuri.org/IMessageService/UploadTransformerManual1Response")]
+        System.Threading.Tasks.Task<bool> UploadTransformerManual1Async(byte[] content, string fileName, string title, string transformerCode, string description, bool isDeleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchTransformer", ReplyAction="http://tempuri.org/IMessageService/SearchTransformerResponse")]
+        QLHS_DR.ChatAppServiceReference.TransformerDTO[] SearchTransformer(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, QLHS_DR.ChatAppServiceReference.ProductType productType, int StandardId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchTransformer", ReplyAction="http://tempuri.org/IMessageService/SearchTransformerResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO[]> SearchTransformerAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, QLHS_DR.ChatAppServiceReference.ProductType productType, int StandardId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTransformerDTOByProductCode", ReplyAction="http://tempuri.org/IMessageService/GetTransformerDTOByProductCodeResponse")]
+        QLHS_DR.ChatAppServiceReference.TransformerDTO GetTransformerDTOByProductCode(string productCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTransformerDTOByProductCode", ReplyAction="http://tempuri.org/IMessageService/GetTransformerDTOByProductCodeResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO> GetTransformerDTOByProductCodeAsync(string productCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadStandards", ReplyAction="http://tempuri.org/IMessageService/LoadStandardsResponse")]
+        QLHS_DR.ChatAppServiceReference.Standard[] LoadStandards();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadStandards", ReplyAction="http://tempuri.org/IMessageService/LoadStandardsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Standard[]> LoadStandardsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetProductById", ReplyAction="http://tempuri.org/IMessageService/GetProductByIdResponse")]
+        QLHS_DR.ChatAppServiceReference.Product GetProductById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetProductById", ReplyAction="http://tempuri.org/IMessageService/GetProductByIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Product> GetProductByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetProductByProductCode", ReplyAction="http://tempuri.org/IMessageService/GetProductByProductCodeResponse")]
+        QLHS_DR.ChatAppServiceReference.Product GetProductByProductCode(string productCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetProductByProductCode", ReplyAction="http://tempuri.org/IMessageService/GetProductByProductCodeResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Product> GetProductByProductCodeAsync(string productCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTransformerManual", ReplyAction="http://tempuri.org/IMessageService/LoadTransformerManualResponse")]
+        QLHS_DR.ChatAppServiceReference.TransformerManualDTO[] LoadTransformerManual(int transformerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTransformerManual", ReplyAction="http://tempuri.org/IMessageService/LoadTransformerManualResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerManualDTO[]> LoadTransformerManualAsync(int transformerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadContracts", ReplyAction="http://tempuri.org/IMessageService/LoadContractsResponse")]
+        QLHS_DR.ChatAppServiceReference.Contract[] LoadContracts(int transformerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadContracts", ReplyAction="http://tempuri.org/IMessageService/LoadContractsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Contract[]> LoadContractsAsync(int transformerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadTransformerManualFile", ReplyAction="http://tempuri.org/IMessageService/DownloadTransformerManualFileResponse")]
+        byte[] DownloadTransformerManualFile(int transformerManualId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadTransformerManualFile", ReplyAction="http://tempuri.org/IMessageService/DownloadTransformerManualFileResponse")]
+        System.Threading.Tasks.Task<byte[]> DownloadTransformerManualFileAsync(int transformerManualId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadContractFile", ReplyAction="http://tempuri.org/IMessageService/DownloadContractFileResponse")]
+        byte[] DownloadContractFile(int contractId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadContractFile", ReplyAction="http://tempuri.org/IMessageService/DownloadContractFileResponse")]
+        System.Threading.Tasks.Task<byte[]> DownloadContractFileAsync(int contractId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadDoctitle", ReplyAction="http://tempuri.org/IMessageService/LoadDoctitleResponse")]
+        QLHS_DR.ChatAppServiceReference.DocTittle[] LoadDoctitle();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadDoctitle", ReplyAction="http://tempuri.org/IMessageService/LoadDoctitleResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.DocTittle[]> LoadDoctitleAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetDeletedTransformerManual", ReplyAction="http://tempuri.org/IMessageService/SetDeletedTransformerManualResponse")]
+        void SetDeletedTransformerManual(int transformerManualId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetDeletedTransformerManual", ReplyAction="http://tempuri.org/IMessageService/SetDeletedTransformerManualResponse")]
+        System.Threading.Tasks.Task SetDeletedTransformerManualAsync(int transformerManualId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetDeletedContract", ReplyAction="http://tempuri.org/IMessageService/SetDeletedContractResponse")]
+        void SetDeletedContract(int contractId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetDeletedContract", ReplyAction="http://tempuri.org/IMessageService/SetDeletedContractResponse")]
+        System.Threading.Tasks.Task SetDeletedContractAsync(int contractId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewTransformer", ReplyAction="http://tempuri.org/IMessageService/NewTransformerResponse")]
+        void NewTransformer(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewTransformer", ReplyAction="http://tempuri.org/IMessageService/NewTransformerResponse")]
+        System.Threading.Tasks.Task NewTransformerAsync(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateTransformer", ReplyAction="http://tempuri.org/IMessageService/UpdateTransformerResponse")]
+        void UpdateTransformer(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateTransformer", ReplyAction="http://tempuri.org/IMessageService/UpdateTransformerResponse")]
+        System.Threading.Tasks.Task UpdateTransformerAsync(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveProduct", ReplyAction="http://tempuri.org/IMessageService/RemoveProductResponse")]
+        bool RemoveProduct(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveProduct", ReplyAction="http://tempuri.org/IMessageService/RemoveProductResponse")]
+        System.Threading.Tasks.Task<bool> RemoveProductAsync(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LockProduct", ReplyAction="http://tempuri.org/IMessageService/LockProductResponse")]
+        bool LockProduct(int productId, bool islock);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LockProduct", ReplyAction="http://tempuri.org/IMessageService/LockProductResponse")]
+        System.Threading.Tasks.Task<bool> LockProductAsync(int productId, bool islock);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UnLockProduct", ReplyAction="http://tempuri.org/IMessageService/UnLockProductResponse")]
+        bool UnLockProduct(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UnLockProduct", ReplyAction="http://tempuri.org/IMessageService/UnLockProductResponse")]
+        System.Threading.Tasks.Task<bool> UnLockProductAsync(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UploadContract", ReplyAction="http://tempuri.org/IMessageService/UploadContractResponse")]
+        int UploadContract(byte[] content, int productId, string contractName, string fileName, string contractDescription, bool isDeleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UploadContract", ReplyAction="http://tempuri.org/IMessageService/UploadContractResponse")]
+        System.Threading.Tasks.Task<int> UploadContractAsync(byte[] content, int productId, string contractName, string fileName, string contractDescription, bool isDeleted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewPublishDocument", ReplyAction="http://tempuri.org/IMessageService/NewPublishDocumentResponse")]
+        void NewPublishDocument(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewPublishDocument", ReplyAction="http://tempuri.org/IMessageService/NewPublishDocumentResponse")]
+        System.Threading.Tasks.Task NewPublishDocumentAsync(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTOs", ReplyAction="http://tempuri.org/IMessageService/LoadPublishDocumentDTOsResponse")]
+        QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[] LoadPublishDocumentDTOs(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTOs", ReplyAction="http://tempuri.org/IMessageService/LoadPublishDocumentDTOsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[]> LoadPublishDocumentDTOsAsync(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeleteds", ReplyAction="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeletedsResponse")]
+        QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[] LoadPublishDocumentDTODeleteds(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeleteds", ReplyAction="http://tempuri.org/IMessageService/LoadPublishDocumentDTODeletedsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[]> LoadPublishDocumentDTODeletedsAsync(int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddPublishDocuments", ReplyAction="http://tempuri.org/IMessageService/AddPublishDocumentsResponse")]
+        System.Nullable<int> AddPublishDocuments(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddPublishDocuments", ReplyAction="http://tempuri.org/IMessageService/AddPublishDocumentsResponse")]
+        System.Threading.Tasks.Task<System.Nullable<int>> AddPublishDocumentsAsync(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetDeletedPublishDocument", ReplyAction="http://tempuri.org/IMessageService/SetDeletedPublishDocumentResponse")]
+        void SetDeletedPublishDocument(int publishDocumentId, int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetDeletedPublishDocument", ReplyAction="http://tempuri.org/IMessageService/SetDeletedPublishDocumentResponse")]
+        System.Threading.Tasks.Task SetDeletedPublishDocumentAsync(int publishDocumentId, int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeletedPublishDocument", ReplyAction="http://tempuri.org/IMessageService/DeletedPublishDocumentResponse")]
+        void DeletedPublishDocument(int publishDocumentId, int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeletedPublishDocument", ReplyAction="http://tempuri.org/IMessageService/DeletedPublishDocumentResponse")]
+        System.Threading.Tasks.Task DeletedPublishDocumentAsync(int publishDocumentId, int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdatePublishDocumentInfo", ReplyAction="http://tempuri.org/IMessageService/UpdatePublishDocumentInfoResponse")]
+        void UpdatePublishDocumentInfo(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdatePublishDocumentInfo", ReplyAction="http://tempuri.org/IMessageService/UpdatePublishDocumentInfoResponse")]
+        System.Threading.Tasks.Task UpdatePublishDocumentInfoAsync(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RestorePublishDocumentDeleted", ReplyAction="http://tempuri.org/IMessageService/RestorePublishDocumentDeletedResponse")]
+        void RestorePublishDocumentDeleted(int publishDocumentId, int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RestorePublishDocumentDeleted", ReplyAction="http://tempuri.org/IMessageService/RestorePublishDocumentDeletedResponse")]
+        System.Threading.Tasks.Task RestorePublishDocumentDeletedAsync(int publishDocumentId, int productId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/NewRequestSendDocumentResponse")]
+        void NewRequestSendDocument(string documentName, string productCode, System.DateTime endDate, int publishDocumentId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/NewRequestSendDocumentResponse")]
+        System.Threading.Tasks.Task NewRequestSendDocumentAsync(string documentName, string productCode, System.DateTime endDate, int publishDocumentId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/CheckExistRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/CheckExistRequestSendDocumentResponse")]
+        bool CheckExistRequestSendDocument(int publishDocumentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/CheckExistRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/CheckExistRequestSendDocumentResponse")]
+        System.Threading.Tasks.Task<bool> CheckExistRequestSendDocumentAsync(int publishDocumentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartment", ReplyAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartmentResponse" +
+            "")]
+        QLHS_DR.ChatAppServiceReference.RequestSendDocument[] LoadRequestSendDocumentsOfMyDepartment();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartment", ReplyAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentsOfMyDepartmentResponse" +
+            "")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.RequestSendDocument[]> LoadRequestSendDocumentsOfMyDepartmentAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequest", ReplyAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequestResponse")]
+        QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] LoadRequestSendDocumentDTOOfRequest(int requestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequest", ReplyAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentDTOOfRequestResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[]> LoadRequestSendDocumentDTOOfRequestAsync(int requestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartments", ReplyAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartmentsResponse")]
+        QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] LoadRequestSendDocumentToDepartments(int requestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartments", ReplyAction="http://tempuri.org/IMessageService/LoadRequestSendDocumentToDepartmentsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[]> LoadRequestSendDocumentToDepartmentsAsync(int requestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments", ReplyAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartmentsResponse" +
+            "")]
+        void UpdateRequestSendDocumentToDepartments(int requestId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments", ReplyAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartmentsResponse" +
+            "")]
+        System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartmentsAsync(int requestId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1", ReplyAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1Respons" +
+            "e")]
+        void UpdateRequestSendDocumentToDepartments1(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1", ReplyAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentToDepartments1Respons" +
+            "e")]
+        System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartments1Async(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetRevokedRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/SetRevokedRequestSendDocumentResponse")]
+        void SetRevokedRequestSendDocument(int requestId, bool isRevoked);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetRevokedRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/SetRevokedRequestSendDocumentResponse")]
+        System.Threading.Tasks.Task SetRevokedRequestSendDocumentAsync(int requestId, bool isRevoked);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestSendDocumentResponse")]
+        void ProcessRequestSendDocument(QLHS_DR.ChatAppServiceReference.Task task, int requestId, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestSendDocumentResponse")]
+        System.Threading.Tasks.Task ProcessRequestSendDocumentAsync(QLHS_DR.ChatAppServiceReference.Task task, int requestId, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublishDocument", ReplyAction="http://tempuri.org/IMessageService/GetPublishDocumentResponse")]
+        QLHS_DR.ChatAppServiceReference.PublishDocument GetPublishDocument(int publishDocumentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublishDocument", ReplyAction="http://tempuri.org/IMessageService/GetPublishDocumentResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublishDocument> GetPublishDocumentAsync(int publishDocumentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentResponse")]
+        void UpdateRequestSendDocument(int publishDocumentId, string documentName, string productCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateRequestSendDocument", ReplyAction="http://tempuri.org/IMessageService/UpdateRequestSendDocumentResponse")]
+        System.Threading.Tasks.Task UpdateRequestSendDocumentAsync(int publishDocumentId, string documentName, string productCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LockUser", ReplyAction="http://tempuri.org/IMessageService/LockUserResponse")]
+        void LockUser(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LockUser", ReplyAction="http://tempuri.org/IMessageService/LockUserResponse")]
+        System.Threading.Tasks.Task LockUserAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UnLockUser", ReplyAction="http://tempuri.org/IMessageService/UnLockUserResponse")]
+        void UnLockUser(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UnLockUser", ReplyAction="http://tempuri.org/IMessageService/UnLockUserResponse")]
+        System.Threading.Tasks.Task UnLockUserAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/EditTransformerManual", ReplyAction="http://tempuri.org/IMessageService/EditTransformerManualResponse")]
+        void EditTransformerManual(int fileId, string description, int docTitleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/EditTransformerManual", ReplyAction="http://tempuri.org/IMessageService/EditTransformerManualResponse")]
+        System.Threading.Tasks.Task EditTransformerManualAsync(int fileId, string description, int docTitleId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetTotlPageForAttackedFile", ReplyAction="http://tempuri.org/IMessageService/SetTotlPageForAttackedFileResponse")]
+        void SetTotlPageForAttackedFile(int taskAttackedFileId, int totalPage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetTotlPageForAttackedFile", ReplyAction="http://tempuri.org/IMessageService/SetTotlPageForAttackedFileResponse")]
+        System.Threading.Tasks.Task SetTotlPageForAttackedFileAsync(int taskAttackedFileId, int totalPage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/CountPrintDocument", ReplyAction="http://tempuri.org/IMessageService/CountPrintDocumentResponse")]
+        void CountPrintDocument(int userTaskId, int pageNumber, int printCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/CountPrintDocument", ReplyAction="http://tempuri.org/IMessageService/CountPrintDocumentResponse")]
+        System.Threading.Tasks.Task CountPrintDocumentAsync(int userTaskId, int pageNumber, int printCount);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/Connect")]
         void Connect(int userId);
@@ -3915,19 +8777,372 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetConnectedUsers", ReplyAction="http://tempuri.org/IMessageService/GetConnectedUsersResponse")]
         System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetConnectedUsersAsync();
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IMessageServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/ForwardToClient")]
-        void ForwardToClient(QLHS_DR.ChatAppServiceReference.Message message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevel", ReplyAction="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevelResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTaskByConfidentialLevel(int confidentialLevel);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/UserConnected")]
-        void UserConnected(QLHS_DR.ChatAppServiceReference.User[] users);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevel", ReplyAction="http://tempuri.org/IMessageService/LoadTaskByConfidentialLevelResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTaskByConfidentialLevelAsync(int confidentialLevel);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/UserTaskChanged")]
-        void UserTaskChanged();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevel", ReplyAction="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevelResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask[] LoadUserTaskOfMyByConfidentialLevel(int confidentialLevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevel", ReplyAction="http://tempuri.org/IMessageService/LoadUserTaskOfMyByConfidentialLevelResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> LoadUserTaskOfMyByConfidentialLevelAsync(int confidentialLevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetAllUserTaskOfTask", ReplyAction="http://tempuri.org/IMessageService/GetAllUserTaskOfTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask[] GetAllUserTaskOfTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetAllUserTaskOfTask", ReplyAction="http://tempuri.org/IMessageService/GetAllUserTaskOfTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetAllUserTaskOfTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskNotFinish", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskNotFinishResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskNotFinish(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskNotFinish", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskNotFinishResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskNotFinishAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksNotFinish", ReplyAction="http://tempuri.org/IMessageService/LoadTasksNotFinishResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTasksNotFinish(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksNotFinish", ReplyAction="http://tempuri.org/IMessageService/LoadTasksNotFinishResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksNotFinishAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateUserTasks", ReplyAction="http://tempuri.org/IMessageService/UpdateUserTasksResponse")]
+        bool UpdateUserTasks(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateUserTasks", ReplyAction="http://tempuri.org/IMessageService/UpdateUserTasksResponse")]
+        System.Threading.Tasks.Task<bool> UpdateUserTasksAsync(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTask", ReplyAction="http://tempuri.org/IMessageService/LoadTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.Task LoadTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTask", ReplyAction="http://tempuri.org/IMessageService/LoadTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task> LoadTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskDocument", ReplyAction="http://tempuri.org/IMessageService/GetTaskDocumentResponse")]
+        QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO GetTaskDocument(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskDocument", ReplyAction="http://tempuri.org/IMessageService/GetTaskDocumentResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO> GetTaskDocumentAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskDocuments", ReplyAction="http://tempuri.org/IMessageService/GetTaskDocumentsResponse")]
+        QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO[] GetTaskDocuments(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskDocuments", ReplyAction="http://tempuri.org/IMessageService/GetTaskDocumentsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO[]> GetTaskDocumentsAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskPermissions", ReplyAction="http://tempuri.org/IMessageService/GetTaskPermissionsResponse")]
+        QLHS_DR.ChatAppServiceReference.PermissionType GetTaskPermissions(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskPermissions", ReplyAction="http://tempuri.org/IMessageService/GetTaskPermissionsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PermissionType> GetTaskPermissionsAsync(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocument", ReplyAction="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocumentResponse")]
+        void ConfirmDisposedPrintedDocument(int userTaskPrintManagerId, int numberDisposed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocument", ReplyAction="http://tempuri.org/IMessageService/ConfirmDisposedPrintedDocumentResponse")]
+        System.Threading.Tasks.Task ConfirmDisposedPrintedDocumentAsync(int userTaskPrintManagerId, int numberDisposed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskAttachedFile", ReplyAction="http://tempuri.org/IMessageService/GetTaskAttachedFileResponse")]
+        QLHS_DR.ChatAppServiceReference.TaskAttachedFile GetTaskAttachedFile(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetTaskAttachedFile", ReplyAction="http://tempuri.org/IMessageService/GetTaskAttachedFileResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TaskAttachedFile> GetTaskAttachedFileAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskPrintManagers", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskPrintManagersResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTaskPrintManager[] GetUserTaskPrintManagers(int userTaskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskPrintManagers", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskPrintManagersResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTaskPrintManager[]> GetUserTaskPrintManagersAsync(int userTaskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RevokeTaskByCurrentUser", ReplyAction="http://tempuri.org/IMessageService/RevokeTaskByCurrentUserResponse")]
+        void RevokeTaskByCurrentUser(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RevokeTaskByCurrentUser", ReplyAction="http://tempuri.org/IMessageService/RevokeTaskByCurrentUserResponse")]
+        System.Threading.Tasks.Task RevokeTaskByCurrentUserAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUsers", ReplyAction="http://tempuri.org/IMessageService/GetUsersResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetUsers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUsers", ReplyAction="http://tempuri.org/IMessageService/GetUsersResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserContacts", ReplyAction="http://tempuri.org/IMessageService/GetUserContactsResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetUserContacts(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserContacts", ReplyAction="http://tempuri.org/IMessageService/GetUserContactsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUserContactsAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartments", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentsResponse")]
+        QLHS_DR.ChatAppServiceReference.Department[] GetDepartments();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartments", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Department[]> GetDepartmentsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadUserDepartments", ReplyAction="http://tempuri.org/IMessageService/LoadUserDepartmentsResponse")]
+        QLHS_DR.ChatAppServiceReference.UserDepartment[] LoadUserDepartments();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadUserDepartments", ReplyAction="http://tempuri.org/IMessageService/LoadUserDepartmentsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserDepartment[]> LoadUserDepartmentsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserDepartmentsOfTask", ReplyAction="http://tempuri.org/IMessageService/GetUserDepartmentsOfTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.UserDepartment[] GetUserDepartmentsOfTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserDepartmentsOfTask", ReplyAction="http://tempuri.org/IMessageService/GetUserDepartmentsOfTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserDepartment[]> GetUserDepartmentsOfTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserByName", ReplyAction="http://tempuri.org/IMessageService/GetUserByNameResponse")]
+        QLHS_DR.ChatAppServiceReference.User GetUserByName(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserByName", ReplyAction="http://tempuri.org/IMessageService/GetUserByNameResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User> GetUserByNameAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUsersOfDepartment", ReplyAction="http://tempuri.org/IMessageService/GetUsersOfDepartmentResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetUsersOfDepartment(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUsersOfDepartment", ReplyAction="http://tempuri.org/IMessageService/GetUsersOfDepartmentResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUsersOfDepartmentAsync(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserById", ReplyAction="http://tempuri.org/IMessageService/GetUserByIdResponse")]
+        QLHS_DR.ChatAppServiceReference.User GetUserById(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserById", ReplyAction="http://tempuri.org/IMessageService/GetUserByIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User> GetUserByIdAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserECPrKeyFor", ReplyAction="http://tempuri.org/IMessageService/GetUserECPrKeyForResponse")]
+        byte[] GetUserECPrKeyFor(int userId, string password, QLHS_DR.ChatAppServiceReference.ECKeyPurpose purpose);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserECPrKeyFor", ReplyAction="http://tempuri.org/IMessageService/GetUserECPrKeyForResponse")]
+        System.Threading.Tasks.Task<byte[]> GetUserECPrKeyForAsync(int userId, string password, QLHS_DR.ChatAppServiceReference.ECKeyPurpose purpose);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/Logout", ReplyAction="http://tempuri.org/IMessageService/LogoutResponse")]
+        void Logout(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/Logout", ReplyAction="http://tempuri.org/IMessageService/LogoutResponse")]
+        System.Threading.Tasks.Task LogoutAsync(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadMessages", ReplyAction="http://tempuri.org/IMessageService/LoadMessagesResponse")]
+        QLHS_DR.ChatAppServiceReference.Message[] LoadMessages(int fromId, int toId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadMessages", ReplyAction="http://tempuri.org/IMessageService/LoadMessagesResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Message[]> LoadMessagesAsync(int fromId, int toId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserStatus", ReplyAction="http://tempuri.org/IMessageService/GetUserStatusResponse")]
+        QLHS_DR.ChatAppServiceReference.UserStatus GetUserStatus(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserStatus", ReplyAction="http://tempuri.org/IMessageService/GetUserStatusResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserStatus> GetUserStatusAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserLastOnline", ReplyAction="http://tempuri.org/IMessageService/GetUserLastOnlineResponse")]
+        System.DateTime GetUserLastOnline(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserLastOnline", ReplyAction="http://tempuri.org/IMessageService/GetUserLastOnlineResponse")]
+        System.Threading.Tasks.Task<System.DateTime> GetUserLastOnlineAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageId", ReplyAction="http://tempuri.org/IMessageService/LoadMessagesFromMessageIdResponse")]
+        QLHS_DR.ChatAppServiceReference.Message[] LoadMessagesFromMessageId(int fromId, int toId, int fromMessageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageId", ReplyAction="http://tempuri.org/IMessageService/LoadMessagesFromMessageIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Message[]> LoadMessagesFromMessageIdAsync(int fromId, int toId, int fromMessageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasks", ReplyAction="http://tempuri.org/IMessageService/LoadTasksResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTasks(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasks", ReplyAction="http://tempuri.org/IMessageService/LoadTasksResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksCreateByMe", ReplyAction="http://tempuri.org/IMessageService/LoadTasksCreateByMeResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTasksCreateByMe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksCreateByMe", ReplyAction="http://tempuri.org/IMessageService/LoadTasksCreateByMeResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksCreateByMeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksFinish", ReplyAction="http://tempuri.org/IMessageService/LoadTasksFinishResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTasksFinish(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksFinish", ReplyAction="http://tempuri.org/IMessageService/LoadTasksFinishResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksFinishAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksRevoked", ReplyAction="http://tempuri.org/IMessageService/LoadTasksRevokedResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTasksRevoked(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksRevoked", ReplyAction="http://tempuri.org/IMessageService/LoadTasksRevokedResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksRevokedAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadAllTasks", ReplyAction="http://tempuri.org/IMessageService/LoadAllTasksResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadAllTasks();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadAllTasks", ReplyAction="http://tempuri.org/IMessageService/LoadAllTasksResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadAllTasksAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddTask", ReplyAction="http://tempuri.org/IMessageService/AddTaskResponse")]
+        int AddTask(QLHS_DR.ChatAppServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddTask", ReplyAction="http://tempuri.org/IMessageService/AddTaskResponse")]
+        System.Threading.Tasks.Task<int> AddTaskAsync(QLHS_DR.ChatAppServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddTaskAttachedFile", ReplyAction="http://tempuri.org/IMessageService/AddTaskAttachedFileResponse")]
+        void AddTaskAttachedFile(QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddTaskAttachedFile", ReplyAction="http://tempuri.org/IMessageService/AddTaskAttachedFileResponse")]
+        System.Threading.Tasks.Task AddTaskAttachedFileAsync(QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksFromTaskId", ReplyAction="http://tempuri.org/IMessageService/LoadTasksFromTaskIdResponse")]
+        QLHS_DR.ChatAppServiceReference.Task[] LoadTasksFromTaskId(int userId, int fromTaskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadTasksFromTaskId", ReplyAction="http://tempuri.org/IMessageService/LoadTasksFromTaskIdResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksFromTaskIdAsync(int userId, int fromTaskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/IsExistTaskName", ReplyAction="http://tempuri.org/IMessageService/IsExistTaskNameResponse")]
+        bool IsExistTaskName(string taskName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/IsExistTaskName", ReplyAction="http://tempuri.org/IMessageService/IsExistTaskNameResponse")]
+        System.Threading.Tasks.Task<bool> IsExistTaskNameAsync(string taskName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteTasks", ReplyAction="http://tempuri.org/IMessageService/DeleteTasksResponse")]
+        void DeleteTasks(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteTasks", ReplyAction="http://tempuri.org/IMessageService/DeleteTasksResponse")]
+        System.Threading.Tasks.Task DeleteTasksAsync(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteTaskAttachedFiles", ReplyAction="http://tempuri.org/IMessageService/DeleteTaskAttachedFilesResponse")]
+        void DeleteTaskAttachedFiles(int[] taskAttachedFileIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteTaskAttachedFiles", ReplyAction="http://tempuri.org/IMessageService/DeleteTaskAttachedFilesResponse")]
+        System.Threading.Tasks.Task DeleteTaskAttachedFilesAsync(int[] taskAttachedFileIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddUserTask", ReplyAction="http://tempuri.org/IMessageService/AddUserTaskResponse")]
+        void AddUserTask(int taskId, int userId, int assignedBy, byte[] userTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddUserTask", ReplyAction="http://tempuri.org/IMessageService/AddUserTaskResponse")]
+        System.Threading.Tasks.Task AddUserTaskAsync(int taskId, int userId, int assignedBy, byte[] userTaskKey);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddUserTasks", ReplyAction="http://tempuri.org/IMessageService/AddUserTasksResponse")]
+        bool AddUserTasks(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddUserTasks", ReplyAction="http://tempuri.org/IMessageService/AddUserTasksResponse")]
+        System.Threading.Tasks.Task<bool> AddUserTasksAsync(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetServerDateTime", ReplyAction="http://tempuri.org/IMessageService/GetServerDateTimeResponse")]
+        System.DateTime GetServerDateTime();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetServerDateTime", ReplyAction="http://tempuri.org/IMessageService/GetServerDateTimeResponse")]
+        System.Threading.Tasks.Task<System.DateTime> GetServerDateTimeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTask", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask GetUserTask(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTask", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask> GetUserTaskAsync(int userId, int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskCreateByMe", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskCreateByMeResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskCreateByMe();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskCreateByMe", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskCreateByMeResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskCreateByMeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskFinish", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskFinishResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskFinish(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskFinish", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskFinishResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskFinishAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskRevoked", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskRevokedResponse")]
+        QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskRevoked(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserTaskRevoked", ReplyAction="http://tempuri.org/IMessageService/GetUserTaskRevokedResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskRevokedAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddLog", ReplyAction="http://tempuri.org/IMessageService/AddLogResponse")]
+        void AddLog(QLHS_DR.ChatAppServiceReference.Log log_0);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddLog", ReplyAction="http://tempuri.org/IMessageService/AddLogResponse")]
+        System.Threading.Tasks.Task AddLogAsync(QLHS_DR.ChatAppServiceReference.Log log_0);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPermissions", ReplyAction="http://tempuri.org/IMessageService/GetPermissionsResponse")]
+        QLHS_DR.ChatAppServiceReference.PermissionType GetPermissions(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPermissions", ReplyAction="http://tempuri.org/IMessageService/GetPermissionsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PermissionType> GetPermissionsAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetUserInTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPrintableUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetPrintableUserInTaskResponse")]
+        QLHS_DR.ChatAppServiceReference.User[] GetPrintableUserInTask(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPrintableUserInTask", ReplyAction="http://tempuri.org/IMessageService/GetPrintableUserInTaskResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetPrintableUserInTaskAsync(int taskId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetPrintableUsersInTask", ReplyAction="http://tempuri.org/IMessageService/SetPrintableUsersInTaskResponse")]
+        void SetPrintableUsersInTask(int taskId, int[] userIds, bool prinable, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetPrintableUsersInTask", ReplyAction="http://tempuri.org/IMessageService/SetPrintableUsersInTaskResponse")]
+        System.Threading.Tasks.Task SetPrintableUsersInTaskAsync(int taskId, int[] userIds, bool prinable, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskViewFileAble", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskViewFileAbleResponse")]
+        void SetUserTaskViewFileAble(int taskId, int[] userIds, bool viewAble, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskViewFileAble", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskViewFileAbleResponse")]
+        System.Threading.Tasks.Task SetUserTaskViewFileAbleAsync(int taskId, int[] userIds, bool viewAble, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskSaveFileAble", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskSaveFileAbleResponse")]
+        void SetUserTaskSaveFileAble(int taskId, int[] userIds, bool saveAble, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskSaveFileAble", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskSaveFileAbleResponse")]
+        System.Threading.Tasks.Task SetUserTaskSaveFileAbleAsync(int taskId, int[] userIds, bool saveAble, int changeByUserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskIsProcess", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskIsProcessResponse")]
+        void SetUserTaskIsProcess(int taskId, int[] userIds, bool isMainProcess);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetUserTaskIsProcess", ReplyAction="http://tempuri.org/IMessageService/SetUserTaskIsProcessResponse")]
+        System.Threading.Tasks.Task SetUserTaskIsProcessAsync(int taskId, int[] userIds, bool isMainProcess);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetJobContent", ReplyAction="http://tempuri.org/IMessageService/SetJobContentResponse")]
+        void SetJobContent(int taskId, int userId, string jobContent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetJobContent", ReplyAction="http://tempuri.org/IMessageService/SetJobContentResponse")]
+        System.Threading.Tasks.Task SetJobContentAsync(int taskId, int userId, string jobContent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteUserTask", ReplyAction="http://tempuri.org/IMessageService/DeleteUserTaskResponse")]
+        void DeleteUserTask(int taskId, int userId, int deletedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteUserTask", ReplyAction="http://tempuri.org/IMessageService/DeleteUserTaskResponse")]
+        System.Threading.Tasks.Task DeleteUserTaskAsync(int taskId, int userId, int deletedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AssignUser", ReplyAction="http://tempuri.org/IMessageService/AssignUserResponse")]
+        void AssignUser(int taskId, int userId, int assignedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AssignUser", ReplyAction="http://tempuri.org/IMessageService/AssignUserResponse")]
+        System.Threading.Tasks.Task AssignUserAsync(int taskId, int userId, int assignedBy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RevokeTasks", ReplyAction="http://tempuri.org/IMessageService/RevokeTasksResponse")]
+        void RevokeTasks(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RevokeTasks", ReplyAction="http://tempuri.org/IMessageService/RevokeTasksResponse")]
+        System.Threading.Tasks.Task RevokeTasksAsync(int[] taskIds, int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetLogs", ReplyAction="http://tempuri.org/IMessageService/GetLogsResponse")]
+        QLHS_DR.ChatAppServiceReference.Log[] GetLogs(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.ChatAppServiceReference.LogType type, int userId, int filterUserId, int fromLogId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetLogs", ReplyAction="http://tempuri.org/IMessageService/GetLogsResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Log[]> GetLogsAsync(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.ChatAppServiceReference.LogType type, int userId, int filterUserId, int fromLogId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/TryLogin", ReplyAction="http://tempuri.org/IMessageService/TryLoginResponse")]
+        QLHS_DR.ChatAppServiceReference.LoginStatusType TryLogin(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/TryLogin", ReplyAction="http://tempuri.org/IMessageService/TryLoginResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.LoginStatusType> TryLoginAsync(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ChangePassword", ReplyAction="http://tempuri.org/IMessageService/ChangePasswordResponse")]
+        QLHS_DR.ChatAppServiceReference.LoginStatusType ChangePassword(string userName, string oldPassword, string newPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ChangePassword", ReplyAction="http://tempuri.org/IMessageService/ChangePasswordResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.LoginStatusType> ChangePasswordAsync(string userName, string oldPassword, string newPassword);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3936,26 +9151,553 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MessageServiceClient : System.ServiceModel.DuplexClientBase<QLHS_DR.ChatAppServiceReference.IMessageService>, QLHS_DR.ChatAppServiceReference.IMessageService {
+    public partial class MessageServiceClient : System.ServiceModel.ClientBase<QLHS_DR.ChatAppServiceReference.IMessageService>, QLHS_DR.ChatAppServiceReference.IMessageService {
         
-        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance) {
+        public MessageServiceClient() {
         }
         
-        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-                base(callbackInstance, endpointConfigurationName) {
+        public MessageServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
         }
         
-        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public MessageServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        public MessageServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
         }
         
-        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, binding, remoteAddress) {
+        public MessageServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void CountPrintDocument1(int userTaskId, int pageNumber, int printCount, bool success, string printerName) {
+            base.Channel.CountPrintDocument1(userTaskId, pageNumber, printCount, success, printerName);
+        }
+        
+        public System.Threading.Tasks.Task CountPrintDocument1Async(int userTaskId, int pageNumber, int printCount, bool success, string printerName) {
+            return base.Channel.CountPrintDocument1Async(userTaskId, pageNumber, printCount, success, printerName);
+        }
+        
+        public int GetCountPrintDocument(int userTaskId, int pageNumber) {
+            return base.Channel.GetCountPrintDocument(userTaskId, pageNumber);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetCountPrintDocumentAsync(int userTaskId, int pageNumber) {
+            return base.Channel.GetCountPrintDocumentAsync(userTaskId, pageNumber);
+        }
+        
+        public void UpdateTask(QLHS_DR.ChatAppServiceReference.Task task, int userId) {
+            base.Channel.UpdateTask(task, userId);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTaskAsync(QLHS_DR.ChatAppServiceReference.Task task, int userId) {
+            return base.Channel.UpdateTaskAsync(task, userId);
+        }
+        
+        public void UpdateTaskAndTaskAttackedFile(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.TaskAttachedFile taskAttachedFile) {
+            base.Channel.UpdateTaskAndTaskAttackedFile(task, taskAttachedFile);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTaskAndTaskAttackedFileAsync(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.TaskAttachedFile taskAttachedFile) {
+            return base.Channel.UpdateTaskAndTaskAttackedFileAsync(task, taskAttachedFile);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetProcessingUserInTask(int taskId) {
+            return base.Channel.GetProcessingUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetProcessingUserInTaskAsync(int taskId) {
+            return base.Channel.GetProcessingUserInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetSeenUsersInTask(int taskId) {
+            return base.Channel.GetSeenUsersInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetSeenUsersInTaskAsync(int taskId) {
+            return base.Channel.GetSeenUsersInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetPrintedUserInTask(int taskId) {
+            return base.Channel.GetPrintedUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetPrintedUserInTaskAsync(int taskId) {
+            return base.Channel.GetPrintedUserInTaskAsync(taskId);
+        }
+        
+        public void SetSeenUserInTask(int taskId, int userId) {
+            base.Channel.SetSeenUserInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task SetSeenUserInTaskAsync(int taskId, int userId) {
+            return base.Channel.SetSeenUserInTaskAsync(taskId, userId);
+        }
+        
+        public void SetPrintedUserInTask(int taskId, int userId) {
+            base.Channel.SetPrintedUserInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task SetPrintedUserInTaskAsync(int taskId, int userId) {
+            return base.Channel.SetPrintedUserInTaskAsync(taskId, userId);
+        }
+        
+        public void RemoveProcessingUser(int taskId, int userId, int removedBy) {
+            base.Channel.RemoveProcessingUser(taskId, userId, removedBy);
+        }
+        
+        public System.Threading.Tasks.Task RemoveProcessingUserAsync(int taskId, int userId, int removedBy) {
+            return base.Channel.RemoveProcessingUserAsync(taskId, userId, removedBy);
+        }
+        
+        public bool HasSeenInTask(int taskId, int userId) {
+            return base.Channel.HasSeenInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> HasSeenInTaskAsync(int taskId, int userId) {
+            return base.Channel.HasSeenInTaskAsync(taskId, userId);
+        }
+        
+        public bool IsProcessingInTask(int taskId, int userId) {
+            return base.Channel.IsProcessingInTask(taskId, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsProcessingInTaskAsync(int taskId, int userId) {
+            return base.Channel.IsProcessingInTaskAsync(taskId, userId);
+        }
+        
+        public void SetUserTaskFinish(int taskId, int userId, bool isFinish) {
+            base.Channel.SetUserTaskFinish(taskId, userId, isFinish);
+        }
+        
+        public System.Threading.Tasks.Task SetUserTaskFinishAsync(int taskId, int userId, bool isFinish) {
+            return base.Channel.SetUserTaskFinishAsync(taskId, userId, isFinish);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Department GetDepartment(int userId) {
+            return base.Channel.GetDepartment(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Department> GetDepartmentAsync(int userId) {
+            return base.Channel.GetDepartmentAsync(userId);
+        }
+        
+        public string GetDepartmentName(int userId) {
+            return base.Channel.GetDepartmentName(userId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetDepartmentNameAsync(int userId) {
+            return base.Channel.GetDepartmentNameAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.GroupDepartment GetGroupDepartment(int groupDepartmentId) {
+            return base.Channel.GetGroupDepartment(groupDepartmentId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.GroupDepartment> GetGroupDepartmentAsync(int groupDepartmentId) {
+            return base.Channel.GetGroupDepartmentAsync(groupDepartmentId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.DepartmentTask GetDepartmentTask(int departmentId, int taskId) {
+            return base.Channel.GetDepartmentTask(departmentId, taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.DepartmentTask> GetDepartmentTaskAsync(int departmentId, int taskId) {
+            return base.Channel.GetDepartmentTaskAsync(departmentId, taskId);
+        }
+        
+        public int AddDepartmentTask(int taskId, int departmentId, int assignedByUserId, int processedByUserId) {
+            return base.Channel.AddDepartmentTask(taskId, departmentId, assignedByUserId, processedByUserId);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddDepartmentTaskAsync(int taskId, int departmentId, int assignedByUserId, int processedByUserId) {
+            return base.Channel.AddDepartmentTaskAsync(taskId, departmentId, assignedByUserId, processedByUserId);
+        }
+        
+        public void NewTask(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO) {
+            base.Channel.NewTask(task, ReceivedDepartmentDTOs, attachedFilesDTO);
+        }
+        
+        public System.Threading.Tasks.Task NewTaskAsync(QLHS_DR.ChatAppServiceReference.Task task, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO) {
+            return base.Channel.NewTaskAsync(task, ReceivedDepartmentDTOs, attachedFilesDTO);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO GetReceivedDepartmentDTO(int departmentId, int taskId) {
+            return base.Channel.GetReceivedDepartmentDTO(departmentId, taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO> GetReceivedDepartmentDTOAsync(int departmentId, int taskId) {
+            return base.Channel.GetReceivedDepartmentDTOAsync(departmentId, taskId);
+        }
+        
+        public void AddDepartmentToTask(QLHS_DR.ChatAppServiceReference.Task taskId, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs) {
+            base.Channel.AddDepartmentToTask(taskId, ReceivedDepartmentDTOs);
+        }
+        
+        public System.Threading.Tasks.Task AddDepartmentToTaskAsync(QLHS_DR.ChatAppServiceReference.Task taskId, QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO[] ReceivedDepartmentDTOs) {
+            return base.Channel.AddDepartmentToTaskAsync(taskId, ReceivedDepartmentDTOs);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Permission[] GetPermissionOfUser(string userName) {
+            return base.Channel.GetPermissionOfUser(userName);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Permission[]> GetPermissionOfUserAsync(string userName) {
+            return base.Channel.GetPermissionOfUserAsync(userName);
+        }
+        
+        public bool UploadTransformerManual(byte[] content, string fileName, string title, string transformerCode, bool isDeleted) {
+            return base.Channel.UploadTransformerManual(content, fileName, title, transformerCode, isDeleted);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UploadTransformerManualAsync(byte[] content, string fileName, string title, string transformerCode, bool isDeleted) {
+            return base.Channel.UploadTransformerManualAsync(content, fileName, title, transformerCode, isDeleted);
+        }
+        
+        public bool UploadTransformerManual1(byte[] content, string fileName, string title, string transformerCode, string description, bool isDeleted) {
+            return base.Channel.UploadTransformerManual1(content, fileName, title, transformerCode, description, isDeleted);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UploadTransformerManual1Async(byte[] content, string fileName, string title, string transformerCode, string description, bool isDeleted) {
+            return base.Channel.UploadTransformerManual1Async(content, fileName, title, transformerCode, description, isDeleted);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.TransformerDTO[] SearchTransformer(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, QLHS_DR.ChatAppServiceReference.ProductType productType, int StandardId) {
+            return base.Channel.SearchTransformer(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productType, StandardId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO[]> SearchTransformerAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, QLHS_DR.ChatAppServiceReference.ProductType productType, int StandardId) {
+            return base.Channel.SearchTransformerAsync(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productType, StandardId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.TransformerDTO GetTransformerDTOByProductCode(string productCode) {
+            return base.Channel.GetTransformerDTOByProductCode(productCode);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO> GetTransformerDTOByProductCodeAsync(string productCode) {
+            return base.Channel.GetTransformerDTOByProductCodeAsync(productCode);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Standard[] LoadStandards() {
+            return base.Channel.LoadStandards();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Standard[]> LoadStandardsAsync() {
+            return base.Channel.LoadStandardsAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Product GetProductById(int id) {
+            return base.Channel.GetProductById(id);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Product> GetProductByIdAsync(int id) {
+            return base.Channel.GetProductByIdAsync(id);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Product GetProductByProductCode(string productCode) {
+            return base.Channel.GetProductByProductCode(productCode);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Product> GetProductByProductCodeAsync(string productCode) {
+            return base.Channel.GetProductByProductCodeAsync(productCode);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.TransformerManualDTO[] LoadTransformerManual(int transformerId) {
+            return base.Channel.LoadTransformerManual(transformerId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerManualDTO[]> LoadTransformerManualAsync(int transformerId) {
+            return base.Channel.LoadTransformerManualAsync(transformerId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Contract[] LoadContracts(int transformerId) {
+            return base.Channel.LoadContracts(transformerId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Contract[]> LoadContractsAsync(int transformerId) {
+            return base.Channel.LoadContractsAsync(transformerId);
+        }
+        
+        public byte[] DownloadTransformerManualFile(int transformerManualId) {
+            return base.Channel.DownloadTransformerManualFile(transformerManualId);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> DownloadTransformerManualFileAsync(int transformerManualId) {
+            return base.Channel.DownloadTransformerManualFileAsync(transformerManualId);
+        }
+        
+        public byte[] DownloadContractFile(int contractId) {
+            return base.Channel.DownloadContractFile(contractId);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> DownloadContractFileAsync(int contractId) {
+            return base.Channel.DownloadContractFileAsync(contractId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.DocTittle[] LoadDoctitle() {
+            return base.Channel.LoadDoctitle();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.DocTittle[]> LoadDoctitleAsync() {
+            return base.Channel.LoadDoctitleAsync();
+        }
+        
+        public void SetDeletedTransformerManual(int transformerManualId) {
+            base.Channel.SetDeletedTransformerManual(transformerManualId);
+        }
+        
+        public System.Threading.Tasks.Task SetDeletedTransformerManualAsync(int transformerManualId) {
+            return base.Channel.SetDeletedTransformerManualAsync(transformerManualId);
+        }
+        
+        public void SetDeletedContract(int contractId) {
+            base.Channel.SetDeletedContract(contractId);
+        }
+        
+        public System.Threading.Tasks.Task SetDeletedContractAsync(int contractId) {
+            return base.Channel.SetDeletedContractAsync(contractId);
+        }
+        
+        public void NewTransformer(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO) {
+            base.Channel.NewTransformer(transformerDTO);
+        }
+        
+        public System.Threading.Tasks.Task NewTransformerAsync(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO) {
+            return base.Channel.NewTransformerAsync(transformerDTO);
+        }
+        
+        public void UpdateTransformer(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO) {
+            base.Channel.UpdateTransformer(transformerDTO);
+        }
+        
+        public System.Threading.Tasks.Task UpdateTransformerAsync(QLHS_DR.ChatAppServiceReference.TransformerDTO transformerDTO) {
+            return base.Channel.UpdateTransformerAsync(transformerDTO);
+        }
+        
+        public bool RemoveProduct(int productId) {
+            return base.Channel.RemoveProduct(productId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveProductAsync(int productId) {
+            return base.Channel.RemoveProductAsync(productId);
+        }
+        
+        public bool LockProduct(int productId, bool islock) {
+            return base.Channel.LockProduct(productId, islock);
+        }
+        
+        public System.Threading.Tasks.Task<bool> LockProductAsync(int productId, bool islock) {
+            return base.Channel.LockProductAsync(productId, islock);
+        }
+        
+        public bool UnLockProduct(int productId) {
+            return base.Channel.UnLockProduct(productId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UnLockProductAsync(int productId) {
+            return base.Channel.UnLockProductAsync(productId);
+        }
+        
+        public int UploadContract(byte[] content, int productId, string contractName, string fileName, string contractDescription, bool isDeleted) {
+            return base.Channel.UploadContract(content, productId, contractName, fileName, contractDescription, isDeleted);
+        }
+        
+        public System.Threading.Tasks.Task<int> UploadContractAsync(byte[] content, int productId, string contractName, string fileName, string contractDescription, bool isDeleted) {
+            return base.Channel.UploadContractAsync(content, productId, contractName, fileName, contractDescription, isDeleted);
+        }
+        
+        public void NewPublishDocument(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO) {
+            base.Channel.NewPublishDocument(publishDocumentDTO);
+        }
+        
+        public System.Threading.Tasks.Task NewPublishDocumentAsync(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO) {
+            return base.Channel.NewPublishDocumentAsync(publishDocumentDTO);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[] LoadPublishDocumentDTOs(int productId) {
+            return base.Channel.LoadPublishDocumentDTOs(productId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[]> LoadPublishDocumentDTOsAsync(int productId) {
+            return base.Channel.LoadPublishDocumentDTOsAsync(productId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[] LoadPublishDocumentDTODeleteds(int productId) {
+            return base.Channel.LoadPublishDocumentDTODeleteds(productId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublishDocumentDTO[]> LoadPublishDocumentDTODeletedsAsync(int productId) {
+            return base.Channel.LoadPublishDocumentDTODeletedsAsync(productId);
+        }
+        
+        public System.Nullable<int> AddPublishDocuments(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO) {
+            return base.Channel.AddPublishDocuments(publishDocumentDTO);
+        }
+        
+        public System.Threading.Tasks.Task<System.Nullable<int>> AddPublishDocumentsAsync(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentDTO) {
+            return base.Channel.AddPublishDocumentsAsync(publishDocumentDTO);
+        }
+        
+        public void SetDeletedPublishDocument(int publishDocumentId, int productId) {
+            base.Channel.SetDeletedPublishDocument(publishDocumentId, productId);
+        }
+        
+        public System.Threading.Tasks.Task SetDeletedPublishDocumentAsync(int publishDocumentId, int productId) {
+            return base.Channel.SetDeletedPublishDocumentAsync(publishDocumentId, productId);
+        }
+        
+        public void DeletedPublishDocument(int publishDocumentId, int productId) {
+            base.Channel.DeletedPublishDocument(publishDocumentId, productId);
+        }
+        
+        public System.Threading.Tasks.Task DeletedPublishDocumentAsync(int publishDocumentId, int productId) {
+            return base.Channel.DeletedPublishDocumentAsync(publishDocumentId, productId);
+        }
+        
+        public void UpdatePublishDocumentInfo(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentId) {
+            base.Channel.UpdatePublishDocumentInfo(publishDocumentId);
+        }
+        
+        public System.Threading.Tasks.Task UpdatePublishDocumentInfoAsync(QLHS_DR.ChatAppServiceReference.PublishDocumentDTO publishDocumentId) {
+            return base.Channel.UpdatePublishDocumentInfoAsync(publishDocumentId);
+        }
+        
+        public void RestorePublishDocumentDeleted(int publishDocumentId, int productId) {
+            base.Channel.RestorePublishDocumentDeleted(publishDocumentId, productId);
+        }
+        
+        public System.Threading.Tasks.Task RestorePublishDocumentDeletedAsync(int publishDocumentId, int productId) {
+            return base.Channel.RestorePublishDocumentDeletedAsync(publishDocumentId, productId);
+        }
+        
+        public void NewRequestSendDocument(string documentName, string productCode, System.DateTime endDate, int publishDocumentId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            base.Channel.NewRequestSendDocument(documentName, productCode, endDate, publishDocumentId, requestSendDocumentDTOs);
+        }
+        
+        public System.Threading.Tasks.Task NewRequestSendDocumentAsync(string documentName, string productCode, System.DateTime endDate, int publishDocumentId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            return base.Channel.NewRequestSendDocumentAsync(documentName, productCode, endDate, publishDocumentId, requestSendDocumentDTOs);
+        }
+        
+        public bool CheckExistRequestSendDocument(int publishDocumentId) {
+            return base.Channel.CheckExistRequestSendDocument(publishDocumentId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckExistRequestSendDocumentAsync(int publishDocumentId) {
+            return base.Channel.CheckExistRequestSendDocumentAsync(publishDocumentId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] LoadRequestSendDocumentsOfMyDepartment() {
+            return base.Channel.LoadRequestSendDocumentsOfMyDepartment();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.RequestSendDocument[]> LoadRequestSendDocumentsOfMyDepartmentAsync() {
+            return base.Channel.LoadRequestSendDocumentsOfMyDepartmentAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] LoadRequestSendDocumentDTOOfRequest(int requestId) {
+            return base.Channel.LoadRequestSendDocumentDTOOfRequest(requestId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[]> LoadRequestSendDocumentDTOOfRequestAsync(int requestId) {
+            return base.Channel.LoadRequestSendDocumentDTOOfRequestAsync(requestId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] LoadRequestSendDocumentToDepartments(int requestId) {
+            return base.Channel.LoadRequestSendDocumentToDepartments(requestId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[]> LoadRequestSendDocumentToDepartmentsAsync(int requestId) {
+            return base.Channel.LoadRequestSendDocumentToDepartmentsAsync(requestId);
+        }
+        
+        public void UpdateRequestSendDocumentToDepartments(int requestId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            base.Channel.UpdateRequestSendDocumentToDepartments(requestId, requestSendDocumentDTOs);
+        }
+        
+        public System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartmentsAsync(int requestId, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            return base.Channel.UpdateRequestSendDocumentToDepartmentsAsync(requestId, requestSendDocumentDTOs);
+        }
+        
+        public void UpdateRequestSendDocumentToDepartments1(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            base.Channel.UpdateRequestSendDocumentToDepartments1(requestId, confidentialLevel, requestSendDocumentDTOs);
+        }
+        
+        public System.Threading.Tasks.Task UpdateRequestSendDocumentToDepartments1Async(int requestId, System.Nullable<int> confidentialLevel, QLHS_DR.ChatAppServiceReference.RequestSendDocumentDTO[] requestSendDocumentDTOs) {
+            return base.Channel.UpdateRequestSendDocumentToDepartments1Async(requestId, confidentialLevel, requestSendDocumentDTOs);
+        }
+        
+        public void SetRevokedRequestSendDocument(int requestId, bool isRevoked) {
+            base.Channel.SetRevokedRequestSendDocument(requestId, isRevoked);
+        }
+        
+        public System.Threading.Tasks.Task SetRevokedRequestSendDocumentAsync(int requestId, bool isRevoked) {
+            return base.Channel.SetRevokedRequestSendDocumentAsync(requestId, isRevoked);
+        }
+        
+        public void ProcessRequestSendDocument(QLHS_DR.ChatAppServiceReference.Task task, int requestId, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO) {
+            base.Channel.ProcessRequestSendDocument(task, requestId, attachedFilesDTO);
+        }
+        
+        public System.Threading.Tasks.Task ProcessRequestSendDocumentAsync(QLHS_DR.ChatAppServiceReference.Task task, int requestId, QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO) {
+            return base.Channel.ProcessRequestSendDocumentAsync(task, requestId, attachedFilesDTO);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.PublishDocument GetPublishDocument(int publishDocumentId) {
+            return base.Channel.GetPublishDocument(publishDocumentId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublishDocument> GetPublishDocumentAsync(int publishDocumentId) {
+            return base.Channel.GetPublishDocumentAsync(publishDocumentId);
+        }
+        
+        public void UpdateRequestSendDocument(int publishDocumentId, string documentName, string productCode) {
+            base.Channel.UpdateRequestSendDocument(publishDocumentId, documentName, productCode);
+        }
+        
+        public System.Threading.Tasks.Task UpdateRequestSendDocumentAsync(int publishDocumentId, string documentName, string productCode) {
+            return base.Channel.UpdateRequestSendDocumentAsync(publishDocumentId, documentName, productCode);
+        }
+        
+        public void LockUser(int userId) {
+            base.Channel.LockUser(userId);
+        }
+        
+        public System.Threading.Tasks.Task LockUserAsync(int userId) {
+            return base.Channel.LockUserAsync(userId);
+        }
+        
+        public void UnLockUser(int userId) {
+            base.Channel.UnLockUser(userId);
+        }
+        
+        public System.Threading.Tasks.Task UnLockUserAsync(int userId) {
+            return base.Channel.UnLockUserAsync(userId);
+        }
+        
+        public void EditTransformerManual(int fileId, string description, int docTitleId) {
+            base.Channel.EditTransformerManual(fileId, description, docTitleId);
+        }
+        
+        public System.Threading.Tasks.Task EditTransformerManualAsync(int fileId, string description, int docTitleId) {
+            return base.Channel.EditTransformerManualAsync(fileId, description, docTitleId);
+        }
+        
+        public void SetTotlPageForAttackedFile(int taskAttackedFileId, int totalPage) {
+            base.Channel.SetTotlPageForAttackedFile(taskAttackedFileId, totalPage);
+        }
+        
+        public System.Threading.Tasks.Task SetTotlPageForAttackedFileAsync(int taskAttackedFileId, int totalPage) {
+            return base.Channel.SetTotlPageForAttackedFileAsync(taskAttackedFileId, totalPage);
+        }
+        
+        public void CountPrintDocument(int userTaskId, int pageNumber, int printCount) {
+            base.Channel.CountPrintDocument(userTaskId, pageNumber, printCount);
+        }
+        
+        public System.Threading.Tasks.Task CountPrintDocumentAsync(int userTaskId, int pageNumber, int printCount) {
+            return base.Channel.CountPrintDocumentAsync(userTaskId, pageNumber, printCount);
         }
         
         public void Connect(int userId) {
@@ -3980,6 +9722,494 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetConnectedUsersAsync() {
             return base.Channel.GetConnectedUsersAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTaskByConfidentialLevel(int confidentialLevel) {
+            return base.Channel.LoadTaskByConfidentialLevel(confidentialLevel);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTaskByConfidentialLevelAsync(int confidentialLevel) {
+            return base.Channel.LoadTaskByConfidentialLevelAsync(confidentialLevel);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask[] LoadUserTaskOfMyByConfidentialLevel(int confidentialLevel) {
+            return base.Channel.LoadUserTaskOfMyByConfidentialLevel(confidentialLevel);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> LoadUserTaskOfMyByConfidentialLevelAsync(int confidentialLevel) {
+            return base.Channel.LoadUserTaskOfMyByConfidentialLevelAsync(confidentialLevel);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask[] GetAllUserTaskOfTask(int taskId) {
+            return base.Channel.GetAllUserTaskOfTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetAllUserTaskOfTaskAsync(int taskId) {
+            return base.Channel.GetAllUserTaskOfTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskNotFinish(int userId) {
+            return base.Channel.GetUserTaskNotFinish(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskNotFinishAsync(int userId) {
+            return base.Channel.GetUserTaskNotFinishAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTasksNotFinish(int userId) {
+            return base.Channel.LoadTasksNotFinish(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksNotFinishAsync(int userId) {
+            return base.Channel.LoadTasksNotFinishAsync(userId);
+        }
+        
+        public bool UpdateUserTasks(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks, int userId) {
+            return base.Channel.UpdateUserTasks(userTasks, userId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateUserTasksAsync(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks, int userId) {
+            return base.Channel.UpdateUserTasksAsync(userTasks, userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task LoadTask(int taskId) {
+            return base.Channel.LoadTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task> LoadTaskAsync(int taskId) {
+            return base.Channel.LoadTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO GetTaskDocument(int taskId) {
+            return base.Channel.GetTaskDocument(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO> GetTaskDocumentAsync(int taskId) {
+            return base.Channel.GetTaskDocumentAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO[] GetTaskDocuments(int taskId) {
+            return base.Channel.GetTaskDocuments(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO[]> GetTaskDocumentsAsync(int taskId) {
+            return base.Channel.GetTaskDocumentsAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.PermissionType GetTaskPermissions(int userId, int taskId) {
+            return base.Channel.GetTaskPermissions(userId, taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PermissionType> GetTaskPermissionsAsync(int userId, int taskId) {
+            return base.Channel.GetTaskPermissionsAsync(userId, taskId);
+        }
+        
+        public void ConfirmDisposedPrintedDocument(int userTaskPrintManagerId, int numberDisposed) {
+            base.Channel.ConfirmDisposedPrintedDocument(userTaskPrintManagerId, numberDisposed);
+        }
+        
+        public System.Threading.Tasks.Task ConfirmDisposedPrintedDocumentAsync(int userTaskPrintManagerId, int numberDisposed) {
+            return base.Channel.ConfirmDisposedPrintedDocumentAsync(userTaskPrintManagerId, numberDisposed);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.TaskAttachedFile GetTaskAttachedFile(int taskId) {
+            return base.Channel.GetTaskAttachedFile(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TaskAttachedFile> GetTaskAttachedFileAsync(int taskId) {
+            return base.Channel.GetTaskAttachedFileAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTaskPrintManager[] GetUserTaskPrintManagers(int userTaskId) {
+            return base.Channel.GetUserTaskPrintManagers(userTaskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTaskPrintManager[]> GetUserTaskPrintManagersAsync(int userTaskId) {
+            return base.Channel.GetUserTaskPrintManagersAsync(userTaskId);
+        }
+        
+        public void RevokeTaskByCurrentUser(int taskId) {
+            base.Channel.RevokeTaskByCurrentUser(taskId);
+        }
+        
+        public System.Threading.Tasks.Task RevokeTaskByCurrentUserAsync(int taskId) {
+            return base.Channel.RevokeTaskByCurrentUserAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetUsers() {
+            return base.Channel.GetUsers();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUsersAsync() {
+            return base.Channel.GetUsersAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetUserContacts(string userName) {
+            return base.Channel.GetUserContacts(userName);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUserContactsAsync(string userName) {
+            return base.Channel.GetUserContactsAsync(userName);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Department[] GetDepartments() {
+            return base.Channel.GetDepartments();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Department[]> GetDepartmentsAsync() {
+            return base.Channel.GetDepartmentsAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] LoadUserDepartments() {
+            return base.Channel.LoadUserDepartments();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserDepartment[]> LoadUserDepartmentsAsync() {
+            return base.Channel.LoadUserDepartmentsAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] GetUserDepartmentsOfTask(int taskId) {
+            return base.Channel.GetUserDepartmentsOfTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserDepartment[]> GetUserDepartmentsOfTaskAsync(int taskId) {
+            return base.Channel.GetUserDepartmentsOfTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User GetUserByName(string username) {
+            return base.Channel.GetUserByName(username);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User> GetUserByNameAsync(string username) {
+            return base.Channel.GetUserByNameAsync(username);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetUsersOfDepartment(int departmentId) {
+            return base.Channel.GetUsersOfDepartment(departmentId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUsersOfDepartmentAsync(int departmentId) {
+            return base.Channel.GetUsersOfDepartmentAsync(departmentId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User GetUserById(int userId) {
+            return base.Channel.GetUserById(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User> GetUserByIdAsync(int userId) {
+            return base.Channel.GetUserByIdAsync(userId);
+        }
+        
+        public byte[] GetUserECPrKeyFor(int userId, string password, QLHS_DR.ChatAppServiceReference.ECKeyPurpose purpose) {
+            return base.Channel.GetUserECPrKeyFor(userId, password, purpose);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> GetUserECPrKeyForAsync(int userId, string password, QLHS_DR.ChatAppServiceReference.ECKeyPurpose purpose) {
+            return base.Channel.GetUserECPrKeyForAsync(userId, password, purpose);
+        }
+        
+        public void Logout(string userName, string password) {
+            base.Channel.Logout(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task LogoutAsync(string userName, string password) {
+            return base.Channel.LogoutAsync(userName, password);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Message[] LoadMessages(int fromId, int toId) {
+            return base.Channel.LoadMessages(fromId, toId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Message[]> LoadMessagesAsync(int fromId, int toId) {
+            return base.Channel.LoadMessagesAsync(fromId, toId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserStatus GetUserStatus(int userId) {
+            return base.Channel.GetUserStatus(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserStatus> GetUserStatusAsync(int userId) {
+            return base.Channel.GetUserStatusAsync(userId);
+        }
+        
+        public System.DateTime GetUserLastOnline(int userId) {
+            return base.Channel.GetUserLastOnline(userId);
+        }
+        
+        public System.Threading.Tasks.Task<System.DateTime> GetUserLastOnlineAsync(int userId) {
+            return base.Channel.GetUserLastOnlineAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Message[] LoadMessagesFromMessageId(int fromId, int toId, int fromMessageId) {
+            return base.Channel.LoadMessagesFromMessageId(fromId, toId, fromMessageId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Message[]> LoadMessagesFromMessageIdAsync(int fromId, int toId, int fromMessageId) {
+            return base.Channel.LoadMessagesFromMessageIdAsync(fromId, toId, fromMessageId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTasks(int userId) {
+            return base.Channel.LoadTasks(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksAsync(int userId) {
+            return base.Channel.LoadTasksAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTasksCreateByMe() {
+            return base.Channel.LoadTasksCreateByMe();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksCreateByMeAsync() {
+            return base.Channel.LoadTasksCreateByMeAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTasksFinish(int userId) {
+            return base.Channel.LoadTasksFinish(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksFinishAsync(int userId) {
+            return base.Channel.LoadTasksFinishAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTasksRevoked(int userId) {
+            return base.Channel.LoadTasksRevoked(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksRevokedAsync(int userId) {
+            return base.Channel.LoadTasksRevokedAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadAllTasks() {
+            return base.Channel.LoadAllTasks();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadAllTasksAsync() {
+            return base.Channel.LoadAllTasksAsync();
+        }
+        
+        public int AddTask(QLHS_DR.ChatAppServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey) {
+            return base.Channel.AddTask(task, ownerTaskKey, assignedTaskKey);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddTaskAsync(QLHS_DR.ChatAppServiceReference.Task task, byte[] ownerTaskKey, byte[] assignedTaskKey) {
+            return base.Channel.AddTaskAsync(task, ownerTaskKey, assignedTaskKey);
+        }
+        
+        public void AddTaskAttachedFile(QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId) {
+            base.Channel.AddTaskAttachedFile(attachedFilesDTO, userId);
+        }
+        
+        public System.Threading.Tasks.Task AddTaskAttachedFileAsync(QLHS_DR.ChatAppServiceReference.TaskAttachedFileDTO attachedFilesDTO, int userId) {
+            return base.Channel.AddTaskAttachedFileAsync(attachedFilesDTO, userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Task[] LoadTasksFromTaskId(int userId, int fromTaskId) {
+            return base.Channel.LoadTasksFromTaskId(userId, fromTaskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Task[]> LoadTasksFromTaskIdAsync(int userId, int fromTaskId) {
+            return base.Channel.LoadTasksFromTaskIdAsync(userId, fromTaskId);
+        }
+        
+        public bool IsExistTaskName(string taskName) {
+            return base.Channel.IsExistTaskName(taskName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsExistTaskNameAsync(string taskName) {
+            return base.Channel.IsExistTaskNameAsync(taskName);
+        }
+        
+        public void DeleteTasks(int[] taskIds, int userId) {
+            base.Channel.DeleteTasks(taskIds, userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteTasksAsync(int[] taskIds, int userId) {
+            return base.Channel.DeleteTasksAsync(taskIds, userId);
+        }
+        
+        public void DeleteTaskAttachedFiles(int[] taskAttachedFileIds, int userId) {
+            base.Channel.DeleteTaskAttachedFiles(taskAttachedFileIds, userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteTaskAttachedFilesAsync(int[] taskAttachedFileIds, int userId) {
+            return base.Channel.DeleteTaskAttachedFilesAsync(taskAttachedFileIds, userId);
+        }
+        
+        public void AddUserTask(int taskId, int userId, int assignedBy, byte[] userTaskKey) {
+            base.Channel.AddUserTask(taskId, userId, assignedBy, userTaskKey);
+        }
+        
+        public System.Threading.Tasks.Task AddUserTaskAsync(int taskId, int userId, int assignedBy, byte[] userTaskKey) {
+            return base.Channel.AddUserTaskAsync(taskId, userId, assignedBy, userTaskKey);
+        }
+        
+        public bool AddUserTasks(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks) {
+            return base.Channel.AddUserTasks(userTasks);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddUserTasksAsync(QLHS_DR.ChatAppServiceReference.UserTask[] userTasks) {
+            return base.Channel.AddUserTasksAsync(userTasks);
+        }
+        
+        public System.DateTime GetServerDateTime() {
+            return base.Channel.GetServerDateTime();
+        }
+        
+        public System.Threading.Tasks.Task<System.DateTime> GetServerDateTimeAsync() {
+            return base.Channel.GetServerDateTimeAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask GetUserTask(int userId, int taskId) {
+            return base.Channel.GetUserTask(userId, taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask> GetUserTaskAsync(int userId, int taskId) {
+            return base.Channel.GetUserTaskAsync(userId, taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskCreateByMe() {
+            return base.Channel.GetUserTaskCreateByMe();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskCreateByMeAsync() {
+            return base.Channel.GetUserTaskCreateByMeAsync();
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskFinish(int userId) {
+            return base.Channel.GetUserTaskFinish(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskFinishAsync(int userId) {
+            return base.Channel.GetUserTaskFinishAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.UserTask[] GetUserTaskRevoked(int userId) {
+            return base.Channel.GetUserTaskRevoked(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.UserTask[]> GetUserTaskRevokedAsync(int userId) {
+            return base.Channel.GetUserTaskRevokedAsync(userId);
+        }
+        
+        public void AddLog(QLHS_DR.ChatAppServiceReference.Log log_0) {
+            base.Channel.AddLog(log_0);
+        }
+        
+        public System.Threading.Tasks.Task AddLogAsync(QLHS_DR.ChatAppServiceReference.Log log_0) {
+            return base.Channel.AddLogAsync(log_0);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.PermissionType GetPermissions(int userId) {
+            return base.Channel.GetPermissions(userId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PermissionType> GetPermissionsAsync(int userId) {
+            return base.Channel.GetPermissionsAsync(userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetUserInTask(int taskId) {
+            return base.Channel.GetUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetUserInTaskAsync(int taskId) {
+            return base.Channel.GetUserInTaskAsync(taskId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.User[] GetPrintableUserInTask(int taskId) {
+            return base.Channel.GetPrintableUserInTask(taskId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.User[]> GetPrintableUserInTaskAsync(int taskId) {
+            return base.Channel.GetPrintableUserInTaskAsync(taskId);
+        }
+        
+        public void SetPrintableUsersInTask(int taskId, int[] userIds, bool prinable, int changeByUserId) {
+            base.Channel.SetPrintableUsersInTask(taskId, userIds, prinable, changeByUserId);
+        }
+        
+        public System.Threading.Tasks.Task SetPrintableUsersInTaskAsync(int taskId, int[] userIds, bool prinable, int changeByUserId) {
+            return base.Channel.SetPrintableUsersInTaskAsync(taskId, userIds, prinable, changeByUserId);
+        }
+        
+        public void SetUserTaskViewFileAble(int taskId, int[] userIds, bool viewAble, int changeByUserId) {
+            base.Channel.SetUserTaskViewFileAble(taskId, userIds, viewAble, changeByUserId);
+        }
+        
+        public System.Threading.Tasks.Task SetUserTaskViewFileAbleAsync(int taskId, int[] userIds, bool viewAble, int changeByUserId) {
+            return base.Channel.SetUserTaskViewFileAbleAsync(taskId, userIds, viewAble, changeByUserId);
+        }
+        
+        public void SetUserTaskSaveFileAble(int taskId, int[] userIds, bool saveAble, int changeByUserId) {
+            base.Channel.SetUserTaskSaveFileAble(taskId, userIds, saveAble, changeByUserId);
+        }
+        
+        public System.Threading.Tasks.Task SetUserTaskSaveFileAbleAsync(int taskId, int[] userIds, bool saveAble, int changeByUserId) {
+            return base.Channel.SetUserTaskSaveFileAbleAsync(taskId, userIds, saveAble, changeByUserId);
+        }
+        
+        public void SetUserTaskIsProcess(int taskId, int[] userIds, bool isMainProcess) {
+            base.Channel.SetUserTaskIsProcess(taskId, userIds, isMainProcess);
+        }
+        
+        public System.Threading.Tasks.Task SetUserTaskIsProcessAsync(int taskId, int[] userIds, bool isMainProcess) {
+            return base.Channel.SetUserTaskIsProcessAsync(taskId, userIds, isMainProcess);
+        }
+        
+        public void SetJobContent(int taskId, int userId, string jobContent) {
+            base.Channel.SetJobContent(taskId, userId, jobContent);
+        }
+        
+        public System.Threading.Tasks.Task SetJobContentAsync(int taskId, int userId, string jobContent) {
+            return base.Channel.SetJobContentAsync(taskId, userId, jobContent);
+        }
+        
+        public void DeleteUserTask(int taskId, int userId, int deletedBy) {
+            base.Channel.DeleteUserTask(taskId, userId, deletedBy);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserTaskAsync(int taskId, int userId, int deletedBy) {
+            return base.Channel.DeleteUserTaskAsync(taskId, userId, deletedBy);
+        }
+        
+        public void AssignUser(int taskId, int userId, int assignedBy) {
+            base.Channel.AssignUser(taskId, userId, assignedBy);
+        }
+        
+        public System.Threading.Tasks.Task AssignUserAsync(int taskId, int userId, int assignedBy) {
+            return base.Channel.AssignUserAsync(taskId, userId, assignedBy);
+        }
+        
+        public void RevokeTasks(int[] taskIds, int userId) {
+            base.Channel.RevokeTasks(taskIds, userId);
+        }
+        
+        public System.Threading.Tasks.Task RevokeTasksAsync(int[] taskIds, int userId) {
+            return base.Channel.RevokeTasksAsync(taskIds, userId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.Log[] GetLogs(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.ChatAppServiceReference.LogType type, int userId, int filterUserId, int fromLogId) {
+            return base.Channel.GetLogs(from, dateTime_0, type, userId, filterUserId, fromLogId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Log[]> GetLogsAsync(System.DateTime from, System.DateTime dateTime_0, QLHS_DR.ChatAppServiceReference.LogType type, int userId, int filterUserId, int fromLogId) {
+            return base.Channel.GetLogsAsync(from, dateTime_0, type, userId, filterUserId, fromLogId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.LoginStatusType TryLogin(string userName, string password) {
+            return base.Channel.TryLogin(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.LoginStatusType> TryLoginAsync(string userName, string password) {
+            return base.Channel.TryLoginAsync(userName, password);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.LoginStatusType ChangePassword(string userName, string oldPassword, string newPassword) {
+            return base.Channel.ChangePassword(userName, oldPassword, newPassword);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.LoginStatusType> ChangePasswordAsync(string userName, string oldPassword, string newPassword) {
+            return base.Channel.ChangePasswordAsync(userName, oldPassword, newPassword);
         }
     }
 }

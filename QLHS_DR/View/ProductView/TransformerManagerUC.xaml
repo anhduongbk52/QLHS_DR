@@ -44,8 +44,7 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth1">
                 <ComboBox
                     ItemsSource="{Binding ProductTypeWrappers}"
-                    DisplayMemberPath="Name"
-                    SelectedItem="{Binding SelectedProductTypeWrapper}"
+                    DisplayMemberPath="Name"                    
                     SelectedIndex="0"
                     Margin="8 0 0 0"                    
                     materialDesign:HintAssist.Hint="Loại máy biến áp"

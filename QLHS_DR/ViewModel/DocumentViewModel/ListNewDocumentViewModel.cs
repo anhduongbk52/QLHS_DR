@@ -1,14 +1,14 @@
-﻿using DevExpress.Mvvm;
+﻿using DevExpress.Data.Browsing;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
 using QLHS_DR;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.ViewModel;
-using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ViewModel.DocumentViewModel;
 using QLHS_DR.ViewModel.Message;
 using System;
@@ -18,14 +18,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Description;
-using System.Text;
 using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EofficeClient.ViewModel.DocumentViewModel
 {
@@ -33,10 +28,9 @@ namespace EofficeClient.ViewModel.DocumentViewModel
     class ListNewDocumentViewModel : BaseViewModel
     {
         #region "Properties and Field"
-        ChannelFactory<IEofficeMainService> _ChannelFactory;
-        IEofficeMainService _Proxy;
+      
         private readonly IEventAggregator _eventAggregator;
-        
+        private MessageServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
         private bool _TrackChange;
@@ -52,7 +46,6 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 }
             }
         }
-
         private UserTask _UserTaskSelected;
         public UserTask UserTaskSelected
         {
@@ -62,6 +55,18 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 if (_UserTaskSelected != value)
                 {
                     _UserTaskSelected = value; OnPropertyChanged("UserTaskSelected");
+                }
+            }
+        }
+        private ObservableCollection<UserTask> _UserTaskSelecteds;
+        public ObservableCollection<UserTask> UserTaskSelecteds
+        {
+            get => _UserTaskSelecteds;
+            set
+            {
+                if (_UserTaskSelecteds != value)
+                {
+                    _UserTaskSelecteds = value; OnPropertyChanged("UserTaskSelecteds");
                 }
             }
         }
@@ -151,42 +156,39 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ICommand OpenReceiveUserManagerCommand { get; set; }
         public ICommand RevokeTaskCommand { get; set; }
         public ICommand AddUserOfMyDepartmentToTaskCommand { get; set; }
+        public ICommand EditTaskCommand { get; set; }
         #endregion
-        //public void SetLabelMsg(string message)
-        //{
-        //    OnLoadUserControl(new object()); // Cập nhật lại dữ liệu
-        //}        
+       
         public ListNewDocumentViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<QLHS_DR.ViewModel.Message.ReloadNewTasksTabEvent>().Subscribe(OnLoadUserControl);
             _TrackChange = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-            //MessageServiceCallBack.SetDelegate(SetLabelMsg);
-            
+            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             try 
-            {
-                _ChannelFactory = ServiceHelper.NewChannelFactory();               
-                _Proxy = _ChannelFactory.CreateChannel();
-                ((IClientChannel)_Proxy).Open();               
-                iReadOnlyListUser = _Proxy.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
-                Departments = _Proxy.GetDepartments().ToObservableCollection();
-                UserDepartments = _Proxy.LoadUserDepartments().ToObservableCollection();
-                ((IClientChannel)_Proxy).Close();
+            {              
+                _MyClient.Open();                      
+                iReadOnlyListUser = _MyClient.GetUserContacts(SectionLogin.Ins.CurrentUser.UserName);
+                Departments = _MyClient.GetDepartments().ToObservableCollection();
+                UserDepartments = _MyClient.LoadUserDepartments().ToObservableCollection();
+
+                _MyClient.Close();
                 foreach (var ud in _UserDepartments)
                 {
-                    ud.Department = _Departments.Where(x => x.Id == ud.DepartmentId).FirstOrDefault();                    
+                    ud.Department = _Departments.Where(x => x.Id == ud.DepartmentId).FirstOrDefault();
                 }
             }
             catch(Exception ex)
             {
-                ((IClientChannel)_Proxy).Abort();
+                _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message);
             }
             UsersInTask = new ObservableCollection<User>();
 
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {               
+            {
+                UserTaskSelecteds = new ObservableCollection<UserTask>();
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
                 ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                 OnLoadUserControl(new object());
@@ -234,17 +236,10 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                    {
-                        _ChannelFactory = ServiceHelper.NewChannelFactory();
-                    }
-                    if ((_Proxy == null) || (((IClientChannel)_Proxy).State == CommunicationState.Faulted) || (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                    {
-                        _Proxy = _ChannelFactory.CreateChannel();
-                        ((IClientChannel)_Proxy).Open();
-                    }
-                  
-                    if (_Proxy.UpdateUserTasks(_ListUserTaskOfTask.ToArray(), SectionLogin.Ins.CurrentUser.Id))
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+
+                    if (_MyClient.UpdateUserTasks(_ListUserTaskOfTask.ToArray(), SectionLogin.Ins.CurrentUser.Id))
                     {
                         System.Windows.MessageBox.Show("Cập nhật thành công");
                     }                     
@@ -252,7 +247,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     {
                         System.Windows.MessageBox.Show("Cập nhật thất bại");
                     }
-                    ((IClientChannel)_Proxy).Close();
+                    _MyClient.Close();
                 }
                 catch (Exception ex)
                 {
@@ -261,26 +256,29 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.StackTrace);
                     }
-                     ((IClientChannel)_Proxy).Abort();
+                    _MyClient.Abort();
                 }
+            });
+            EditTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskEditTask") && _UserTaskSelected != null) return true; else return false; }, (p) =>
+            {
+                EditTaskWindow editTaskWindow = new EditTaskWindow();
+                //ReceiveUserOfMyDepartmentManagerViewModel receiveUserOfMyDepartmentManagerViewModel = new ReceiveUserOfMyDepartmentManagerViewModel(_UserTaskSelected.Task);
+                //editTaskWindow.DataContext = receiveUserOfMyDepartmentManagerViewModel;
+                editTaskWindow.ShowDialog();
+                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
             });
             UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {                
-                ListUserTaskOfTask = new ObservableCollection<UserTask>();               
+                ListUserTaskOfTask = new ObservableCollection<UserTask>();
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
-                {
-                    if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                    {
-                        _ChannelFactory = ServiceHelper.NewChannelFactory();
-                    }
-                    if ((_Proxy == null) ||(((IClientChannel)_Proxy).State == CommunicationState.Faulted) ||  (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                    {
-                        _Proxy = _ChannelFactory.CreateChannel();
-                        ((IClientChannel)_Proxy).Open();
-                    }                
-                    var temp = _Proxy.GetAllUserTaskOfTask(_UserTaskSelected.TaskId).ToObservableCollection();
-                    UsersInTask = _Proxy.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
-                    ((IClientChannel)_Proxy).Close();
+                {                   
+                    _MyClient.Open();                 
+                    var temp = _MyClient.GetAllUserTaskOfTask(_UserTaskSelected.TaskId).ToObservableCollection();
+                    UsersInTask = _MyClient.GetUserInTask(_UserTaskSelected.TaskId).ToObservableCollection();
+                    
+                    _MyClient.Close();
                     foreach (var userTask in temp)
                     {
                         userTask.User = _UsersInTask.Where(x => x.Id == userTask.UserId).FirstOrDefault();
@@ -293,7 +291,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 }
                 catch (Exception ex) 
                 {
-                    ((IClientChannel)_Proxy).Abort();
+                    _MyClient.Abort();
                     System.Windows.MessageBox.Show(ex.Message+ " Function: UserTaskSelectedCommand");
                     if(ex.InnerException!= null)
                     {
@@ -303,28 +301,24 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
-                //OpenFilePdf();
                 Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
                 thread5.SetApartmentState(ApartmentState.STA);
                 thread5.IsBackground = true;
                 thread5.Start();
             });
-            FinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            FinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelecteds.Count()>0) return true; else return false; }, (p) =>
             {
                 try
                 {
-                    if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+                    foreach (var item in _UserTaskSelecteds)
                     {
-                        _ChannelFactory = ServiceHelper.NewChannelFactory();
+                        _MyClient.SetUserTaskFinish(item.TaskId, SectionLogin.Ins.CurrentUser.Id, true);
+                        //ListUserTaskOfUser.Remove(item);
                     }
-                    if ((_Proxy == null) || (((IClientChannel)_Proxy).State == CommunicationState.Faulted) || (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                    {
-                        _Proxy = _ChannelFactory.CreateChannel();
-                        ((IClientChannel)_Proxy).Open();
-                    }
-                    _Proxy.SetUserTaskFinish(_UserTaskSelected.TaskId, SectionLogin.Ins.CurrentUser.Id, true);
-                    ((IClientChannel)_Proxy).Close();
-                    ListUserTaskOfUser.Remove(_UserTaskSelected);
+                    _MyClient.Close();
+                    ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                     UpdateHeaderTabControl();
                 }
                 catch (Exception ex)
@@ -334,7 +328,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.Message);
                     }
-                    ((IClientChannel)_Proxy).Abort();
+                    _MyClient.Abort();
                 }
             });
             RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner") && _UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
@@ -344,17 +338,11 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Bạn có muốn thu hồi tài liệu này? Thao tác này sẽ xóa toàn bộ dữ liệu liên quan", "Cảnh báo !", MessageBoxButton.OKCancel);
                     if (dialogResult == MessageBoxResult.OK)
                     {
-                        if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                        {
-                            _ChannelFactory = ServiceHelper.NewChannelFactory();
-                        }
-                        if ((_Proxy == null) || (((IClientChannel)_Proxy).State == CommunicationState.Faulted) || (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                        {
-                            _Proxy = _ChannelFactory.CreateChannel();
-                            ((IClientChannel)_Proxy).Open();
-                        }
-                        _Proxy.RevokeTaskByCurrentUser(_UserTaskSelected.TaskId);
-                        ((IClientChannel)_Proxy).Close();
+                        _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                        _MyClient.Open();
+
+                        _MyClient.RevokeTaskByCurrentUser(_UserTaskSelected.TaskId);
+                        _MyClient.Close();
                         ListUserTaskOfUser.Remove(_UserTaskSelected);
                         UpdateHeaderTabControl();
                     }                    
@@ -366,7 +354,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.Message);
                     }
-                    ((IClientChannel)_Proxy).Abort();
+                    _MyClient.Abort();
                 }
             });
         }
@@ -374,41 +362,37 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         {
             try
             {
-                if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                {
-                    _ChannelFactory = ServiceHelper.NewChannelFactory();
-                }
-                if ((_Proxy == null) || (((IClientChannel)_Proxy).State == CommunicationState.Faulted) || (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                {
-                    _Proxy = _ChannelFactory.CreateChannel();
-                    ((IClientChannel)_Proxy).Open();
-                }
-                PermissionType taskPermissions = _Proxy.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+                PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
                 bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
                 bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
                 bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
                 //if (_UserTaskSelected.CanViewAttachedFile == true)
                 if (true)
                 {
-                    var taskAttachedFileDTOs = _Proxy.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
+                    var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
-                    {                        
-                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0], printable, saveable,iReadOnlyListUser, _UserTaskSelected);
-                        pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
-                        pdfViewer.TaskName = _UserTaskSelected.Task.Subject;                        
-                        pdfViewer.Show();
+                    {
+                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected);
+                        taskAttackFileViewerViewModel.FileName = taskAttachedFileDTOs[0].FileName;
+                        taskAttackFileViewerViewModel.TaskName = _UserTaskSelected.Task.Subject;
+
+                        TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
+                        taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
+                        taskAttackFileViewerWindow.Show();
                         System.Windows.Threading.Dispatcher.Run();
                     }
                     else
                     {
-                        System.Windows.MessageBox.Show("Không tìm thấy file đính kèm");
+                        MessageBox.Show("Không tìm thấy file đính kèm");
                     }
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("Bạn chưa có quyền xem tài liệu này, vui lòng liên hệ quản trị viên!");
+                    MessageBox.Show("Bạn chưa có quyền xem tài liệu này, vui lòng liên hệ quản trị viên!");
                 }
-                ((IClientChannel)_Proxy).Close();
+               _MyClient.Close();
             }
             catch (Exception ex)
             {
@@ -417,7 +401,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 {
                     System.Windows.MessageBox.Show(ex.InnerException.Message);
                 }
-                ((IClientChannel)_Proxy).Abort();
+                _MyClient.Abort();
             }
         }
 
@@ -443,17 +427,11 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             ObservableCollection<Task> ketqua = new ObservableCollection<Task>();
             try
             {
-                if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                {
-                    _ChannelFactory = ServiceHelper.NewChannelFactory();
-                }
-                if ((_Proxy == null) || (((IClientChannel)_Proxy).State == CommunicationState.Faulted) || (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                {
-                    _Proxy = _ChannelFactory.CreateChannel();
-                    ((IClientChannel)_Proxy).Open();
-                }             
-                ketqua = _Proxy.LoadTasksNotFinish(userId).OrderByDescending(x => x.StartDate).ToObservableCollection();                
-                ((IClientChannel)_Proxy).Close();
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
+
+                ketqua = _MyClient.LoadTasksNotFinish(userId).OrderByDescending(x => x.StartDate).ToObservableCollection();
+                _MyClient.Close();
             }
             catch(Exception ex)
             {
@@ -462,7 +440,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 {
                     System.Windows.MessageBox.Show(ex.InnerException.Message);
                 }
-                ((IClientChannel)_Proxy).Abort();
+                _MyClient.Abort();
             }
             return ketqua;
         }
@@ -471,23 +449,17 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             ObservableCollection<UserTask> ketqua = new ObservableCollection<UserTask>();
             try
             {
-                if ((_ChannelFactory == null) || (_ChannelFactory.State == CommunicationState.Faulted) || (_ChannelFactory.State != CommunicationState.Opened))
-                {
-                    _ChannelFactory = ServiceHelper.NewChannelFactory();
-                }
-                if ((_Proxy == null) || (((IClientChannel)_Proxy).State == CommunicationState.Faulted) || (((IClientChannel)_Proxy).State != CommunicationState.Opened))
-                {
-                    _Proxy = _ChannelFactory.CreateChannel();
-                    ((IClientChannel)_Proxy).Open();
-                }
+                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                _MyClient.Open();
 
-                ketqua = _Proxy.GetUserTaskNotFinish(userId).OrderByDescending(x => x.TimeCreate).ToObservableCollection();
-                var tasks = _Proxy.LoadTasksNotFinish(userId);
-                ((IClientChannel)_Proxy).Close();
+                ketqua = _MyClient.GetUserTaskNotFinish(userId).OrderByDescending(x => x.TimeCreate).ToObservableCollection();
+                var tasks = _MyClient.LoadTasksNotFinish(userId);
+                _MyClient.Close();
                 foreach (var usertask in ketqua) 
                 {
                     usertask.Task = tasks.Where(x=>x.Id==usertask.TaskId).FirstOrDefault();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -496,7 +468,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 {
                     System.Windows.MessageBox.Show(ex.InnerException.Message);
                 }
-                ((IClientChannel)_Proxy).Abort();
+                _MyClient.Abort();
             }
             return ketqua;
         }       

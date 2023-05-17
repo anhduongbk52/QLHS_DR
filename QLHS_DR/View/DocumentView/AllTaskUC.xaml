@@ -49,9 +49,20 @@
                 <dxg:GridColumn FieldName="Subject" ReadOnly="True" Header="Tên tài liệu"  />
                 <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Mã số" />
                 <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
+                <dxg:GridColumn FieldName="Status" ReadOnly="True" Header="Trạng thái" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
-                <dxg:TableView />
+                <dxg:TableView>
+                    <dxg:TableView.RowStyle>
+                        <Style TargetType="dxg:RowControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Row.Status}" Value="Revoked">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>                               
+                            </Style.Triggers>
+                        </Style>
+                    </dxg:TableView.RowStyle>
+                </dxg:TableView>
             </dxg:GridControl.View>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewMouseDown">

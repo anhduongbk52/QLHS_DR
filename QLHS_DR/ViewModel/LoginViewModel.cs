@@ -18,9 +18,8 @@ using QLHS_DR.Core;
 using QLHS_DR.ViewModel;
 using EofficeClient.Core;
 using DevExpress.XtraExport.Xls;
-using QLHS_DR.EOfficeServiceReference;
-using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.ViewModel.ChatAppViewModel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Microsoft.Win32;
 using QLHS_DR;
@@ -31,7 +30,7 @@ namespace EofficeClient.ViewModel
 
     class LoginViewModel : BaseViewModel, IDataErrorInfo
     {
-        private EofficeMainServiceClient _MyClient;
+        private MessageServiceClient _MyClient;
         
         public string Error { get { return null; } }
         public string this[string columnName]
@@ -80,8 +79,8 @@ namespace EofficeClient.ViewModel
         public bool SaveLogin { get => _SaveLogin; set { _SaveLogin = value; OnPropertyChanged("SaveLogin"); } }
         private int _UserId;
         public int UserId { get => _UserId; set { _UserId = value; OnPropertyChanged(); } }
-        public QLHS_DR.EOfficeServiceReference.User _User;
-        public QLHS_DR.EOfficeServiceReference.User User { get => _User; set { _User = value; OnPropertyChanged("User"); } }
+        public User _User;
+        public User User { get => _User; set { _User = value; OnPropertyChanged("User"); } }
         public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -109,8 +108,7 @@ namespace EofficeClient.ViewModel
                 catch (Exception ex)
                 {
                     MessageBox.Show("Exceptiton: " + ex.Message);
-                }
-                
+                }                
             });
             LoginCommand = new RelayCommand<Window>((p) => { if (_UserName != null && _Password != null && _Password != "") return true; else return false; }, (p) =>
             {
@@ -126,7 +124,7 @@ namespace EofficeClient.ViewModel
             if (p == null) return;
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
             
-            _MyClient = ServiceHelper.NewEofficeMainServiceClient(_UserName, passEncode);
+            _MyClient = ServiceHelper.NewMessageServiceClient(_UserName, passEncode);
            
             try
             {
@@ -141,7 +139,7 @@ namespace EofficeClient.ViewModel
 
                 CheckBoxSave(_SaveLogin);
                 if (_SaveLogin && IsLogin)
-                {                    
+                {
                     try
                     {
                         ConfigurationUtil.SaveCredentialData(new CredentialData

@@ -35,6 +35,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
@@ -56,16 +57,22 @@
 
             </Grid.Resources>
             <TextBox Grid.Column="0"  Grid.Row="0" Margin="10"
-                     Text="{Binding TaskName}"
+                     Text="{Binding TaskDrecription}"
                      materialDesign:HintAssist.Hint="Mã số"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}">
             </TextBox>
             <TextBox Name="textBoxDocumentName" 
                  Grid.Column="0"  Grid.Row="1" Margin="10"
                  materialDesign:HintAssist.Hint="Tiêu đề"
-                 Text="{Binding TaskDrecription}"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>           
-            <DataGrid Grid.Column="0"  Grid.Row="2"
+                 Text="{Binding TaskName}"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <ComboBox 
+                ItemsSource="{Binding ConfidentialLevels}"
+                SelectedValue="{Binding ConfidentialSelected,Mode=TwoWay}"
+                Margin="10" Grid.Row="2"
+                materialDesign:HintAssist.Hint="Cấp bảo mật"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+            <DataGrid Grid.Column="0"  Grid.Row="3"
                       MinHeight="250"
                       CanUserAddRows="False"
                       SelectionMode="Single"                      
@@ -133,7 +140,7 @@
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Grid.Column="0"  Grid.Row="3" Orientation="Horizontal" Margin="10">
+            <StackPanel Grid.Column="0"  Grid.Row="4" Orientation="Horizontal" Margin="10">
                 <Button Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="OK" Margin="10" Width="150" Height="40"></Button>
                 <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="CANCEL" Margin="10" Width="150" Height="40"></Button>
                 <CheckBox Command="{Binding CanSaveFile}" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Cho phép lưu đính kèm" ></CheckBox>

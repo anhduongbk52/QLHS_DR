@@ -1,5 +1,5 @@
 ﻿using DevExpress.Data.TreeList;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.View.ProductView;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿
 using DevExpress.Data.TreeList;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System.Collections.Generic;
 
 namespace QLHS_DR.Core
@@ -24,7 +24,7 @@ namespace QLHS_DR.Core
         }
         public PermissionType Permissions { get; set; }
         public List<Permission> ListPermissions { get; set; }
-        public QLHS_DR.EOfficeServiceReference.User CurrentUser { get; set; }
+        public User CurrentUser { get; set; }
         internal string Token { get; set; }
     
     }

@@ -2,7 +2,7 @@
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.View.DocumentView;
 using System;
 using System.Collections.Concurrent;
@@ -10,11 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Task = QLHS_DR.EOfficeServiceReference.Task;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
@@ -34,7 +31,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
         }
         private string _WindowTitle;
-        private EofficeMainServiceClient _MyClient;
+        private MessageServiceClient _MyClient;
         public string WindowTitle { get => _WindowTitle; set { _WindowTitle = value; OnPropertyChanged("WindowTitle"); } }
 
         private Task _Task;
@@ -85,7 +82,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_Task.Id); //get all file PDF in task
                     _MyClient.SetSeenUserInTask(_Task.Id, SectionLogin.Ins.CurrentUser.Id);
@@ -105,7 +102,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             OkCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
                 {
                     if (_ListReceiveDepartment.Any(x => x.IsProcessTemp || x.IsViewOnlyTemp))
@@ -150,7 +147,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             ObservableCollection<ReceiveDepartment> result = new ObservableCollection<ReceiveDepartment>();
             try
             {
-                EofficeMainServiceClient _MyClient = ServiceHelper.NewEofficeMainServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 var departments = _MyClient.GetDepartments();
                 if (departments != null)

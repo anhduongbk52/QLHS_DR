@@ -1,9 +1,8 @@
 ﻿using QLHS_DR.Core;
-using QLHS_DR.EOfficeServiceReference;
+using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EofficeClient.Core;
 
 namespace QLHS_DR.View.ContractView
 {
@@ -25,10 +25,8 @@ namespace QLHS_DR.View.ContractView
     /// Interaction logic for ContractViewPdf.xaml
     /// </summary>
     public partial class ContractViewPdf : Window
-    {
-        ChannelFactory<IEofficeMainService> _ChannelFactory;
-        IEofficeMainService _Proxy;
-        private EOfficeServiceReference.Contract _Contract;
+    {      
+        private Contract _Contract;
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _CanPrint;
         private bool _CanSave;
@@ -43,7 +41,7 @@ namespace QLHS_DR.View.ContractView
                 OnPropertyChanged("IsBusy");
             }
         }
-        public ContractViewPdf(bool canPrint, bool canSave, EOfficeServiceReference.Contract contract)
+        public ContractViewPdf(bool canPrint, bool canSave, Contract contract)
         {
             InitializeComponent();
             _Contract = contract;
@@ -54,26 +52,25 @@ namespace QLHS_DR.View.ContractView
         }
         private void pdfViewerWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             try
             {
                 IsBusy = true;
                 pdfViewer2.CanPrint = _CanPrint;
                 pdfViewer2.CanSave = _CanSave;
 
-                _ChannelFactory = new ChannelFactory<IEofficeMainService>("WSHttpBinding_IEofficeMainService");
-                _ChannelFactory.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-                _ChannelFactory.Credentials.UserName.Password = SectionLogin.Ins.Token;
-                _Proxy = _ChannelFactory.CreateChannel();
-                ((IClientChannel)_Proxy).Open();
-                _ContextFile = _Proxy.DownloadContractFile(_Contract.id);
-                ((IClientChannel)_Proxy).Close();
-                if (_ContextFile != null) ;
-                MemoryStream ms = new MemoryStream(_ContextFile);
-                pdfViewer2.DocumentSource = ms;
+                _MyClient.Open();
+                _ContextFile = _MyClient.DownloadContractFile(_Contract.id);
+                _MyClient.Close();
+                if (_ContextFile != null)
+                {
+                    MemoryStream ms = new MemoryStream(_ContextFile);
+                    pdfViewer2.DocumentSource = ms;
+                }               
             }
             catch (Exception ex)
             {
-                ((IClientChannel)_Proxy).Abort();
+                _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
             }
             finally
