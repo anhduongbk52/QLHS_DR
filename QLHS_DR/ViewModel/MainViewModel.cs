@@ -557,33 +557,38 @@ namespace QLHS_DR.ViewModel
         }
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            MessageServiceClient _MyClient1 = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            try
+            if(SectionLogin.Ins.CurrentUser!=null && SectionLogin.Ins.Token!=null)
             {
-                _MyClient1.Open();
-                ObservableCollection<UserTask> newUserTasks = _MyClient1.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
-                if (newUserTasks != null && _OldUserTasks != null)
+                MessageServiceClient _MyClient1 = new MessageServiceClient();
+                try
                 {
-                    if (newUserTasks.Count > _OldUserTasks.Count)
+                    _MyClient1 = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient1.Open();
+                    ObservableCollection<UserTask> newUserTasks = _MyClient1.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
+                    if (newUserTasks != null && _OldUserTasks != null)
                     {
-                        for (int i = _OldUserTasks.Count; i < newUserTasks.Count; i++)
+                        if (newUserTasks.Count > _OldUserTasks.Count)
                         {
-                            Task task = _MyClient1.LoadTask(newUserTasks[i].TaskId);
-                            string message = "Có tài liệu vừa được gửi tới bạn: " + task.Subject;
-                            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                            for (int i = _OldUserTasks.Count; i < newUserTasks.Count; i++)
                             {
-                                notifierForNormalUser.ShowInformation(message, optionsForNormalUser);
-                            }));
+                                Task task = _MyClient1.LoadTask(newUserTasks[i].TaskId);
+                                string message = "Có tài liệu vừa được gửi tới bạn: " + task.Subject;
+                                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                                {
+                                    notifierForNormalUser.ShowInformation(message, optionsForNormalUser);
+                                }));
+                            }
                         }
                     }
+                    _MyClient1.Close();
+                    _OldUserTasks = newUserTasks;
                 }
-                _MyClient1.Close();
-                _OldUserTasks = newUserTasks;
-            }
-            catch (Exception ex)
-            {
-                _MyClient1.Abort();
-            }
+                catch (Exception ex)
+                {
+                    _MyClient1.Abort();
+                }
+            }    
+           
         }
         //private void RequestSendDocument_OnChanged(object sender, RecordChangedEventArgs<NortifyUserTask> e)
         //{
