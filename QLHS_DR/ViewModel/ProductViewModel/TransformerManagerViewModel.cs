@@ -1,28 +1,23 @@
-﻿using DevExpress.Data.Utils;
-using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using Prism.Events;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Security;
 using System.Net;
+using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
-using DevExpress.Mvvm.POCO;
-using System.ServiceModel;
-using static DevExpress.Data.Filtering.Helpers.SubExprHelper.ThreadHoppingFiltering;
 
 namespace QLHS_DR.ViewModel.ProductViewModel
 {
     class TransformerManagerViewModel : BaseViewModel
     {
         private MessageServiceClient _Proxy;
+        ServiceFactory _ServiceFactory;
         private string _CodeKeyWord;
         public string CodeKeyWord
         {
@@ -83,16 +78,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 OnPropertyChanged("StationKeyWord");
             }
         }
-        private ProductTypeWrapper _SelectedProductTypeWrapper;
-        public ProductTypeWrapper SelectedProductTypeWrapper
-        {
-            get => _SelectedProductTypeWrapper;
-            set
-            {
-                _SelectedProductTypeWrapper = value;
-                OnPropertyChanged("SelectedProductTypeWrapper");
-            }
-        }
+
         private TransformerDTO _SelectedProduct;
         public TransformerDTO SelectedProduct
         {
@@ -131,16 +117,30 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 _Standards = value; OnPropertyChanged("Standards");
             }
         }
-        private ObservableCollection<ProductTypeWrapper> _ProductTypeWrappers;
-        public ObservableCollection<ProductTypeWrapper> ProductTypeWrappers
+        private ObservableCollection<ProductTypeNew> _ProductTypeNews;
+        public ObservableCollection<ProductTypeNew> ProductTypeNews
         {
-            get => _ProductTypeWrappers;
+            get => _ProductTypeNews;
             set
             {
-                _ProductTypeWrappers = value; OnPropertyChanged("ProductTypeWrappers");
+                if (_ProductTypeNews != value)
+                {
+                    _ProductTypeNews = value; OnPropertyChanged("ProductTypeNews");
+                }
             }
-        }       
-
+        }
+        private ProductTypeNew _SelectedProductTypeNew;
+        public ProductTypeNew SelectedProductTypeNew
+        {
+            get => _SelectedProductTypeNew;
+            set
+            {
+                if (_SelectedProductTypeNew != value)
+                {
+                    _SelectedProductTypeNew = value; OnPropertyChanged("SelectedProductTypeNew");
+                }
+            }
+        }
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand EditProductCommand { get; set; }
         public ICommand LockProductCommand { get; set; }
@@ -149,28 +149,23 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
         public TransformerManagerViewModel(IEventAggregator eventAggregator)
-        {           
+        {
             try
             {
+                _ServiceFactory = new ServiceFactory();
                 _Proxy = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _Proxy.Open();
-               ProductTypeWrappers = new ObservableCollection<ProductTypeWrapper>()
-                {
-                   new ProductTypeWrapper(ProductType.PowerTransformer),
-                   new ProductTypeWrapper(ProductType.DistributionTransformer)
-                };
-                SelectedProductTypeWrapper = ProductTypeWrappers[0];
-                
+
                 Standards = _Proxy.LoadStandards().ToObservableCollection();
                 SelectedStandard = Standards.Where(x => x.Name == "NONE").FirstOrDefault();
                 _Proxy.Close();
-            }          
+            }
             catch (Exception ex)
             {
                 _Proxy.Abort();
                 MessageBox.Show(ex.Message);
             }
-          
+
             ClearCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 CodeKeyWord = null;
@@ -179,19 +174,23 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 RatedVoltageKeyWord = null;
                 NoteKeyWord = null;
             });
-            SearchCommand = new RelayCommand<object>((p) => { return true;}, (p) =>
+            SearchCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 Products = SearchTransformer();
             });
-            LoadedWindowCommand = new RelayCommand<object>((p) => {return true;}, (p) =>
+            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-               // Products = SearchProducts();
+                _ProductTypeNews = _ServiceFactory.LoadProducTypeNews();
+                _ProductTypeNews.Add(new ProductTypeNew() { Id = 0, TypeCode = "All", TypeName = "All" });
+                ProductTypeNews = _ProductTypeNews.OrderBy(x => x.Id).ToObservableCollection();
+                //OnPropertyChanged("ProductTypeNews");
             });
             OpenProductCommand = new RelayCommand<DependencyObject>((p) =>
             {
-                if (((SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenPowerTransformer")&&_SelectedProduct.ProductType==ProductType.PowerTransformer)
-                  ||(SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenDistributionTransformer")&& _SelectedProduct.ProductType == ProductType.DistributionTransformer))&&_SelectedProduct!=null)
-                    return true;else return false; 
+                if (((SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenPowerTransformer") && _SelectedProduct.ProductType == ProductType.PowerTransformer)
+                  || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenDistributionTransformer") && _SelectedProduct.ProductType == ProductType.DistributionTransformer)) && _SelectedProduct != null)
+                    return true;
+                else return false;
             }, (p) =>
             {
                 FrameworkElement window = System.Windows.Window.GetWindow(p);
@@ -201,7 +200,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 Product product = GetProductById(_SelectedProduct.Id);
 
                 DetailTransformerViewModel tabDetailProductVM = new DetailTransformerViewModel(product);
-             
+
                 View.ProductView.DetailTransformerUC detailTransformerUC = new View.ProductView.DetailTransformerUC();
                 detailTransformerUC.DataContext = tabDetailProductVM;
 
@@ -278,13 +277,14 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             try
             {
                 _Proxy = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                _Proxy.Open();             
-                ketqua = _Proxy.SearchTransformer(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeWrapper?.EnumValue ?? 0, _SelectedStandard?.Id ?? 0).ToObservableCollection();
+                _Proxy.Open();
+                ketqua = _Proxy.SearchProducts(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeNew != null ? _SelectedProductTypeNew.Id : 0, _SelectedStandard?.Id ?? 0).ToObservableCollection();
                 _Proxy.Close();
             }
-            catch (CommunicationException ex)
+            catch (Exception ex)
             {
                 _Proxy.Abort();
+                MessageBox.Show(ex.Message);
             }
             return ketqua;
         }
@@ -294,13 +294,14 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             try
             {
                 _Proxy = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                _Proxy.Open();              
+                _Proxy.Open();
                 ketqua = _Proxy.GetProductById(productId);
                 _Proxy.Close();
             }
             catch (Exception ex)
             {
                 _Proxy.Abort();
+                MessageBox.Show(ex.Message);
             }
             return ketqua;
 

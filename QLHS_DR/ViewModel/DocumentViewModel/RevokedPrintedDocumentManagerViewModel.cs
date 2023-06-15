@@ -25,7 +25,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 _IsBusy = value; OnPropertyChanged("IsBusy");
             }
-        }       
+        }
 
         private ObservableCollection<Document> _Documents;
         public ObservableCollection<Document> Documents { get => _Documents; set { _Documents = value; OnPropertyChanged("Documents"); } }
@@ -131,7 +131,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         IsBusy = true;
                         if (_SelectedDocument != null)
                         {
-                            if(_SelectedDocument.Task!=null)
+                            if (_SelectedDocument.Task != null)
                             {
                                 UserTasks = GetUserTaskOfTask(_SelectedDocument.Task.Id);
                                 if (UserTasks != null)
@@ -146,7 +146,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                         }
                                     }
                                 }
-                            }                                                     
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -209,7 +209,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand ConfirmDisposedCommand { get; set; }
         #endregion
         internal RevokedPrintedDocumentManagerViewModel()
-        {       
+        {
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 ConfidentialLevels = new List<int>() { 1, 2, 3 };
@@ -217,7 +217,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _Users = LoadUsers();
                 ConfidentialLevelSelected = 3;
                 Documents = GetAllTasksByConfidentialLevel(_ConfidentialLevelSelected);
-                
+
             });
             ConfidentialLevelChangeCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
@@ -231,10 +231,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     revokedCount = 0;
                 }
                 else revokedCount = _SelectedUserTaskPrintManager.PrintedRevoked.Value;
-                MessageBoxResult result = MessageBox.Show((_SelectedUserTaskPrintManager.PrintCount - revokedCount) 
-                                                         + " trang tài liệu số"+ _SelectedUserTaskPrintManager.PageNumber
-                                                         + " được in bởi "+ _SelectedUserTask.User.FullName 
-                                                         + "vào ngày "+ _SelectedUserTaskPrintManager.TimePrint+ " đã được hủy ?", "Xác nhận", MessageBoxButton.OKCancel);
+                MessageBoxResult result = MessageBox.Show((_SelectedUserTaskPrintManager.PrintCount - revokedCount)
+                                                         + " trang tài liệu số" + _SelectedUserTaskPrintManager.PageNumber
+                                                         + " được in bởi " + _SelectedUserTask.User.FullName
+                                                         + "vào ngày " + _SelectedUserTaskPrintManager.TimePrint + " đã được hủy ?", "Xác nhận", MessageBoxButton.OKCancel);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -283,12 +283,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                 _MyClient.Open();
                 var tasks = _MyClient.LoadTaskByConfidentialLevel(confidentialLevel).OrderByDescending(x => x.Id).ToObservableCollection();
-                if(tasks != null)
+                if (tasks != null)
                 {
                     foreach (var task in tasks)
                     {
                         task.UserTasks = GetUserTaskOfTask(task.Id).ToArray();
-                        bool isFinish = !task.UserTasks.Any(x => x.UserTaskPrintManagers.Any(y => y.PrintCount > y.PrintedRevoked && y.Success!=false));
+                        bool isFinish = !task.UserTasks.Any(x => x.UserTaskPrintManagers.Any(y => y.PrintCount > y.PrintedRevoked && y.Success != false));
                         ketqua.Add(new Document()
                         {
                             Task = task,
@@ -296,7 +296,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         });
                     }
                 }
-               
+
                 _MyClient.Close();
             }
             catch (Exception ex)
@@ -402,12 +402,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
             return ketqua;
         }
-      
-}
-    internal class Document 
+
+    }
+    internal class Document
     {
         public Task Task { get; set; }
-        public bool FinishDisposed { get; set; } 
-       
+        public bool FinishDisposed { get; set; }
+
     }
 }

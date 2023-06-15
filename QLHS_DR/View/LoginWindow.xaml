@@ -6,10 +6,10 @@
         mc:Ignorable="d"
         WindowStyle="None"
         Title="Đăng nhập" 
-        Name="loginWindow"     
+        x:Name="loginWindow"     
         WindowStartupLocation="CenterScreen"
         Width="330"
-         Height="250"
+        Height="250"
         DataContext="{Binding Source={StaticResource Locator},Path=LoginViewModel}"
         AllowsTransparency="True"      
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -49,10 +49,9 @@
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PasswordChanged">
                                 <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
-                                                   CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type PasswordBox}}}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-
                     </PasswordBox>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <CheckBox TabIndex="2" Margin="20,5,10,5" IsChecked="{Binding SaveLogin}"></CheckBox>

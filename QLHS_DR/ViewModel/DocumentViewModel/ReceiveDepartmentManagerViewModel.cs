@@ -1,11 +1,8 @@
-﻿using DevExpress.Mvvm.Native;
-using EofficeClient.Core;
+﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
-using QLHS_DR.View.DocumentView;
+using QLHS_DR.Core;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -15,7 +12,7 @@ using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class ReceiveDepartmentManagerViewModel:BaseViewModel
+    internal class ReceiveDepartmentManagerViewModel : BaseViewModel
     {
         #region "Properties and Field"
         private bool _DataChanged;
@@ -55,11 +52,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public ICommand  OkCommand { get; set; }
+        public ICommand OkCommand { get; set; }
         private void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {
             FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            byte[] orAdd =  fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask);
+            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask);
             if (orAdd != null)
             {
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
@@ -67,16 +64,16 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         }
         #endregion
         internal ReceiveDepartmentManagerViewModel(UserTask userTask)
-        {     
+        {
             try
             {
                 Task = userTask.Task;
                 WindowTitle = userTask.Task.Subject;
-                ListReceiveDepartment = GetReceiveDepartments();               
+                ListReceiveDepartment = GetReceiveDepartments();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);               
+                MessageBox.Show(ex.Message);
             }
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
@@ -92,8 +89,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         DecryptTaskAttachedFile(taskAttachedFileDTOs[0], userTask);
                         PdfContent = new MemoryStream(taskAttachedFileDTOs[0].Content);
                     }
-                }               
-                    
+                }
+
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -108,11 +105,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     if (_ListReceiveDepartment.Any(x => x.IsProcessTemp || x.IsViewOnlyTemp))
                     {
                         _MyClient.Open();
-                        
+
                         List<ReceivedDepartmentDTO> temDTo = new List<ReceivedDepartmentDTO>();
                         foreach (var receiveDept in _ListReceiveDepartment)
                         {
-                            if ((receiveDept.IsProcessTemp || receiveDept.IsViewOnlyTemp)&& receiveDept.IsReceived)
+                            if ((receiveDept.IsProcessTemp || receiveDept.IsViewOnlyTemp) && receiveDept.IsReceived)
                                 temDTo.Add(receiveDept.ReceivedDepartmentDTO);
                         }
                         _MyClient.AddDepartmentToTask(_Task, temDTo.ToArray());
@@ -141,7 +138,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 p.Close();
             });
         }
-      
+
         private ObservableCollection<ReceiveDepartment> GetReceiveDepartments()
         {
             ObservableCollection<ReceiveDepartment> result = new ObservableCollection<ReceiveDepartment>();
@@ -173,19 +170,19 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             receivedDepartmentDTO.CanSave = false;
                             receivedDepartmentDTO.CanViewFileAttachment = false;
                             receivedDepartmentDTO.DepartmentId = department.Id;
-                            receivedDepartmentDTO.IndexInTree =1;
+                            receivedDepartmentDTO.IndexInTree = 1;
                             receivedDepartmentDTO.IsProcess = false;
                             receivedDepartmentDTO.IsViewOnly = false;
                         }
                         bool isEnable = (!receivedDepartmentDTO.IsProcess) && (!receivedDepartmentDTO.IsViewOnly);
                         result.Add(new ReceiveDepartment()
-                        {                           
-                            IsReceived= (isEnable),                           
+                        {
+                            IsReceived = (isEnable),
                             ReceivedDepartmentDTO = receivedDepartmentDTO,
                             IsProcessTemp = receivedDepartmentDTO.IsProcess,
                             IsViewOnlyTemp = receivedDepartmentDTO.IsViewOnly,
                             Department = department,
-                             IsEnablePermission = isEnable,
+                            IsEnablePermission = isEnable,
                         });
                     }
                 }
@@ -198,7 +195,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             return result;
         }
     }
-    internal class ReceiveDepartment:BaseViewModel
+    internal class ReceiveDepartment : BaseViewModel
     {
         private bool _IsReceived;
         public bool IsReceived
@@ -221,7 +218,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 if (_IsEnablePermission != value)
                 {
-                    _IsEnablePermission = value; 
+                    _IsEnablePermission = value;
                     OnPropertyChanged("IsEnablePermission");
                 }
             }
@@ -238,14 +235,14 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _IsViewOnlyTemp = false;
                     _ReceivedDepartmentDTO.IsProcess = true;
                     _ReceivedDepartmentDTO.IsViewOnly = false;
-                    
+
                 }
                 else
                 {
-                    _IsProcessTemp = false;                   
+                    _IsProcessTemp = false;
                     _ReceivedDepartmentDTO.IsProcess = false;
                 }
-                ReceivedDepartmentDTO.CanViewFileAttachment= ReceivedDepartmentDTO.CanPrint = (_IsProcessTemp || _IsViewOnlyTemp);
+                ReceivedDepartmentDTO.CanViewFileAttachment = ReceivedDepartmentDTO.CanPrint = (_IsProcessTemp || _IsViewOnlyTemp);
                 if ((!_IsProcessTemp) && (!_IsViewOnlyTemp)) ReceivedDepartmentDTO.CanSave = false;
                 IsEnablePermission = _IsProcessTemp || _IsViewOnlyTemp;
                 OnPropertyChanged("IsProcessTemp");
@@ -271,7 +268,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _ReceivedDepartmentDTO.IsViewOnly = false;
                 }
                 ReceivedDepartmentDTO.CanViewFileAttachment = ReceivedDepartmentDTO.CanPrint = (_IsProcessTemp || _IsViewOnlyTemp);
-                if ((!_IsProcessTemp) && (!_IsViewOnlyTemp)) ReceivedDepartmentDTO.CanSave=false;
+                if ((!_IsProcessTemp) && (!_IsViewOnlyTemp)) ReceivedDepartmentDTO.CanSave = false;
                 IsEnablePermission = (_IsProcessTemp || _IsViewOnlyTemp);
                 OnPropertyChanged("IsProcessTemp");
                 OnPropertyChanged("IsViewOnlyTemp");
@@ -290,7 +287,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-        
+
         private Department _Department;
         public Department Department
         {
@@ -304,6 +301,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
         }
     }
-   
+
 
 }

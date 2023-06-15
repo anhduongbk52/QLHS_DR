@@ -43,11 +43,10 @@
                     Margin="5 5 5 5"
                     materialDesign:ShadowAssist.ShadowDepth="Depth1">
                 <ComboBox
-                    ItemsSource="{Binding ProductTypeWrappers}"
-                    DisplayMemberPath="Name"                    
-                    SelectedIndex="0"
+                    ItemsSource="{Binding ProductTypeNews,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                    DisplayMemberPath="TypeName"  SelectedItem="{Binding SelectedProductTypeNew}"
                     Margin="8 0 0 0"                    
-                    materialDesign:HintAssist.Hint="Loại máy biến áp"
+                    materialDesign:HintAssist.Hint="Loại sản phẩm"
                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                     BorderThickness="0"
                     MinWidth="200"                    

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
-
-namespace QLHS_DR.ViewModel.Message
+﻿namespace QLHS_DR.ViewModel.Message
 {
     public class TitletabControlMessage
     {
-        public string Title { get; set; }      
+        public string Title { get; set; }
     }
 }

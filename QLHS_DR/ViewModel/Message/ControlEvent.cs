@@ -3,7 +3,7 @@
 
 namespace QLHS_DR.ViewModel.Message
 {
-    public  class ReloadNewTasksTabEvent : PubSubEvent<object>
+    public class ReloadNewTasksTabEvent : PubSubEvent<object>
     {
 
     }

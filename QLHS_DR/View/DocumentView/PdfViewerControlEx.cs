@@ -1,17 +1,9 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
-using DevExpress.Pdf;
+﻿using DevExpress.Mvvm.Native;
 using DevExpress.Xpf.PdfViewer;
-using QLHS_DR.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLHS_DR.View.DocumentView
@@ -74,8 +66,8 @@ namespace QLHS_DR.View.DocumentView
         }
         public PdfViewerControlEx()
         {
-           //CustomPrintCommand = DelegateCommandFactory.Create(() => PrintDocumentCommand.Execute(null), () => PrintDocumentCommand.CanExecute(null) && CanPrint);
-           CustomSaveCommand = DelegateCommandFactory.Create(() => SaveAsCommand.Execute(null),() => SaveAsCommand.CanExecute(null) && CanSave);
+            //CustomPrintCommand = DelegateCommandFactory.Create(() => PrintDocumentCommand.Execute(null), () => PrintDocumentCommand.CanExecute(null) && CanPrint);
+            CustomSaveCommand = DelegateCommandFactory.Create(() => SaveAsCommand.Execute(null), () => SaveAsCommand.CanExecute(null) && CanSave);
         }
     }
 }

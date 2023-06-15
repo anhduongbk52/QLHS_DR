@@ -6,8 +6,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLHS_DR.Core
 {
@@ -35,14 +33,14 @@ namespace QLHS_DR.Core
         //    });
         //}
         private byte[] GetHashPasword()
-        {           
+        {
             _myClient.Open();
             byte[] password = Convert.FromBase64String(_myClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
             _myClient.Close();
             return CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
         }
         private byte[] method_20(byte[] byte_0)
-        {         
+        {
             _myClient.Open();
             User user = user_0 ?? (user_0 = _myClient.GetUserByName(_myClient.ClientCredentials.UserName.UserName));
             if (user.ECPrKeyForFile == null)
@@ -69,7 +67,7 @@ namespace QLHS_DR.Core
 
 
         private byte[] method_7(int taskId)
-        {           
+        {
             _myClient.Open();
             UserTask userTask_0 = _myClient.GetUserTask(user_0.Id, taskId);
             _myClient.Close();

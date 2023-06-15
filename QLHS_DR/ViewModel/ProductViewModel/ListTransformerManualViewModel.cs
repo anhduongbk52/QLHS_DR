@@ -1,46 +1,97 @@
-﻿using QLHS_DR.Core;
-using QLHS_DR.ChatAppServiceReference;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
+using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
+using QLHS_DR.View.HosoView;
 using QLHS_DR.View.ProductView;
+using QLHS_DR.View.TransformerManualView;
+using QLHS_DR.ViewModel.HoSoViewModel;
+using QLHS_DR.ViewModel.TransformerManualViewModel;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-using DevExpress.Mvvm.Native;
 using System.ServiceModel;
 using System.Windows;
-using QLHS_DR.ViewModel.TransformerManualViewModel;
-using QLHS_DR.View.TransformerManualView;
+using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.ProductViewModel
 {
-    internal class ListTransformerManualViewModel:BaseViewModel
+    class ListTransformerManualViewModel : BaseViewModel
     {
         #region "Properties and Field"
-        private Product _Product;
-        private TransformerManualDTO _SelectedTransformerManual;
-        public TransformerManualDTO SelectedTransformerManual { get => _SelectedTransformerManual; set { _SelectedTransformerManual = value; OnPropertyChanged("SelectedTransformerManual"); } }
 
-        private ObservableCollection<TransformerManualDTO> _TransformerManuals;
-        public ObservableCollection<TransformerManualDTO> TransformerManuals { get => _TransformerManuals; set { _TransformerManuals = value; OnPropertyChanged("TransformerManuals"); } }
-               
-        byte[] _Content;
-      
-        private bool _IsWaitIndicatorVisible;
-        public bool IsWaitIndicatorVisible
+        MessageServiceClient _Proxy;
+
+        private bool _CanOpenFile;
+        public bool CanOpenFile
         {
-            get
-            {
-                return _IsWaitIndicatorVisible;
-            }
-
+            get => _CanOpenFile;
             set
             {
-                _IsWaitIndicatorVisible = value;
-                OnPropertyChanged("IsWaitIndicatorVisible");
+                if (_CanOpenFile != value)
+                {
+                    _CanOpenFile = value;
+                    OnPropertyChanged("CanOpenFileElectrical");
+                }
             }
         }
-         
+        private bool _CanUploadFile;
+        public bool CanUploadFile
+        {
+            get => _CanUploadFile;
+            set
+            {
+                if (_CanUploadFile != value)
+                {
+                    _CanUploadFile = value;
+                    OnPropertyChanged("CanUploadFileElectrical");
+                }
+            }
+        }
+
+        private bool _CanRemoveFile;
+        public bool CanRemoveFile
+        {
+            get => _CanRemoveFile;
+            set
+            {
+                if (_CanRemoveFile != value)
+                {
+                    _CanRemoveFile = value;
+                    OnPropertyChanged("CanRemoveFile");
+                }
+            }
+        }
+        private bool _CanRemoveOwnerFile;
+        public bool CanRemoveOwnerFile
+        {
+            get => _CanRemoveOwnerFile;
+            set
+            {
+                if (_CanRemoveOwnerFile != value)
+                {
+                    _CanRemoveOwnerFile = value;
+                    OnPropertyChanged("CanRemoveOwnerFile");
+                }
+            }
+        }
+        private Product _Product;
+        private TransformerManualDTO _SelectedTransformerManualDTO;
+        public TransformerManualDTO SelectedTransformerManualDTO
+        {
+            get => _SelectedTransformerManualDTO;
+            set
+            {
+                if (_SelectedTransformerManualDTO != value)
+                {
+                    _SelectedTransformerManualDTO = value;
+                    OnPropertyChanged("SelectedTransformerManualDTO");
+                }
+            }
+        }
+
+        private ObservableCollection<TransformerManualDTO> _TransformerManualDTOs;
+        public ObservableCollection<TransformerManualDTO> TransformerManualDTOs { get => _TransformerManualDTOs; set { _TransformerManualDTOs = value; OnPropertyChanged("TransformerManualDTOs"); } }
         #endregion
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
@@ -53,62 +104,72 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         public ListTransformerManualViewModel(Product product)
         {
             _Product = product;
+
             LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                TransformerManuals = LoadTransformerManual();              
+                CanOpenFile = SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenTransformerManualFile");
+                CanUploadFile = SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile");
+                CanRemoveFile = SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productRemoveTransformerManual");
+                CanRemoveOwnerFile = SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productRemoveTransformerManualOfOwner");
+                TransformerManualDTOs = LoadTransformerManual();
             });
-            OpenPDFCommand = new RelayCommand<Object>((p) => { if (_SelectedTransformerManual != null && SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productOpenTransformerManualFile")) return true; else return false; }, async (p) =>
-            { 
-                TransformerManualViewPdf pdfViewer = new TransformerManualViewPdf(true, true, _SelectedTransformerManual.FileName, _SelectedTransformerManual);
+            OpenPDFCommand = new RelayCommand<Object>((p) => { if (_SelectedTransformerManualDTO != null && CanOpenFile) return true; else return false; }, (p) =>
+            {
+                TransformerManualViewPdf pdfViewer = new TransformerManualViewPdf(true, true, _SelectedTransformerManualDTO.FileName, _SelectedTransformerManualDTO);
                 pdfViewer.Show();
             });
-            UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile")) return true; else return false; },  (p) =>
-            {                
-                UploadTransformerManualViewModel uploadTransformerManualViewModel = new UploadTransformerManualViewModel(_Product.ProductCode);
-                UploadTransformerManualWindow uploadTransformerManualWindow = new UploadTransformerManualWindow() { DataContext = uploadTransformerManualViewModel };
-                uploadTransformerManualWindow.ShowDialog();
-                TransformerManuals = LoadTransformerManual();
-            });
-            RemoveFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productRemoveTransformerManual") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productRemoveTransformerManualOfOwner") && _SelectedTransformerManual.UserCreateId==SectionLogin.Ins.CurrentUser.Id)) return true; else return false; }, (p) =>
+
+            UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (_CanUploadFile) return true; else return false; }, (p) =>
             {
-                MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                UploadHoSoViewModel uploadTransformerManualViewModel = new UploadHoSoViewModel(_Product.ProductCode);
+                UploadHoSoWindow uploadTransformerManualWindow = new UploadHoSoWindow() { DataContext = uploadTransformerManualViewModel };
+                uploadTransformerManualWindow.ShowDialog();
+                TransformerManualDTOs = LoadTransformerManual();
+            });
+            RemoveFileHoSoCommand = new RelayCommand<Object>((p) => { if (_SelectedTransformerManualDTO != null && (CanRemoveFile || (CanRemoveOwnerFile && _SelectedTransformerManualDTO.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            {
                 try
                 {
-                    _MyClient.Open();
-                    _MyClient.SetDeletedTransformerManual(_SelectedTransformerManual.TransformerManualId);
-                    _MyClient.Close();
-                    MessageBox.Show("Xóa thành công");
+                    if (MessageBox.Show("Bạn có muốn xóa file: " + _SelectedTransformerManualDTO.FileName, "Cảnh báo", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+                    {
+                        _Proxy = ServiceHelper.NewMessageServiceClient();
+                        _Proxy.Open();
+                        _Proxy.SetDeletedTransformerManual(_SelectedTransformerManualDTO.TransformerManualId);
+                        _Proxy.Close();
+                        MessageBox.Show("Xóa thành công");
+                    }
+                    TransformerManualDTOs = LoadTransformerManual();
                 }
                 catch (Exception ex)
                 {
+                    _Proxy.Abort();
                     MessageBox.Show(ex.Message);
-                    _MyClient.Abort();
                 }
             });
-            ChangeFileHoSoCommand = new RelayCommand<Object>((p) => { if (_SelectedTransformerManual!=null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile") || ( _SelectedTransformerManual.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            ChangeFileHoSoCommand = new RelayCommand<Object>((p) => { if (_SelectedTransformerManualDTO != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile") || (_SelectedTransformerManualDTO.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
             {
-                EditTransformerManualViewModel editTransformerManualViewModel = new EditTransformerManualViewModel(_Product.ProductCode, _SelectedTransformerManual.FileId,_SelectedTransformerManual.DocTitleId);
+                EditTransformerManualViewModel editTransformerManualViewModel = new EditTransformerManualViewModel(_SelectedTransformerManualDTO, _Product.ProductCode);
                 EditTransformerManualWindow editTransformerManualWindow = new EditTransformerManualWindow() { DataContext = editTransformerManualViewModel };
                 editTransformerManualWindow.ShowDialog();
-                TransformerManuals = LoadTransformerManual();
+                TransformerManualDTOs = LoadTransformerManual();
             });
         }
         private ObservableCollection<TransformerManualDTO> LoadTransformerManual()
         {
-            MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-
             ObservableCollection<TransformerManualDTO> ketqua = new ObservableCollection<TransformerManualDTO>();
             try
             {
-                _MyClient.Open();
-                ketqua = _MyClient.LoadTransformerManual(_Product.Id).ToObservableCollection();
-                _MyClient.Close();
-            }            
+                _Proxy = ServiceHelper.NewMessageServiceClient();
+                _Proxy.Open();
+                ketqua = _Proxy.LoadTransformerManual(_Product.Id).ToObservableCollection();
+                _Proxy.Close();
+            }
             catch (CommunicationException ex)
             {
-                _MyClient.Abort();
+                _Proxy.Abort();
+                MessageBox.Show(ex.Message);
             }
             return ketqua;
-        }          
+        }
     }
 }

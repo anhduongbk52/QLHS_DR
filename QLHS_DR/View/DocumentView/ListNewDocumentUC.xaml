@@ -8,16 +8,13 @@
               xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"   
-             x:Name="ListUserTaskUC"
-             DataContext="{Binding Source={StaticResource Locator},Path=ListNewDocumentViewModel}"
+             x:Name="ListUserTaskUC"            
              d:DesignHeight="450" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -32,12 +29,12 @@
                          SelectedItem="{Binding UserTaskSelected}">
                 <dxg:GridControl.ContextMenu>
                     <ContextMenu FontFamily="{Binding PlacementTarget.FontFamily, RelativeSource={RelativeSource Self}}">
-                        <MenuItem Header="Xem" Command="{Binding OpenFileCommand}" CommandParameter="{Binding ElementName=ListUserTaskUC}">
+                        <MenuItem Header="Xem" Command="{Binding OpenFileCommand}">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="Eye" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Chỉnh sửa" Command="{Binding EditTaskCommand}" CommandParameter="{Binding ElementName=ListUserTaskUC}">
+                        <MenuItem Header="Chỉnh sửa" Command="{Binding EditTaskCommand}">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="Edit" />
                             </MenuItem.Icon>

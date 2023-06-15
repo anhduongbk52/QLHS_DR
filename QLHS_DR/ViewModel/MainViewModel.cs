@@ -1,59 +1,47 @@
-﻿using System;
+﻿using AutoUpdaterDotNET;
+using DevExpress.Mvvm.Native;
+using EofficeClient.Core;
+using EofficeClient.ViewModel;
+using EofficeClient.ViewModel.DocumentViewModel;
+using EofficeCommonLibrary.Common.Util;
+using Prism.Events;
+using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
+using QLHS_DR.Properties;
+using QLHS_DR.View;
+using QLHS_DR.View.ContractView;
+using QLHS_DR.View.DocumentView;
+using QLHS_DR.View.HosoView;
+using QLHS_DR.View.ProductView;
+using QLHS_DR.ViewModel.DocumentViewModel;
+using QLHS_DR.ViewModel.HoSoViewModel;
+using QLHS_DR.ViewModel.Message;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Deployment.Application;
+using System.Diagnostics;
 using System.Linq;
-using System.Net.Security;
 using System.Net;
+using System.Net.Security;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using System.Timers;
 using System.Windows;
-using System.Windows.Input;
-using System.Deployment.Application;
-using QLHS_DR.Core;
-using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.View;
-using EofficeClient.ViewModel;
-using QLHS_DR.View.DocumentView;
-using EofficeClient.Core;
-using QLHS_DR.ChatAppServiceReference;
-using DevExpress.Mvvm.Native;
-using EofficeClient.ViewModel.DocumentViewModel;
-using AutoUpdaterDotNET;
 using System.Windows.Forms;
-using QLHS_DR.Properties;
-using QLHS_DR.ViewModel.DocumentViewModel;
+using System.Windows.Input;
+using TableDependency.SqlClient;
+using TableDependency.SqlClient.Base;
 using ToastNotifications;
 using ToastNotifications.Core;
 using ToastNotifications.Lifetime;
-using ToastNotifications.Position;
-using TableDependency.SqlClient;
-using DevExpress.Data.TreeList;
-using TableDependency.SqlClient.Base.EventArgs;
 using ToastNotifications.Messages;
-using Prism.Events;
-using QLHS_DR.ViewModel.Message;
-using Prism.Commands;
-using System.Configuration;
-using System.Data.Common;
-using System.ComponentModel;
-using System.Threading;
-using System.Timers;
-using QLHS_DR.ViewModel.ProductViewModel;
-using QLHS_DR.View.ProductView;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using DevExpress.XtraPrinting.Native;
-using DevExpress.Data.Browsing;
-using DevExpress.Pdf;
-using System.Drawing;
-using System.IO;
-using System.Net.Http;
-using System.Diagnostics;
-using TableDependency.SqlClient.Base;
+using ToastNotifications.Position;
 
 namespace QLHS_DR.ViewModel
 {
-    class MainViewModel:BaseViewModel
-    {        
+    class MainViewModel : BaseViewModel
+    {
         private BackgroundWorker backgroundWorker;
         ObservableCollection<UserTask> _OldUserTasks;
 
@@ -81,8 +69,20 @@ namespace QLHS_DR.ViewModel
                     NotifyPropertyChanged("Workspaces");
                 }
             }
-        }      
-
+        }
+        private bool _IsActiveRibbonPageCategoryQLSP;
+        public bool IsActiveRibbonPageCategoryQLSP
+        {
+            get => _IsActiveRibbonPageCategoryQLSP;
+            set
+            {
+                if (_IsActiveRibbonPageCategoryQLSP != value)
+                {
+                    _IsActiveRibbonPageCategoryQLSP = value;
+                    NotifyPropertyChanged("IsActiveRibbonPageCategoryQLSP");
+                }
+            }
+        }
         private User _CurrentUser;
         public User CurrentUser { get => _CurrentUser; set { _CurrentUser = value; OnPropertyChanged("CurrentUser"); } }
 
@@ -100,7 +100,32 @@ namespace QLHS_DR.ViewModel
                 }
             }
         }
-
+        private string _ActiveTransformerCode;
+        public string ActiveTransformerCode
+        {
+            get => _ActiveTransformerCode;
+            set
+            {
+                if (_ActiveTransformerCode != value)
+                {
+                    _ActiveTransformerCode = value;
+                    NotifyPropertyChanged("ActiveTransformerCode");
+                }
+            }
+        }
+        private Product _ActiveProduct;
+        public Product ActiveProduct
+        {
+            get => _ActiveProduct;
+            set
+            {
+                if (_ActiveProduct != value)
+                {
+                    _ActiveProduct = value;
+                    NotifyPropertyChanged("ActiveProduct");
+                }
+            }
+        }
         private string _ContentButtonNotCompleted;
         public string ContentButtonNotCompleted
         {
@@ -142,6 +167,7 @@ namespace QLHS_DR.ViewModel
         }
         #endregion
         #region "Command"
+        public ICommand CheckUpdateCommand { get; set; }
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
         public ICommand LoadListNewDocument { get; set; }
@@ -151,12 +177,17 @@ namespace QLHS_DR.ViewModel
         public ICommand NewTaskCommand { get; set; }
         public ICommand RefeshCommand { get; set; }
         public ICommand LoadAllTask { get; set; }
-        public ICommand OpenTransformerManagerCommand { get; set; }
+        public ICommand OpenProductManagerCommand { get; set; }
         public ICommand EditStampCommand { get; set; }
         public ICommand LoadTaskCreateByMe { get; set; }
         public ICommand SetTotalPageOfTaskAttackedFileCommand { get; set; }
         public ICommand OpenRevokedPrintedDocumentManagerCommand { get; set; }
         public ICommand OpenDocumentPrintedByUserWindowCommand { get; set; }
+        public ICommand NewProductCommand { get; set; }
+        public ICommand AddContract { get; set; }
+        public ICommand UploadFileHoSoCommand { get; set; }
+        public ICommand UploadApprovalDocumentProductCommand { get; set; }
+        public ICommand SelectionChangedTab { get; set; }
         #endregion
 
         private ListNewDocumentUC listNewDocumentUC;
@@ -168,10 +199,11 @@ namespace QLHS_DR.ViewModel
         TaskCreateByMeViewModel taskCreateByMeViewModel;
         UserTaskFinishViewModel userTaskFinishViewModel;
         UserTaskRevokedViewModel userTaskRevokedViewModel;
-        AllTaskViewModel allTaskViewModel;       
+        public ICommand NewLsxCommand { get; set; }
+        AllTaskViewModel allTaskViewModel;
         public MainViewModel()
-        {          
-
+        {
+            TileApplication = "Quản lý hồ sơ";
             //--------------------Message between Viewmodels------------------------//
             _eventAggregator = new EventAggregator();
             allTaskUC = new AllTaskUC();
@@ -182,7 +214,7 @@ namespace QLHS_DR.ViewModel
             _eventAggregator.GetEvent<NewTasksTabTitleChangedEvent>().Subscribe(HandleNewTasksTabTitleChangedMessage);
             _eventAggregator.GetEvent<FinishTasksTabTitleChangedEvent>().Subscribe(HandleFinishTasksTabTitleChangedMessage);
             _eventAggregator.GetEvent<RevokedTasksTabTitleChangedEvent>().Subscribe(HandleRevokedTasksTabTitleChangedMessage);
-            _eventAggregator.GetEvent<AllTaskTabTitleChangedEvent>().Subscribe(HandleAllTaskTabTitleChangedMessage);          
+            _eventAggregator.GetEvent<AllTaskTabTitleChangedEvent>().Subscribe(HandleAllTaskTabTitleChangedMessage);
             ///////////////////////////////
             notifierForNormalUser = new Notifier(cfg =>
             {
@@ -204,7 +236,7 @@ namespace QLHS_DR.ViewModel
                     window.Show();
                     window.WindowState = System.Windows.WindowState.Normal;
 
-                    TabContainer item = Workspaces.Where(x => x.Header.Contains( "Tài liệu chưa xử lý")).FirstOrDefault();
+                    TabContainer item = Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
                     if (item != null)
                     {
                         item.IsSelected = true;
@@ -229,11 +261,11 @@ namespace QLHS_DR.ViewModel
             string addressUpdateInfo = Settings.Default.AddressUpdateInfo;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
             AutoUpdater.Start(addressUpdateInfo);
-           
+
             Workspaces = new ObservableCollection<TabContainer>();
 
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {              
+            {
                 window = p;
                 //Load current version
                 Version version = GetRunningVersion();
@@ -253,8 +285,8 @@ namespace QLHS_DR.ViewModel
                     if (loginVM.IsLogin)
                     {
                         if (loginVM.User != null)
-                        {                           
-                            CurrentUser = loginVM.User;                           
+                        {
+                            CurrentUser = loginVM.User;
                         }
                         try
                         {
@@ -287,12 +319,12 @@ namespace QLHS_DR.ViewModel
                             //_TbRequestSendDocumentDependency.OnError += RequestSendDocument_OnError;
                             //_TbRequestSendDocumentDependency.Start();
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             _MyClient.Abort();
                             System.Windows.Forms.MessageBox.Show(ex.Message);
                         }
-                       
+
                         p.Show();
                         //LoadDefaultTab();
                     }
@@ -301,10 +333,10 @@ namespace QLHS_DR.ViewModel
                 }
             });
             LogoutCommand = new RelayCommand<Window>((p) => { if (p == null) return false; else return true; }, (p) =>
-            {              
+            {
                 Isloaded = false;
-                ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);                
-                SectionLogin.Ins = null;              
+                ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
+                SectionLogin.Ins = null;
 
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
@@ -330,13 +362,13 @@ namespace QLHS_DR.ViewModel
             EditStampCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 EditStampViewModel editStampViewModel = new EditStampViewModel();
-                EditStampWindow editStampWindow = new EditStampWindow( );
+                EditStampWindow editStampWindow = new EditStampWindow();
                 editStampWindow.DataContext = editStampViewModel;
                 editStampWindow.ShowDialog();
             });
             RefeshCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                TabContainer item = Workspaces.Where(x => x.IsSelected==true && x.IsVisible).FirstOrDefault();
+                TabContainer item = Workspaces.Where(x => x.IsSelected == true && x.IsVisible).FirstOrDefault();
                 if (item != null)
                 {
                     if (item.Header.Contains("Tài liệu chưa xử lý"))
@@ -352,13 +384,13 @@ namespace QLHS_DR.ViewModel
                         _eventAggregator.GetEvent<ReloadRevokedTasksTabEvent>().Publish(new object());
                     }
                     if (item.Header.Contains("All"))
-                    {                       
+                    {
                         _eventAggregator.GetEvent<ReloadAllTaskTabEvent>().Publish(new object());
                     }
                 }
             });
             LoadListNewDocument = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {           
+            {
                 TabContainer item = Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
                 if (item != null)
                 {
@@ -501,30 +533,90 @@ namespace QLHS_DR.ViewModel
                 window.DataContext = model;
                 window.ShowDialog();
             });
-            OpenTransformerManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            OpenProductManagerCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productViewListProduct")) return true; else return false; }, (p) =>
             {
-                TabContainer item = Workspaces.Where(x => x.Header.Contains("Danh sách MBA")).FirstOrDefault();
+                ProductManagerUC uc = new ProductManagerUC();
+                TabContainer item = Workspaces.Where(x => x.Header == "Products").FirstOrDefault();
                 if (item != null)
                 {
                     item.IsSelected = true;
+                    item.Content = uc;
                     item.IsVisible = true;
+                    item.AllowHide = "true";
                 }
                 else
                 {
-                    TransformerManagerViewModel transformerManagerViewModel = new TransformerManagerViewModel(_eventAggregator);
-                    TransformerManagerUC transformerManagerUC = new TransformerManagerUC();
-                    transformerManagerUC.DataContext = transformerManagerViewModel;
-                    TabContainer tabItemNew = new TabContainer
+                    TabContainer tabItemMain = new TabContainer
                     {
-                        Header = "Danh sách MBA",
-                        AllowHide = "true",
+                        Header = "Products",
                         IsSelected = true,
+                        AllowHide = "true",
                         IsVisible = true,
-                        Content = transformerManagerUC
+                        Content = uc
                     };
-                    Workspaces.Add(tabItemNew);
+                    Workspaces.Add(tabItemMain);
                 }
-            });            
+            });
+            NewProductCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanNewProduct) return true; else return false; }, (p) =>
+            {
+                NewProductWindow newProductWindow = new NewProductWindow();
+                newProductWindow.Show();
+            });
+            AddContract = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanUploadContract) return true; else return false; }, (p) =>
+            {
+                AddContractWindow addContractWindow = new AddContractWindow();
+                ViewModel.ContractViewModel.AddContractViewModel addContractViewModel = new ViewModel.ContractViewModel.AddContractViewModel(_ActiveProduct);
+                addContractWindow.DataContext = addContractViewModel;
+                addContractWindow.ShowDialog();
+            });
+            UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile")) return true; else return false; }, (p) =>
+            {
+                UploadHoSoWindow uploadHoSo = new UploadHoSoWindow();
+                UploadHoSoViewModel hoSoViewModel = new UploadHoSoViewModel(null);
+                uploadHoSo.DataContext = hoSoViewModel;
+                uploadHoSo.ShowDialog();
+            });
+            UploadApprovalDocumentProductCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile")) return true; else return false; }, (p) =>
+            {
+                UploadApprovalDocumentProductViewModel uploadApprovalDocumentProductViewModel = new UploadApprovalDocumentProductViewModel(null);
+                UploadApprovalDocumentProductWindow uploadApprovalDocumentProductWindow = new UploadApprovalDocumentProductWindow() { DataContext = uploadApprovalDocumentProductViewModel };
+                uploadApprovalDocumentProductWindow.ShowDialog();
+            });
+            NewLsxCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                //LSXView.NewLsxWindow window = new LSXView.NewLsxWindow();
+                //window.ShowDialog();
+            });
+            CheckUpdateCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
+                AutoUpdater.Start(addressUpdateInfo);
+            });
+            SelectionChangedTab = new RelayCommand<TabContainer>((p) => { if (p != null) return true; else return false; }, (p) =>
+            {
+                var def = p.Content?.GetType();
+                if (def?.Name == "ProductUC")
+                {
+                    //IsActiveRibbonPageCategoryQLSP = true;
+                    ActiveTransformerCode = p.Header;
+
+                    try
+                    {
+                        _MyClient = ServiceHelper.NewMessageServiceClient();
+                        _MyClient.Open();
+                        ActiveProduct = _MyClient.GetProductByProductCode(_ActiveTransformerCode);
+
+                        _MyClient.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        _MyClient.Abort();
+                        System.Windows.MessageBox.Show(ex.Message);
+                    }
+
+                }
+                else IsActiveRibbonPageCategoryQLSP = false;
+            });
         }
 
         //private void RequestSendDocument_OnError(object sender, TableDependency.SqlClient.Base.EventArgs.ErrorEventArgs e)
@@ -557,7 +649,7 @@ namespace QLHS_DR.ViewModel
         }
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if(SectionLogin.Ins.CurrentUser!=null && SectionLogin.Ins.Token!=null)
+            if (SectionLogin.Ins.CurrentUser != null && SectionLogin.Ins.Token != null)
             {
                 MessageServiceClient _MyClient1 = new MessageServiceClient();
                 try
@@ -587,32 +679,9 @@ namespace QLHS_DR.ViewModel
                 {
                     _MyClient1.Abort();
                 }
-            }    
-           
+            }
         }
-        //private void RequestSendDocument_OnChanged(object sender, RecordChangedEventArgs<NortifyUserTask> e)
-        //{
-        //    try
-        //    {
-        //        if (e.ChangeType != TableDependency.SqlClient.Base.Enums.ChangeType.None)
-        //        {
-        //            var entry = e.Entity;
-        //            if (e.ChangeType == TableDependency.SqlClient.Base.Enums.ChangeType.Insert && entry.UserId == _CurrentUser.Id)
-        //            {                       
-        //                string message = "Tài liệu MS: "+ entry.ProductCode +" : "+ entry .Subject+  " vừa được gửi tới bạn." ;
 
-        //                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
-        //                {
-        //                    notifierForNormalUser.ShowInformation(message, optionsForNormalUser);
-        //                }));  
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.Windows.Forms.MessageBox.Show(ex.Message);
-        //    }
-        //}
         #region "Function"
         private void LoadDefaultTab()
         {
@@ -668,10 +737,10 @@ namespace QLHS_DR.ViewModel
         private void HandleNewTasksTabTitleChangedMessage(TitletabControlMessage message)
         {
             TabContainer item = Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
-            if(item!=null)
+            if (item != null)
             {
-                item.Header= message.Title;
-            }           
+                item.Header = message.Title;
+            }
         }
         private void HandleFinishTasksTabTitleChangedMessage(TitletabControlMessage message)
         {
@@ -708,23 +777,23 @@ namespace QLHS_DR.ViewModel
 
                 //if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
                 //{
-                    try
-                    {
-                        Process.Start(args.ChangelogURL);
+                try
+                {
+                    Process.Start(args.ChangelogURL);
 
-                        if (AutoUpdater.DownloadUpdate(args))
-                        {
-                            window.Close();
-                        }
-                        //AutoUpdater.BasicAuthChangeLog();
-                    }
-                    catch (Exception exception)
+                    if (AutoUpdater.DownloadUpdate(args))
                     {
-                        System.Windows.Forms.MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        window.Close();
                     }
+                    //AutoUpdater.BasicAuthChangeLog();
+                }
+                catch (Exception exception)
+                {
+                    System.Windows.Forms.MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
                 //}
-            }           
+            }
         }
         private Version GetRunningVersion()
         {

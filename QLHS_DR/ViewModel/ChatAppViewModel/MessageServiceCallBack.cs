@@ -1,10 +1,4 @@
-﻿using QLHS_DR.ChatAppServiceReference;
-using QLHS_DR.Core;
-using System;
-using System.ServiceModel;
-using System.Windows;
-
-namespace QLHS_DR.ViewModel.ChatAppViewModel
+﻿namespace QLHS_DR.ViewModel.ChatAppViewModel
 {
     //public class MessageServiceCallBack : IMessageServiceCallback
     //{
@@ -17,7 +11,7 @@ namespace QLHS_DR.ViewModel.ChatAppViewModel
     //    {
     //        throw new System.NotImplementedException();
     //    }
-       
+
 
     //    public void UserConnected(User[] users)
     //    {

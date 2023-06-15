@@ -1,14 +1,8 @@
-﻿//using QLHS_DR.ChatAppServiceReference;
+﻿
 using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
-using QLHS_DR.ChatAppServiceReference;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace EofficeClient.Core
 {
@@ -22,14 +16,14 @@ namespace EofficeClient.Core
 
         private const string servicePath = "EEMCDRWcfService/service";
 
-        //public static EofficeMainServiceClient NewEofficeMainServiceClient(string userName, string password)
-        //{
-        //    EofficeMainServiceClient client = new EofficeMainServiceClient();
-        //    //EofficeMainServiceClient client = new EofficeMainServiceClient(BindingConfig(), new EndpointAddress(string.Format("{0}://{1}:{2}/{3}", protocol, ipAddress, port, "EofficeService/Service")));
-        //    client.ClientCredentials.UserName.UserName = userName;
-        //    client.ClientCredentials.UserName.Password = password;
-        //    return client;
-        //}
+        public static MessageServiceClient NewMessageServiceClient()
+        {
+            MessageServiceClient client = new MessageServiceClient();
+            client.ClientCredentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
+            client.ClientCredentials.UserName.Password = SectionLogin.Ins.Token;
+            client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+            return client;
+        }
 
         public static MessageServiceClient NewMessageServiceClient(string userName, string password)
         {
@@ -39,14 +33,24 @@ namespace EofficeClient.Core
             client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
             return client;
         }
-        //public static ChannelFactory<IMessageService> NewChannelFactory1()
-        //{
-        //    ChannelFactory<IMessageService> ret = new ChannelFactory<IMessageService>("NetTcpBinding_IMessageService");
-        //    ret.Credentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
-        //    ret.Credentials.UserName.Password = SectionLogin.Ins.Token;
-           //ret.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
-        //    return ret;
-        //}
+        internal static QLHS_DR.ChatAppServiceReference.Standard[] LoadStandards()
+        {
+            MessageServiceClient client = NewMessageServiceClient();
+            QLHS_DR.ChatAppServiceReference.Standard[] ketqua;
+            try
+            {
+                client.Open();
+                ketqua = client.LoadStandards();
+                client.Close();
+                return ketqua;
+            }
+            catch (Exception ex)
+            {
+                client.Abort();
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
 
         //private static WSHttpBinding BindingConfig()
         //{
@@ -69,7 +73,7 @@ namespace EofficeClient.Core
         //            MaxNameTableCharCount = int.MaxValue                  
         //        }
         //    };
-        //}        
+        //}
     }
 
 

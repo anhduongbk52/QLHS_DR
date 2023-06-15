@@ -78,17 +78,37 @@
 
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
-                <dxr:RibbonPage Caption="Quản lý sản phẩm">
-                    <dxr:RibbonPageGroup Caption="Máy biến áp truyền tải">
-                        <dxb:BarButtonItem Command="{Binding OpenTransformerManagerCommand}" Content="Mở danh sách MBA"  LargeGlyph="{dx:DXImage SvgImages/Dashboards/Open.svg}"/>
-                        <dxb:BarButtonItem Command="{Binding NewTransformerCommand}" Content="Thêm mới"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>
-                        <!--<dxb:BarButtonItem Command="{Binding EditStampCommand}" Content="Chỉnh sửa dấu hiệu lực"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>-->
-
+                <dxr:RibbonPage Caption="Quản lý sảm phẩm">
+                    <dxr:RibbonPageGroup Caption="Product">
+                        <dxb:BarButtonItem Command="{Binding OpenProductManagerCommand}"
+                                           Content="Tìm kiếm"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/Find/Find.svg}"/>
+                        <dxb:BarButtonItem 
+                                           Command="{Binding NewProductCommand}"
+                                           Content="Thêm mới"
+                                           LargeGlyph="{dx:DXImage SvgImages/Dashboards/NewDataSource.svg}"
+                                           RibbonStyle="Large" />
                     </dxr:RibbonPageGroup>
-                    <!--<dxr:RibbonPageGroup Caption="Máy biến áp phân phối">
-                        <dxb:BarButtonItem Command="{Binding OpenDistributionTransformerManagerCommand}" Content="Máy biến áp truyền tải"  LargeGlyph="{dx:DXImage SvgImages/Dashboards/Open.svg}"/>
-                        <dxb:BarButtonItem Command="{Binding NewDistributionTransformerCommand}" Content="Máy biến áp phân phối"  LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewProduct.svg}"/>                      
+                    <!--<dxr:RibbonPageGroup Caption="File Scan">
+                        <dxb:BarButtonItem Command="{Binding UploadListPdfFilesCommand}"
+                                           Content="Multi Upload PDF files"
+                                           Hint="Tải lên nhiều file PDF một lúc"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/Spreadsheet/MultipleDocuments.svg}"/>
                     </dxr:RibbonPageGroup>-->
+                    <dxr:RibbonPageGroup  Caption="Tải lên">
+                        <dxb:BarButtonItem Command="{Binding UploadFileHoSoCommand}"
+                                           Content="Upload Hồ sơ nghiệm thu"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/Actions/Up.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding UploadApprovalDocumentProductCommand}"
+                                           Content="Upload Hồ sơ phê duyệt thiết kế"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/Actions/Up.svg}"/>
+                        <dxb:BarButtonItem Content="Thêm hợp đồng"
+                                           Command="{Binding AddContract}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Snap/InsertGroupHeader.svg}" />
+                        <!--<dxb:BarButtonItem Content="Thêm lệnh sản xuất"
+                                           Command="{Binding NewLsxCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Snap/InsertGroupHeader.svg}" />-->
+                    </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>

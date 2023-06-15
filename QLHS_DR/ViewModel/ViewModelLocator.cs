@@ -1,7 +1,8 @@
 ﻿
-
 using EofficeClient.ViewModel;
-using EofficeClient.ViewModel.DocumentViewModel;
+using QLHS_DR.ViewModel.LsxViewModel;
+using QLHS_DR.ViewModel.Products;
+using QLHS_DR.ViewModel.ProductViewModel;
 
 namespace QLHS_DR.ViewModel
 {
@@ -15,6 +16,18 @@ namespace QLHS_DR.ViewModel
         {
             get { return new LoginViewModel(); }
         }
-       
+        public NewProductViewModel NewProductViewModel
+        {
+            get { return new NewProductViewModel(); }
+        }
+        public NewLsxViewModel NewLsxViewModel
+        {
+            get { return new NewLsxViewModel(); }
+        }
+
+        public ProductManagerViewModel ProductManagerViewModel
+        {
+            get { return new ProductManagerViewModel(); }
+        }
     }
 }

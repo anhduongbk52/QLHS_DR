@@ -2,12 +2,9 @@
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.ChatAppServiceReference;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLHS_DR.Core
 {
@@ -136,7 +133,7 @@ namespace QLHS_DR.Core
                 _MyClient.Abort();
             }
             return null;
-        }        
+        }
         public byte[] DecryptECPrKeyForFile(byte[] masterKey)
         {
             byte[] ketqua = null;

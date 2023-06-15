@@ -49,7 +49,7 @@
                 </dxn:NavBarGroup>
                 <dxn:NavBarGroup  x:Name="navBarGroup4" Header="Hồ sơ" IsExpanded="True" ImageSource="{dx:DXImage SvgImages/Icon Builder/Business_Briefcase.svg}">
                     <dxn:NavBarItem x:Name="navBarItemListTransformerManual"
-                                    Content="Transformer Manual"
+                                    Content="Hồ sơ nghiệm thu"
                                     Command="{Binding OpenTransformerManuals}"
                                     ImageSource="{dx:DXImage SvgImages/Icon Builder/Weather_Lightning.svg}" />
 

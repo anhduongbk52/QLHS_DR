@@ -1,14 +1,10 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
-using QLHS_DR;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using QLHS_DR.View.DocumentView;
-using QLHS_DR.ViewModel;
-using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
@@ -16,12 +12,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Text;
 using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
@@ -255,7 +247,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
 
-                ListUserTaskOfTask = new ObservableCollection<UserTask>();                
+                ListUserTaskOfTask = new ObservableCollection<UserTask>();
                 try
                 {
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -296,7 +288,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-                    _MyClient.SetUserTaskFinish(_UserTaskSelected.TaskId, SectionLogin.Ins.CurrentUser.Id,false);
+                    _MyClient.SetUserTaskFinish(_UserTaskSelected.TaskId, SectionLogin.Ins.CurrentUser.Id, false);
                     _MyClient.Close();
                     ListUserTaskOfUser.Remove(_UserTaskSelected);
                     UpdateHeaderTabControl();
@@ -312,7 +304,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
 
             });
-            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner")&& _UserTaskSelected.Task.OwnerUserId== SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner") && _UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
             {
                 try
                 {
@@ -394,7 +386,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             var titletabControl = new TitletabControlMessage()
             {
-                Title = "Tài liệu đã xử lý ("+_ListUserTaskOfUser.Count()+")"
+                Title = "Tài liệu đã xử lý (" + _ListUserTaskOfUser.Count() + ")"
             };
             _eventAggregator.GetEvent<FinishTasksTabTitleChangedEvent>().Publish(titletabControl);
         }
@@ -402,7 +394,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             _TrackChange = true;
         }
-        
+
         public ObservableCollection<UserTask> GetAllUserTaskFinishOfUser(int userId)
         {
             ObservableCollection<UserTask> ketqua = new ObservableCollection<UserTask>();

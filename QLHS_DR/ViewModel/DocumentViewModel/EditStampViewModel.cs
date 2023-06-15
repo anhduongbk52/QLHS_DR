@@ -1,22 +1,9 @@
-﻿using QLHS_DR.ChatAppServiceReference;
+﻿using DevExpress.Pdf;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TableDependency.SqlClient;
-using ToastNotifications.Core;
-using ToastNotifications;
-using System.Windows.Input;
-using QLHS_DR.ViewModel.Message;
 using System.Drawing;
-using DevExpress.Pdf;
-using DevExpress.XtraPrinting;
-using System.Diagnostics;
 using System.IO;
-using System.Windows;
-using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
@@ -145,12 +132,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    if(_IsFirtLoad)
+                    if (_IsFirtLoad)
                     {
                         Url = _PathFile.ToString();
-                        _IsFirtLoad=false;
+                        _IsFirtLoad = false;
                     }
-                    
+
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
                         processor.LoadDocument(_Url, true);
@@ -163,8 +150,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         SizeF actualPageSize = PrepareGraphics(page, graphics);
                         Page_Width = actualPageSize.Width;
                         Page_Heigh = actualPageSize.Height;
-                                               
-                    }  
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -228,7 +215,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     SizeF actualPageSize = PrepareGraphics(page, graphics);
                     System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
-                    using (Font font = new Font(fontFamily, 10, System.Drawing.FontStyle.Bold),font1 = new Font(fontFamily, 14, System.Drawing.FontStyle.Bold))
+                    using (Font font = new Font(fontFamily, 10, System.Drawing.FontStyle.Bold), font1 = new Font(fontFamily, 14, System.Drawing.FontStyle.Bold))
                     {
                         string text1 = "TỔNG CÔNG TY";
                         string text1_1 = "THIẾT BỊ ĐIỆN ĐÔNG ANH";
@@ -245,21 +232,21 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         PointF topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2 - 40);
                         PointF topLeftText1_1 = new PointF(center.X - text1_1Size.Width / 2, center.Y - text1_1Size.Height / 2 - 25);
                         PointF topLeftText2 = new PointF(center.X - text2Size.Width / 2, center.Y - text1Size.Height / 2);
-                        PointF topLeftText3 = new PointF(center.X - text3Size.Width / 2, center.Y - text1Size.Height / 2+30);
+                        PointF topLeftText3 = new PointF(center.X - text3Size.Width / 2, center.Y - text1Size.Height / 2 + 30);
 
                         graphics.DrawString(text1, font, textBrush, topLeftText1);
                         graphics.DrawString(text1_1, font, textBrush, topLeftText1_1);
                         graphics.DrawString(text2, font1, textBrush, topLeftText2);
                         graphics.DrawString(text3, font1, textBrush, topLeftText3);
 
-                       System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)); 
+                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue));
                         graphics.DrawRectangle(pen, new RectangleF(_StartX, _StartY, _Stamp_Width, _Stamp_Heigh));
-                     
+
                         graphics.AddToPageForeground(page, DrawingDpi, DrawingDpi);
                     }
-                                 
+
                 }
             }
-        }    
+        }
     }
 }

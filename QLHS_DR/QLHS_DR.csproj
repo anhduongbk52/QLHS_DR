@@ -69,8 +69,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.Docs.v21.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Office.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.2.Drawing, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v21.2.Core, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v21.2.Export, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Controls.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v21.2" />
     <Reference Include="DevExpress.Data.Desktop.v21.2" />
@@ -89,6 +92,10 @@
     <Reference Include="DevExpress.Printing.v21.2.Core" />
     <Reference Include="DevExpress.Images.v21.2" />
     <Reference Include="DevExpress.Mvvm.v21.2" />
+    <Reference Include="DevExpress.Xpf.RichEdit.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.Xpf.RichEdit.v21.2.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Xpf.Themes.Office2019Colorful.v21.2" />
     <Reference Include="DevExpress.XtraNavBar.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -97,6 +104,8 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -125,12 +134,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\EOfficeServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
     <Compile Include="Core\AppInfo.cs" />
@@ -138,6 +143,7 @@
     <Compile Include="Core\FileHelper.cs" />
     <Compile Include="Core\G6Class.cs" />
     <Compile Include="Core\SectionLogin.cs" />
+    <Compile Include="Core\ServiceFactory.cs" />
     <Compile Include="Core\ServiceHelper.cs" />
     <Compile Include="CustomControl\PdfViewerControl1.cs" />
     <Compile Include="CustomControl\PdfViewerControlForTask.cs" />
@@ -161,16 +167,30 @@
     <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
+    <Compile Include="ViewModel\HoSoViewModel\AddApprovalDocToOtherProductViewModel.cs" />
+    <Compile Include="ViewModel\HoSoViewModel\EditApprovalDocumentProductViewModel.cs" />
+    <Compile Include="ViewModel\HoSoViewModel\ListApprovalDocumentOfProductViewModel.cs" />
+    <Compile Include="ViewModel\HoSoViewModel\UploadApprovalDocumentProductViewModel.cs" />
     <Compile Include="ViewModel\LoadUserControlEvent.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\LsxViewModel\NewLsxViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Message\ControlEvent.cs" />
     <Compile Include="ViewModel\Message\TitletabControlMessage.cs" />
     <Compile Include="ViewModel\ProductTypeWrapper.cs" />
     <Compile Include="ViewModel\ProductViewModel\DetailTransformerViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\GeneralInfomationProductViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\ListLsxOfProductUC.xaml.cs">
+      <DependentUpon>ListLsxOfProductUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ProductViewModel\ListLsxOfProductViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\ListTransformerManualViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\NewProductViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\ProductManagerViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\TransformerManagerViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModel\UploadTransformerManualViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\TransformerTDViewModel.cs" />
+    <Compile Include="ViewModel\HoSoViewModel\UploadHoSoViewModel.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />
     <Compile Include="ViewModel\TransformerManualViewModel\EditTransformerManualViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
@@ -233,14 +253,50 @@
     <Compile Include="View\DocumentView\UserTaskRevokedUC.xaml.cs">
       <DependentUpon>UserTaskRevokedUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\HosoView\AddApprovalDocToOtherProductWindow.xaml.cs">
+      <DependentUpon>AddApprovalDocToOtherProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HosoView\EditApprovalDocumentProductWindow.xaml.cs">
+      <DependentUpon>EditApprovalDocumentProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HosoView\ListApprovalDocumentOfProductUC.xaml.cs">
+      <DependentUpon>ListApprovalDocumentOfProductUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HosoView\UploadApprovalDocumentProductWindow.xaml.cs">
+      <DependentUpon>UploadApprovalDocumentProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LsxView\LsxManagerUC.xaml.cs">
+      <DependentUpon>LsxManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LsxView\NewLsxWindow.xaml.cs">
+      <DependentUpon>NewLsxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PdfView\CommonPdfViewer.xaml.cs">
+      <DependentUpon>CommonPdfViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PdfView\ViewPublicFilePdfWindow.xaml.cs">
+      <DependentUpon>ViewPublicFilePdfWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductView\DetailTransformerUC.xaml.cs">
       <DependentUpon>DetailTransformerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProductView\GeneralInformationProductUC.xaml.cs">
+      <DependentUpon>GeneralInformationProductUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProductView\ListTransformerManualUC.xaml.cs">
       <DependentUpon>ListTransformerManualUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\NewProductWindow.xaml.cs">
+      <DependentUpon>NewProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\ProductManagerUC.xaml.cs">
+      <DependentUpon>ProductManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\ProductUC.xaml.cs">
+      <DependentUpon>ProductUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductView\TransformerManagerUC.xaml.cs">
       <DependentUpon>TransformerManagerUC.xaml</DependentUpon>
@@ -248,8 +304,11 @@
     <Compile Include="View\ProductView\TransformerManualViewPdf.xaml.cs">
       <DependentUpon>TransformerManualViewPdf.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProductView\UploadTransformerManualWindow.xaml.cs">
-      <DependentUpon>UploadTransformerManualWindow.xaml</DependentUpon>
+    <Compile Include="View\ProductView\TransformerTDUC.xaml.cs">
+      <DependentUpon>TransformerTDUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HosoView\UploadHoSoWindow.xaml.cs">
+      <DependentUpon>UploadHoSoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TransformerManualView\EditTransformerManualWindow.xaml.cs">
       <DependentUpon>EditTransformerManualWindow.xaml</DependentUpon>
@@ -276,6 +335,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewModel\ProductViewModel\ListLsxOfProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChatAppView\ChatAppWindow.xaml">
       <SubType>Designer</SubType>
@@ -353,7 +416,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\HosoView\AddApprovalDocToOtherProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HosoView\EditApprovalDocumentProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HosoView\ListApprovalDocumentOfProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HosoView\UploadApprovalDocumentProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LsxView\LsxManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LsxView\NewLsxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PdfView\CommonPdfViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PdfView\ViewPublicFilePdfWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -361,7 +456,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProductView\GeneralInformationProductUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProductView\ListTransformerManualUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\NewProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\ProductManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\ProductUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -373,7 +484,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProductView\UploadTransformerManualWindow.xaml">
+    <Page Include="View\ProductView\TransformerTDUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HosoView\UploadHoSoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -413,6 +528,9 @@
     <None Include="Connected Services\ChatAppServiceReference\EofficeService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ApprovalDocumentProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Contract.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -434,7 +552,16 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.LoginStatusType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Lsx.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MainJobTodo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Modul.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Permission.datasource">
@@ -443,7 +570,16 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PermissionType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Position.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ProductTypeNew.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PublicFile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PublishDocument.datasource">
@@ -464,6 +600,12 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RolePermissionD.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Standard.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -479,6 +621,9 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TransformerDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TransformerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.TransformerManualDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -486,6 +631,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserRole.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserStatus.datasource">
@@ -502,100 +650,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\EofficeMainService.wsdl" />
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Contract.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Department.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.DepartmentTask.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.DocTittle.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.GroupDepartment.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Log.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.LoginStatusType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Message.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Permission.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PermissionType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Product.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PublishDocument.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.PublishDocumentDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.ReceivedDepartmentDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.RequestSendDocument.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.RequestSendDocumentDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.RequestSendDocumentToDepartment.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Standard.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.Task.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TaskAttachedFileDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TransformerDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.TransformerManualDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserDepartment.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\QLHS_DR.EOfficeServiceReference.UserTask.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\Service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\Service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\Service21.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\EOfficeServiceReference\Service22.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -651,22 +705,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ChatAppServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\EOfficeServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EOfficeServiceReference\Service.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EOfficeServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EOfficeServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EOfficeServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Accessibility">

@@ -1,29 +1,20 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
-using QLHS_DR;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
-using QLHS_DR.View.DocumentView;
-using QLHS_DR.ViewModel;
-using QLHS_DR.ViewModel.ChatAppViewModel;
+using QLHS_DR.Core;
 using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.ServiceModel.Description;
-using System.Text;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
-{   
+{
     internal class UserTaskRevokedViewModel : BaseViewModel
     {
         #region "Properties and Field"
@@ -55,7 +46,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private MessageServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
-      
+
         private bool _IsReadOnlyPermission;
         public bool IsReadOnlyPermission
         {
@@ -127,7 +118,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 if (_ListUserTaskOfTask != value)
                 {
-                    _ListUserTaskOfTask = value; OnPropertyChanged("ListUserTaskOfTask");                   
+                    _ListUserTaskOfTask = value; OnPropertyChanged("ListUserTaskOfTask");
                 }
             }
         }
@@ -147,8 +138,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand TaskSelectedCommand { get; set; }  
-      
+        public ICommand TaskSelectedCommand { get; set; }
+
         #endregion
         //public void SetLabelMsg(string message)
         //{
@@ -183,12 +174,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             //ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
-            {                  
+            {
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
                 OnLoadUserControl(new object());
-            });           
+            });
             TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
-            {                
+            {
                 try
                 {
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -214,7 +205,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ObservableCollection<UserTask> GetUserTasksOfTask(int taskId)
         {
             _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            _MyClient.Open();           
+            _MyClient.Open();
             UsersInTask = _MyClient.GetUserInTask(taskId).ToObservableCollection();
             var temp = _MyClient.GetAllUserTaskOfTask(_TaskSelected.Id).ToObservableCollection();
             _MyClient.Close();

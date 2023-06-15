@@ -1,0 +1,203 @@
+﻿<Window x:Class="QLHS_DR.View.ProductView.NewProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:QLHS_DR.View.ProductView"
+        xmlns:converter="clr-namespace:QLHS_DR.Converter"
+        xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls"
+        DataContext="{Binding Source={StaticResource Locator},Path=NewProductViewModel}"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Name="newProductWindow"
+        Title="Khai báo sản phẩm mới" Height="600" Width="900">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=newProductWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
+    <dxco:Wizard Cancel="Wizard_Cancel"   AnimationType="SlideHorizontal">
+        <dxco:WelcomeWizardPage HeaderBackground="AliceBlue"  Header="Khai báo thông tin cơ bản của sản phẩm."
+                                AllowNext="{Binding AllowNext}" ShowNext="{Binding ShowNext}" 
+                                ShowFinish="{Binding ShowFinish1}" 
+                                AllowFinish="{Binding AllowFinish1}">
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <materialDesign:Card HorizontalAlignment="Stretch" Margin="5" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="120"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <ComboBox 
+                                Grid.Row="0"  ItemsSource="{Binding ProductTypeNews,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                DisplayMemberPath="TypeName" 
+                                SelectedItem="{Binding  SelectedProductTypeNew,UpdateSourceTrigger=PropertyChanged}"
+                                Margin="5" VerticalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Loại sản phẩm"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                            <TextBox 
+                                Text="{Binding Code, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True,Delay=600}" 
+                                materialDesign:HintAssist.Hint="Mã số"
+                                Margin="5,12,5,13" VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Grid.Row="1" Grid.Column="0">
+
+                            </TextBox >
+                            <ListBox Grid.Row="2"
+                                     ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                     SelectionMode="Extended"
+                                     ItemsSource="{Binding ProductCodes, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                     Margin="5" BorderThickness="1" BorderBrush="Black">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Remove" Command="{Binding DeleteProductCodeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                        <MenuItem Header="Clear" Command="{Binding ClearProductCodesCommand}"/>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                            <TextBox 
+                                Text="{Binding YearCreate,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                materialDesign:HintAssist.Hint="Năm sản xuất"
+                                Margin="5,12,5,13" VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"   
+                                Grid.Row="3" Grid.Column="0"></TextBox>
+                            <TextBox 
+                                Text="{Binding Note}" 
+                                TextWrapping="Wrap" 
+                                Margin="5,12,5,13" VerticalAlignment="Center"
+                                AcceptsReturn="True"
+                                materialDesign:HintAssist.Hint="Ghi chú"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                Grid.Row="4" Grid.Column="0" Height="100" 
+                                VerticalContentAlignment="Top">
+                            </TextBox>
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+            </Grid>
+        </dxco:WelcomeWizardPage>
+
+        <dxco:CompletionWizardPage  Visibility="{Binding IsTransformer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BoolToVisibilityConverter}}" HeaderBackground="AliceBlue" Header="Bổ sung thông số máy biến áp.">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ScrollViewer Grid.Row="0">
+                    <materialDesign:Card HorizontalAlignment="Stretch" Margin="5" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="1" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding RatedPower,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                         materialDesign:HintAssist.Hint="Dung lượng định mức"
+                                         Margin="5,5,5,5" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Grid.Column="0">
+                                </TextBox>
+                                <ComboBox SelectedIndex="0" SelectedValue="{Binding UnitPower,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedValuePath="Content" Margin="5" Width="100" Grid.Column="1">
+                                    <ComboBoxItem>kVA</ComboBoxItem>
+                                    <ComboBoxItem>MVA</ComboBoxItem>
+                                    <ComboBoxItem>VA</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="13*"></ColumnDefinition>
+                                    <ColumnDefinition Width="44*"/>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBox 
+                                    Text="{Binding RatedVoltage,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                    materialDesign:HintAssist.Hint="Điện áp định mức"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5"/>
+                                <ComboBox SelectedIndex="0" SelectedValue="{Binding VoltageUnit}" SelectedValuePath="Content" Width="100" Grid.Column="2" Margin="5,5,5,5">
+                                    <ComboBoxItem>kV</ComboBoxItem>
+                                    <ComboBoxItem>V</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <TextBox
+                                Text="{Binding Station,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                                materialDesign:HintAssist.Hint="Trạm"
+                                Margin="5,5,5,5"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"         
+                        Grid.Row="3" Grid.Column="0">
+                            </TextBox>
+                            <StackPanel Grid.Row="4"  Orientation="Horizontal">
+                                <TextBox 
+                                    Text="{Binding RatedFrequency,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                    materialDesign:HintAssist.Hint="Tần số định mức"
+                                    Margin="5,5,10,5" Width="120"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                                <ComboBox 
+                                    ItemsSource="{Binding ListStandards,Mode=TwoWay}"
+                                    DisplayMemberPath="Name"
+                                    SelectedItem="{Binding SelectedStandard,Mode=TwoWay}"
+                                    Margin="5"
+                                    materialDesign:HintAssist.Hint="Tiêu chuẩn chế tạo" 
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="5"  Orientation="Horizontal">
+                                <TextBox 
+                                    Text="{Binding ConnectionSymbol,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                    materialDesign:HintAssist.Hint="Tổ đấu dây" Margin="5,5,10,5" Width="150"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                    Grid.Column="0"/>
+                                <TextBox 
+                                    Text="{Binding NumberOfPhase,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                    materialDesign:HintAssist.Hint="Số pha"
+                                    Margin="5,5,10,5" Width="120"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                <TextBox 
+                                    Text="{Binding CoolingMethod,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                    materialDesign:HintAssist.Hint="Phương pháp làm mát"
+                                    Margin="5,5,10,5" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                </ScrollViewer>
+            </Grid>
+        </dxco:CompletionWizardPage>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Finish">
+                <i:InvokeCommandAction Command="{Binding FinishCommand}" CommandParameter="{Binding ElementName=newProductWindow}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <!--<dxco:CompletionWizardPage Visibility="Collapsed" ShowBack="False" ShowCancel="False" Header="Người thiết kế." >
+            <TextBlock Text="Finish" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </dxco:CompletionWizardPage>-->
+    </dxco:Wizard>
+</Window>

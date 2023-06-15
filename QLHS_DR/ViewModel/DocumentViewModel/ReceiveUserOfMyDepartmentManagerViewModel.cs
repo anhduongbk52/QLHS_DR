@@ -1,19 +1,18 @@
 ﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
-{ 
+{
     internal class ReceiveUserOfMyDepartmentManagerViewModel : BaseViewModel
     {
         #region "Properties and Field"
@@ -123,7 +122,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-               
+
             });
             SaveCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
@@ -193,7 +192,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                     fileHelper.SetECPrKeyForFile(ecpr, receiveuser.User);
                                 }
                                 byte[] userTaskKey = CryptoUtil.EncryptWithoutIV(receiveuser.User.ECPrKeyForFile, data);
-                            
+
                                 PermissionType permissionType = new PermissionType();
                                 if (receiveuser.CanPrintFile)
                                 {
@@ -213,10 +212,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                     CanSave = receiveuser.CanSave,
                                     CanViewAttachedFile = receiveuser.CanViewFile,
                                     TaskKey = userTaskKey,
-                                    IsProcessing= receiveuser.IsMainProcess,
-                                    JobContent= receiveuser.JobContent
+                                    IsProcessing = receiveuser.IsMainProcess,
+                                    JobContent = receiveuser.JobContent
                                 };
-                                newUserTasks.Add(newUserTask);                               
+                                newUserTasks.Add(newUserTask);
                             }
                             else //Neu nguoi dung da o trong luong cong viec -> thuc hien viec update trang thai cua user;
                             {
@@ -252,7 +251,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                 {
                                     userIdAddPrintAble.Add(receiveuser.User.Id);
                                 }
-                                if (receiveuser.JobContent!=null && receiveuser.JobContentChanged) //Them quyen luu file cua user
+                                if (receiveuser.JobContent != null && receiveuser.JobContentChanged) //Them quyen luu file cua user
                                 {
                                     receiveUserChangedJobContent.Add(receiveuser);
                                 }
@@ -274,10 +273,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     }
                     if (receiveUserChangedJobContent.Count > 0)
                     {
-                        foreach(var item in receiveUserChangedJobContent)
+                        foreach (var item in receiveUserChangedJobContent)
                         {
-                            _MyClient.SetJobContent(_Task.Id,item.User.Id,item.JobContent);
-                        }                        
+                            _MyClient.SetJobContent(_Task.Id, item.User.Id, item.JobContent);
+                        }
                     }
                     if (userIdAddViewFileAble.Count > 0) //Set quyen view file
                     {
@@ -303,7 +302,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     {
                         _MyClient.SetUserTaskSaveFileAble(_Task.Id, userIdRemovePrintAble.ToArray(), false, SectionLogin.Ins.CurrentUser.Id);
                     }
-                    if (userIdAddIsMainProcess.Count > 0) 
+                    if (userIdAddIsMainProcess.Count > 0)
                     {
                         _MyClient.SetUserTaskIsProcess(_Task.Id, userIdRemovePrintAble.ToArray(), true);
                     }
@@ -311,7 +310,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     {
                         _MyClient.SetUserTaskIsProcess(_Task.Id, userIdRemovePrintAble.ToArray(), false);
                     }
-                    
+
                 }
                 _MyClient.Close();
 
@@ -327,5 +326,5 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             _DataChanged = true;
         }
     }
-  
+
 }

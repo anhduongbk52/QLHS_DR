@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="QLHS_DR.View.ProductView.ProductManagerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:local="clr-namespace:QLHS_DR.View.ProductView"
+             mc:Ignorable="d" 
+             DataContext="{Binding Source={StaticResource Locator},Path=ProductManagerViewModel}"
+             Name="transformerManager"
+             d:DesignHeight="450" 
+             d:DesignWidth="1200">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Background="Transparent">
+        <Grid.Resources>
+            <Style TargetType="materialDesign:ColorZone">
+                <Setter Property="Padding" Value="8 4 8 4"></Setter>
+                <Setter Property="CornerRadius" Value="2"></Setter>
+                <Setter Property="Mode" Value="Standard"></Setter>
+                <Setter Property="Panel.ZIndex" Value="1"></Setter>
+                <Setter Property="Margin" Value="5 5 5 5"></Setter>
+                <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth1"></Setter>
+                <Setter Property="CornerRadius" Value="2"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid materialDesign:ShadowAssist.Darken="True" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <materialDesign:ColorZone>
+                    <ComboBox
+                        ItemsSource="{Binding ProductTypeNews,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                        DisplayMemberPath="TypeName"  SelectedItem="{Binding SelectedProductTypeNew}"
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Loại sản phẩm"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <TextBox
+                    Text="{Binding CodeKeyWord,UpdateSourceTrigger=PropertyChanged}"                       
+                    Margin="5 0 0 0"
+                    materialDesign:HintAssist.Hint="Mã số" 
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                    BorderThickness="0"
+                    MinWidth="200"                    
+                    VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <TextBox
+                        Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Năm sản xuất"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <TextBox
+                    Text="{Binding NoteKeyWord,UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="8 0 0 0"
+                    materialDesign:HintAssist.Hint="Ghi chú" 
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                    BorderThickness="0"
+                    MinWidth="200"                    
+                    VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Visibility="Collapsed">
+                    <TextBox
+                        Text="{Binding StationKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Trạm/Công trình/Dự án" 
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <TextBox
+                        Text="{Binding ProductNameKeyword,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Tên sản phẩm" 
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Visibility="Collapsed">
+                    <TextBox
+                        Text="{Binding RatedPowerKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Dung lượng định mức"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Visibility="Collapsed">
+                    <TextBox
+                        Text="{Binding RatedVoltageKeyWord,UpdateSourceTrigger=PropertyChanged}" 
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Điện áp định mức" 
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"                    
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Visibility="Collapsed">
+                    <ComboBox
+                        ItemsSource="{Binding Standards}"
+                        DisplayMemberPath="Name"
+                        SelectedItem="{Binding SelectedStandard}"
+                        Margin="8 0 0 0" 
+                        materialDesign:HintAssist.Hint="Tiêu chuẩn chế tạo"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+
+            </StackPanel>
+
+            <Button Command="{Binding SearchCommand}" IsDefault="True" Margin="5" Grid.Row="8" Content="Tìm kiếm"></Button>
+            <Button Command="{Binding ClearCommand}" Margin="5" Grid.Row="9" Content="Clear"></Button>
+        </Grid>
+
+        <ListView ItemsSource="{Binding Products,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"
+                  SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Xóa" IsEnabled="{Binding CanRemoveProduct}"
+                              Command="{Binding RemoveProductCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                    <!--<MenuItem Header="Sửa đổi" Command="{Binding EditProductCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu},Path=PlacementTarget.SelectedItem}"/>-->
+                    <MenuItem Header="Khóa sản phẩm"
+                              Command="{Binding LockProductCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                    <MenuItem Header="Mở khóa sản phẩm"
+                              Command="{Binding UnLockProductCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="No."   Width="080"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ProductCode}" Header="Mã số"  Width="Auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ProductName}" Header="Tên sản phẩm" Width="Auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Note}" Header="Ghi chú"  Width="Auto"/>
+                </GridView>
+            </ListView.View>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding OpenProductCommand}" CommandParameter="{Binding ElementName=transformerManager}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListView>
+    </Grid>
+</UserControl>

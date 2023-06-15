@@ -1,15 +1,9 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
-using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
-using QLHS_DR;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using QLHS_DR.View.DocumentView;
-using QLHS_DR.ViewModel;
-using QLHS_DR.ViewModel.ChatAppViewModel;
-using QLHS_DR.ViewModel.DocumentViewModel;
 using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
@@ -17,15 +11,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Description;
-using System.Text;
 using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
@@ -33,7 +21,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     class TaskCreateByMeViewModel : BaseViewModel
     {
         #region "Properties and Field"
-        
+
         private readonly IEventAggregator _eventAggregator;
         private MessageServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
@@ -429,7 +417,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
-               
+
                 ketqua = _MyClient.GetUserTaskNotFinish(userId).OrderByDescending(x => x.TimeCreate).ToObservableCollection();
                 var tasks = _MyClient.LoadTasksCreateByMe();
                 _MyClient.Close();

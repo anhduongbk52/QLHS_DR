@@ -15,49 +15,64 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <ListView Name="listViewFileHoSo"
-                  ItemsSource="{Binding TransformerManuals,UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedTransformerManual, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ContextMenu>
+        <Grid.Resources>
+            <CollectionViewSource x:Key="moduls" Source="{Binding TransformerManualDTOs}">
+                <CollectionViewSource.GroupDescriptions>
+                    <PropertyGroupDescription PropertyName="TitleName" />
+                </CollectionViewSource.GroupDescriptions>
+            </CollectionViewSource>
+        </Grid.Resources>
+        <DataGrid Name="listViewFileHoSo" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  ItemsSource="{Binding Source={StaticResource moduls}}"
+                  SelectedItem="{Binding SelectedTransformerManualDTO, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Upload Hồ sơ"
-                              Command="{Binding UploadFileHoSoCommand}"/>
+                    <MenuItem Header="Upload Hồ sơ nghiệm thu"
+                              Command="{Binding UploadFileHoSoCommand}" />
                     <MenuItem Header="Sửa đổi"
                               Command="{Binding ChangeFileHoSoCommand}"
-                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
                     <MenuItem Header="Xóa"
                               Command="{Binding RemoveFileHoSoCommand}"
-                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"> </MenuItem>
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
                 </ContextMenu>
-            </ListView.ContextMenu>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding No}"
-                                    Header="No."
-                                    Width="Auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding TitleName}"
-                                    Header="Mục"
-                                    Width="Auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding FileName}"
-                                    Header="Tên File"
-                                    Width="Auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Version}"
-                                    Header="Phiên bản"
-                                    Width="Auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding DateCreate, StringFormat='dd/MM/yyyy'}"
-                                    Header="Ngày tạo"
-                                    Width="Auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Description}"
-                                    Header="Mô tả"
-                                    Width="Auto" />
-                </GridView>
-            </ListView.View>
+            </DataGrid.ContextMenu>
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="True" >
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Path=Name}" FontWeight="Bold"/>
+                                                    <TextBlock Text="{Binding ItemCount}"  Foreground="Green" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding No}" Header="No." Width="Auto" IsReadOnly="true" />
+                <DataGridTextColumn Binding="{Binding DocumentName}" Header="Tên File" Width="Auto" IsReadOnly="true"/>
+                <DataGridTextColumn Binding="{Binding Version}" Header="Phiên bản"  Width="Auto" IsReadOnly="true"/>
+                <DataGridTextColumn Binding="{Binding DateCreate, StringFormat='dd/MM/yyyy'}" Header="Ngày tạo"  Width="Auto" IsReadOnly="true"/>
+                <DataGridTextColumn Binding="{Binding Description}" Header="Mô tả"  Width="Auto"/>
+            </DataGrid.Columns>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{Binding OpenPDFCommand}"
-                                           CommandParameter="{Binding SelectedItem,ElementName=listViewFileHoSo}" />
+                    <i:InvokeCommandAction Command="{Binding OpenPDFCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </ListView>
+        </DataGrid>
+
     </Grid>
 </UserControl>

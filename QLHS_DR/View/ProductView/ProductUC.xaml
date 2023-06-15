@@ -1,0 +1,61 @@
+﻿<UserControl  x:Class="QLHS_DR.View.ProductView.ProductUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:local="clr-namespace:QLHS_DR.View.ProductView"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d" 
+             Name="productUC"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card  Grid.Column="0">
+            <dxn:NavBarControl HorizontalAlignment="Left" Width="160"  VerticalAlignment="Top" >
+                <dxn:NavBarControl.Resources>
+                    <Style TargetType="{x:Type dxn:NavBarItemsControl}">
+                        <Setter Property="Margin" Value="20,0,0,0"/>
+                    </Style>
+                </dxn:NavBarControl.Resources>
+                <dxn:NavBarControl.View>
+                    <dxn:ExplorerBarView/>
+                </dxn:NavBarControl.View>
+                <dxn:NavBarGroup x:Name="navBarGroup1" Header="Home" IsExpanded="True" ImageSource="{dx:DXImage SvgImages/Icon Builder/Actions_Home.svg}" DisplayMode="ImageAndText">
+                    <dxn:NavBarItem x:Name="navBarItem1" Content="Thông tin chung" Command="{Binding HomeCommand}" ImageSource="{dx:DXImage SvgImages/Icon Builder/Actions_Info.svg}"/>
+                    <dxn:NavBarItem x:Name="navBarItem3" Content="Hợp đồng" Command="{Binding OpenListContractUCCommand}" ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />
+                    <dxn:NavBarItem x:Name="navBarItem4" Content="Lệnh sản xuất" Command="{Binding OpenListLsxOfProductUCCommand}" ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />
+                </dxn:NavBarGroup>
+                <dxn:NavBarGroup x:Name="navBarGroup3" Header="Tài liệu thiết kế" IsExpanded="True" ImageSource="{dx:DXImage SvgImages/PDF Viewer/DocumentPDF.svg}">
+                    <dxn:NavBarItem x:Name="BtnBvDien" Content="Thiết kế điện" Command="{Binding OpenListFileDesignCommand}" CommandParameter="{Binding ElementName=BtnBvDien}" ImageSource="{dx:DXImage SvgImages/Icon Builder/Weather_Lightning.svg}"/>
+                    <dxn:NavBarItem x:Name="BtnBvCo" Content="Thiết kế cơ" Command="{Binding OpenListFileDesignCommand}" CommandParameter="{Binding ElementName=BtnBvCo}" ImageSource="{dx:DXImage SvgImages/Setup/Properties.svg}"/>
+                    <dxn:NavBarItem x:Name="BtnBvNt" Content="Thiết kế nhị thứ" Command="{Binding OpenListFileDesignCommand}" CommandParameter="{Binding ElementName=BtnBvNt}" ImageSource="{dx:DXImage SvgImages/XAF/ModelEditor_Controllers.svg}"/>
+                </dxn:NavBarGroup>
+                <dxn:NavBarGroup  Header="Hồ sơ" IsExpanded="True" ImageSource="{dx:DXImage SvgImages/Icon Builder/Business_Briefcase.svg}">
+                    <dxn:NavBarItem Content="Hồ sơ phê duyệt"
+                                    Command="{Binding OpenListApprovalDocumentProductCommand }"
+                                    ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />
+                    <dxn:NavBarItem Content="Hồ sơ nghiệm thu"
+                                    Command="{Binding OpenListFileHoSoCommand}"
+                                    ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />
+                </dxn:NavBarGroup>
+            </dxn:NavBarControl>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Column="1" >
+            <ContentControl BorderThickness="5" BorderBrush="Aqua"  Content="{Binding LoadUC}"/>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>
+    
+    
+

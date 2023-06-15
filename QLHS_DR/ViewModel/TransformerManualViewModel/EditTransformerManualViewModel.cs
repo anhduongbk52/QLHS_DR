@@ -3,20 +3,13 @@ using EofficeClient.Core;
 using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLHS_DR.ViewModel.TransformerManualViewModel
 {
-    internal class EditTransformerManualViewModel:BaseViewModel
+    internal class EditTransformerManualViewModel : BaseViewModel
     {
         #region "Field and Properties"
         private bool status = false;
@@ -24,10 +17,23 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
 
         private string _TittleWindow;
         public string TittleWindow { get => _TittleWindow; set { _TittleWindow = value; OnPropertyChanged("TittleWindow"); } }
-        
+
         private string _Description;
         public string Description { get => _Description; set { _Description = value; OnPropertyChanged("Description"); } }
-     
+
+        private string _DocumentName;
+        public string DocumentName
+        {
+            get => _DocumentName;
+            set
+            {
+                if (_DocumentName != value)
+                {
+                    _DocumentName = value;
+                    OnPropertyChanged("DocumentName");
+                }
+            }
+        }
         private string _ProductCode;
         public string ProductCode { get => _ProductCode; set { _ProductCode = value; OnPropertyChanged("ProductCode"); } }
         private Product _Product;
@@ -86,23 +92,24 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
         public ICommand LoadedWindowCommand { get; set; }
         #endregion
 
-        public EditTransformerManualViewModel(string productCode,int fileId, int? docTitleId)
+        public EditTransformerManualViewModel(TransformerManualDTO transformerManualDTO, string productCode)
         {
             this.ProductCode = productCode;
 
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 ListContents = LoadAllContents();
-                ContentTypeSelected = ListContents.Where(x => x.Id == docTitleId).FirstOrDefault();
-                TittleWindow = "Upload hồ sơ máy biến áp: " + _ProductCode;
+                ContentTypeSelected = ListContents.Where(x => x.Id == transformerManualDTO.DocTitleId).FirstOrDefault();
+                DocumentName = transformerManualDTO.DocumentName;
+                Description = transformerManualDTO.Description;
             });
-            SaveCommand = new RelayCommand<System.Windows.Window>((p) => { if (p!=null) return true; else return false; }, (p) =>
+            SaveCommand = new RelayCommand<System.Windows.Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
                 MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 try
                 {
                     _MyClient.Open();
-                    _MyClient.EditTransformerManual(fileId,_Description,_ContentTypeSelected.Id);
+                    _MyClient.EditTransformerManual(transformerManualDTO.FileId, _Description, _ContentTypeSelected.Id, _DocumentName);
                     _MyClient.Close();
                     System.Windows.MessageBox.Show("Cập nhật thành công");
                     p.Close();
@@ -114,7 +121,7 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
                     System.Windows.MessageBox.Show(ex.Message);
                 }
             });
-            
+
             ExitCommand = new RelayCommand<System.Windows.Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
                 p.Close();
@@ -143,6 +150,5 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
             }
             return ketqua;
         }
-
     }
 }

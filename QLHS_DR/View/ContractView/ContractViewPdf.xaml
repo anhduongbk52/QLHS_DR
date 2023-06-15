@@ -9,8 +9,8 @@
         xmlns:local1="clr-namespace:QLHS_DR.View.DocumentView"
         xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
         mc:Ignorable="d"
-         Loaded="pdfViewerWindow_Loaded"
-        Title="ContractViewPdf" Height="450" Width="800">
+        Loaded="pdfViewerWindow_Loaded"
+        Title="{Binding TittleWindow, UpdateSourceTrigger=PropertyChanged}" Height="450" Width="800">
     <dx:LoadingDecorator IsSplashScreenShown="{Binding IsBusy}" Name="loadingDecorator" OwnerLock="LoadingContent">
         <Grid>
             <Grid.RowDefinitions>

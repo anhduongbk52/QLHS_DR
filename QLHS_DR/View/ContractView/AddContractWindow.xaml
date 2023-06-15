@@ -1,18 +1,4 @@
-﻿<!--<Window x:Class="QLHS_DR.View.ContractView.AddContractWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QLHS_DR.View.ContractView"
-        mc:Ignorable="d"
-        Title="AddContractWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
-</Window>-->
-
-
-<Window x:Class="QLHS_DR.View.ContractView.AddContractWindow"
+﻿<Window x:Class="QLHS_DR.View.ContractView.AddContractWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         DragDrop.PreviewDrop="uploadFilePdf_Drop"
         DragDrop.DragEnter="uploadFilePdf_DragEnter"
-        Title="{Binding WindowTitle}" Height="600" Width="491.2">
+        Title="{Binding TittleWindow,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="600" Width="491.2">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=addConstactWD}"/>

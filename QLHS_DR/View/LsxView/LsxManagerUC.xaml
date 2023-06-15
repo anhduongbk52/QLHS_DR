@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="QLHS_DR.View.LsxView.LsxManagerUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:QLHS_DR.View.LsxView"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    DataContext="{Binding Source={StaticResource Locator},Path=LsxManagerViewModel}"   
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <dx:LoadingDecorator IsSplashScreenShown="{Binding IsBusy}" OwnerLock="Full">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition Width="400" ></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Danh sách lệnh sản xuất" Grid.Row="0">
+                    <dxg:GridControl  x:Name="listLsx"  SelectedItem="{Binding SelectedLsx}"
+                                     ItemsSource="{Binding Lsxes,UpdateSourceTrigger=PropertyChanged}"
+                                     AutoGenerateColumns="None"  SelectionMode="Row">
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Xóa"  Command="{Binding DeleteLsxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                <MenuItem Header="Thêm mới"  Command="{Binding NewLsxCommand}"/>
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="Id" ReadOnly="True" Header="No." Width="40"/>
+                            <dxg:GridColumn FieldName="DOfficeNumber" ReadOnly="True" Header="Số (DO)" Width="80"></dxg:GridColumn>
+                            <dxg:GridColumn FieldName="KHNumber" ReadOnly="True" Header="Số (KH)" />
+                            <dxg:GridColumn FieldName="Name" ReadOnly="True"  Width="Auto" Header="Trích yếu"/>
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView/>
+                        </dxg:GridControl.View>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding SelectedLsxCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxg:GridControl>
+                </GroupBox>
+                <GroupBox Header="Phân công nhiệm vụ"  Grid.Row="1" >
+                    <dxg:GridControl ItemsSource="{Binding MainJobTodoes}" SelectionMode="Row">
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Xóa" Command="{Binding DeleteMainJobTodoCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn FieldName="Id" ReadOnly="True" Header="No."  Width="40"/>
+                            <dxg:GridColumn FieldName="JobHeader" Header="Công việc" IsSmart="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="ProcessUserId" ReadOnly="False" Width="auto"  Header="Người thực hiện" IsSmart="True">
+                                <dxg:GridColumn.EditSettings >
+                                    <dxe:ComboBoxEditSettings IsTextEditable="False" AutoComplete="True"  ItemsSource="{Binding UsersOfDepartment}" DisplayMember="FullName" ValueMember="Id"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="JobName" Header="Nội dung"  Width="auto" IsSmart="True"/>
+                            <dxg:GridColumn FieldName="StartDate" Header="Bắt đầu"   Width="auto" IsSmart="True"/>
+                            <dxg:GridColumn FieldName="EndDate" Header="Kết thúc"  Width="auto"  IsSmart="True"/>
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView 
+                                    EditorButtonShowMode="ShowAlways"
+                                    AutoWidth="True" RowUpdatedCommand="{Binding RowUpdatedCommand}"
+                                    BestFitModeOnSourceChange="VisibleRows"
+                                    ShowUpdateRowButtons="OnCellEditorOpen"
+                                    AllowEditing="True" NewItemRowPosition="Bottom" />
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </GroupBox>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox  Grid.Row="0" Header="Danh sách File đính kèm">
+                    <ListBox Width="auto" DisplayMemberPath="FileName" ItemsSource="{Binding PublicFiles}">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="View"  Command="{Binding ViewFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                <MenuItem Header="Xóa"  Command="{Binding RemoveFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                <MenuItem Header="Thêm file đính kèm"  Command="{Binding AddFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                <MenuItem Header="Download File"  Command="{Binding DownloadFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                <MenuItem Header="Download All Files"  Command="{Binding DownloadAllFilesAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                </GroupBox>
+                <GroupBox  Grid.Row="1" Header="Các sản phẩm liên quan">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*" MinHeight="200"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Width="auto"  Grid.Row="0"  HorizontalAlignment="Right" Orientation="Horizontal">
+                            <TextBox Margin="5" Width ="200" HorizontalAlignment="Stretch" Text="{Binding NewProductCode, UpdateSourceTrigger=PropertyChanged, Delay=1}"></TextBox>
+                            <Button  Width="60" Margin="5" Content="Add" Command="{Binding AddProductToLsxCommand}"></Button>
+                        </StackPanel>
+                        <ListBox BorderBrush="Black" BorderThickness="1" Grid.Row="1" DisplayMemberPath="ProductCode" ItemsSource="{Binding ProductsInLsxes}">
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Xóa"  Command="{Binding DeleteProductInLsxCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
+                        </ListBox>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+            <dxpdf:PdfViewerControl Width="auto" HorizontalAlignment="Stretch" Grid.Column="2" ZoomMode="PageLevel" ResetSettingsOnDocumentClose="False" DocumentSource="{Binding DocumentSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandBarStyle="Bars" AllowCachePages="False"/>
+        </Grid>
+    </dx:LoadingDecorator>
+</UserControl>

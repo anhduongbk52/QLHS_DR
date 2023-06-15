@@ -1,22 +1,20 @@
 ﻿using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 using PermissionType = QLHS_DR.ChatAppServiceReference.PermissionType;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class ReceiveUserManagerViewModel:BaseViewModel
+    internal class ReceiveUserManagerViewModel : BaseViewModel
     {
         #region "Properties and Field"
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
@@ -35,7 +33,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private IReadOnlyList<User> iReadOnlyListUser;
         //private List<int> _UserNotInTaskIds;
         private Task _Task;
-        private ObservableCollection<ReceiveUser> _ReceiveUsers;       
+        private ObservableCollection<ReceiveUser> _ReceiveUsers;
         public ObservableCollection<ReceiveUser> ReceiveUsers
         {
             get => _ReceiveUsers;
@@ -47,7 +45,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-        private string _WindowTittle;    
+        private string _WindowTittle;
         public string WindowTittle
         {
             get => _WindowTittle;
@@ -70,7 +68,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             _Task = task;
             ReceiveUsers = new ObservableCollection<ReceiveUser>();
-            WindowTittle = "Chỉnh sửa người nhận: " + task.Description + " /-/ " +task.Subject;
+            WindowTittle = "Chỉnh sửa người nhận: " + task.Description + " /-/ " + task.Subject;
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 try
@@ -133,7 +131,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             SaveCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
             {
-                if(_DataChanged)
+                if (_DataChanged)
                 {
                     Save();
                     MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -149,7 +147,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         }
                     }
                     _MyClient.Close();
-                }          
+                }
                 p.Close();
             });
             CancelCommand = new RelayCommand<Window>((p) => { if (p != null) return true; else return false; }, (p) =>
@@ -162,7 +160,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             try
             {
                 FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-               
+
                 MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 var allUserTaskOfTask = _MyClient.GetAllUserTaskOfTask(_Task.Id);
@@ -179,7 +177,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
 
 
-                   UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);           
+                    UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);
 
                     byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(_Task.Id, userTask_0);
                     byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
@@ -294,7 +292,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     }
                 }
                 _MyClient.Close();
-               
+
             }
             catch (Exception ex)
             {
@@ -317,7 +315,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 if (_IsMainProcess != value)
                 {
-                    _IsMainProcess = value;                   
+                    _IsMainProcess = value;
                     OnPropertyChanged("IsMainProcess");
                     IsMainProcessChanged = true;
                 }
@@ -342,7 +340,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             set
             {
                 if (_IsReceive != value)
-                {                   
+                {
                     _IsReceive = value;
                     if (!_IsReceive)
                     {
@@ -352,7 +350,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         CanSave = false;
                     }
                     OnPropertyChanged("IsReceive");
-                    IsReceiveChanged=true;
+                    IsReceiveChanged = true;
                 }
             }
         }
@@ -382,7 +380,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         IsReceive = true;
                         CanViewFile = true;
                         CanPrintFile = true;
-                    }                   
+                    }
                     OnPropertyChanged("CanSave");
                     CanSaveChanged = true;
                 }
@@ -437,10 +435,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     if (_CanPrintFile)
                     {
                         IsReceive = true;
-                        CanViewFile = true;                        
+                        CanViewFile = true;
                     }
                     OnPropertyChanged("CanPrintFile");
-                    CanPrintFileChanged=true;
+                    CanPrintFileChanged = true;
                 }
             }
         }
@@ -452,7 +450,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 if (_CanPrintFileChanged != value)
                 {
-                    _CanPrintFileChanged = value; 
+                    _CanPrintFileChanged = value;
                     OnPropertyChanged("CanPrintFileChanged");
                 }
             }
@@ -465,7 +463,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 if (_ReadOnlyPermission != value)
                 {
-                    _ReadOnlyPermission = value; 
+                    _ReadOnlyPermission = value;
                     OnPropertyChanged("ReadOnlyPermission");
                 }
             }

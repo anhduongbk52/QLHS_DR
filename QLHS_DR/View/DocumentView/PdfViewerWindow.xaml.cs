@@ -1,36 +1,16 @@
-﻿using DevExpress.ClipboardSource.SpreadsheetML;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Pdf;
 using DevExpress.Xpf.PdfViewer;
-using QLHS_DR.Core;
+using EofficeClient.Core;
+using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.ChatAppServiceReference;
-using QLHS_DR.ViewModel;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Drawing.Printing;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using EofficeCommonLibrary;
-using EofficeClient.Core;
-using System.Windows.Forms;
-using EofficeCommonLibrary.Common.Util;
 using System.Drawing;
-using DevExpress.Pdf;
-
-using System.Diagnostics;
-using Syncfusion.Pdf.Parsing;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace QLHS_DR.View.DocumentView
 {
@@ -40,7 +20,7 @@ namespace QLHS_DR.View.DocumentView
     public partial class PdfViewerWindow : Window
     {
         const float DrawingDpi = 72f;
-        
+
         MessageServiceClient _MyClient;
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _CanPrint;
@@ -49,7 +29,7 @@ namespace QLHS_DR.View.DocumentView
         private byte[] contextFile;
         private IReadOnlyList<User> _IReadOnlyListUser;
         private UserTask _UserTaskPrint;
-       
+
         public UserTask UserTaskPrint
         {
             get => _UserTaskPrint;
@@ -67,8 +47,8 @@ namespace QLHS_DR.View.DocumentView
             get => _FileName;
             set => _FileName = value;
         }
-        public PdfViewerWindow(TaskAttachedFileDTO taskAttachedFileDTO, bool canPrint, bool canSave, IReadOnlyList<User> iReadOnlyListUser,UserTask userTask)
-        {           
+        public PdfViewerWindow(TaskAttachedFileDTO taskAttachedFileDTO, bool canPrint, bool canSave, IReadOnlyList<User> iReadOnlyListUser, UserTask userTask)
+        {
             InitializeComponent();
             pdfViewer.DataContext = this;
             _TaskAttachedFileDTO = taskAttachedFileDTO;
@@ -81,32 +61,32 @@ namespace QLHS_DR.View.DocumentView
             try
             {
                 FileName = _TaskAttachedFileDTO.FileName;
-                TaskName = _UserTaskPrint.Task.Subject;               
+                TaskName = _UserTaskPrint.Task.Subject;
 
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
                 DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
-                
+
                 MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content);
 
                 MemoryStream outputStream = new MemoryStream();
-                using(PdfDocumentProcessor processor = new PdfDocumentProcessor())
+                using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                 {
                     processor.LoadDocument(stream);
                     List<int> countPrinteds = new List<int>();
-                    for(int i=0;i< processor.Document.Pages.Count ; i++)
+                    for (int i = 0; i < processor.Document.Pages.Count; i++)
                     {
-                        countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id,i+1)+1);
+                        countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1) + 1);
                     }
                     string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
 
                     using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
                     {
-                        AddGraphics(processor, addText, textBrush, countPrinteds);                       
+                        AddGraphics(processor, addText, textBrush, countPrinteds);
                     }
                     using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
-                    {                        
-                        if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel!=0)
+                    {
+                        if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                         {
                             AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
                         }
@@ -128,9 +108,9 @@ namespace QLHS_DR.View.DocumentView
                 _MyClient.Close();
 
                 pdfViewerWindow.Title = _TaskName + " -------- " + _FileName;
-               
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
@@ -165,10 +145,10 @@ namespace QLHS_DR.View.DocumentView
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-       
+
         private void pdfViewer_PrintPage(DependencyObject d, DevExpress.Xpf.PdfViewer.PdfPrintPageEventArgs e)
         {
-            if(e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("pdf")  || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("xps") || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("onenote"))
+            if (e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("pdf") || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("xps") || e.PageSettings.PrinterSettings.PrinterName.ToLower().Contains("onenote"))
             {
                 e.Cancel = true;
                 System.Windows.MessageBox.Show("Bạn không được quyền sử dụng máy in ảo cho tập tin này !");
@@ -226,25 +206,25 @@ namespace QLHS_DR.View.DocumentView
             }
             return new SizeF(cropBoxWidth, cropBoxHeight);
         }
-        void AddGraphics(PdfDocumentProcessor processor, string text, SolidBrush textBrush,List<int> countPrinted)
+        void AddGraphics(PdfDocumentProcessor processor, string text, SolidBrush textBrush, List<int> countPrinted)
         {
             string textInPage;
             IList<PdfPage> pages = processor.Document.Pages;
             for (int i = 0; i < pages.Count; i++)
             {
-                textInPage = text + " - " + "Number of copies: "+ countPrinted[i];
+                textInPage = text + " - " + "Number of copies: " + countPrinted[i];
                 PdfPage page = pages[i];
                 using (PdfGraphics graphics = processor.CreateGraphics())
                 {
                     SizeF actualPageSize = PrepareGraphics(page, graphics);
-                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");                   
+                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
                     using (Font font = new Font(fontFamily, 6, System.Drawing.FontStyle.Bold))
                     {
                         SizeF textSize = graphics.MeasureString(textInPage, font, PdfStringFormat.GenericDefault);
                         PointF topLeft = new PointF(0, 0);
                         PointF bottomRight = new PointF(actualPageSize.Width - textSize.Width, actualPageSize.Height - textSize.Height);
                         graphics.DrawString(textInPage, font, textBrush, bottomRight);
-                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);                       
+                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);
                         graphics.AddToPageForeground(page, DrawingDpi, DrawingDpi);
                     }
                 }
@@ -265,7 +245,7 @@ namespace QLHS_DR.View.DocumentView
                 using (PdfGraphics graphics = processor.CreateGraphics())
                 {
                     SizeF actualPageSize = PrepareGraphics(page, graphics);
-                 
+
 
                     System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
                     using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold), font1 = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
@@ -273,19 +253,19 @@ namespace QLHS_DR.View.DocumentView
                         string text1 = confidentialLevel;
                         //string text2 = confidentialLevel;
 
-                        SizeF text1Size = graphics.MeasureString(text1, font, PdfStringFormat.GenericDefault);                      
+                        SizeF text1Size = graphics.MeasureString(text1, font, PdfStringFormat.GenericDefault);
                         //SizeF text2Size = graphics.MeasureString(text2, font1, PdfStringFormat.GenericDefault);
 
                         _Stamp_Width = (int)(text1Size.Width * 1.1);
 
-                        _Stamp_Heigh = (int)((text1Size.Height )*1.1);
+                        _Stamp_Heigh = (int)((text1Size.Height) * 1.1);
 
                         PointF center = new PointF(_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
 
-                        PointF topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);                       
-                       // PointF topLeftText2 = new PointF(center.X - text2Size.Width / 2, center.Y - text2Size.Height / 2);                    
+                        PointF topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);
+                        // PointF topLeftText2 = new PointF(center.X - text2Size.Width / 2, center.Y - text2Size.Height / 2);                    
 
-                        graphics.DrawString(text1, font, textBrush, topLeftText1);                      
+                        graphics.DrawString(text1, font, textBrush, topLeftText1);
                         //graphics.DrawString(text2, font1, textBrush, topLeftText2);                      
 
                         System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red));
@@ -299,7 +279,7 @@ namespace QLHS_DR.View.DocumentView
 
         private void pdfViewer_PageSetupDialogShowing(DependencyObject d, PageSetupDialogShowingEventArgs e)
         {
-           
+
         }
     }
 }

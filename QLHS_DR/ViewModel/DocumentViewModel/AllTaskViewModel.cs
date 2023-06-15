@@ -1,27 +1,17 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using Prism.Events;
-using QLHS_DR;
-
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using QLHS_DR.View.DocumentView;
-using QLHS_DR.ViewModel;
-using QLHS_DR.ViewModel.ChatAppViewModel;
 using QLHS_DR.ViewModel.Message;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.ServiceModel.Description;
-using System.Text;
 using System.Threading;
-using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
@@ -29,7 +19,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class AllTaskViewModel : BaseViewModel
     {
         #region "Properties and Field"
-      
+
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
         public ObservableCollection<Department> Departments
@@ -58,7 +48,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private MessageServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
-      
+
         private bool _IsReadOnlyPermission;
         public bool IsReadOnlyPermission
         {
@@ -131,7 +121,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 if (_ListUserTaskOfTask != value)
                 {
                     _ListUserTaskOfTask = value; OnPropertyChanged("ListUserTaskOfTask");
-            
+
                 }
             }
         }
@@ -159,14 +149,14 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         {
             ListTaskOfUser = GetAllTask(SectionLogin.Ins.CurrentUser.Id);
         }
-       
+
         public AllTaskViewModel(IEventAggregator eventAggregator)
         {
             //MessageServiceCallBack.SetDelegate(SetLabelMsg);
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<ReloadAllTaskTabEvent>().Subscribe(OnLoadUserControl);
-            IsReadOnlyPermission =  true;
-                              
+            IsReadOnlyPermission = true;
+
             try
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -184,18 +174,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 _MyClient.Abort();
                 System.Windows.MessageBox.Show(ex.Message);
-              
+
             }
 
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {               
+            {
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
                 OnLoadUserControl(new object());
                 UpdateHeaderTabControl();
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
-            {                
+            {
                 Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
                 thread5.SetApartmentState(ApartmentState.STA);
                 thread5.IsBackground = true;
@@ -223,9 +213,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     if (ex.InnerException != null)
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.StackTrace);
-                    }                  
+                    }
                 }
-            }); 
+            });
         }
 
         private void OnLoadUserControl(object obj)
@@ -288,10 +278,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient.Abort();
             }
         }
-        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO,UserTask userTask)
+        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {
             FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId,userTask));
+            byte[] orAdd = _ListFileDecrypted.GetOrAdd(taskAttachedFileDTO.TaskId, (int int_0) => fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask));
             if (orAdd != null)
             {
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
@@ -304,7 +294,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
-                ketqua = _MyClient.LoadAllTasks().OrderByDescending(x => x.StartDate).ToObservableCollection();                
+                ketqua = _MyClient.LoadAllTasks().OrderByDescending(x => x.StartDate).ToObservableCollection();
                 _MyClient.Close();
             }
             catch (Exception ex)

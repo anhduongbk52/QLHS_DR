@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace QLHS_DR.Core
 {
-    internal class DocScan
+    public class DocScan
     {
         public static IEnumerable<string> GetFileList(string fileSearchPattern, string rootFolderPath)
         {
@@ -38,7 +37,63 @@ namespace QLHS_DR.Core
             }
         }
 
+        public static void ExtractZipFile(string zipFilePath, string destinationFolder)
+        {
+            // Tạo thư mục đích nếu nó chưa tồn tại
+            Directory.CreateDirectory(destinationFolder);
 
+            // Đọc tệp tin nén
+            using (System.IO.Compression.ZipArchive archive = ZipFile.OpenRead(zipFilePath))
+            {
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    // Tạo đường dẫn tới tệp tin trong thư mục đích
+                    string entryDestinationPath = Path.Combine(destinationFolder, entry.FullName);
+
+                    // Đảm bảo đường dẫn không trỏ đến thư mục gốc
+                    if (!string.IsNullOrEmpty(entryDestinationPath))
+                    {
+                        // Tạo thư mục cha cho tệp tin (nếu cần)
+                        Directory.CreateDirectory(Path.GetDirectoryName(entryDestinationPath));
+
+                        // Giải nén tệp tin vào thư mục đích
+                        entry.ExtractToFile(entryDestinationPath, true);
+                    }
+                }
+            }
+        }
+        public static bool IsZipFile(string filePath)
+        {
+            try
+            {
+                using (ZipArchive archive = ZipFile.OpenRead(filePath))
+                {
+                    return true;
+                }
+            }
+            catch (InvalidDataException)
+            {
+                return false;
+            }
+        }
+        public static bool IsImageFile(string filePath)
+        {
+            string extension = Path.GetExtension(filePath);
+
+            // Danh sách các phần mở rộng tập tin hình ảnh được hỗ trợ
+            string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
+
+            return Array.Exists(imageExtensions, ext => ext.Equals(extension, StringComparison.OrdinalIgnoreCase));
+        }
+        public static bool IsWordFile(string filePath)
+        {
+            string extension = Path.GetExtension(filePath);
+
+            // Danh sách các phần mở rộng tập tin hình ảnh được hỗ trợ
+            string[] wordExtensions = { ".doc", ".docx" };
+
+            return Array.Exists(wordExtensions, ext => ext.Equals(extension, StringComparison.OrdinalIgnoreCase));
+        }
         public static string GetDrawingNameFromFileName(string str) //remove ms
         {
             if (str != null)
@@ -202,6 +257,7 @@ namespace QLHS_DR.Core
         public static string GetTransformerCode(string str)
         {
             str = str.ToUpper();
+
             if (string.IsNullOrEmpty(str)) return null;
             else
             {
@@ -215,6 +271,41 @@ namespace QLHS_DR.Core
                 }
                 return null;
             }
+        }
+        public static List<string> GetProductCodeSingle(string str)
+        {
+            string pre;
+            str = str.Trim();
+            str = Regex.Replace(str, @"\s+", "");
+            List<string> codes;
+            List<string> result;
+            if (str.StartsWith("BU") || str.StartsWith("BA") || str.StartsWith("BI"))
+            {
+                pre = str.Substring(0, Math.Min(2, str.Length));
+                result = new List<string>();
+                string temp = str.Substring(2);
+                codes = GetTransformerCodeSingle(temp);
+                foreach (string item in codes)
+                {
+                    result.Add(pre + item);
+                }
+            }
+            else if (str.StartsWith("MOF"))
+            {
+                pre = str.Substring(0, Math.Min(3, str.Length));
+                result = new List<string>();
+                string temp = str.Substring(3);
+                codes = GetTransformerCodeSingle(temp);
+                foreach (string item in codes)
+                {
+                    result.Add(pre + item);
+                }
+            }
+            else
+            {
+                return GetTransformerCodeSingle(str);
+            }
+            return result;
         }
         public static List<string> GetTransformerCodeSingle(string str)
         {

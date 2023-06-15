@@ -1,13 +1,6 @@
-﻿using DevExpress.Mvvm;
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using DevExpress.Pdf;
 using DevExpress.Xpf.PdfViewer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLHS_DR.CustomControl

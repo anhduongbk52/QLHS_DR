@@ -1,30 +1,25 @@
-﻿using QLHS_DR.Core;
+﻿using EofficeClient.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using EofficeClient.Core;
 
 namespace QLHS_DR.ViewModel.ContractViewModel
 {
-    internal class AddContractViewModel : BaseViewModel
+    class AddContractViewModel : BaseViewModel
     {
         #region "Properties and Filed"
-        MessageServiceClient _MyClient;
-        private bool status = false;
-        public bool Status { get; set; }
-        private int _ProgessBarValue;
-        public int ProgessBarValue { get => _ProgessBarValue; set { _ProgessBarValue = value; OnPropertyChanged("ProgressBarValue"); } }
-        private bool _ProgessBarIsVisible;
-        public bool ProgessBarIsVisible { get => _ProgessBarIsVisible; set { _ProgessBarIsVisible = value; OnPropertyChanged("ProgessBarIsVisible"); } }
+        MessageServiceClient _Proxy;
+        ServiceFactory _ServiceFactory;
+        private string _TittleWindow;
+        public string TittleWindow { get => _TittleWindow; set { _TittleWindow = value; OnPropertyChanged("TittleWindow"); } }
         private string _ErrorMessage;
         public string ErrorMessage
         {
@@ -107,7 +102,10 @@ namespace QLHS_DR.ViewModel.ContractViewModel
                 switch (columnName)
                 {
                     case "PowerTransformerMultiCode":
-                        
+                        if (DocScan.IsTransformerCode(PowerTransformerMultiCode))
+                        {
+                            ErrorMessage = error = "Sai định dạng mã số";
+                        }
                         break;
                 }
                 return error;
@@ -124,55 +122,57 @@ namespace QLHS_DR.ViewModel.ContractViewModel
         public ICommand ClearAllTransformerCodeCommand { get; set; }
         public ICommand DeletePowerTransformerCodeCommand { get; set; }
         #endregion
-        public AddContractViewModel(TransformerDTO transformerDTO)
+        public AddContractViewModel(Product product)
         {
-            
-            try
+            _ServiceFactory = new ServiceFactory();
+            Product = product;
+            Products = new ObservableCollection<Product>();
+            if (_Product != null)
             {
-                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                _MyClient.Open();               
-                Product = _MyClient.GetProductById(transformerDTO.Id);
-                _MyClient.Close();
-
-                Products = new ObservableCollection<Product>();
-                if (_Product != null)
-                {
-                    Products.Add(_Product);
-                }
+                Products.Add(_Product);
+                TittleWindow = "Upload hồ sơ: " + _Product.ProductCode;
             }
-            catch (Exception ex)
+            else
             {
-                _MyClient.Abort();
-                System.Windows.MessageBox.Show(ex.Message);
+                TittleWindow = "Upload hồ sơ";
             }
-
-            AddPowerTransformerCodeToListCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { if (DocScan.IsTransformerCode(p?.Text)) return true; else return false; }, (p) =>
+            AddPowerTransformerCodeToListCommand = new RelayCommand<System.Windows.Controls.TextBox>((p) => { if (p?.Text != "") return true; else return false; }, (p) =>
             {
                 try
                 {
-                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                    _MyClient.Open();
-                    List<string> singleCodes = DocScan.GetTransformerCodeSingle(p.Text); // Lấy về tập hợp các mã số có trong mã số đầy đủ
-
-                    _MyClient.Open();
-
-                    foreach (var code in singleCodes)
+                    if (p.Text.ToUpper().Contains("DUNGCHUNG") || p.Text.ToUpper().Contains("DUNG CHUNG"))
                     {
-                        Product product = _MyClient.GetProductByProductCode(code);
-                        if (product != null && !Products.Any(x => x.Id == product.Id))
+                        string code = p.Text;
+                        Product transformer = _ServiceFactory.GetProductByProductCode(code);
+                        if (transformer != null)
                         {
-                            if (product != null)
+                            if (!_Products.Any(x => x.ProductCode == transformer.ProductCode))
                             {
-                                Products.Add(product);
+                                Products.Add(transformer);
                             }
-                            else System.Windows.MessageBox.Show("Máy biến áp MS: " + code + " chưa được khởi tạo");
                         }
                     }
-                    _MyClient.Close();
+                    else
+                    {
+                        List<string> singleCodes = DocScan.GetProductCodeSingle(p.Text); // Lấy về tập hợp các mã số có trong mã số đầy đủ
+                        if (singleCodes != null)
+                        {
+                            foreach (var code in singleCodes)
+                            {
+                                Product transformer = _ServiceFactory.GetProductByProductCode(code);
+                                if (transformer != null)
+                                {
+                                    if (!_Products.Any(x => x.ProductCode == transformer.ProductCode))
+                                    {
+                                        Products.Add(transformer);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    _MyClient.Abort();
                     System.Windows.MessageBox.Show(ex.Message);
                 }
             });
@@ -184,7 +184,7 @@ namespace QLHS_DR.ViewModel.ContractViewModel
                 {
                     FilePath = openFileDialog.FileName;
                     FileInfo fileInfo = new FileInfo(_FilePath);
-                    ContractName = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+                    ContractName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                 }
             });
             ClearAllTransformerCodeCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -203,21 +203,21 @@ namespace QLHS_DR.ViewModel.ContractViewModel
             {
                 try
                 {
-                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                    _MyClient.Open();
-                    byte[] fileData = System.IO.File.ReadAllBytes(_FilePath);                  
+                    byte[] fileData = System.IO.File.ReadAllBytes(_FilePath);
+                    _Proxy = ServiceHelper.NewMessageServiceClient();
+                    _Proxy.Open();
 
                     foreach (var item in _Products)
                     {
-                        _MyClient.UploadContract(fileData, item.Id, _ContractName, System.IO.Path.GetFileName(_FilePath), _ContractDescription, false);
+                        _Proxy.UploadContract(fileData, item.Id, _ContractName, Path.GetFileName(_FilePath), _ContractDescription, false);
                     }
-                    _MyClient.Close();
+                    _Proxy.Close();
                     System.Windows.MessageBox.Show("Tải lên thành công.");
                     p.Close();
                 }
-                catch (Exception ex)
+                catch (CommunicationException ex)
                 {
-                    _MyClient.Abort();
+                    _Proxy.Abort();
                     System.Windows.MessageBox.Show(ex.Message);
                 }
             });

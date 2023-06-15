@@ -1,22 +1,6 @@
-﻿
-using QLHS_DR.ChatAppServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Windows;
-using System.Windows.Interop;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using DevExpress.Utils;
-using System.ComponentModel.Design;
+﻿using DevExpress.Mvvm;
 using DevExpress.Xpf.Core;
-using DevExpress.Mvvm;
+using System.Windows;
 
 namespace QLHS_DR
 {
@@ -46,7 +30,7 @@ namespace QLHS_DR
             var splashScreen = SplashScreenManager.CreateThemed(viewModel, false);
             splashScreen.ShowOnStartup();
             base.OnStartup(e);
-            
+
         }
     }
 }

@@ -1,16 +1,11 @@
 ﻿using DevExpress.Mvvm.Native;
-using DevExpress.Pdf.Native.BouncyCastle.Utilities;
 using EofficeClient.Core;
-using EofficeCommonLibrary.Common.Util;
-using Prism.Events;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -27,19 +22,19 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private string _TaskName;
         public string TaskName { get => _TaskName; set { _TaskName = value; OnPropertyChanged("TaskName"); } }
         private string _TaskDrecription;
-        public string TaskDrecription 
-        { 
-            get => _TaskDrecription; 
-            set 
-            { 
-                _TaskDrecription = value; 
+        public string TaskDrecription
+        {
+            get => _TaskDrecription;
+            set
+            {
+                _TaskDrecription = value;
                 OnPropertyChanged("TaskDrecription");
-            } 
+            }
         }
         private ObservableCollection<int> _ConfidentialLevels;
-        public ObservableCollection<int> ConfidentialLevels 
-        { 
-            get => _ConfidentialLevels; 
+        public ObservableCollection<int> ConfidentialLevels
+        {
+            get => _ConfidentialLevels;
             set { _ConfidentialLevels = value; OnPropertyChanged("ConfidentialLevels"); }
         }
         private int _ConfidentialSelected;
@@ -54,17 +49,17 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         }
 
         private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
-        
+
         private IReadOnlyList<User> iReadOnlyListUser;
 
         private Object _DocumentSourcePdf;
-        public Object DocumentSourcePdf 
+        public Object DocumentSourcePdf
         {
-            get => _DocumentSourcePdf; 
-            set 
-            { 
+            get => _DocumentSourcePdf;
+            set
+            {
                 _DocumentSourcePdf = value;
-                OnPropertyChanged("DocumentSourcePdf"); 
+                OnPropertyChanged("DocumentSourcePdf");
             }
         }
         private bool _CanSaveFile;
@@ -85,7 +80,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         #endregion
         internal NewTaskViewModel()
-        {            
+        {
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 ConfidentialLevels = new ObservableCollection<int>() { 0, 1, 2, 3 };
@@ -129,15 +124,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 catch (Exception ex)
                 {
                     System.Windows.MessageBox.Show(ex.Message + "Function: LoadedWindowCommand");
-                    if(ex.InnerException!=null)
+                    if (ex.InnerException != null)
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.Message + "Function: LoadedWindowCommand");
                     }
-                   
+
                     _MyClient.Abort();
                 }
             });
-            OkCommand = new RelayCommand<Window>((p) => { if (_DocumentSourcePdf!=null && _TaskDrecription!=null && _TaskName!=null) return true; else return false; }, (p) =>
+            OkCommand = new RelayCommand<Window>((p) => { if (_DocumentSourcePdf != null && _TaskDrecription != null && _TaskName != null) return true; else return false; }, (p) =>
             {
                 MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
 
@@ -161,16 +156,16 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             CanSaveFile = _CanSaveFile
                         };
                         List<ReceivedDepartmentDTO> temDTo = new List<ReceivedDepartmentDTO>();
-                        foreach(var receiveDept in _ListReceiveDepartment)
+                        foreach (var receiveDept in _ListReceiveDepartment)
                         {
-                            if(receiveDept.IsProcessTemp || receiveDept.IsViewOnlyTemp)
-                            temDTo.Add(receiveDept.ReceivedDepartmentDTO);
+                            if (receiveDept.IsProcessTemp || receiveDept.IsViewOnlyTemp)
+                                temDTo.Add(receiveDept.ReceivedDepartmentDTO);
                         }
                         string pathFile = DocumentSourcePdf.ToString();
                         TaskAttachedFileDTO taskAttachedFileDTO = new TaskAttachedFileDTO()
                         {
                             ModifiedBy = SectionLogin.Ins.CurrentUser.Id,
-                            FileName = System.IO.Path.GetFileName ( DocumentSourcePdf.ToString()),
+                            FileName = System.IO.Path.GetFileName(DocumentSourcePdf.ToString()),
                             Content = System.IO.File.ReadAllBytes(pathFile),
                             ConfidentialLevel = _ConfidentialSelected
                         };
@@ -186,7 +181,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show(ex.Message +" At OkCommand");
+                    System.Windows.MessageBox.Show(ex.Message + " At OkCommand");
                     _MyClient.Abort();
                 }
             });
@@ -195,7 +190,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 p.Close();
             });
         }
-        
+
         private ObservableCollection<ReceiveDepartment> GetReceiveDepartments()
         {
             ObservableCollection<ReceiveDepartment> result = new ObservableCollection<ReceiveDepartment>();
@@ -203,12 +198,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
-                var departments = _MyClient.GetDepartments();                
-               
+                var departments = _MyClient.GetDepartments();
+
                 if (departments != null)
                 {
                     foreach (var dep in departments)
-                    {                        
+                    {
                         dep.GroupDepartment = _MyClient.GetGroupDepartment(dep.GroupDepartmentId);
                         ReceivedDepartmentDTO receivedDepartmentDTO = new ReceivedDepartmentDTO()
                         {
@@ -217,8 +212,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             CanViewFileAttachment = false,
                             DepartmentId = dep.Id,
                             IndexInTree = 1,
-                            IsProcess= false,
-                            IsViewOnly= false,
+                            IsProcess = false,
+                            IsViewOnly = false,
                         };
                         result.Add(new ReceiveDepartment()
                         {
@@ -234,7 +229,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 System.Windows.MessageBox.Show(ex.Message + "Function: GetReceiveDepartments");
             }
             return result;
-        }                           
+        }
     }
-   
+
 }

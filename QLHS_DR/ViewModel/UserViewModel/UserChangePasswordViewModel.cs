@@ -1,18 +1,13 @@
-﻿using EofficeCommonLibrary.Common.Util;
+﻿using EofficeClient.Core;
+using EofficeCommonLibrary.Common.Util;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.ServiceModel.Security;
-using System.ServiceModel;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows;
-using QLHS_DR.ChatAppServiceReference;
-using EofficeClient.Core;
 
 namespace QLHS_DR.ViewModel.UserViewModel
 {
@@ -65,7 +60,7 @@ namespace QLHS_DR.ViewModel.UserViewModel
                     else MessageBox.Show("Thao tác thất bại, vui lòng thử lại!");
                     p.Close();
                 }
-              
+
                 catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message);

@@ -1,27 +1,12 @@
-﻿using DevExpress.Pdf;
-using DevExpress.Xpf.Core;
-using EofficeClient.Core;
-using QLHS_DR.Core;
+﻿using EofficeClient.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Contexts;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static DevExpress.Utils.HashCodeHelper.Primitives;
 
 namespace QLHS_DR.View.ProductView
 {
@@ -33,7 +18,7 @@ namespace QLHS_DR.View.ProductView
         MessageServiceClient _MyClient;
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _CanPrint;
-        private bool _CanSave;       
+        private bool _CanSave;
         private byte[] _ContextFile;
         private bool _IsBusy;
         public bool IsBusy
@@ -48,15 +33,15 @@ namespace QLHS_DR.View.ProductView
         private TransformerManualDTO _TransformerManualDTO;
 
 
-        public TransformerManualViewPdf(bool canPrint, bool canSave, string fileName,TransformerManualDTO transformerManualDTO)
+        public TransformerManualViewPdf(bool canPrint, bool canSave, string fileName, TransformerManualDTO transformerManualDTO)
         {
             InitializeComponent();
             pdfViewer1.DataContext = this;
             _CanPrint = canPrint;
-            _CanSave= canSave;
-            _TransformerManualDTO= transformerManualDTO;
+            _CanSave = canSave;
+            _TransformerManualDTO = transformerManualDTO;
             pdfViewerWindow.Title = fileName;
-           
+
         }
         private void pdfViewerWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -81,7 +66,7 @@ namespace QLHS_DR.View.ProductView
             }
             finally
             {
-                IsBusy  = false;
+                IsBusy = false;
             }
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

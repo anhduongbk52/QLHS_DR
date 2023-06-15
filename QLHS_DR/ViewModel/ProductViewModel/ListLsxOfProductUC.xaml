@@ -1,0 +1,76 @@
+﻿<UserControl  x:Class="QLHS_DR.ViewModel.ProductViewModel.ListLsxOfProductUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:QLHS_DR.ViewModel.ProductViewModel"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <dx:LoadingDecorator Grid.Column="0"  IsSplashScreenShown="{Binding IsBusy}" OwnerLock="Full">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <GroupBox Margin="5" Header="Danh sách LSX" Grid.Column="0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView ItemsSource="{Binding Lsxes}" Name="listViewLsxes" HorizontalAlignment="Stretch"
+                          SelectedItem="{Binding SelectedLsx}">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Tải lên Lsx" Command="{Binding NewLsxCommand}"/>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn DisplayMemberBinding="{Binding Id}"
+                                    Header="Id" Width="40"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding DOfficeNumber}"
+                                    Header="Số (Doffice)"
+                                    Width="80" />
+                            <GridViewColumn DisplayMemberBinding="{Binding KHNumber}"
+                                    Header="Số (KH)"
+                                    Width="80" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}"
+                                    Header="Trích yếu"
+                                    Width="Auto" />
+                            <GridViewColumn DisplayMemberBinding="{Binding DateCreate, StringFormat='dd/MM/yyyy'}"
+                                    Header="Ngày tải lên"
+                                    Width="Auto" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+            <GroupBox Margin="5" Grid.Column="1" Header="File đính kém">
+                <ListBox DisplayMemberPath="FileName" ItemsSource="{Binding PublicFiles}">
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="View"  Command="{Binding ViewFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                            <MenuItem Header="Xóa"  Command="{Binding RemoveFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                            <MenuItem Header="Thêm file đính kèm"  Command="{Binding AddFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                            <MenuItem Header="Download File"  Command="{Binding DownloadFileAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                            <MenuItem Header="Download All Files"  Command="{Binding DownloadAllFilesAttachmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
+            </GroupBox>
+        </Grid>
+    </dx:LoadingDecorator>
+</UserControl>

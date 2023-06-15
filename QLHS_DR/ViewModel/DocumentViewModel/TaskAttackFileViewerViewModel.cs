@@ -1,25 +1,18 @@
-﻿using DevExpress.Mvvm.Native;
-using DevExpress.Pdf;
-using DevExpress.Xpf.DocumentViewer;
+﻿using DevExpress.Pdf;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
-using QLHS_DR.Core;
 using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using QLHS_DR.View.DocumentView;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class TaskAttackFileViewerViewModel:BaseViewModel
+    internal class TaskAttackFileViewerViewModel : BaseViewModel
     {
         const float DrawingDpi = 72f;
 
@@ -105,7 +98,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     NotifyPropertyChanged("Title");
                 }
             }
-        }        
+        }
         private Object _DocumentSource;
         public Object DocumentSource
         {
@@ -237,26 +230,26 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         }
                     }
                     pdfViewerControlEx.DocumentLoaded += PdfViewerControlEx_DocumentLoaded;
-                   
+
                     _MyClient.Close();
                 }
                 catch (Exception ex)
                 {
                     _MyClient.Abort();
                     System.Windows.MessageBox.Show(ex.Message + "Error at pdfViewerWindow_Loaded");
-                }                 
+                }
             });
         }
-       
+
         private void PdfViewerControlEx_DocumentLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-           
+
             PdfViewerControlEx pdfViewer = (PdfViewerControlEx)sender;
             pdfViewer.CurrentPageNumber = _currentPage;
             PdfPrinterSettings printerSettings = pdfViewer.ShowPrintPageSetupDialog();
             if (printerSettings != null)
             {
-               
+
                 if (printerSettings.Settings.PrinterName.ToLower().Contains("pdf") || printerSettings.Settings.PrinterName.ToLower().Contains("xps") || printerSettings.Settings.PrinterName.ToLower().Contains("onenote"))
                 {
                     System.Windows.MessageBox.Show("Bạn không được quyền sử dụng máy in ảo cho tập tin này !");
@@ -264,10 +257,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 else
                 {
                     try
-                    {                       
+                    {
                         _PrinterSetting = printerSettings;
                         int copies = printerSettings.Settings.Copies;
-                        pdfViewer.Print(printerSettings, true);                      
+                        pdfViewer.Print(printerSettings, true);
 
                         MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                         _MyClient.Open();
@@ -282,9 +275,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             UserId = SectionLogin.Ins.CurrentUser.Id,
                             LogType = LogType.PRINT_DOCUMENT,
                             Description = "Người dùng [" + SectionLogin.Ins.CurrentUser.FullName +
-                                          "] đã thực hiện in [" + printerSettings.PageNumbers.Length + 
-                                          "] trang tài liệu [" + _FileName + 
-                                          "] trong luồng công việc [" + _TaskName + 
+                                          "] đã thực hiện in [" + printerSettings.PageNumbers.Length +
+                                          "] trang tài liệu [" + _FileName +
+                                          "] trong luồng công việc [" + _TaskName +
                                           "] sử dụng máy in [" + printerSettings.Settings.PrinterName + "].",
                             IPAddress = EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress()
                         };
@@ -345,7 +338,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 using (PdfGraphics graphics = processor.CreateGraphics())
                 {
                     SizeF actualPageSize = PrepareGraphics(page, graphics);
-                    int fontSize = (int)(Math.Min(actualPageSize.Width,actualPageSize.Height) * 0.013);
+                    int fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.013);
                     System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
                     using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
                     {

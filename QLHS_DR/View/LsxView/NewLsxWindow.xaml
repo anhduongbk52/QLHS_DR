@@ -1,0 +1,179 @@
+﻿<Window x:Class="QLHS_DR.View.LsxView.NewLsxWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.LsxView"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        mc:Ignorable="d" WindowState="Maximized"
+         x:Name="newLsxWindow"
+        DataContext="{Binding Source={StaticResource Locator},Path=NewLsxViewModel}"
+       
+        Title="Thêm mới lệnh sản xuất" Height="800" d:DesignWidth="1906.5" >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <dx:LoadingDecorator IsSplashScreenShown="{Binding IsBusy}" Name="loadingDecorator" OwnerLock="LoadingContent">
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="3"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="Height" Value="50"></Setter>
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="Margin" Value="3"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="Margin" Value="3"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:Card Grid.Row="0" HorizontalAlignment="Stretch" Margin="5" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition Height="150"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Text="{Binding DOfficeNumber, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                                     materialDesign:HintAssist.Hint="Số lệnh (DOffice)"
+                                     Margin="5" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     Grid.Column="0">
+                            </TextBox>
+                            <TextBox Text="{Binding KHNumber, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" 
+                                 materialDesign:HintAssist.Hint="Số lệnh (KH)"
+                                 Margin="5"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Grid.Column="1">
+                            </TextBox>
+                            <DatePicker  Grid.Column="2" Margin="5"
+                                     SelectedDate ="{Binding StartDate,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Pick Date"
+                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox 
+                                ItemsSource="{Binding Departments}"
+                                DisplayMemberPath="Name"
+                                SelectedItem="{Binding SelectedDepartmentCreator,Mode=TwoWay}"
+                                Margin="5" Grid.Column="0"
+                                materialDesign:HintAssist.Hint="Đơn vị phát hành" 
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            </ComboBox>
+                            <ComboBox 
+                                ItemsSource="{Binding Users}"
+                                DisplayMemberPath="FullName"
+                                SelectedItem="{Binding SelectedUserCreator,Mode=TwoWay}"
+                                Margin="5" Grid.Column="1"
+                                materialDesign:HintAssist.Hint="Soạn thảo" 
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            </ComboBox>
+                            <ComboBox 
+                                ItemsSource="{Binding Departments}"
+                                DisplayMemberPath="Name"
+                                SelectedItem="{Binding SelectedReceiveDepartment,Mode=TwoWay}"
+                                Margin="5" Grid.Column="2" 
+                                materialDesign:HintAssist.Hint="Đơn vị nhận" 
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            </ComboBox>
+                        </Grid>
+                        <TextBox Grid.Row="2"
+                                 Text="{Binding Name,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                 materialDesign:HintAssist.Hint="Trích yếu"   AcceptsReturn="True"
+                                 Margin="5" TextWrapping="Wrap"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <TextBox Grid.Row="3"
+                                 Text="{Binding Reference,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                 materialDesign:HintAssist.Hint="Căn cứ" AcceptsReturn="True"
+                                 Margin="5,5,5,5" 
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <TextBox Grid.Row="4" BorderBrush="Black" BorderThickness="0.2"
+                                 Text="{Binding ContentRequest,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                 materialDesign:HintAssist.Hint="Nội dung"  TextWrapping="Wrap"
+                                 Margin="5" AcceptsReturn="True"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <TextBox Grid.Row="5"
+                                 Text="{Binding TimeRequest,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                 materialDesign:HintAssist.Hint="Thời gian yêu cầu" AcceptsReturn="True"
+                                 Margin="5" TextWrapping="Wrap" 
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <TextBox Grid.Row="6"
+                                 Text="{Binding Description,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+                                 materialDesign:HintAssist.Hint="Ghi chú" AcceptsReturn="True"
+                                 Margin="5" TextWrapping="Wrap"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <StackPanel Grid.Row="7">
+                            <TextBlock Margin="5">File đính kèm:</TextBlock>
+                            <ListBox Margin="5" Height="150" 
+                                 ItemsSource="{Binding FileAttachments, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 SelectedItem="{Binding SelectedFile}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding No}" Margin="5"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding FileNameWithoutExt}" Margin="5"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Xóa" Command="{Binding RemoveFileCommand}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}" />
+                                        <MenuItem Header="Clear" Command="{Binding ClearFileCommand}" />
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                        </StackPanel>
+
+                    </Grid>
+                </materialDesign:Card>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button Command="{Binding OpenLsxFileCommand}"  Width="150" Margin="5,5,5,5" Content="Open Lsx" HorizontalAlignment="Right"></Button>
+                    <Button Command="{Binding OpenAttFileNewCommand}"  Width="160" Margin="5,5,5,5" Content="Thêm file đính kèm" HorizontalAlignment="Right"></Button>
+                    <Button Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=newLsxWindow}" Width="150" Margin="5,5,5,5" Content="Save"  HorizontalAlignment="Right"></Button>
+                </StackPanel>
+            </Grid>
+            <dxpdf:PdfViewerControl HorizontalAlignment="Stretch" Grid.Column="1" DocumentSource="{Binding DocumentSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CommandBarStyle="Bars" AllowCachePages="False"/>
+        </Grid>
+    </dx:LoadingDecorator>
+</Window>
+

@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EofficeClient.Core;
+using EofficeCommonLibrary.Common.Util;
+using EofficeCommonLibrary.Model.DataType;
+using Microsoft.Win32;
+using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
+using QLHS_DR.ViewModel;
+using System;
 using System.ComponentModel;
-using System.Configuration;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Security;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EofficeCommonLibrary;
-using EofficeCommonLibrary.Common.Util;
-using EofficeCommonLibrary.Model.DataType;
-using DevExpress.Mvvm;
-using QLHS_DR.Core;
-using QLHS_DR.ViewModel;
-using EofficeClient.Core;
-using DevExpress.XtraExport.Xls;
-using QLHS_DR.ChatAppServiceReference;
-using QLHS_DR.ViewModel.ChatAppViewModel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using Microsoft.Win32;
-using QLHS_DR;
-using DevExpress.Data.Utils;
 
 namespace EofficeClient.ViewModel
 {
@@ -31,7 +19,7 @@ namespace EofficeClient.ViewModel
     class LoginViewModel : BaseViewModel, IDataErrorInfo
     {
         private MessageServiceClient _MyClient;
-        
+
         public string Error { get { return null; } }
         public string this[string columnName]
         {
@@ -91,7 +79,8 @@ namespace EofficeClient.ViewModel
             IsLogin = false;
             Password = "";
             UserName = "";
-            LoadedWindowCommand = new RelayCommand<Window>((w) => { return true; }, (p) => {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
                 Password = "";
                 UserName = "";
                 try
@@ -108,14 +97,22 @@ namespace EofficeClient.ViewModel
                 catch (Exception ex)
                 {
                     MessageBox.Show("Exceptiton: " + ex.Message);
-                }                
+                }
             });
             LoginCommand = new RelayCommand<Window>((p) => { if (_UserName != null && _Password != null && _Password != "") return true; else return false; }, (p) =>
             {
-                Login(p);                   
+                Window window = p;
+                Login(window);
             });
             CloseCommand = new RelayCommand<Window>((w) => { return true; }, (p) => { CheckBoxSave(_SaveLogin); p.Close(); IsLogin = false; });
-            PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
+            PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) =>
+            {
+                try
+                {
+                    Password = p.Password;
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            });
         }
         void Login(Window p)
         {
@@ -123,19 +120,19 @@ namespace EofficeClient.ViewModel
             IsBusy = true;
             if (p == null) return;
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
-            
+
             _MyClient = ServiceHelper.NewMessageServiceClient(_UserName, passEncode);
-           
+
             try
             {
                 _MyClient.Open();
-                User = _MyClient.GetUserByName(_UserName);                
+                User = _MyClient.GetUserByName(_UserName);
                 SectionLogin.Ins.CurrentUser = User;
                 SectionLogin.Ins.Permissions = _MyClient.GetPermissions(_User.Id);
-                SectionLogin.Ins.ListPermissions = _MyClient.GetPermissionOfUser(_User.UserName).ToList();               
+                SectionLogin.Ins.ListPermissions = _MyClient.GetPermissionOfUser(_User.UserName).ToList();
                 _MyClient.Close();
                 SectionLogin.Ins.Token = passEncode;
-                IsLogin = true;               
+                IsLogin = true;
 
                 CheckBoxSave(_SaveLogin);
                 if (_SaveLogin && IsLogin)
@@ -195,31 +192,19 @@ namespace EofficeClient.ViewModel
                 //proxy?.Connect(User.Id);              
                 p.Close();
             }
-            catch (TimeoutException exception)
+            catch (Exception ex)
             {
                 _MyClient.Abort();
                 IsLogin = false;
-                MessageBox.Show("Exceptiton: " + exception.Message);               
+                MessageBox.Show("Exceptiton: " + ex.Message);
             }
-            catch (MessageSecurityException exception)
-            {
-                _MyClient.Abort();
-                IsLogin = false;
-                if(exception.InnerException!=null)
-                MessageBox.Show(exception.InnerException.Message);                
-            }
-            catch (CommunicationException exception)
-            {
-                _MyClient.Abort();
-                IsLogin = false;
-                MessageBox.Show("Exceptiton: " + exception.Message);                
-            }
+
             finally
             { IsBusy = false; }
         }
         public void CheckBoxSave(bool status)
         {
-            QLHS_DR.Properties.Settings.Default.StatusSavePass = status;           
+            QLHS_DR.Properties.Settings.Default.StatusSavePass = status;
             QLHS_DR.Properties.Settings.Default.Save();
         }
     }

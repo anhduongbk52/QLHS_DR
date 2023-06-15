@@ -60,13 +60,24 @@
                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
                 Grid.Row="1" >
                 <ComboBox 
-                    materialDesign:HintAssist.Hint="Tiêu đề của tài liệu"
+                    materialDesign:HintAssist.Hint="Nhóm tài liệu"
                     IsEditable="False"
                     materialDesign:HintAssist.HintOpacity=".26"
                     ItemsSource="{Binding ListContents}"
                     DisplayMemberPath="Title"
                     SelectedValue="{Binding Path=ContentTypeSelected}">
                 </ComboBox>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone 
+                Grid.Column="0" 
+                Mode="Standard"
+                Padding="8 4 8 4"
+                CornerRadius="2"
+                Panel.ZIndex="1"
+                Margin="10 5 5 5"
+                 materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                Grid.Row="2" >
+                <TextBox Text="{Binding DocumentName,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Tên tài liệu" materialDesign:HintAssist.HintOpacity=".6"/>
             </materialDesign:ColorZone>
             <materialDesign:ColorZone 
                 Grid.Row="3" 

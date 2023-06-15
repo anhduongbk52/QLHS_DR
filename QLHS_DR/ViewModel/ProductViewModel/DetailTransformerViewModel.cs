@@ -1,21 +1,17 @@
-﻿using DevExpress.Data.TreeList;
-using QLHS_DR.ChatAppServiceReference;
+﻿using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using QLHS_DR.View.ProductView;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.ProductViewModel
 {
-    internal class DetailTransformerViewModel:BaseViewModel
+    internal class DetailTransformerViewModel : BaseViewModel
     {
         #region "Properties and Filed"
         private bool isFirtLoad;
+        public View.ProductView.GeneralInformationProductUC GeneralInformationProductUC { get; set; }
+        private ServiceFactory serviceFactory;
         private Product _Product;
         public Product Product { get => _Product; set { _Product = value; OnPropertyChanged("Product"); } }
         private TransformerDTO _TransformerDTO;
@@ -36,13 +32,70 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         #endregion
         public DetailTransformerViewModel(Product product)
         {
+            serviceFactory = new ServiceFactory();
+            GeneralInformationProductUC = new View.ProductView.GeneralInformationProductUC();
+            product.TransformerInfo = serviceFactory.GetTransformerInfo(product.Id);
             this.Product = product;
             this.TransformerDTO = new TransformerDTO()
             {
-                //ConnectionSymbol= product.TransformerInfo.ConnectionSymbol,
-                //CoolingMethod = product.TransformerInfo.CoolingMethod,
-                Id= product.Id,
+                ConnectionSymbol = product.TransformerInfo.ConnectionSymbol,
+                CoolingMethod = product.TransformerInfo.CoolingMethod,
+                Id = product.Id,
+                ProductCode = product.ProductCode,
+                ProductName = product.ProductName,
+                Note = product.Note,
+                NumberOfPhase = product.TransformerInfo.NumberOfPhase.Value,
+                IsLocked = product.IsLocked,
+                NumberOfWinding = product.TransformerInfo.NumberOfWinding.Value,
+                VoltageRatio = product.TransformerInfo.VoltageRatio,
+                ProductType = product.ProductType,
+                StandardId = product.TransformerInfo.StandardId.Value
             };
+
+            if (product.TransformerInfo == null)
+            {
+                this.TransformerDTO = new TransformerDTO()
+                {
+                    Id = product.Id,
+                    ProductCode = product.ProductCode,
+                    ProductName = product.ProductName,
+                    DateCreated = product.DateCreated,
+                    IsLocked = product.IsLocked,
+                    ProductType = product.ProductType,
+                    Note = product.Note,
+                    UserCreateId = product.UserCreateId != null ? product.UserCreateId.Value : 0,
+                    YearOfManufacture = 0,
+                };
+            }
+            else
+            {
+                this.TransformerDTO = new TransformerDTO()
+                {
+                    Id = product.Id,
+                    ProductCode = product.ProductCode,
+                    ProductName = product.ProductName,
+                    DateCreated = product.DateCreated,
+                    IsLocked = product.IsLocked,
+                    ProductType = product.ProductType,
+                    Note = product.Note,
+                    UserCreateId = product.UserCreateId != null ? product.UserCreateId.Value : 0,
+                    YearOfManufacture = product.YearOfManufacture != null ? product.YearOfManufacture.Value : 0,
+                    ConnectionSymbol = product.TransformerInfo.ConnectionSymbol,
+                    CoolingMethod = product.TransformerInfo.CoolingMethod,
+                    RatedFrequency = product.TransformerInfo.RatedFrequency,
+                    Station = product.TransformerInfo.Station,
+                    RatedPower = product.TransformerInfo.RatedPower,
+                    UnitPower = product.TransformerInfo.UnitPower,
+                    RatedVoltage = product.TransformerInfo.RatedVoltage,
+                    StandardId = product.TransformerInfo.StandardId,
+                    VoltageRatio = product.TransformerInfo.VoltageRatio,
+                    NumberOfWinding = product.TransformerInfo.NumberOfWinding,
+                    PowerTransport = product.TransformerInfo.PowerTransport,
+                    RatedPowerAndUnit = (product.TransformerInfo.RatedPower + product.TransformerInfo.UnitPower),
+                    NumberOfPhase = product.TransformerInfo.NumberOfPhase != null ? product.TransformerInfo.NumberOfPhase.Value : 3
+                    //StandardName = product.TransformerInfo.Standard.Name
+                };
+            }
             isFirtLoad = true; //Khoi tao lan dau
 
             //OpenListFileScanUC = new RelayCommand<DevExpress.Xpf.NavBar.NavBarItem>((p) => { if (p != null) return true; else return false; }, (p) =>
@@ -72,37 +125,32 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             {
                 if (isFirtLoad)
                 {
-                    //GeneralInformationDistributionTransformerUC generalInformationDistributionTransformerUC = new GeneralInformationDistributionTransformerUC();
-
-                    //GeneralInformationDistributionTransformerViewModel informationDistributionTransformerViewModel = new GeneralInformationDistributionTransformerViewModel(_Transformer.Id);
-
-                    //generalInformationDistributionTransformerUC.DataContext = informationDistributionTransformerViewModel;
-                    //LoadUC = generalInformationDistributionTransformerUC;
+                    GeneralInfomationProductViewModel vmGeneralInfomationProduct = new GeneralInfomationProductViewModel(_TransformerDTO);
+                    GeneralInformationProductUC.DataContext = vmGeneralInfomationProduct;
+                    LoadUC = GeneralInformationProductUC;
                 }
                 isFirtLoad = false;
             });
             GeneralInformationDistributionTransformerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                //GeneralInformationDistributionTransformerUC generalInformationDistributionTransformerUC = new GeneralInformationDistributionTransformerUC();
-
-                //GeneralInformationDistributionTransformerViewModel informationDistributionTransformerViewModel = new GeneralInformationDistributionTransformerViewModel(_Transformer.Id);
-                //generalInformationDistributionTransformerUC.DataContext = informationDistributionTransformerViewModel;
-                //LoadUC = generalInformationDistributionTransformerUC;
+                GeneralInfomationProductViewModel vmGeneralInfomationProduct = new GeneralInfomationProductViewModel(_TransformerDTO);
+                GeneralInformationProductUC.DataContext = vmGeneralInfomationProduct;
+                LoadUC = GeneralInformationProductUC;
             });
             OpenTransformerManuals = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                ListTransformerManualUC  listTransformerManualUC = new ListTransformerManualUC();               
+                ListTransformerManualUC listTransformerManualUC = new ListTransformerManualUC();
                 ListTransformerManualViewModel listTransformerViewModel = new ListTransformerManualViewModel(_Product);
                 listTransformerManualUC.DataContext = listTransformerViewModel;
                 LoadUC = listTransformerManualUC;
             });
-            OpenListContractUCCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {
-                _ListContractUC = new View.ContractView.ListContractUC();
-                ContractViewModel.ListContractViewModel listContractViewModel = new ContractViewModel.ListContractViewModel(_TransformerDTO);
-                _ListContractUC.DataContext = listContractViewModel;
-                LoadUC = _ListContractUC;
-            });
+            //OpenListContractUCCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            //{
+            //    _ListContractUC = new View.ContractView.ListContractUC();
+            //    ContractViewModel.ListContractViewModel listContractViewModel = new ContractViewModel.ListContractViewModel(_TransformerDTO);
+            //    _ListContractUC.DataContext = listContractViewModel;
+            //    LoadUC = _ListContractUC;
+            //});
         }
     }
 }

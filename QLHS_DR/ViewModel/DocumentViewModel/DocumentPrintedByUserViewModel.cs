@@ -32,7 +32,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private TaskAttachedFileDTO _TaskAttachedFileDTO;
         public TaskAttachedFileDTO TaskAttachedFileDTO { get => _TaskAttachedFileDTO; set { _TaskAttachedFileDTO = value; OnPropertyChanged("TaskAttachedFile"); } }
         private ObservableCollection<User> _Users;
-      
+
         private UserTaskPrintManager _SelectedUserTaskPrintManager;
         public UserTaskPrintManager SelectedUserTaskPrintManager
         {
@@ -74,15 +74,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         private ObservableCollection<UserTaskPrintManager> _UserTaskPrintManagers;
         public ObservableCollection<UserTaskPrintManager> UserTaskPrintManagers
-        { 
-            get => _UserTaskPrintManagers; 
-            set 
+        {
+            get => _UserTaskPrintManagers;
+            set
             {
-                if(value != _UserTaskPrintManagers)
+                if (value != _UserTaskPrintManagers)
                 {
                     _UserTaskPrintManagers = value;
                     OnPropertyChanged("UserTaskPrintManagers");
-                }               
+                }
             }
         }
 
@@ -123,7 +123,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                 UserTaskPrintManagers = _SelectedDocument.UserTask.UserTaskPrintManagers.ToObservableCollection();
                                 if (_SelectedDocument.UserTask != null)
                                 {
-                                    if(_UserTaskPrintManagers.Count>0)
+                                    if (_UserTaskPrintManagers.Count > 0)
                                     {
                                         TaskAttachedFileDTO = GetTaskAttachedFileDTO(_SelectedDocument.UserTask.TaskId);
                                         if (_TaskAttachedFileDTO != null)
@@ -131,9 +131,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                             DecryptTaskAttachedFile(TaskAttachedFileDTO, _SelectedDocument.UserTask);
                                         }
                                     }
-                                    
+
                                 }
-                            }                        
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -147,7 +147,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     OnPropertyChanged("SelectedDocument");
                 }
             }
-        }        
+        }
         private Object _DocumentSource;
         public Object DocumentSource
         {
@@ -174,7 +174,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         #endregion
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand ConfidentialLevelChangeCommand { get; set; }      
+        public ICommand ConfidentialLevelChangeCommand { get; set; }
         #endregion
         internal DocumentPrintedByUserViewModel()
         {
@@ -189,7 +189,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             ConfidentialLevelChangeCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 Documents = GetUserTasksByOfMe(_ConfidentialLevelSelected);
-            });    
+            });
         }
         private ObservableCollection<DocumentOfMe> GetUserTasksByOfMe(int confidentialLevel)
         {
@@ -260,7 +260,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
             }
         }
-       
+
         private TaskAttachedFileDTO GetTaskAttachedFileDTO(int taskId)
         {
             TaskAttachedFileDTO ketqua = new TaskAttachedFileDTO();
