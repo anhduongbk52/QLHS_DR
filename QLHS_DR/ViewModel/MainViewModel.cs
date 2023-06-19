@@ -24,11 +24,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Timers;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Input;
 using TableDependency.SqlClient;
 using TableDependency.SqlClient.Base;
@@ -274,7 +274,6 @@ namespace QLHS_DR.ViewModel
                 //Login process
                 Isloaded = true;
                 if (p == null) return;
-                CertificateValidation();
                 p.Hide();
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
@@ -334,30 +333,50 @@ namespace QLHS_DR.ViewModel
             });
             LogoutCommand = new RelayCommand<Window>((p) => { if (p == null) return false; else return true; }, (p) =>
             {
-                Isloaded = false;
-                ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
-                SectionLogin.Ins = null;
-
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-                if (loginWindow.DataContext == null) return;
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-                if (loginVM != null)
+                try
                 {
-                    if (loginVM.IsLogin)
+                    ServiceFactory serviceManager = new ServiceFactory();
+
+                    LoginManager loginManager = new LoginManager()
                     {
-                        if (loginVM.User != null)
+                        ComputerName = Environment.MachineName,
+                        LoginIp = GetLocalIPAddress(),
+                        LogType = LoginType.Logout,
+                        ApplicationVersion = GetRunningVersion().ToString(),
+                        ApplicationName = AppDomain.CurrentDomain.FriendlyName
+                    };
+                    serviceManager.RecordLogin(loginManager);
+
+                    Isloaded = false;
+                    ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
+                    SectionLogin.Ins = null;
+                   
+                    p.Hide();
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.ShowDialog();
+                    if (loginWindow.DataContext == null) return;
+                    var loginVM = loginWindow.DataContext as LoginViewModel;
+                    if (loginVM != null)
+                    {
+                        if (loginVM.IsLogin)
                         {
-                            //SectionLogin.Ins.CurrentUser = loginVM.User;
-                            CurrentUser = loginVM.User;
+                            if (loginVM.User != null)
+                            {
+                                //SectionLogin.Ins.CurrentUser = loginVM.User;
+                                CurrentUser = loginVM.User;
+                            }
+                            p.Show();
+                            LoadDefaultTab();
                         }
-                        p.Show();
-                        LoadDefaultTab();
+                        else
+                        { p.Close(); }
                     }
-                    else
-                    { p.Close(); }
                 }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
             });
             EditStampCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
@@ -789,13 +808,24 @@ namespace QLHS_DR.ViewModel
                 }
                 catch (Exception exception)
                 {
-                    System.Windows.Forms.MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                 MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 //}
             }
         }
-        private Version GetRunningVersion()
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+        public static Version GetRunningVersion()
         {
             try
             {
@@ -806,15 +836,15 @@ namespace QLHS_DR.ViewModel
                 return Assembly.GetExecutingAssembly().GetName().Version;
             }
         }
-        public static void CertificateValidation()
-        {
-            ServicePointManager.ServerCertificateValidationCallback = (RemoteCertificateValidationCallback)Delegate.Combine(ServicePointManager.ServerCertificateValidationCallback, new RemoteCertificateValidationCallback(IsSSL));
-        }
+        //public static void CertificateValidation()
+        //{
+        //    ServicePointManager.ServerCertificateValidationCallback = (RemoteCertificateValidationCallback)Delegate.Combine(ServicePointManager.ServerCertificateValidationCallback, new RemoteCertificateValidationCallback(IsSSL));
+        //}
         #endregion
-        public static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
-        {
-            return true;
-        }
+        //public static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
+        //{
+        //    return true;
+        //}
         public class NortifyUserTask
         {
             public int Id { get; set; }

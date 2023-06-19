@@ -139,6 +139,30 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IMessageService_DownloadPublicFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadPublicFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadPublicFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadPublicFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteLsx_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLsx" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteLsx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLsxResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveFileInLsx_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFileInLsx" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveFileInLsx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFileInLsxResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPublicFilesOfLsx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublicFilesOfLsx" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetPublicFilesOfLsx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublicFilesOfLsxResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_GetMainJobTodoes_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMainJobTodoes" />
   </wsdl:message>
@@ -481,6 +505,30 @@
   <wsdl:message name="IMessageService_LoadMessagesFromMessageId_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadMessagesFromMessageIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_RecordLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecordLogin" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RecordLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecordLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadLoginManagers_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadLoginManagers" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadLoginManagers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadLoginManagersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetTrustedLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTrustedLogin" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetTrustedLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTrustedLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateLoginManager_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoginManager" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateLoginManager_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLoginManagerResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_AddLog_InputMessage">
     <wsdl:part name="parameters" element="tns:AddLog" />
   </wsdl:message>
@@ -534,30 +582,6 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_DownloadFileLsx_OutputMessage">
     <wsdl:part name="parameters" element="tns:DownloadFileLsxResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadPublicFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadPublicFile" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadPublicFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadPublicFileResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DeleteLsx_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteLsx" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DeleteLsx_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteLsxResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_RemoveFileInLsx_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveFileInLsx" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_RemoveFileInLsx_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveFileInLsxResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_GetPublicFilesOfLsx_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPublicFilesOfLsx" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_GetPublicFilesOfLsx_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPublicFilesOfLsxResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_AddApprovalDocToOtherProduct_InputMessage">
     <wsdl:part name="parameters" element="tns:AddApprovalDocToOtherProduct" />
@@ -1328,6 +1352,22 @@
     <wsdl:part name="parameters" element="tns:UpdateApprovalDocumentProductResponse" />
   </wsdl:message>
   <wsdl:portType name="IMessageService">
+    <wsdl:operation name="DownloadPublicFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadPublicFile" message="tns:IMessageService_DownloadPublicFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadPublicFileResponse" message="tns:IMessageService_DownloadPublicFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLsx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteLsx" message="tns:IMessageService_DeleteLsx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteLsxResponse" message="tns:IMessageService_DeleteLsx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFileInLsx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveFileInLsx" message="tns:IMessageService_RemoveFileInLsx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveFileInLsxResponse" message="tns:IMessageService_RemoveFileInLsx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPublicFilesOfLsx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsx" message="tns:IMessageService_GetPublicFilesOfLsx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsxResponse" message="tns:IMessageService_GetPublicFilesOfLsx_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetMainJobTodoes">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoes" message="tns:IMessageService_GetMainJobTodoes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoesResponse" message="tns:IMessageService_GetMainJobTodoes_OutputMessage" />
@@ -1558,6 +1598,22 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageId" message="tns:IMessageService_LoadMessagesFromMessageId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageIdResponse" message="tns:IMessageService_LoadMessagesFromMessageId_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RecordLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RecordLogin" message="tns:IMessageService_RecordLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RecordLoginResponse" message="tns:IMessageService_RecordLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadLoginManagers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadLoginManagers" message="tns:IMessageService_LoadLoginManagers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadLoginManagersResponse" message="tns:IMessageService_LoadLoginManagers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustedLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetTrustedLogin" message="tns:IMessageService_SetTrustedLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetTrustedLoginResponse" message="tns:IMessageService_SetTrustedLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginManager">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateLoginManager" message="tns:IMessageService_UpdateLoginManager_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateLoginManagerResponse" message="tns:IMessageService_UpdateLoginManager_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddLog">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddLog" message="tns:IMessageService_AddLog_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddLogResponse" message="tns:IMessageService_AddLog_OutputMessage" />
@@ -1593,22 +1649,6 @@
     <wsdl:operation name="DownloadFileLsx">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsx" message="tns:IMessageService_DownloadFileLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsxResponse" message="tns:IMessageService_DownloadFileLsx_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DownloadPublicFile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadPublicFile" message="tns:IMessageService_DownloadPublicFile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadPublicFileResponse" message="tns:IMessageService_DownloadPublicFile_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteLsx">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteLsx" message="tns:IMessageService_DeleteLsx_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteLsxResponse" message="tns:IMessageService_DeleteLsx_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFileInLsx">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveFileInLsx" message="tns:IMessageService_RemoveFileInLsx_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveFileInLsxResponse" message="tns:IMessageService_RemoveFileInLsx_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPublicFilesOfLsx">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsx" message="tns:IMessageService_GetPublicFilesOfLsx_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsxResponse" message="tns:IMessageService_GetPublicFilesOfLsx_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddApprovalDocToOtherProduct">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddApprovalDocToOtherProduct" message="tns:IMessageService_AddApprovalDocToOtherProduct_InputMessage" />
@@ -2127,6 +2167,42 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IMessageService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="DownloadPublicFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadPublicFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLsx">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteLsx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFileInLsx">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveFileInLsx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPublicFilesOfLsx">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPublicFilesOfLsx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetMainJobTodoes">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetMainJobTodoes" style="document" />
       <wsdl:input>
@@ -2643,6 +2719,42 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RecordLogin">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RecordLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadLoginManagers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadLoginManagers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustedLogin">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetTrustedLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLoginManager">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateLoginManager" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddLog">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/AddLog" style="document" />
       <wsdl:input>
@@ -2717,42 +2829,6 @@
     </wsdl:operation>
     <wsdl:operation name="DownloadFileLsx">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadFileLsx" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DownloadPublicFile">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadPublicFile" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteLsx">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteLsx" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFileInLsx">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveFileInLsx" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPublicFilesOfLsx">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPublicFilesOfLsx" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

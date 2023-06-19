@@ -2,27 +2,42 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EofficeService.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="ArrayOfMainJobTodo">
+  <xs:complexType name="ArrayOfPublicFile">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MainJobTodo" nillable="true" type="tns:MainJobTodo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PublicFile" nillable="true" type="tns:PublicFile" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfMainJobTodo" nillable="true" type="tns:ArrayOfMainJobTodo" />
-  <xs:complexType name="MainJobTodo">
+  <xs:element name="ArrayOfPublicFile" nillable="true" type="tns:ArrayOfPublicFile" />
+  <xs:complexType name="PublicFile">
     <xs:sequence>
-      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DecryptKey" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileOfLsxes" nillable="true" type="tns:ArrayOfFileOfLsx" />
+      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="JobHeader" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="JobName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Lsx" nillable="true" type="tns:Lsx" />
-      <xs:element minOccurs="0" name="LsxId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="ProcessUserId" type="xs:int" />
-      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
-      <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserCreateId" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="MainJobTodo" nillable="true" type="tns:MainJobTodo" />
+  <xs:element name="PublicFile" nillable="true" type="tns:PublicFile" />
+  <xs:complexType name="ArrayOfFileOfLsx">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileOfLsx" nillable="true" type="tns:FileOfLsx" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileOfLsx" nillable="true" type="tns:ArrayOfFileOfLsx" />
+  <xs:complexType name="FileOfLsx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Lsx" nillable="true" type="tns:Lsx" />
+      <xs:element minOccurs="0" name="LsxId" type="xs:int" />
+      <xs:element minOccurs="0" name="PublicFile" nillable="true" type="tns:PublicFile" />
+      <xs:element minOccurs="0" name="PublicFileId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileOfLsx" nillable="true" type="tns:FileOfLsx" />
   <xs:complexType name="Lsx">
     <xs:sequence>
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
@@ -253,6 +268,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsLocked" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="LastLogin" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LoginManagers" nillable="true" type="tns:ArrayOfLoginManager" />
       <xs:element minOccurs="0" name="Logs" nillable="true" type="tns:ArrayOfLog" />
       <xs:element minOccurs="0" name="Lsxes" nillable="true" type="tns:ArrayOfLsx" />
       <xs:element minOccurs="0" name="MainJobTodoes" nillable="true" type="tns:ArrayOfMainJobTodo" />
@@ -670,6 +686,39 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfFile" nillable="true" type="tns:ArrayOfFile" />
+  <xs:complexType name="ArrayOfLoginManager">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoginManager" nillable="true" type="tns:LoginManager" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLoginManager" nillable="true" type="tns:ArrayOfLoginManager" />
+  <xs:complexType name="LoginManager">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ComputerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LogType" type="tns:LoginType" />
+      <xs:element minOccurs="0" name="LoginIp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="Trusted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginManager" nillable="true" type="tns:LoginManager" />
+  <xs:simpleType name="LoginType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Login" />
+          <xs:enumeration value="Logout" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="LoginType" nillable="true" type="tns:LoginType" />
   <xs:complexType name="ArrayOfLog">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Log" nillable="true" type="tns:Log" />
@@ -879,6 +928,27 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfLsx" nillable="true" type="tns:ArrayOfLsx" />
+  <xs:complexType name="ArrayOfMainJobTodo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MainJobTodo" nillable="true" type="tns:MainJobTodo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMainJobTodo" nillable="true" type="tns:ArrayOfMainJobTodo" />
+  <xs:complexType name="MainJobTodo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="JobHeader" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JobName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lsx" nillable="true" type="tns:Lsx" />
+      <xs:element minOccurs="0" name="LsxId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MainJobTodo" nillable="true" type="tns:MainJobTodo" />
   <xs:complexType name="ArrayOfMessage">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
@@ -1317,36 +1387,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GroupDepartment" nillable="true" type="tns:GroupDepartment" />
-  <xs:complexType name="ArrayOfFileOfLsx">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileOfLsx" nillable="true" type="tns:FileOfLsx" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfFileOfLsx" nillable="true" type="tns:ArrayOfFileOfLsx" />
-  <xs:complexType name="FileOfLsx">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Lsx" nillable="true" type="tns:Lsx" />
-      <xs:element minOccurs="0" name="LsxId" type="xs:int" />
-      <xs:element minOccurs="0" name="PublicFile" nillable="true" type="tns:PublicFile" />
-      <xs:element minOccurs="0" name="PublicFileId" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="FileOfLsx" nillable="true" type="tns:FileOfLsx" />
-  <xs:complexType name="PublicFile">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DecryptKey" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FileOfLsxes" nillable="true" type="tns:ArrayOfFileOfLsx" />
-      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="UserCreateId" nillable="true" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="PublicFile" nillable="true" type="tns:PublicFile" />
   <xs:complexType name="TaskAttachedFileDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ConfidentialLevel" nillable="true" type="xs:int" />
@@ -1382,12 +1422,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReceivedDepartmentDTO" nillable="true" type="tns:ReceivedDepartmentDTO" />
-  <xs:complexType name="ArrayOfPublicFile">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PublicFile" nillable="true" type="tns:PublicFile" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPublicFile" nillable="true" type="tns:ArrayOfPublicFile" />
   <xs:complexType name="ArrayOfTransformerDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TransformerDTO" nillable="true" type="tns:TransformerDTO" />

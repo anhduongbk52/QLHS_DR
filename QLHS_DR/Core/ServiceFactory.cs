@@ -1043,6 +1043,21 @@ namespace QLHS_DR.Core
             }
             return kq;
         }
+        internal void RecordLogin(LoginManager loginManager)
+        {
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.RecordLogin(loginManager);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+        }
         internal int RestoreApprovalDocumentProduct(int approvalDocumentProductId)
         {
             int kq = 0;

@@ -7,7 +7,9 @@ using QLHS_DR.Core;
 using QLHS_DR.ViewModel;
 using System;
 using System.ComponentModel;
+using System.Deployment.Application;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -75,7 +77,7 @@ namespace EofficeClient.ViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public LoginViewModel()
         {
-            MainViewModel.CertificateValidation();
+            //MainViewModel.CertificateValidation();
             IsLogin = false;
             Password = "";
             UserName = "";
@@ -114,6 +116,17 @@ namespace EofficeClient.ViewModel
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             });
         }
+        public static Version GetRunningVersion()
+        {
+            try
+            {
+                return ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            }
+            catch
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version;
+            }
+        }
         void Login(Window p)
         {
             IsLogin = false;
@@ -127,6 +140,15 @@ namespace EofficeClient.ViewModel
             {
                 _MyClient.Open();
                 User = _MyClient.GetUserByName(_UserName);
+                LoginManager loginManager = new LoginManager()
+                {
+                    ComputerName = Environment.MachineName,
+                    LoginIp = EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress(),
+                    LogType = LoginType.Login,
+                    ApplicationVersion = GetRunningVersion().ToString(),
+                    ApplicationName = AppDomain.CurrentDomain.FriendlyName
+                };
+                _MyClient.RecordLogin(loginManager);
                 SectionLogin.Ins.CurrentUser = User;
                 SectionLogin.Ins.Permissions = _MyClient.GetPermissions(_User.Id);
                 SectionLogin.Ins.ListPermissions = _MyClient.GetPermissionOfUser(_User.UserName).ToList();
@@ -158,11 +180,11 @@ namespace EofficeClient.ViewModel
                     {
                         MessageBox.Show("Exceptiton: " + ex.Message);
                     }
-                    ConfigurationUtil.SaveCredentialData(new CredentialData
-                    {
-                        Password = _Password,
-                        UserId = _UserName
-                    }, AppInfo.FolderPath);
+                    //ConfigurationUtil.SaveCredentialData(new CredentialData
+                    //{
+                    //    Password = _Password,
+                    //    UserId = _UserName
+                    //}, AppInfo.FolderPath);
                 }
                 else
                 {

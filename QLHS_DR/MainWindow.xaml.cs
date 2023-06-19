@@ -1,10 +1,18 @@
-﻿using DevExpress.Xpf.Core;
+﻿using DevExpress.Services.Internal;
+using DevExpress.Xpf.Core;
+using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Deployment.Application;
 using System.Drawing;
+using System.Net.Sockets;
+using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using QLHS_DR.ViewModel;
 
 namespace QLHS_DR
 {
@@ -54,8 +62,23 @@ namespace QLHS_DR
         }
         protected override void OnClosing(CancelEventArgs e)
         {
+            if (SectionLogin.Ins.CurrentUser != null && SectionLogin.Ins.Token!=null)
+            {
+                ServiceFactory serviceManager = new ServiceFactory();
+                LoginManager loginManager = new LoginManager()
+                {
+                    ComputerName = Environment.MachineName,
+                    LoginIp = MainViewModel.GetLocalIPAddress(),
+                    LogType = LoginType.Logout,
+                    ApplicationVersion = MainViewModel.GetRunningVersion().ToString(),
+                    ApplicationName = AppDomain.CurrentDomain.FriendlyName
+                };
+                serviceManager.RecordLogin(loginManager);
+            }
             Environment.Exit(Environment.ExitCode);
             base.OnClosing(e);
         }
+       
+        
     }
 }

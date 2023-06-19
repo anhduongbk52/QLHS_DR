@@ -15,42 +15,39 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MainJobTodo", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PublicFile", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
-    public partial class MainJobTodo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class PublicFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> EndDateField;
+        private System.Nullable<System.DateTime> CreateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] DecryptKeyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileExtensionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.FileOfLsx[] FileOfLsxesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FilePathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string JobHeaderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string JobNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Lsx LsxField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> LsxIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProcessUserIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> StartDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.User UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserCreateIdField;
+        private System.Nullable<int> UserCreateIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -63,14 +60,92 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> EndDate {
+        public System.Nullable<System.DateTime> CreateTime {
             get {
-                return this.EndDateField;
+                return this.CreateTimeField;
             }
             set {
-                if ((this.EndDateField.Equals(value) != true)) {
-                    this.EndDateField = value;
-                    this.RaisePropertyChanged("EndDate");
+                if ((this.CreateTimeField.Equals(value) != true)) {
+                    this.CreateTimeField = value;
+                    this.RaisePropertyChanged("CreateTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] DecryptKey {
+            get {
+                return this.DecryptKeyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DecryptKeyField, value) != true)) {
+                    this.DecryptKeyField = value;
+                    this.RaisePropertyChanged("DecryptKey");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileExtension {
+            get {
+                return this.FileExtensionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileExtensionField, value) != true)) {
+                    this.FileExtensionField = value;
+                    this.RaisePropertyChanged("FileExtension");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.FileOfLsx[] FileOfLsxes {
+            get {
+                return this.FileOfLsxesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileOfLsxesField, value) != true)) {
+                    this.FileOfLsxesField = value;
+                    this.RaisePropertyChanged("FileOfLsxes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FilePath {
+            get {
+                return this.FilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
                 }
             }
         }
@@ -89,27 +164,71 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string JobHeader {
+        public System.Nullable<int> UserCreateId {
             get {
-                return this.JobHeaderField;
+                return this.UserCreateIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.JobHeaderField, value) != true)) {
-                    this.JobHeaderField = value;
-                    this.RaisePropertyChanged("JobHeader");
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string JobName {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FileOfLsx", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class FileOfLsx : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Lsx LsxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LsxIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.PublicFile PublicFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PublicFileIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.JobNameField;
+                return this.extensionDataField;
             }
             set {
-                if ((object.ReferenceEquals(this.JobNameField, value) != true)) {
-                    this.JobNameField = value;
-                    this.RaisePropertyChanged("JobName");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }
@@ -128,7 +247,7 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> LsxId {
+        public int LsxId {
             get {
                 return this.LsxIdField;
             }
@@ -141,53 +260,27 @@ namespace QLHS_DR.ChatAppServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProcessUserId {
+        public QLHS_DR.ChatAppServiceReference.PublicFile PublicFile {
             get {
-                return this.ProcessUserIdField;
+                return this.PublicFileField;
             }
             set {
-                if ((this.ProcessUserIdField.Equals(value) != true)) {
-                    this.ProcessUserIdField = value;
-                    this.RaisePropertyChanged("ProcessUserId");
+                if ((object.ReferenceEquals(this.PublicFileField, value) != true)) {
+                    this.PublicFileField = value;
+                    this.RaisePropertyChanged("PublicFile");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> StartDate {
+        public int PublicFileId {
             get {
-                return this.StartDateField;
+                return this.PublicFileIdField;
             }
             set {
-                if ((this.StartDateField.Equals(value) != true)) {
-                    this.StartDateField = value;
-                    this.RaisePropertyChanged("StartDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.User User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserCreateId {
-            get {
-                return this.UserCreateIdField;
-            }
-            set {
-                if ((this.UserCreateIdField.Equals(value) != true)) {
-                    this.UserCreateIdField = value;
-                    this.RaisePropertyChanged("UserCreateId");
+                if ((this.PublicFileIdField.Equals(value) != true)) {
+                    this.PublicFileIdField = value;
+                    this.RaisePropertyChanged("PublicFileId");
                 }
             }
         }
@@ -585,6 +678,275 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Department", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Department : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartmentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GroupDepartmentIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool LockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Lsx[] LsxesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ManagerPositionId1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ManagerPositionId2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartmentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocumentsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasks {
+            get {
+                return this.DepartmentTasksField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartmentTasksField, value) != true)) {
+                    this.DepartmentTasksField = value;
+                    this.RaisePropertyChanged("DepartmentTasks");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartment {
+            get {
+                return this.GroupDepartmentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupDepartmentField, value) != true)) {
+                    this.GroupDepartmentField = value;
+                    this.RaisePropertyChanged("GroupDepartment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GroupDepartmentId {
+            get {
+                return this.GroupDepartmentIdField;
+            }
+            set {
+                if ((this.GroupDepartmentIdField.Equals(value) != true)) {
+                    this.GroupDepartmentIdField = value;
+                    this.RaisePropertyChanged("GroupDepartmentId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Locked {
+            get {
+                return this.LockedField;
+            }
+            set {
+                if ((this.LockedField.Equals(value) != true)) {
+                    this.LockedField = value;
+                    this.RaisePropertyChanged("Locked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Lsx[] Lsxes {
+            get {
+                return this.LsxesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LsxesField, value) != true)) {
+                    this.LsxesField = value;
+                    this.RaisePropertyChanged("Lsxes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition1 {
+            get {
+                return this.ManagerPosition1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ManagerPosition1Field, value) != true)) {
+                    this.ManagerPosition1Field = value;
+                    this.RaisePropertyChanged("ManagerPosition1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition2 {
+            get {
+                return this.ManagerPosition2Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ManagerPosition2Field, value) != true)) {
+                    this.ManagerPosition2Field = value;
+                    this.RaisePropertyChanged("ManagerPosition2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ManagerPositionId1 {
+            get {
+                return this.ManagerPositionId1Field;
+            }
+            set {
+                if ((this.ManagerPositionId1Field.Equals(value) != true)) {
+                    this.ManagerPositionId1Field = value;
+                    this.RaisePropertyChanged("ManagerPositionId1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ManagerPositionId2 {
+            get {
+                return this.ManagerPositionId2Field;
+            }
+            set {
+                if ((this.ManagerPositionId2Field.Equals(value) != true)) {
+                    this.ManagerPositionId2Field = value;
+                    this.RaisePropertyChanged("ManagerPositionId2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartments {
+            get {
+                return this.RequestSendDocumentToDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentToDepartmentsField, value) != true)) {
+                    this.RequestSendDocumentToDepartmentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocumentToDepartments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments {
+            get {
+                return this.RequestSendDocumentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RequestSendDocumentsField, value) != true)) {
+                    this.RequestSendDocumentsField = value;
+                    this.RaisePropertyChanged("RequestSendDocuments");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
+            get {
+                return this.UserDepartmentsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
+                    this.UserDepartmentsField = value;
+                    this.RaisePropertyChanged("UserDepartments");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
     public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -663,6 +1025,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> LastLoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.LoginManager[] LoginManagersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private QLHS_DR.ChatAppServiceReference.Log[] LogsField;
@@ -1081,6 +1446,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.LastLoginField.Equals(value) != true)) {
                     this.LastLoginField = value;
                     this.RaisePropertyChanged("LastLogin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.LoginManager[] LoginManagers {
+            get {
+                return this.LoginManagersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginManagersField, value) != true)) {
+                    this.LoginManagersField = value;
+                    this.RaisePropertyChanged("LoginManagers");
                 }
             }
         }
@@ -1526,384 +1904,6 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Department", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class Department : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartmentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GroupDepartmentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool LockedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Lsx[] LsxesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Position ManagerPosition2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ManagerPositionId1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ManagerPositionId2Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartmentsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocumentsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartmentsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code {
-            get {
-                return this.CodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
-                    this.CodeField = value;
-                    this.RaisePropertyChanged("Code");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.DepartmentTask[] DepartmentTasks {
-            get {
-                return this.DepartmentTasksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DepartmentTasksField, value) != true)) {
-                    this.DepartmentTasksField = value;
-                    this.RaisePropertyChanged("DepartmentTasks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.GroupDepartment GroupDepartment {
-            get {
-                return this.GroupDepartmentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GroupDepartmentField, value) != true)) {
-                    this.GroupDepartmentField = value;
-                    this.RaisePropertyChanged("GroupDepartment");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GroupDepartmentId {
-            get {
-                return this.GroupDepartmentIdField;
-            }
-            set {
-                if ((this.GroupDepartmentIdField.Equals(value) != true)) {
-                    this.GroupDepartmentIdField = value;
-                    this.RaisePropertyChanged("GroupDepartmentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Locked {
-            get {
-                return this.LockedField;
-            }
-            set {
-                if ((this.LockedField.Equals(value) != true)) {
-                    this.LockedField = value;
-                    this.RaisePropertyChanged("Locked");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Lsx[] Lsxes {
-            get {
-                return this.LsxesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LsxesField, value) != true)) {
-                    this.LsxesField = value;
-                    this.RaisePropertyChanged("Lsxes");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition1 {
-            get {
-                return this.ManagerPosition1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManagerPosition1Field, value) != true)) {
-                    this.ManagerPosition1Field = value;
-                    this.RaisePropertyChanged("ManagerPosition1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Position ManagerPosition2 {
-            get {
-                return this.ManagerPosition2Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ManagerPosition2Field, value) != true)) {
-                    this.ManagerPosition2Field = value;
-                    this.RaisePropertyChanged("ManagerPosition2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ManagerPositionId1 {
-            get {
-                return this.ManagerPositionId1Field;
-            }
-            set {
-                if ((this.ManagerPositionId1Field.Equals(value) != true)) {
-                    this.ManagerPositionId1Field = value;
-                    this.RaisePropertyChanged("ManagerPositionId1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ManagerPositionId2 {
-            get {
-                return this.ManagerPositionId2Field;
-            }
-            set {
-                if ((this.ManagerPositionId2Field.Equals(value) != true)) {
-                    this.ManagerPositionId2Field = value;
-                    this.RaisePropertyChanged("ManagerPositionId2");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.RequestSendDocumentToDepartment[] RequestSendDocumentToDepartments {
-            get {
-                return this.RequestSendDocumentToDepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RequestSendDocumentToDepartmentsField, value) != true)) {
-                    this.RequestSendDocumentToDepartmentsField = value;
-                    this.RaisePropertyChanged("RequestSendDocumentToDepartments");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.RequestSendDocument[] RequestSendDocuments {
-            get {
-                return this.RequestSendDocumentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RequestSendDocumentsField, value) != true)) {
-                    this.RequestSendDocumentsField = value;
-                    this.RaisePropertyChanged("RequestSendDocuments");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.UserDepartment[] UserDepartments {
-            get {
-                return this.UserDepartmentsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserDepartmentsField, value) != true)) {
-                    this.UserDepartmentsField = value;
-                    this.RaisePropertyChanged("UserDepartments");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FileOfLsx", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class FileOfLsx : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.Lsx LsxField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LsxIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.PublicFile PublicFileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PublicFileIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.Lsx Lsx {
-            get {
-                return this.LsxField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LsxField, value) != true)) {
-                    this.LsxField = value;
-                    this.RaisePropertyChanged("Lsx");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LsxId {
-            get {
-                return this.LsxIdField;
-            }
-            set {
-                if ((this.LsxIdField.Equals(value) != true)) {
-                    this.LsxIdField = value;
-                    this.RaisePropertyChanged("LsxId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.PublicFile PublicFile {
-            get {
-                return this.PublicFileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PublicFileField, value) != true)) {
-                    this.PublicFileField = value;
-                    this.RaisePropertyChanged("PublicFile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PublicFileId {
-            get {
-                return this.PublicFileIdField;
-            }
-            set {
-                if ((this.PublicFileIdField.Equals(value) != true)) {
-                    this.PublicFileIdField = value;
-                    this.RaisePropertyChanged("PublicFileId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LSX_Product", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
     public partial class LSX_Product : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2000,6 +2000,195 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.ProductIdField.Equals(value) != true)) {
                     this.ProductIdField = value;
                     this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserCreateId {
+            get {
+                return this.UserCreateIdField;
+            }
+            set {
+                if ((this.UserCreateIdField.Equals(value) != true)) {
+                    this.UserCreateIdField = value;
+                    this.RaisePropertyChanged("UserCreateId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MainJobTodo", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class MainJobTodo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> EndDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JobHeaderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JobNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.Lsx LsxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LsxIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProcessUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> StartDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserCreateIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> EndDate {
+            get {
+                return this.EndDateField;
+            }
+            set {
+                if ((this.EndDateField.Equals(value) != true)) {
+                    this.EndDateField = value;
+                    this.RaisePropertyChanged("EndDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobHeader {
+            get {
+                return this.JobHeaderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobHeaderField, value) != true)) {
+                    this.JobHeaderField = value;
+                    this.RaisePropertyChanged("JobHeader");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobName {
+            get {
+                return this.JobNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobNameField, value) != true)) {
+                    this.JobNameField = value;
+                    this.RaisePropertyChanged("JobName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.Lsx Lsx {
+            get {
+                return this.LsxField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LsxField, value) != true)) {
+                    this.LsxField = value;
+                    this.RaisePropertyChanged("Lsx");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> LsxId {
+            get {
+                return this.LsxIdField;
+            }
+            set {
+                if ((this.LsxIdField.Equals(value) != true)) {
+                    this.LsxIdField = value;
+                    this.RaisePropertyChanged("LsxId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProcessUserId {
+            get {
+                return this.ProcessUserIdField;
+            }
+            set {
+                if ((this.ProcessUserIdField.Equals(value) != true)) {
+                    this.ProcessUserIdField = value;
+                    this.RaisePropertyChanged("ProcessUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> StartDate {
+            get {
+                return this.StartDateField;
+            }
+            set {
+                if ((this.StartDateField.Equals(value) != true)) {
+                    this.StartDateField = value;
+                    this.RaisePropertyChanged("StartDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
                 }
             }
         }
@@ -4992,6 +5181,211 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginManager", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    [System.SerializableAttribute()]
+    public partial class LoginManager : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApplicationNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApplicationVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ComputerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.LoginType LogTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginIpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LoginTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LoginUserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> TrustedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private QLHS_DR.ChatAppServiceReference.User UserField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApplicationName {
+            get {
+                return this.ApplicationNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApplicationNameField, value) != true)) {
+                    this.ApplicationNameField = value;
+                    this.RaisePropertyChanged("ApplicationName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApplicationVersion {
+            get {
+                return this.ApplicationVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApplicationVersionField, value) != true)) {
+                    this.ApplicationVersionField = value;
+                    this.RaisePropertyChanged("ApplicationVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ComputerName {
+            get {
+                return this.ComputerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ComputerNameField, value) != true)) {
+                    this.ComputerNameField = value;
+                    this.RaisePropertyChanged("ComputerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.LoginType LogType {
+            get {
+                return this.LogTypeField;
+            }
+            set {
+                if ((this.LogTypeField.Equals(value) != true)) {
+                    this.LogTypeField = value;
+                    this.RaisePropertyChanged("LogType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LoginIp {
+            get {
+                return this.LoginIpField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginIpField, value) != true)) {
+                    this.LoginIpField = value;
+                    this.RaisePropertyChanged("LoginIp");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LoginTime {
+            get {
+                return this.LoginTimeField;
+            }
+            set {
+                if ((this.LoginTimeField.Equals(value) != true)) {
+                    this.LoginTimeField = value;
+                    this.RaisePropertyChanged("LoginTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int LoginUserId {
+            get {
+                return this.LoginUserIdField;
+            }
+            set {
+                if ((this.LoginUserIdField.Equals(value) != true)) {
+                    this.LoginUserIdField = value;
+                    this.RaisePropertyChanged("LoginUserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> Trusted {
+            get {
+                return this.TrustedField;
+            }
+            set {
+                if ((this.TrustedField.Equals(value) != true)) {
+                    this.TrustedField = value;
+                    this.RaisePropertyChanged("Trusted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public QLHS_DR.ChatAppServiceReference.User User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Log", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     [System.SerializableAttribute()]
     public partial class Log : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -7545,6 +7939,18 @@ namespace QLHS_DR.ChatAppServiceReference {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
+    public enum LoginType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Login = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Logout = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
     [System.Runtime.Serialization.DataContractAttribute(Name="LogType", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
     public enum LogType : int {
         
@@ -8397,179 +8803,6 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.UserTaskIdField.Equals(value) != true)) {
                     this.UserTaskIdField = value;
                     this.RaisePropertyChanged("UserTaskId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PublicFile", Namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model")]
-    [System.SerializableAttribute()]
-    public partial class PublicFile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> CreateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] DecryptKeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FileExtensionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FileNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private QLHS_DR.ChatAppServiceReference.FileOfLsx[] FileOfLsxesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FilePathField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> UserCreateIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> CreateTime {
-            get {
-                return this.CreateTimeField;
-            }
-            set {
-                if ((this.CreateTimeField.Equals(value) != true)) {
-                    this.CreateTimeField = value;
-                    this.RaisePropertyChanged("CreateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] DecryptKey {
-            get {
-                return this.DecryptKeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DecryptKeyField, value) != true)) {
-                    this.DecryptKeyField = value;
-                    this.RaisePropertyChanged("DecryptKey");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FileExtension {
-            get {
-                return this.FileExtensionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileExtensionField, value) != true)) {
-                    this.FileExtensionField = value;
-                    this.RaisePropertyChanged("FileExtension");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FileName {
-            get {
-                return this.FileNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
-                    this.FileNameField = value;
-                    this.RaisePropertyChanged("FileName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public QLHS_DR.ChatAppServiceReference.FileOfLsx[] FileOfLsxes {
-            get {
-                return this.FileOfLsxesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileOfLsxesField, value) != true)) {
-                    this.FileOfLsxesField = value;
-                    this.RaisePropertyChanged("FileOfLsxes");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FilePath {
-            get {
-                return this.FilePathField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FilePathField, value) != true)) {
-                    this.FilePathField = value;
-                    this.RaisePropertyChanged("FilePath");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> UserCreateId {
-            get {
-                return this.UserCreateIdField;
-            }
-            set {
-                if ((this.UserCreateIdField.Equals(value) != true)) {
-                    this.UserCreateIdField = value;
-                    this.RaisePropertyChanged("UserCreateId");
                 }
             }
         }
@@ -10065,6 +10298,30 @@ namespace QLHS_DR.ChatAppServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatAppServiceReference.IMessageService")]
     public interface IMessageService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadPublicFile", ReplyAction="http://tempuri.org/IMessageService/DownloadPublicFileResponse")]
+        byte[] DownloadPublicFile(int publicFileId, bool convertToPdf);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadPublicFile", ReplyAction="http://tempuri.org/IMessageService/DownloadPublicFileResponse")]
+        System.Threading.Tasks.Task<byte[]> DownloadPublicFileAsync(int publicFileId, bool convertToPdf);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteLsx", ReplyAction="http://tempuri.org/IMessageService/DeleteLsxResponse")]
+        void DeleteLsx(int lsxId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteLsx", ReplyAction="http://tempuri.org/IMessageService/DeleteLsxResponse")]
+        System.Threading.Tasks.Task DeleteLsxAsync(int lsxId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveFileInLsx", ReplyAction="http://tempuri.org/IMessageService/RemoveFileInLsxResponse")]
+        void RemoveFileInLsx(int publicFileId, int lsxId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveFileInLsx", ReplyAction="http://tempuri.org/IMessageService/RemoveFileInLsxResponse")]
+        System.Threading.Tasks.Task RemoveFileInLsxAsync(int publicFileId, int lsxId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsx", ReplyAction="http://tempuri.org/IMessageService/GetPublicFilesOfLsxResponse")]
+        QLHS_DR.ChatAppServiceReference.PublicFile[] GetPublicFilesOfLsx(int lsxId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsx", ReplyAction="http://tempuri.org/IMessageService/GetPublicFilesOfLsxResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublicFile[]> GetPublicFilesOfLsxAsync(int lsxId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetMainJobTodoes", ReplyAction="http://tempuri.org/IMessageService/GetMainJobTodoesResponse")]
         QLHS_DR.ChatAppServiceReference.MainJobTodo[] GetMainJobTodoes(int lsxId);
         
@@ -10413,6 +10670,30 @@ namespace QLHS_DR.ChatAppServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadMessagesFromMessageId", ReplyAction="http://tempuri.org/IMessageService/LoadMessagesFromMessageIdResponse")]
         System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Message[]> LoadMessagesFromMessageIdAsync(int fromId, int toId, int fromMessageId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RecordLogin", ReplyAction="http://tempuri.org/IMessageService/RecordLoginResponse")]
+        void RecordLogin(QLHS_DR.ChatAppServiceReference.LoginManager loginManager);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RecordLogin", ReplyAction="http://tempuri.org/IMessageService/RecordLoginResponse")]
+        System.Threading.Tasks.Task RecordLoginAsync(QLHS_DR.ChatAppServiceReference.LoginManager loginManager);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadLoginManagers", ReplyAction="http://tempuri.org/IMessageService/LoadLoginManagersResponse")]
+        QLHS_DR.ChatAppServiceReference.LoginManager[] LoadLoginManagers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadLoginManagers", ReplyAction="http://tempuri.org/IMessageService/LoadLoginManagersResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.LoginManager[]> LoadLoginManagersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetTrustedLogin", ReplyAction="http://tempuri.org/IMessageService/SetTrustedLoginResponse")]
+        void SetTrustedLogin(int loginManagerId, bool isTrusted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SetTrustedLogin", ReplyAction="http://tempuri.org/IMessageService/SetTrustedLoginResponse")]
+        System.Threading.Tasks.Task SetTrustedLoginAsync(int loginManagerId, bool isTrusted);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateLoginManager", ReplyAction="http://tempuri.org/IMessageService/UpdateLoginManagerResponse")]
+        int UpdateLoginManager(QLHS_DR.ChatAppServiceReference.LoginManager loginManager);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/UpdateLoginManager", ReplyAction="http://tempuri.org/IMessageService/UpdateLoginManagerResponse")]
+        System.Threading.Tasks.Task<int> UpdateLoginManagerAsync(QLHS_DR.ChatAppServiceReference.LoginManager loginManager);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddLog", ReplyAction="http://tempuri.org/IMessageService/AddLogResponse")]
         void AddLog(QLHS_DR.ChatAppServiceReference.Log log_0);
         
@@ -10466,30 +10747,6 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadFileLsx", ReplyAction="http://tempuri.org/IMessageService/DownloadFileLsxResponse")]
         System.Threading.Tasks.Task<byte[]> DownloadFileLsxAsync(int lsxId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadPublicFile", ReplyAction="http://tempuri.org/IMessageService/DownloadPublicFileResponse")]
-        byte[] DownloadPublicFile(int publicFileId, bool convertToPdf);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadPublicFile", ReplyAction="http://tempuri.org/IMessageService/DownloadPublicFileResponse")]
-        System.Threading.Tasks.Task<byte[]> DownloadPublicFileAsync(int publicFileId, bool convertToPdf);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteLsx", ReplyAction="http://tempuri.org/IMessageService/DeleteLsxResponse")]
-        void DeleteLsx(int lsxId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteLsx", ReplyAction="http://tempuri.org/IMessageService/DeleteLsxResponse")]
-        System.Threading.Tasks.Task DeleteLsxAsync(int lsxId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveFileInLsx", ReplyAction="http://tempuri.org/IMessageService/RemoveFileInLsxResponse")]
-        void RemoveFileInLsx(int publicFileId, int lsxId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RemoveFileInLsx", ReplyAction="http://tempuri.org/IMessageService/RemoveFileInLsxResponse")]
-        System.Threading.Tasks.Task RemoveFileInLsxAsync(int publicFileId, int lsxId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsx", ReplyAction="http://tempuri.org/IMessageService/GetPublicFilesOfLsxResponse")]
-        QLHS_DR.ChatAppServiceReference.PublicFile[] GetPublicFilesOfLsx(int lsxId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublicFilesOfLsx", ReplyAction="http://tempuri.org/IMessageService/GetPublicFilesOfLsxResponse")]
-        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublicFile[]> GetPublicFilesOfLsxAsync(int lsxId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/AddApprovalDocToOtherProduct", ReplyAction="http://tempuri.org/IMessageService/AddApprovalDocToOtherProductResponse")]
         void AddApprovalDocToOtherProduct(int[] approvalDocumentProductIds, int[] productIds);
@@ -11295,6 +11552,38 @@ namespace QLHS_DR.ChatAppServiceReference {
                 base(binding, remoteAddress) {
         }
         
+        public byte[] DownloadPublicFile(int publicFileId, bool convertToPdf) {
+            return base.Channel.DownloadPublicFile(publicFileId, convertToPdf);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> DownloadPublicFileAsync(int publicFileId, bool convertToPdf) {
+            return base.Channel.DownloadPublicFileAsync(publicFileId, convertToPdf);
+        }
+        
+        public void DeleteLsx(int lsxId) {
+            base.Channel.DeleteLsx(lsxId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteLsxAsync(int lsxId) {
+            return base.Channel.DeleteLsxAsync(lsxId);
+        }
+        
+        public void RemoveFileInLsx(int publicFileId, int lsxId) {
+            base.Channel.RemoveFileInLsx(publicFileId, lsxId);
+        }
+        
+        public System.Threading.Tasks.Task RemoveFileInLsxAsync(int publicFileId, int lsxId) {
+            return base.Channel.RemoveFileInLsxAsync(publicFileId, lsxId);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.PublicFile[] GetPublicFilesOfLsx(int lsxId) {
+            return base.Channel.GetPublicFilesOfLsx(lsxId);
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublicFile[]> GetPublicFilesOfLsxAsync(int lsxId) {
+            return base.Channel.GetPublicFilesOfLsxAsync(lsxId);
+        }
+        
         public QLHS_DR.ChatAppServiceReference.MainJobTodo[] GetMainJobTodoes(int lsxId) {
             return base.Channel.GetMainJobTodoes(lsxId);
         }
@@ -11759,6 +12048,38 @@ namespace QLHS_DR.ChatAppServiceReference {
             return base.Channel.LoadMessagesFromMessageIdAsync(fromId, toId, fromMessageId);
         }
         
+        public void RecordLogin(QLHS_DR.ChatAppServiceReference.LoginManager loginManager) {
+            base.Channel.RecordLogin(loginManager);
+        }
+        
+        public System.Threading.Tasks.Task RecordLoginAsync(QLHS_DR.ChatAppServiceReference.LoginManager loginManager) {
+            return base.Channel.RecordLoginAsync(loginManager);
+        }
+        
+        public QLHS_DR.ChatAppServiceReference.LoginManager[] LoadLoginManagers() {
+            return base.Channel.LoadLoginManagers();
+        }
+        
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.LoginManager[]> LoadLoginManagersAsync() {
+            return base.Channel.LoadLoginManagersAsync();
+        }
+        
+        public void SetTrustedLogin(int loginManagerId, bool isTrusted) {
+            base.Channel.SetTrustedLogin(loginManagerId, isTrusted);
+        }
+        
+        public System.Threading.Tasks.Task SetTrustedLoginAsync(int loginManagerId, bool isTrusted) {
+            return base.Channel.SetTrustedLoginAsync(loginManagerId, isTrusted);
+        }
+        
+        public int UpdateLoginManager(QLHS_DR.ChatAppServiceReference.LoginManager loginManager) {
+            return base.Channel.UpdateLoginManager(loginManager);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateLoginManagerAsync(QLHS_DR.ChatAppServiceReference.LoginManager loginManager) {
+            return base.Channel.UpdateLoginManagerAsync(loginManager);
+        }
+        
         public void AddLog(QLHS_DR.ChatAppServiceReference.Log log_0) {
             base.Channel.AddLog(log_0);
         }
@@ -11829,38 +12150,6 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         public System.Threading.Tasks.Task<byte[]> DownloadFileLsxAsync(int lsxId) {
             return base.Channel.DownloadFileLsxAsync(lsxId);
-        }
-        
-        public byte[] DownloadPublicFile(int publicFileId, bool convertToPdf) {
-            return base.Channel.DownloadPublicFile(publicFileId, convertToPdf);
-        }
-        
-        public System.Threading.Tasks.Task<byte[]> DownloadPublicFileAsync(int publicFileId, bool convertToPdf) {
-            return base.Channel.DownloadPublicFileAsync(publicFileId, convertToPdf);
-        }
-        
-        public void DeleteLsx(int lsxId) {
-            base.Channel.DeleteLsx(lsxId);
-        }
-        
-        public System.Threading.Tasks.Task DeleteLsxAsync(int lsxId) {
-            return base.Channel.DeleteLsxAsync(lsxId);
-        }
-        
-        public void RemoveFileInLsx(int publicFileId, int lsxId) {
-            base.Channel.RemoveFileInLsx(publicFileId, lsxId);
-        }
-        
-        public System.Threading.Tasks.Task RemoveFileInLsxAsync(int publicFileId, int lsxId) {
-            return base.Channel.RemoveFileInLsxAsync(publicFileId, lsxId);
-        }
-        
-        public QLHS_DR.ChatAppServiceReference.PublicFile[] GetPublicFilesOfLsx(int lsxId) {
-            return base.Channel.GetPublicFilesOfLsx(lsxId);
-        }
-        
-        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.PublicFile[]> GetPublicFilesOfLsxAsync(int lsxId) {
-            return base.Channel.GetPublicFilesOfLsxAsync(lsxId);
         }
         
         public void AddApprovalDocToOtherProduct(int[] approvalDocumentProductIds, int[] productIds) {
