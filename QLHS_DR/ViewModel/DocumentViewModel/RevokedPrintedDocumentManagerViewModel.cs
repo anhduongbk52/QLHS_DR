@@ -14,9 +14,10 @@ using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class RevokedPrintedDocumentManagerViewModel : BaseViewModel
+    internal class RevokedPrintedDocumentManagerViewModel : BaseViewModel, IDisposable
     {
         #region "Properties and Field"
+        MemoryStream outputStream;
         private bool _IsBusy;
         public bool IsBusy
         {
@@ -57,7 +58,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     {
                         using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                         {
-                            MemoryStream outputStream = new MemoryStream();
+                            outputStream = new MemoryStream();
                             processor.LoadDocument(new MemoryStream(_TaskAttachedFileDTO.Content));
                             List<int> countPrinteds = new List<int>();
 
@@ -403,6 +404,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             return ketqua;
         }
 
+        public void Dispose()
+        {
+            DocumentSource = null;
+            outputStream?.Dispose();
+        }
     }
     internal class Document
     {

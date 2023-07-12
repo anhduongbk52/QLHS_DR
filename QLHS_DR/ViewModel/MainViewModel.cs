@@ -188,6 +188,9 @@ namespace QLHS_DR.ViewModel
         public ICommand UploadFileHoSoCommand { get; set; }
         public ICommand UploadApprovalDocumentProductCommand { get; set; }
         public ICommand SelectionChangedTab { get; set; }
+        public ICommand OpenBCTDesignManagerCommand { get; set; }
+        public ICommand NewBCTDesignManagerCommand{ get; set; }
+        public ICommand SignDocumentCommand { get; set; }
         #endregion
 
         private ListNewDocumentUC listNewDocumentUC;
@@ -538,14 +541,14 @@ namespace QLHS_DR.ViewModel
                 newTaskWindow.DataContext = newTaskViewModel;
                 newTaskWindow.ShowDialog();
             });
-            OpenRevokedPrintedDocumentManagerCommand = new RelayCommand<Object>((p) => { if (true) return true; else return false; }, (p) =>
+            OpenRevokedPrintedDocumentManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanConfirmDisposedPrintedDocument) return true; else return false; }, (p) =>
             {
                 RevokedPrintedDocumentManagerWD window = new RevokedPrintedDocumentManagerWD();
                 RevokedPrintedDocumentManagerViewModel model = new RevokedPrintedDocumentManagerViewModel();
                 window.DataContext = model;
                 window.ShowDialog();
             });
-            OpenDocumentPrintedByUserWindowCommand = new RelayCommand<Object>((p) => { if (true) return true; else return false; }, (p) =>
+            OpenDocumentPrintedByUserWindowCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanConfirmDisposedPrintedDocument) return true; else return false; }, (p) =>
             {
                 DocumentPrintedByUserWindow window = new DocumentPrintedByUserWindow();
                 DocumentPrintedByUserViewModel model = new DocumentPrintedByUserViewModel();
@@ -606,6 +609,12 @@ namespace QLHS_DR.ViewModel
                 //LSXView.NewLsxWindow window = new LSXView.NewLsxWindow();
                 //window.ShowDialog();
             });
+            SignDocumentCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                SignPdfWindow signPdfWindow = new SignPdfWindow();
+                signPdfWindow.ShowDialog();
+            });
+          
             CheckUpdateCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;

@@ -425,7 +425,6 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                 _MyClient.Open();
-
                 ketqua = _MyClient.LoadTasksNotFinish(userId).OrderByDescending(x => x.StartDate).ToObservableCollection();
                 _MyClient.Close();
             }

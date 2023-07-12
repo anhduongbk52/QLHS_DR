@@ -75,10 +75,9 @@
                     <dxr:RibbonPageGroup Caption="Quản lý các tài liệu in">
                         <dxb:BarButtonItem Command="{Binding OpenDocumentPrintedByUserWindowCommand}" Content="Tài liệu đã in của người dùng" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Spreadsheet/PrintTitles.svg}"/>
                         <dxb:BarButtonItem Command="{Binding OpenRevokedPrintedDocumentManagerCommand}" Content="Tài liệu đã in cần thu hồi" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Rollback.svg}"/>
-
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
-                <dxr:RibbonPage Caption="Quản lý sảm phẩm">
+                <dxr:RibbonPage Caption="Quản lý sản phẩm">
                     <dxr:RibbonPageGroup Caption="Product">
                         <dxb:BarButtonItem Command="{Binding OpenProductManagerCommand}"
                                            Content="Tìm kiếm"
@@ -109,6 +108,19 @@
                                            Command="{Binding NewLsxCommand}"
                                            LargeGlyph="{dx:DXImage SvgImages/Snap/InsertGroupHeader.svg}" />-->
                     </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+                <dxr:RibbonPage Caption="Library">
+                    <dxr:RibbonPageGroup Caption="Biến dòng chân sứ">
+                        <dxb:BarButtonItem Command="{Binding OpenBCTDesignManagerCommand}"
+                                           Content="Find Design"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/Find/Find.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding NewBCTDesignManagerCommand}"
+                                           Content="New Design BCT"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/XAF/Action_Inline_New.svg}"/>
+                        <dxb:BarButtonItem Command="{Binding SignDocumentCommand}"
+                                           Content="Sign Document"
+                                           RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/XAF/Action_Inline_New.svg}"/>
+                    </dxr:RibbonPageGroup>    
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>

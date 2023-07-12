@@ -79,6 +79,8 @@
       <xs:element minOccurs="0" name="ManagerPositionId1" type="xs:int" />
       <xs:element minOccurs="0" name="ManagerPositionId2" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PYCs" nillable="true" type="tns:ArrayOfPYC" />
+      <xs:element minOccurs="0" name="PYCs1" nillable="true" type="tns:ArrayOfPYC" />
       <xs:element minOccurs="0" name="RequestSendDocumentToDepartments" nillable="true" type="tns:ArrayOfRequestSendDocumentToDepartment" />
       <xs:element minOccurs="0" name="RequestSendDocuments" nillable="true" type="tns:ArrayOfRequestSendDocument" />
       <xs:element minOccurs="0" name="UserDepartments" nillable="true" type="tns:ArrayOfUserDepartment" />
@@ -233,6 +235,7 @@
       <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEncrypted" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="Modified" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Task" nillable="true" type="tns:Task" />
@@ -261,6 +264,7 @@
       <xs:element minOccurs="0" name="ECPuKeyForFile" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="ECPuKeyForMsg" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileOfBctDesigns" nillable="true" type="tns:ArrayOfFileOfBctDesign" />
       <xs:element minOccurs="0" name="Files" nillable="true" type="tns:ArrayOfFile" />
       <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HireDate" nillable="true" type="xs:dateTime" />
@@ -280,6 +284,9 @@
       <xs:element minOccurs="0" name="OldECPrKeyForMsg" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="OldECPuKeyForFile" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="OldECPuKeyForMsg" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="PYC_Product" nillable="true" type="tns:ArrayOfPYC_Product" />
+      <xs:element minOccurs="0" name="PYCs" nillable="true" type="tns:ArrayOfPYC" />
+      <xs:element minOccurs="0" name="PYCs1" nillable="true" type="tns:ArrayOfPYC" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Products" nillable="true" type="tns:ArrayOfProduct" />
       <xs:element minOccurs="0" name="PublishDocuments" nillable="true" type="tns:ArrayOfPublishDocument" />
@@ -289,6 +296,9 @@
       <xs:element minOccurs="0" name="RequestSendDocuments" nillable="true" type="tns:ArrayOfRequestSendDocument" />
       <xs:element minOccurs="0" name="RequestSendDocuments1" nillable="true" type="tns:ArrayOfRequestSendDocument" />
       <xs:element minOccurs="0" name="RolePermissionDs" nillable="true" type="tns:ArrayOfRolePermissionD" />
+      <xs:element minOccurs="0" name="SignatureDocuments" nillable="true" type="tns:ArrayOfSignatureDocument" />
+      <xs:element minOccurs="0" name="Singnatures" nillable="true" type="tns:ArrayOfSingnature" />
+      <xs:element minOccurs="0" name="Singnatures1" nillable="true" type="tns:ArrayOfSingnature" />
       <xs:element minOccurs="0" name="Standards" nillable="true" type="tns:ArrayOfStandard" />
       <xs:element minOccurs="0" name="StateId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Status" type="tns:UserStatus" />
@@ -300,6 +310,8 @@
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserPermissions" nillable="true" type="tns:ArrayOfUserPermission" />
       <xs:element minOccurs="0" name="UserRoles" nillable="true" type="tns:ArrayOfUserRole" />
+      <xs:element minOccurs="0" name="UserSignatureDocuments" nillable="true" type="tns:ArrayOfUserSignatureDocument" />
+      <xs:element minOccurs="0" name="UserSignatureDocuments1" nillable="true" type="tns:ArrayOfUserSignatureDocument" />
       <xs:element minOccurs="0" name="UserTasks" nillable="true" type="tns:ArrayOfUserTask" />
       <xs:element minOccurs="0" name="UserTasks1" nillable="true" type="tns:ArrayOfUserTask" />
     </xs:sequence>
@@ -326,12 +338,8 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsExpired" type="xs:boolean" />
       <xs:element minOccurs="0" name="Product" nillable="true" type="tns:Product" />
-      <xs:element minOccurs="0" name="Product1" nillable="true" type="tns:Product" />
-      <xs:element minOccurs="0" name="Product2" nillable="true" type="tns:Product" />
       <xs:element minOccurs="0" name="ProductId" type="xs:int" />
-      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
-      <xs:element minOccurs="0" name="User1" nillable="true" type="tns:User" />
-      <xs:element minOccurs="0" name="User2" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreate" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
       <xs:element minOccurs="0" name="Version" type="xs:int" />
     </xs:sequence>
@@ -342,12 +350,14 @@
       <xs:element minOccurs="0" name="ApprovalDocumentProducts" nillable="true" type="tns:ArrayOfApprovalDocumentProduct" />
       <xs:element minOccurs="0" name="ApprovalDocumentProducts1" nillable="true" type="tns:ArrayOfApprovalDocumentProduct" />
       <xs:element minOccurs="0" name="ApprovalDocumentProducts2" nillable="true" type="tns:ArrayOfApprovalDocumentProduct" />
+      <xs:element minOccurs="0" name="BCTDesignProducts" nillable="true" type="tns:ArrayOfBCTDesignProduct" />
       <xs:element minOccurs="0" name="Contracts" nillable="true" type="tns:ArrayOfContract" />
       <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsLocked" type="xs:boolean" />
       <xs:element minOccurs="0" name="LSX_Product" nillable="true" type="tns:ArrayOfLSX_Product" />
       <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PYC_Product" nillable="true" type="tns:ArrayOfPYC_Product" />
       <xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductType" type="tns:ProductType" />
@@ -363,6 +373,123 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:complexType name="ArrayOfBCTDesignProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BCTDesignProduct" nillable="true" type="tns:BCTDesignProduct" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBCTDesignProduct" nillable="true" type="tns:ArrayOfBCTDesignProduct" />
+  <xs:complexType name="BCTDesignProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BCTDesign" nillable="true" type="tns:BCTDesign" />
+      <xs:element minOccurs="0" name="BCTDesignId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="tns:Product" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BCTDesignProduct" nillable="true" type="tns:BCTDesignProduct" />
+  <xs:complexType name="BCTDesign">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BCTDesignProducts" nillable="true" type="tns:ArrayOfBCTDesignProduct" />
+      <xs:element minOccurs="0" name="Burden" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CopperWeight" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CoreHeight" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CoreMaterial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoreWeight" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DateCreate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DesignCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DesignName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileOfBctDesigns" nillable="true" type="tns:ArrayOfFileOfBctDesign" />
+      <xs:element minOccurs="0" name="Heigh" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="InerCoreDiameter" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="InnerDiameter" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ipr1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Ipr2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Ipr3" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Ipr4" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Ipr5" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Ipr6" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Isc1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Isc2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Isc3" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Isc4" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberOfLayer" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberWireParalel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OuterCoreDiameter" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OuterDiameter" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrecisionClasses" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RatedVoltage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalTurn" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserCreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="VoltageLevel" type="tns:VoltageLevel" />
+      <xs:element minOccurs="0" name="WireDiameter" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BCTDesign" nillable="true" type="tns:BCTDesign" />
+  <xs:complexType name="ArrayOfFileOfBctDesign">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileOfBctDesign" nillable="true" type="tns:FileOfBctDesign" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileOfBctDesign" nillable="true" type="tns:ArrayOfFileOfBctDesign" />
+  <xs:complexType name="FileOfBctDesign">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BCTDesign" nillable="true" type="tns:BCTDesign" />
+      <xs:element minOccurs="0" name="BCTDesignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DecryptKey" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileOfBctDesign" nillable="true" type="tns:FileOfBctDesign" />
+  <xs:simpleType name="VoltageLevel">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="LowVoltage">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="MediumVoltage">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="HighVoltage110kV">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="HighVoltage220kV">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="VoltageLevel" nillable="true" type="tns:VoltageLevel" />
   <xs:complexType name="ArrayOfContract">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Contract" nillable="true" type="tns:Contract" />
@@ -401,6 +528,76 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LSX_Product" nillable="true" type="tns:LSX_Product" />
+  <xs:complexType name="ArrayOfPYC_Product">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PYC_Product" nillable="true" type="tns:PYC_Product" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPYC_Product" nillable="true" type="tns:ArrayOfPYC_Product" />
+  <xs:complexType name="PYC_Product">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PYC" nillable="true" type="tns:PYC" />
+      <xs:element minOccurs="0" name="Product" nillable="true" type="tns:Product" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      <xs:element minOccurs="0" name="PycId" type="xs:int" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PYC_Product" nillable="true" type="tns:PYC_Product" />
+  <xs:complexType name="PYC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllContent" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AssignedFilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DOfficeNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateCreate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateIssued" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileOfPycs" nillable="true" type="tns:ArrayOfFileOfPyc" />
+      <xs:element minOccurs="0" name="FromDepartment" nillable="true" type="tns:Department" />
+      <xs:element minOccurs="0" name="FromDepartmentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFinish" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KDNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginFilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PYC_Product" nillable="true" type="tns:ArrayOfPYC_Product" />
+      <xs:element minOccurs="0" name="ReceiveDepartment" nillable="true" type="tns:Department" />
+      <xs:element minOccurs="0" name="ReceiveDepartmentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserCreate" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserUpload" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserUploadId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PYC" nillable="true" type="tns:PYC" />
+  <xs:complexType name="ArrayOfFileOfPyc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileOfPyc" nillable="true" type="tns:FileOfPyc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileOfPyc" nillable="true" type="tns:ArrayOfFileOfPyc" />
+  <xs:complexType name="FileOfPyc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DecryptKey" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PYC" nillable="true" type="tns:PYC" />
+      <xs:element minOccurs="0" name="PycId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileOfPyc" nillable="true" type="tns:FileOfPyc" />
   <xs:simpleType name="ProductType">
     <xs:list>
       <xs:simpleType>
@@ -968,6 +1165,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:complexType name="ArrayOfPYC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PYC" nillable="true" type="tns:PYC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPYC" nillable="true" type="tns:ArrayOfPYC" />
   <xs:complexType name="ArrayOfPublishDocument">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="PublishDocument" nillable="true" type="tns:PublishDocument" />
@@ -1216,6 +1419,171 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserRole" nillable="true" type="tns:UserRole" />
+  <xs:complexType name="ArrayOfSignatureDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SignatureDocument" nillable="true" type="tns:SignatureDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSignatureDocument" nillable="true" type="tns:ArrayOfSignatureDocument" />
+  <xs:complexType name="SignatureDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateCreate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="OriginFilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProcessorID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SignatureDocumentStatus" nillable="true" type="tns:SignatureDocumentStatus" />
+      <xs:element minOccurs="0" name="SignedFilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreateId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserSignatureDocuments" nillable="true" type="tns:ArrayOfUserSignatureDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SignatureDocument" nillable="true" type="tns:SignatureDocument" />
+  <xs:simpleType name="SignatureDocumentStatus">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Waiting">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Finished">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Disposed">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Signed">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="SignatureDocumentStatus" nillable="true" type="tns:SignatureDocumentStatus" />
+  <xs:complexType name="ArrayOfUserSignatureDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserSignatureDocument" nillable="true" type="tns:UserSignatureDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserSignatureDocument" nillable="true" type="tns:ArrayOfUserSignatureDocument" />
+  <xs:complexType name="UserSignatureDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignedByUser" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="AssignedByUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="DenyReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeny" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SignComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SignatureDocument" nillable="true" type="tns:SignatureDocument" />
+      <xs:element minOccurs="0" name="SignatureDocumentId" type="xs:int" />
+      <xs:element minOccurs="0" name="SignatureIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="SignatureType" nillable="true" type="tns:SignatureType" />
+      <xs:element minOccurs="0" name="Signed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserSignatureDocument" nillable="true" type="tns:UserSignatureDocument" />
+  <xs:simpleType name="SignatureType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Creater" />
+          <xs:enumeration value="DepartmentManager" />
+          <xs:enumeration value="ApproveManager">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Checker">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="SignatureType" nillable="true" type="tns:SignatureType" />
+  <xs:complexType name="ArrayOfSingnature">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Singnature" nillable="true" type="tns:Singnature" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSingnature" nillable="true" type="tns:ArrayOfSingnature" />
+  <xs:complexType name="Singnature">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Path" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SignatureImageType" type="tns:SignatureImageType" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreate" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserCreateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Singnature" nillable="true" type="tns:Singnature" />
+  <xs:simpleType name="SignatureImageType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MainSignatureImage">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="FlashSignatureImage">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DraftMainSignatureImage">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="SignatureImageType" nillable="true" type="tns:SignatureImageType" />
   <xs:complexType name="ArrayOfStandard">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Standard" nillable="true" type="tns:Standard" />
@@ -1387,6 +1755,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GroupDepartment" nillable="true" type="tns:GroupDepartment" />
+  <xs:complexType name="ArrayOfBCTDesign">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BCTDesign" nillable="true" type="tns:BCTDesign" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBCTDesign" nillable="true" type="tns:ArrayOfBCTDesign" />
+  <xs:complexType name="ArrayOfSignatureType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SignatureType" type="tns:SignatureType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSignatureType" nillable="true" type="tns:ArrayOfSignatureType" />
   <xs:complexType name="TaskAttachedFileDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ConfidentialLevel" nillable="true" type="xs:int" />

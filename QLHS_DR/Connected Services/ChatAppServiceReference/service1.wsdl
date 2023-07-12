@@ -134,11 +134,23 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IMessageService_NewLsxProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewLsxProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewLsxProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewLsxProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadFileLsx_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileLsx" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadFileLsx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileLsxResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_DownloadPublicFile_InputMessage">
     <wsdl:part name="parameters" element="tns:DownloadPublicFile" />
   </wsdl:message>
@@ -187,6 +199,12 @@
   <wsdl:message name="IMessageService_AddProductToLsx_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddProductToLsxResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_AddProductsToLsx_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductsToLsx" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddProductsToLsx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductsToLsxResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_RemoveProductToLsx_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveProductToLsx" />
   </wsdl:message>
@@ -204,6 +222,192 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_GetProductsInLsx_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductsInLsxResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadPyces_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPyces" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadPyces_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPycesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewFileOfPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewFileOfPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewFileOfPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewFileOfPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddProductsToPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductsToPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddProductsToPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductsToPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeletePyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeletePyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadPycFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadPycFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadPycFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadPycFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetFilesOfPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesOfPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetFilesOfPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesOfPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProductsInPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsInPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetProductsInPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsInPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveFileOfPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFileOfPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveFileOfPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFileOfPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadFileAttachedInPyc_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileAttachedInPyc" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadFileAttachedInPyc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileAttachedInPycResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetActiveBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetActiveBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadBCTDesigns_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBCTDesigns" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadBCTDesigns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBCTDesignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetBCTDesigns_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBCTDesigns" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetBCTDesigns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBCTDesignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadBCTDesignFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadBCTDesignFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadBCTDesignFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadBCTDesignFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeleteBCTDesignFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeleteBCTDesignFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeleteBCTDesignFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeleteBCTDesignFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateBCTDesignFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBCTDesignFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateBCTDesignFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBCTDesignFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadFileOfBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileOfBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadFileOfBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileOfBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetSignatureImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSignatureImage" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetSignatureImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSignatureImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDraftSignatureImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDraftSignatureImage" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDraftSignatureImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDraftSignatureImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewSignatureDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewSignatureDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewSignatureDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewSignatureDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadReQuestSignatureDocumentToMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadReQuestSignatureDocumentToMe" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadReQuestSignatureDocumentToMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadReQuestSignatureDocumentToMeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadSignatureDocumentCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadSignatureDocumentCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadSignatureDocumentCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadSignatureDocumentCreateByMeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadSignatureDocumentFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadSignatureDocumentFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadSignatureDocumentFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadSignatureDocumentFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserSignatureDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSignatureDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserSignatureDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSignatureDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserSignatureDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSignatureDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetUserSignatureDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSignatureDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateSignatureDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSignatureDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UpdateSignatureDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSignatureDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetSignatureDocumentStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSignatureDocumentStatus" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetSignatureDocumentStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSignatureDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksFinish_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFinish" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadTasksFinish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadTasksFinishResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_LoadTasksRevoked_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadTasksRevoked" />
@@ -571,17 +775,17 @@
   <wsdl:message name="IMessageService_NewFileOfLsx_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewFileOfLsxResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_NewLsxProduct_InputMessage">
-    <wsdl:part name="parameters" element="tns:NewLsxProduct" />
+  <wsdl:message name="IMessageService_DownloadApprovalDocumentProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadApprovalDocumentProduct" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_NewLsxProduct_OutputMessage">
-    <wsdl:part name="parameters" element="tns:NewLsxProductResponse" />
+  <wsdl:message name="IMessageService_DownloadApprovalDocumentProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadApprovalDocumentProductResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadFileLsx_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadFileLsx" />
+  <wsdl:message name="IMessageService_UpdateApprovalDocumentProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApprovalDocumentProduct" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadFileLsx_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadFileLsxResponse" />
+  <wsdl:message name="IMessageService_UpdateApprovalDocumentProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApprovalDocumentProductResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_AddApprovalDocToOtherProduct_InputMessage">
     <wsdl:part name="parameters" element="tns:AddApprovalDocToOtherProduct" />
@@ -955,18 +1159,6 @@
   <wsdl:message name="IMessageService_LoadTasks_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadTasksResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_LoadTasksCreateByMe_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMe" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_LoadTasksCreateByMe_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadTasksCreateByMeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_LoadTasksFinish_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadTasksFinish" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_LoadTasksFinish_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadTasksFinishResponse" />
-  </wsdl:message>
   <wsdl:message name="IMessageService_GetServerDateTime_InputMessage">
     <wsdl:part name="parameters" element="tns:GetServerDateTime" />
   </wsdl:message>
@@ -1008,6 +1200,18 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_GetUsersOfDepartment_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUsersOfDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentManagers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentManagers" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentManagers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentManagersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetApproveManagers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApproveManagers" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetApproveManagers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApproveManagersResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_GetUserById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserById" />
@@ -1339,19 +1543,15 @@
   <wsdl:message name="IMessageService_RestoreApprovalDocumentProduct_OutputMessage">
     <wsdl:part name="parameters" element="tns:RestoreApprovalDocumentProductResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadApprovalDocumentProduct_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadApprovalDocumentProduct" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadApprovalDocumentProduct_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadApprovalDocumentProductResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_UpdateApprovalDocumentProduct_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateApprovalDocumentProduct" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_UpdateApprovalDocumentProduct_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateApprovalDocumentProductResponse" />
-  </wsdl:message>
   <wsdl:portType name="IMessageService">
+    <wsdl:operation name="NewLsxProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewLsxProduct" message="tns:IMessageService_NewLsxProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewLsxProductResponse" message="tns:IMessageService_NewLsxProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileLsx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsx" message="tns:IMessageService_DownloadFileLsx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsxResponse" message="tns:IMessageService_DownloadFileLsx_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DownloadPublicFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadPublicFile" message="tns:IMessageService_DownloadPublicFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadPublicFileResponse" message="tns:IMessageService_DownloadPublicFile_OutputMessage" />
@@ -1384,6 +1584,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddProductToLsx" message="tns:IMessageService_AddProductToLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddProductToLsxResponse" message="tns:IMessageService_AddProductToLsx_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddProductsToLsx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddProductsToLsx" message="tns:IMessageService_AddProductsToLsx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddProductsToLsxResponse" message="tns:IMessageService_AddProductsToLsx_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RemoveProductToLsx">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveProductToLsx" message="tns:IMessageService_RemoveProductToLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveProductToLsxResponse" message="tns:IMessageService_RemoveProductToLsx_OutputMessage" />
@@ -1395,6 +1599,130 @@
     <wsdl:operation name="GetProductsInLsx">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetProductsInLsx" message="tns:IMessageService_GetProductsInLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetProductsInLsxResponse" message="tns:IMessageService_GetProductsInLsx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadPyces">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadPyces" message="tns:IMessageService_LoadPyces_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadPycesResponse" message="tns:IMessageService_LoadPyces_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewPyc" message="tns:IMessageService_NewPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewPycResponse" message="tns:IMessageService_NewPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewFileOfPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewFileOfPyc" message="tns:IMessageService_NewFileOfPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewFileOfPycResponse" message="tns:IMessageService_NewFileOfPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProductsToPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddProductsToPyc" message="tns:IMessageService_AddProductsToPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddProductsToPycResponse" message="tns:IMessageService_AddProductsToPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeletePyc" message="tns:IMessageService_DeletePyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeletePycResponse" message="tns:IMessageService_DeletePyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPycFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadPycFile" message="tns:IMessageService_DownloadPycFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadPycFileResponse" message="tns:IMessageService_DownloadPycFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesOfPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetFilesOfPyc" message="tns:IMessageService_GetFilesOfPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetFilesOfPycResponse" message="tns:IMessageService_GetFilesOfPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsInPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetProductsInPyc" message="tns:IMessageService_GetProductsInPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetProductsInPycResponse" message="tns:IMessageService_GetProductsInPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFileOfPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveFileOfPyc" message="tns:IMessageService_RemoveFileOfPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveFileOfPycResponse" message="tns:IMessageService_RemoveFileOfPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileAttachedInPyc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileAttachedInPyc" message="tns:IMessageService_DownloadFileAttachedInPyc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileAttachedInPycResponse" message="tns:IMessageService_DownloadFileAttachedInPyc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewBCTDesign" message="tns:IMessageService_NewBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewBCTDesignResponse" message="tns:IMessageService_NewBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetActiveBCTDesign" message="tns:IMessageService_SetActiveBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetActiveBCTDesignResponse" message="tns:IMessageService_SetActiveBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateBCTDesign" message="tns:IMessageService_UpdateBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateBCTDesignResponse" message="tns:IMessageService_UpdateBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadBCTDesigns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadBCTDesigns" message="tns:IMessageService_LoadBCTDesigns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadBCTDesignsResponse" message="tns:IMessageService_LoadBCTDesigns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBCTDesigns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetBCTDesigns" message="tns:IMessageService_GetBCTDesigns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetBCTDesignsResponse" message="tns:IMessageService_GetBCTDesigns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadBCTDesignFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UploadBCTDesignFile" message="tns:IMessageService_UploadBCTDesignFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UploadBCTDesignFileResponse" message="tns:IMessageService_UploadBCTDesignFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeleteBCTDesignFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeleteBCTDesignFile" message="tns:IMessageService_SetDeleteBCTDesignFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeleteBCTDesignFileResponse" message="tns:IMessageService_SetDeleteBCTDesignFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBCTDesignFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateBCTDesignFile" message="tns:IMessageService_UpdateBCTDesignFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateBCTDesignFileResponse" message="tns:IMessageService_UpdateBCTDesignFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileOfBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileOfBCTDesign" message="tns:IMessageService_DownloadFileOfBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileOfBCTDesignResponse" message="tns:IMessageService_DownloadFileOfBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetSignatureImage" message="tns:IMessageService_GetSignatureImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetSignatureImageResponse" message="tns:IMessageService_GetSignatureImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftSignatureImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDraftSignatureImage" message="tns:IMessageService_GetDraftSignatureImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDraftSignatureImageResponse" message="tns:IMessageService_GetDraftSignatureImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewSignatureDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewSignatureDocument" message="tns:IMessageService_NewSignatureDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewSignatureDocumentResponse" message="tns:IMessageService_NewSignatureDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadReQuestSignatureDocumentToMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadReQuestSignatureDocumentToMe" message="tns:IMessageService_LoadReQuestSignatureDocumentToMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadReQuestSignatureDocumentToMeResponse" message="tns:IMessageService_LoadReQuestSignatureDocumentToMe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadSignatureDocumentCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMe" message="tns:IMessageService_LoadSignatureDocumentCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMeResponse" message="tns:IMessageService_LoadSignatureDocumentCreateByMe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSignatureDocumentFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadSignatureDocumentFile" message="tns:IMessageService_DownloadSignatureDocumentFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadSignatureDocumentFileResponse" message="tns:IMessageService_DownloadSignatureDocumentFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSignatureDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserSignatureDocument" message="tns:IMessageService_GetUserSignatureDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserSignatureDocumentResponse" message="tns:IMessageService_GetUserSignatureDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSignatureDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserSignatureDocuments" message="tns:IMessageService_GetUserSignatureDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUserSignatureDocumentsResponse" message="tns:IMessageService_GetUserSignatureDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSignatureDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateSignatureDocument" message="tns:IMessageService_UpdateSignatureDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateSignatureDocumentResponse" message="tns:IMessageService_UpdateSignatureDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSignatureDocumentStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetSignatureDocumentStatus" message="tns:IMessageService_SetSignatureDocumentStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetSignatureDocumentStatusResponse" message="tns:IMessageService_SetSignatureDocumentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksCreateByMe" message="tns:IMessageService_LoadTasksCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksCreateByMeResponse" message="tns:IMessageService_LoadTasksCreateByMe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFinish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFinish" message="tns:IMessageService_LoadTasksFinish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFinishResponse" message="tns:IMessageService_LoadTasksFinish_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoadTasksRevoked">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksRevoked" message="tns:IMessageService_LoadTasksRevoked_InputMessage" />
@@ -1642,13 +1970,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewFileOfLsx" message="tns:IMessageService_NewFileOfLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewFileOfLsxResponse" message="tns:IMessageService_NewFileOfLsx_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NewLsxProduct">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewLsxProduct" message="tns:IMessageService_NewLsxProduct_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewLsxProductResponse" message="tns:IMessageService_NewLsxProduct_OutputMessage" />
+    <wsdl:operation name="DownloadApprovalDocumentProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadApprovalDocumentProduct" message="tns:IMessageService_DownloadApprovalDocumentProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadApprovalDocumentProductResponse" message="tns:IMessageService_DownloadApprovalDocumentProduct_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DownloadFileLsx">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsx" message="tns:IMessageService_DownloadFileLsx_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsxResponse" message="tns:IMessageService_DownloadFileLsx_OutputMessage" />
+    <wsdl:operation name="UpdateApprovalDocumentProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateApprovalDocumentProduct" message="tns:IMessageService_UpdateApprovalDocumentProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateApprovalDocumentProductResponse" message="tns:IMessageService_UpdateApprovalDocumentProduct_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddApprovalDocToOtherProduct">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddApprovalDocToOtherProduct" message="tns:IMessageService_AddApprovalDocToOtherProduct_InputMessage" />
@@ -1898,14 +2226,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasks" message="tns:IMessageService_LoadTasks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksResponse" message="tns:IMessageService_LoadTasks_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="LoadTasksCreateByMe">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksCreateByMe" message="tns:IMessageService_LoadTasksCreateByMe_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksCreateByMeResponse" message="tns:IMessageService_LoadTasksCreateByMe_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="LoadTasksFinish">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFinish" message="tns:IMessageService_LoadTasksFinish_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadTasksFinishResponse" message="tns:IMessageService_LoadTasksFinish_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetServerDateTime">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetServerDateTime" message="tns:IMessageService_GetServerDateTime_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetServerDateTimeResponse" message="tns:IMessageService_GetServerDateTime_OutputMessage" />
@@ -1933,6 +2253,14 @@
     <wsdl:operation name="GetUsersOfDepartment">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUsersOfDepartment" message="tns:IMessageService_GetUsersOfDepartment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetUsersOfDepartmentResponse" message="tns:IMessageService_GetUsersOfDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentManagers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentManagers" message="tns:IMessageService_GetDepartmentManagers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentManagersResponse" message="tns:IMessageService_GetDepartmentManagers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApproveManagers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetApproveManagers" message="tns:IMessageService_GetApproveManagers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetApproveManagersResponse" message="tns:IMessageService_GetApproveManagers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserById">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetUserById" message="tns:IMessageService_GetUserById_InputMessage" />
@@ -2154,19 +2482,29 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RestoreApprovalDocumentProduct" message="tns:IMessageService_RestoreApprovalDocumentProduct_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RestoreApprovalDocumentProductResponse" message="tns:IMessageService_RestoreApprovalDocumentProduct_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DownloadApprovalDocumentProduct">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadApprovalDocumentProduct" message="tns:IMessageService_DownloadApprovalDocumentProduct_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadApprovalDocumentProductResponse" message="tns:IMessageService_DownloadApprovalDocumentProduct_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateApprovalDocumentProduct">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateApprovalDocumentProduct" message="tns:IMessageService_UpdateApprovalDocumentProduct_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateApprovalDocumentProductResponse" message="tns:IMessageService_UpdateApprovalDocumentProduct_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IMessageService" type="tns:IMessageService">
     <wsp:PolicyReference URI="#NetTcpBinding_IMessageService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="NewLsxProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewLsxProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileLsx">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadFileLsx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DownloadPublicFile">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadPublicFile" style="document" />
       <wsdl:input>
@@ -2239,6 +2577,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddProductsToLsx">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddProductsToLsx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RemoveProductToLsx">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveProductToLsx" style="document" />
       <wsdl:input>
@@ -2259,6 +2606,285 @@
     </wsdl:operation>
     <wsdl:operation name="GetProductsInLsx">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetProductsInLsx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPyces">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadPyces" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewFileOfPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewFileOfPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProductsToPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddProductsToPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeletePyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPycFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadPycFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesOfPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetFilesOfPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsInPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetProductsInPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFileOfPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveFileOfPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileAttachedInPyc">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadFileAttachedInPyc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetActiveBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadBCTDesigns">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadBCTDesigns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBCTDesigns">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetBCTDesigns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadBCTDesignFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UploadBCTDesignFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeleteBCTDesignFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeleteBCTDesignFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBCTDesignFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateBCTDesignFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFileOfBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadFileOfBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureImage">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetSignatureImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftSignatureImage">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDraftSignatureImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewSignatureDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewSignatureDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadReQuestSignatureDocumentToMe">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadReQuestSignatureDocumentToMe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadSignatureDocumentCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadSignatureDocumentFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadSignatureDocumentFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSignatureDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserSignatureDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSignatureDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUserSignatureDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSignatureDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateSignatureDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSignatureDocumentStatus">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetSignatureDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksCreateByMe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadTasksFinish">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksFinish" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2818,8 +3444,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="NewLsxProduct">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewLsxProduct" style="document" />
+    <wsdl:operation name="DownloadApprovalDocumentProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadApprovalDocumentProduct" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2827,8 +3453,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DownloadFileLsx">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadFileLsx" style="document" />
+    <wsdl:operation name="UpdateApprovalDocumentProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateApprovalDocumentProduct" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3394,24 +4020,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LoadTasksCreateByMe">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksCreateByMe" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="LoadTasksFinish">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadTasksFinish" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetServerDateTime">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetServerDateTime" style="document" />
       <wsdl:input>
@@ -3468,6 +4076,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetUsersOfDepartment">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetUsersOfDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentManagers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartmentManagers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApproveManagers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetApproveManagers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3963,24 +4589,6 @@
     </wsdl:operation>
     <wsdl:operation name="RestoreApprovalDocumentProduct">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/RestoreApprovalDocumentProduct" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DownloadApprovalDocumentProduct">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadApprovalDocumentProduct" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateApprovalDocumentProduct">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateApprovalDocumentProduct" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

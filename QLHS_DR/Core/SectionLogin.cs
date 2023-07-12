@@ -49,6 +49,7 @@ namespace QLHS_DR.Core
                         _CanRestoreApprovalDocumentProduct = _ListPermissions.Any(x => x.Code == "productRestoreApprovalDocumentProduct");
                         _CanRemoveApprovalDocumentProduct = _ListPermissions.Any(x => x.Code == "productRemoveApprovalDocumentProduct");
                         _CanUpdateApprovalDocumentProduct = _ListPermissions.Any(x => x.Code == "productUpdateApprovalDocumentProduct");
+                        _CanConfirmDisposedPrintedDocument = _ListPermissions.Any(x => x.Code == "taskConfirmDisposedPrintedDocument");
                     }
                 }
             }
@@ -88,6 +89,8 @@ namespace QLHS_DR.Core
         public bool CanRemoveApprovalDocumentProduct { get { return _CanRemoveApprovalDocumentProduct; } }
         private bool _CanUpdateApprovalDocumentProduct;
         public bool CanUpdateApprovalDocumentProduct { get { return _CanUpdateApprovalDocumentProduct; } }
+        private bool _CanConfirmDisposedPrintedDocument;
+        public bool CanConfirmDisposedPrintedDocument { get { return _CanConfirmDisposedPrintedDocument; } }
 
     }
 }

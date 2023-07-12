@@ -12,16 +12,19 @@
         xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer" 
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         x:Class="QLHS_DR.View.DocumentView.TaskAttackFileViewerWindow"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         x:Name="TaskAttackFileViewer"
         Title="{Binding Title}" Height="Auto" Width="Auto">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=pdfViewer}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=pdfViewer}"/>          
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding ClosedWindowCommand}" CommandParameter="{Binding ElementName=pdfViewer}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid>       
-        <local:PdfViewerControlEx 
+    <Grid>
+        <local:PdfViewerControlEx IsReadOnly="True" CursorMode="HandTool" 
             DocumentSource="{Binding DocumentSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
             CommandBarStyle="Bars"
             Grid.Row="0"

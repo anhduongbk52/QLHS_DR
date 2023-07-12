@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DevExpress.Pdf;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -36,7 +38,76 @@ namespace QLHS_DR.Core
                 }
             }
         }
+        public static SizeF PrepareGraphics(PdfPage page, PdfGraphics graphics)
+        {
+            PdfRectangle cropBox = page.CropBox;
+            float cropBoxWidth = (float)cropBox.Width;
+            float cropBoxHeight = (float)cropBox.Height;
 
+            switch (page.Rotate)
+            {
+                case 90:
+                    graphics.RotateTransform(-90);
+                    graphics.TranslateTransform(-cropBoxHeight, 0);
+                    return new SizeF(cropBoxHeight, cropBoxWidth);
+                case 180:
+                    graphics.RotateTransform(-180);
+                    graphics.TranslateTransform(-cropBoxWidth, -cropBoxHeight);
+                    return new SizeF(cropBoxWidth, cropBoxHeight);
+                case 270:
+                    graphics.RotateTransform(-270);
+                    graphics.TranslateTransform(0, -cropBoxWidth);
+                    return new SizeF(cropBoxHeight, cropBoxWidth);
+            }
+            return new SizeF(cropBoxWidth, cropBoxHeight);
+        }
+        public static void AddValidStamp(PdfDocumentProcessor processor, SolidBrush textBrush, float _StartX, float _StartY, float drawingDPI, int fontSize)
+        {
+            int _Stamp_Width = 300;
+            int _Stamp_Heigh = 150;
+            string text1 = "TỔNG CÔNG TY";
+            string text1_1 = "THIẾT BỊ ĐIỆN ĐÔNG ANH";
+            string text3 = "HIỆU LỰC";
+
+            IList<PdfPage> pages = processor.Document.Pages;
+
+            for (int i = 0; i < pages.Count; i++)
+            {
+                PdfPage page = pages[i];
+                using (PdfGraphics graphics = processor.CreateGraphics())
+                {
+                    SizeF actualPageSize = PrepareGraphics(page, graphics);
+                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
+                    using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold), font1 = new Font(fontFamily, fontSize + 2, System.Drawing.FontStyle.Bold))
+                    {
+                        string text2 = DateTime.Now.Day + " - " + DateTime.Now.Month + " - " + DateTime.Now.Year;
+
+                        SizeF text1Size = graphics.MeasureString(text1, font, PdfStringFormat.GenericDefault);
+                        SizeF text1_1Size = graphics.MeasureString(text1_1, font, PdfStringFormat.GenericDefault);
+                        SizeF text2Size = graphics.MeasureString(text2, font1, PdfStringFormat.GenericDefault);
+                        SizeF text3Size = graphics.MeasureString(text3, font1, PdfStringFormat.GenericDefault);
+
+                        PointF center = new PointF(_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
+
+                        PointF topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2 - 40);
+                        PointF topLeftText1_1 = new PointF(center.X - text1_1Size.Width / 2, center.Y - text1_1Size.Height / 2 - 25);
+                        PointF topLeftText2 = new PointF(center.X - text2Size.Width / 2, center.Y - text1Size.Height / 2);
+                        PointF topLeftText3 = new PointF(center.X - text3Size.Width / 2, center.Y - text1Size.Height / 2 + 30);
+
+                        graphics.DrawString(text1, font, textBrush, topLeftText1);
+                        graphics.DrawString(text1_1, font, textBrush, topLeftText1_1);
+                        graphics.DrawString(text2, font1, textBrush, topLeftText2);
+                        graphics.DrawString(text3, font1, textBrush, topLeftText3);
+
+                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue));
+                        graphics.DrawRectangle(pen, new RectangleF(_StartX, _StartY, _Stamp_Width, _Stamp_Heigh));
+
+                        graphics.AddToPageForeground(page, drawingDPI, drawingDPI);
+                    }
+
+                }
+            }
+        }
         public static void ExtractZipFile(string zipFilePath, string destinationFolder)
         {
             // Tạo thư mục đích nếu nó chưa tồn tại

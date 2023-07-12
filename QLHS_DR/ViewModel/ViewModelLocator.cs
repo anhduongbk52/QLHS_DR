@@ -1,5 +1,6 @@
 ﻿
 using EofficeClient.ViewModel;
+using QLHS_DR.ViewModel.DocumentViewModel;
 using QLHS_DR.ViewModel.LsxViewModel;
 using QLHS_DR.ViewModel.Products;
 using QLHS_DR.ViewModel.ProductViewModel;
@@ -29,5 +30,10 @@ namespace QLHS_DR.ViewModel
         {
             get { return new ProductManagerViewModel(); }
         }
+        public SignPdfViewModel SignPdfViewModel
+        {
+            get { return new SignPdfViewModel(); }
+        }
+        
     }
 }

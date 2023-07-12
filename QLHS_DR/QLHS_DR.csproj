@@ -150,6 +150,7 @@
     <Compile Include="SingleInstance.cs" />
     <Compile Include="User32API.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BCTDesignViewModel\NewBCTDesignViewModel.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageServiceCallBack.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel\AddContractViewModel.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\ReceiveUserOfMyDepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\RevokedPrintedDocumentManagerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\SignPdfViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\TaskAttackFileViewerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
@@ -195,6 +197,9 @@
     <Compile Include="ViewModel\TransformerManualViewModel\EditTransformerManualViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\BCTDesignView\NewBCTDesignWindow.xaml.cs">
+      <DependentUpon>NewBCTDesignWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ChatAppView\ChatAppWindow.xaml.cs">
       <DependentUpon>ChatAppWindow.xaml</DependentUpon>
     </Compile>
@@ -243,6 +248,9 @@
     </Compile>
     <Compile Include="View\DocumentView\RevokedPrintedDocumentManagerWD.xaml.cs">
       <DependentUpon>RevokedPrintedDocumentManagerWD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\SignPdfWindow.xaml.cs">
+      <DependentUpon>SignPdfWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\TaskAttackFileViewerWindow.xaml.cs">
       <DependentUpon>TaskAttackFileViewerWindow.xaml</DependentUpon>
@@ -340,6 +348,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\BCTDesignView\NewBCTDesignWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ChatAppView\ChatAppWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,6 +413,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DocumentView\RevokedPrintedDocumentManagerWD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentView\SignPdfWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -531,6 +547,9 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ApprovalDocumentProduct.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BCTDesign.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Contract.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -541,6 +560,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DocTittle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.FileOfPyc.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.GroupDepartment.datasource">
@@ -591,6 +613,9 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PublishDocumentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PYC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -607,6 +632,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RolePermissionD.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.SignatureDocument.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Standard.datasource">
@@ -637,6 +665,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserRole.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserSignatureDocument.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserStatus.datasource">
@@ -742,6 +773,11 @@
       <Project>{772c7bae-491e-4e58-95c1-e4e8d7be9b9f}</Project>
       <Name>EofficeCommonLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TestSignature\SignPicture.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

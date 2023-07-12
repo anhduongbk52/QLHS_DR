@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class TaskAttackFileViewerViewModel : BaseViewModel
+    internal class TaskAttackFileViewerViewModel : BaseViewModel, IDisposable
     {
         const float DrawingDpi = 72f;
 
@@ -113,9 +113,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
         }
         private int _currentPage;
+        private MemoryStream _outputStream;
+        private MemoryStream _outputStream1;
         public ICommand LoadedWindowCommand { get; private set; }
         public ICommand CustomPrintCommand { get; private set; }
         public ICommand CustomSaveCommand { get; private set; }
+        public ICommand ClosedWindowCommand { get; private set; }
 
         internal TaskAttackFileViewerViewModel(TaskAttachedFileDTO taskAttachedFileDTO, bool canPrint, bool canSave, IReadOnlyList<User> iReadOnlyListUser, UserTask userTask)
         {
@@ -123,6 +126,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             UserTaskPrint = userTask;
             CanPrintFile = canPrint;
             CanSaveFile = canSave;
+            ClosedWindowCommand = new RelayCommand<Object>((p) => { return true; },(p)=>
+            {
+                DocumentSource = null;
+                _outputStream?.Dispose();
+                _outputStream1?.Dispose();
+                _MyClient = null;
+            });
 
             LoadedWindowCommand = new RelayCommand<PdfViewerControlEx>((p) => { return true; }, (p) =>
             {
@@ -136,40 +146,43 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _MyClient.Open();
                     DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
 
-                    MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content);
-                    MemoryStream outputStream = new MemoryStream();
+                    
+                    _outputStream = new MemoryStream();
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
-                        processor.LoadDocument(stream);
-                        List<int> countPrinteds = new List<int>();
-                        for (int i = 0; i < processor.Document.Pages.Count; i++)
+                        using (MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content))
                         {
-                            countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1));
-                        }
-                        string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
-
-                        using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
-                        {
-                            AddGraphics(processor, addText, textBrush, countPrinteds);
-                        }
-                        using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
-                        {
-                            if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
+                            processor.LoadDocument(stream);
+                            List<int> countPrinteds = new List<int>();
+                            for (int i = 0; i < processor.Document.Pages.Count; i++)
                             {
-                                AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
+                                countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1));
                             }
-                        }
-                        processor.SaveDocument(outputStream);
-                        if (processor.Document.Pages.Count > 0)
-                        {
-                            DocumentSource = outputStream;
-                        }
-                        else
-                        {
-                            // Do something if the document does not contain any pages
-                        }
-                    }
+                            string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
 
+                            using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
+                            {
+                                AddGraphics(processor, addText, textBrush, countPrinteds);
+                            }
+                            using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
+                            {
+                                if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
+                                {
+                                    AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
+                                    DocScan.AddValidStamp(processor, textBrush1, 50, 50, 96f, 12);
+                                }
+                            }
+                            processor.SaveDocument(_outputStream);
+                            if (processor.Document.Pages.Count > 0)
+                            {
+                                DocumentSource = _outputStream;
+                            }
+                            else
+                            {
+                                // Do something if the document does not contain any pages
+                            }
+                        }                           
+                    }
                     _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
                     _MyClient.Close();
 
@@ -195,42 +208,43 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                     _currentPage = p.CurrentPageNumber;
 
-                    MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content);
 
-                    MemoryStream outputStream = new MemoryStream();
+                    _outputStream1 = new MemoryStream();
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
-                        processor.LoadDocument(stream);
-                        List<int> countPrinteds = new List<int>();
-                        for (int i = 0; i < processor.Document.Pages.Count; i++)
+                        using (MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content))
                         {
-                            countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1) + 1);
-                        }
-                        string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
-
-                        using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
-                        {
-                            AddGraphics(processor, addText, textBrush, countPrinteds);
-                        }
-                        using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
-                        {
-                            if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
+                            processor.LoadDocument(stream);
+                            List<int> countPrinteds = new List<int>();
+                            for (int i = 0; i < processor.Document.Pages.Count; i++)
                             {
-                                AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
+                                countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1) + 1);
                             }
-                        }
-                        processor.SaveDocument(outputStream);
-                        if (processor.Document.Pages.Count > 0)
-                        {
-                            pdfViewerControlEx.DocumentSource = outputStream;
-                        }
-                        else
-                        {
-                            // Do something if the document does not contain any pages
-                        }
+                            string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
+
+                            using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
+                            {
+                                AddGraphics(processor, addText, textBrush, countPrinteds);
+                            }
+                            using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
+                            {
+                                if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
+                                {
+                                    AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
+                                }
+                            }
+                            processor.SaveDocument(_outputStream1);
+                            if (processor.Document.Pages.Count > 0)
+                            {
+                                pdfViewerControlEx.DocumentSource = _outputStream1;
+                            }
+                            else
+                            {
+                                // Do something if the document does not contain any pages
+                            }
+                        }                            
                     }
                     pdfViewerControlEx.DocumentLoaded += PdfViewerControlEx_DocumentLoaded;
-
                     _MyClient.Close();
                 }
                 catch (Exception ex)
@@ -399,5 +413,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

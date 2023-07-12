@@ -1127,13 +1127,27 @@ namespace QLHS_DR.Core
             return kq;
         }
         internal void AddApprovalDocToOtherProduct(int[] approvalDocumentDocIds, int[] productIds)
-        {
-            int kq = 0;
+        {          
             try
             {
                 _Client = ServiceHelper.NewMessageServiceClient();
                 _Client.Open();
                 _Client.AddApprovalDocToOtherProduct(approvalDocumentDocIds, productIds);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+        }
+        internal void SetSignatureDocumentStatus(int signatureDocumentId, SignatureDocumentStatus signatureDocumentStatus)
+        {
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.SetSignatureDocumentStatus(signatureDocumentId, signatureDocumentStatus);
                 _Client.Close();
             }
             catch (Exception ex)
