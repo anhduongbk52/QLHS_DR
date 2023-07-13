@@ -347,7 +347,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             IList<PdfPage> pages = processor.Document.Pages;
             for (int i = 0; i < pages.Count; i++)
             {
-                textInPage = text + " - " + "Number of copies: " + countPrinted[i];
+                //textInPage = text + " - " + "Number of copies: " + countPrinted[i];
+                textInPage = text;
                 PdfPage page = pages[i];
                 using (PdfGraphics graphics = processor.CreateGraphics())
                 {

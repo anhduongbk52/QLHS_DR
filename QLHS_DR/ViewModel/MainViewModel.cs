@@ -10,12 +10,16 @@ using QLHS_DR.Core;
 using QLHS_DR.Properties;
 using QLHS_DR.View;
 using QLHS_DR.View.ContractView;
+using QLHS_DR.View.DepartmentView;
 using QLHS_DR.View.DocumentView;
 using QLHS_DR.View.HosoView;
+using QLHS_DR.View.PhanQuyenView;
 using QLHS_DR.View.ProductView;
+using QLHS_DR.View.UserView;
 using QLHS_DR.ViewModel.DocumentViewModel;
 using QLHS_DR.ViewModel.HoSoViewModel;
 using QLHS_DR.ViewModel.Message;
+using QLHS_DR.ViewModel.PhanQuyen;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -23,10 +27,8 @@ using System.Deployment.Application;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Net.Security;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
@@ -191,6 +193,16 @@ namespace QLHS_DR.ViewModel
         public ICommand OpenBCTDesignManagerCommand { get; set; }
         public ICommand NewBCTDesignManagerCommand{ get; set; }
         public ICommand SignDocumentCommand { get; set; }
+        public ICommand OpenListUserCommand { get; set; }
+        public ICommand NewUserCommand { get; set; }
+        public ICommand OpenPhanQuyenCommand { get; set; }
+        public ICommand OpenLoginManagerCommand { get; set; }
+        public ICommand NewGroupsUserCommand { get; set; }
+        public ICommand OpenDepartmentManagerCommand { get; set; }
+        public ICommand OpenFunctionManagerCommand { get; set; }
+        public ICommand OpenListGroupCommand { get; set; }
+        public ICommand OpenLogsCommand { get; set; }
+
         #endregion
 
         private ListNewDocumentUC listNewDocumentUC;
@@ -613,8 +625,7 @@ namespace QLHS_DR.ViewModel
             {
                 SignPdfWindow signPdfWindow = new SignPdfWindow();
                 signPdfWindow.ShowDialog();
-            });
-          
+            });          
             CheckUpdateCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
@@ -645,12 +656,155 @@ namespace QLHS_DR.ViewModel
                 }
                 else IsActiveRibbonPageCategoryQLSP = false;
             });
-        }
-
-        //private void RequestSendDocument_OnError(object sender, TableDependency.SqlClient.Base.EventArgs.ErrorEventArgs e)
-        //{
-        //    string errorMessage = e.Error.Message; // Thông báo lỗi   
-        //}
+            OpenListUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userViewListUsers")) return true; else return false; }, (p) =>
+            {
+                ListUserUC viewListUser = new ListUserUC();
+                Workspaces.Clear();
+                TabContainer tabItemMain = new TabContainer
+                {
+                    Header = "Danh sách user",
+                    IsSelected = true,
+                    Content = viewListUser,
+                    IsVisible = true
+                };
+                Workspaces.Add(tabItemMain);
+            });
+            NewUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userNewUser")) return true; else return false; }, (p) =>
+            {
+                AddNewUserUC addNewUserUC = new AddNewUserUC();
+                TabContainer tabItemMain = new TabContainer
+                {
+                    Header = "Thêm mới user",
+                    IsSelected = true,
+                    IsVisible = true,
+                    Content = addNewUserUC
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Thêm mới user").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = addNewUserUC;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
+            NewGroupsUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userNewRole")) return true; else return false; }, (p) =>
+            {
+                NewGroupsUserUC newGroupsUserUC = new NewGroupsUserUC();
+                TabContainer tabItemMain = new TabContainer
+                {
+                    Header = "Thêm nhóm mới",
+                    IsSelected = true,
+                    IsVisible = true,
+                    Content = newGroupsUserUC
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Thêm nhóm mới").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = newGroupsUserUC;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
+            OpenListGroupCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userViewListGroup")) return true; else return false; }, (p) =>
+            {
+                ListGroupUC viewListGroups = new ListGroupUC();
+                TabContainer tabItemListUser = new TabContainer()
+                {
+                    Header = "Danh sách các Group",
+                    IsSelected = true,
+                    IsVisible = true,
+                    Content = viewListGroups
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Danh sách các Group").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = viewListGroups;
+                    item.IsVisible = true;
+                }
+                else Workspaces.Add(tabItemListUser);
+            });
+            OpenPhanQuyenCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userPermissionManager")) return true; else return false; }, (p) =>
+            {
+                //Chức năng phân quyền               
+                PhanQuyenWindow phanQuyenWindow = new PhanQuyenWindow() { DataContext = new PhanQuyenViewModel() };               
+                phanQuyenWindow.ShowDialog();
+            });
+            OpenFunctionManagerCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                FunctionsManagerUC tabContent = new FunctionsManagerUC();
+                TabContainer tabItemMain = new TabContainer
+                {
+                    Header = "Danh sách chức năng",
+                    IsSelected = true,
+                    Content = tabContent,
+                    IsVisible = true
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Danh sách chức năng").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = tabContent;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
+            OpenDepartmentManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                DepartmentManagerUC tabContent = new DepartmentManagerUC();
+                TabContainer tabItemMain = new TabContainer
+                {
+                    Header = "Danh sách phòng ban",
+                    IsSelected = true,
+                    Content = tabContent,
+                    IsVisible = true
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Danh sách phòng ban").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = tabContent;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
+            OpenLoginManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                LoginManagerWindow tabContent = new LoginManagerWindow();
+                TabContainer tabItemMain = new TabContainer
+                {
+                    Header = "Quản lý đăng nhập",
+                    IsSelected = true,
+                    Content = tabContent,
+                    IsVisible = true
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Quản lý đăng nhập").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = tabContent;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
+        }      
 
         public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {

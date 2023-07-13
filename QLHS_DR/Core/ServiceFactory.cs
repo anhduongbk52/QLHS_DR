@@ -15,6 +15,58 @@ namespace QLHS_DR.Core
         {
             _Client = new MessageServiceClient();
         }
+        internal ObservableCollection<LoginManager> LoadLoginManagers()
+        {
+            ObservableCollection<LoginManager> kq = new ObservableCollection<LoginManager>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadLoginManagers().ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        public int UpdateLoginManager(LoginManager loginManager)
+        {
+            int i = 0;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                i = _Client.UpdateLoginManager(loginManager);
+                _Client.Close();
+
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return i;
+        }
+        internal void SetTrustedLogin(int loginManagerId, bool isTrusted)
+        {
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                _Client.SetTrustedLogin(loginManagerId, isTrusted);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+        }
         internal Product GetProductByProductCode(string productCode)
         {
             Product result = new Product();

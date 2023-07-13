@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\GenderConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
     <Compile Include="Core\AppInfo.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="ViewModel\ChatAppViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel\AddContractViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel\ListContractViewModel.cs" />
+    <Compile Include="ViewModel\DepartmentViewModel\DepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\AllTaskViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\DocumentPrintedByUserViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\EditStampViewModel.cs" />
@@ -179,6 +181,8 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Message\ControlEvent.cs" />
     <Compile Include="ViewModel\Message\TitletabControlMessage.cs" />
+    <Compile Include="ViewModel\PhanQuyen\FunctionsManagerViewModel.cs" />
+    <Compile Include="ViewModel\PhanQuyen\PhanQuyenViewModel.cs" />
     <Compile Include="ViewModel\ProductTypeWrapper.cs" />
     <Compile Include="ViewModel\ProductViewModel\DetailTransformerViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\GeneralInfomationProductViewModel.cs" />
@@ -195,6 +199,11 @@
     <Compile Include="ViewModel\HoSoViewModel\UploadHoSoViewModel.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />
     <Compile Include="ViewModel\TransformerManualViewModel\EditTransformerManualViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel\AddNewUserViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel\ListGroupViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel\ListUserViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel\LoginManagerViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel\NewGroupsUserViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\BCTDesignView\NewBCTDesignWindow.xaml.cs">
@@ -214,6 +223,9 @@
     </Compile>
     <Compile Include="View\ContractView\ListContractUC.xaml.cs">
       <DependentUpon>ListContractUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentView\DepartmentManagerUC.xaml.cs">
+      <DependentUpon>DepartmentManagerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\AllTaskUC.xaml.cs">
       <DependentUpon>AllTaskUC.xaml</DependentUpon>
@@ -273,6 +285,9 @@
     <Compile Include="View\HosoView\UploadApprovalDocumentProductWindow.xaml.cs">
       <DependentUpon>UploadApprovalDocumentProductWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\InputDialogWindow.xaml.cs">
+      <DependentUpon>InputDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -287,6 +302,12 @@
     </Compile>
     <Compile Include="View\PdfView\ViewPublicFilePdfWindow.xaml.cs">
       <DependentUpon>ViewPublicFilePdfWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhanQuyenView\FunctionsManagerUC.xaml.cs">
+      <DependentUpon>FunctionsManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhanQuyenView\PhanQuyenWindow.xaml.cs">
+      <DependentUpon>PhanQuyenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductView\DetailTransformerUC.xaml.cs">
       <DependentUpon>DetailTransformerUC.xaml</DependentUpon>
@@ -320,6 +341,21 @@
     </Compile>
     <Compile Include="View\TransformerManualView\EditTransformerManualWindow.xaml.cs">
       <DependentUpon>EditTransformerManualWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\AddNewUserUC.xaml.cs">
+      <DependentUpon>AddNewUserUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\ListGroupUC.xaml.cs">
+      <DependentUpon>ListGroupUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\ListUserUC.xaml.cs">
+      <DependentUpon>ListUserUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\LoginManagerWindow.xaml.cs">
+      <DependentUpon>LoginManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\NewGroupsUserUC.xaml.cs">
+      <DependentUpon>NewGroupsUserUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView\UserChangePasswordWindow.xaml.cs">
       <DependentUpon>UserChangePasswordWindow.xaml</DependentUpon>
@@ -369,6 +405,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ContractView\ListContractUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DepartmentView\DepartmentManagerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -448,6 +488,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\InputDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -465,6 +509,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PdfView\ViewPublicFilePdfWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhanQuyenView\FunctionsManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhanQuyenView\PhanQuyenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -509,6 +561,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TransformerManualView\EditTransformerManualWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\AddNewUserUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\ListGroupUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\ListUserUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\LoginManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\NewGroupsUserUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

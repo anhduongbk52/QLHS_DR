@@ -1,0 +1,317 @@
+﻿<UserControl x:Class="QLHS_DR.View.DepartmentView.DepartmentManagerUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"            
+            xmlns:local="clr-namespace:QLHS_DR.View.DepartmentView"
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource Locator},Path=DepartmentManagerViewModel}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <dx:LoadingDecorator Grid.Column="0"  IsSplashScreenShown="{Binding IsBusy}" Name="loadingDecorator"  OwnerLock="Full">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                </Style>
+                <CollectionViewSource x:Key="moduls" Source="{Binding Departments}">
+                    <CollectionViewSource.GroupDescriptions>
+                        <PropertyGroupDescription PropertyName="GroupDepartment.Name" />
+                    </CollectionViewSource.GroupDescriptions>
+                </CollectionViewSource>
+
+                <Style TargetType="ComboBox">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="Margin" Value="10"></Setter>
+                </Style>
+                <Style x:Key="Body_Content_DataGrid_Centering"
+                   TargetType="{x:Type ListViewItem}">
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition  Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <materialDesign:DialogHost Grid.Column="0">
+                <materialDesign:DialogHost.DialogContent>
+                    <StackPanel Width="300"  Margin="10">
+                        <TextBlock Text="Thêm đơn vị mới"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBox  materialDesign:HintAssist.Hint="Mã đơn vị"
+                                  materialDesign:HintAssist.HintOpacity=".26"                                 
+                                  FontSize="15" 
+                                  Text="{Binding NewDepartmentCode,UpdateSourceTrigger=PropertyChanged}"
+                                  Margin="0,8,0,0" HorizontalAlignment="Stretch" />
+                            <TextBox  materialDesign:HintAssist.Hint="Tên đơn vị"
+                                  materialDesign:HintAssist.HintOpacity=".26"                                 
+                                  FontSize="15"             
+                                  Text="{Binding NewDepartmentName,UpdateSourceTrigger=PropertyChanged}"
+                                  Margin="0,8,0,0" HorizontalAlignment="Stretch" />
+                            <ComboBox Grid.Row="0" Margin="0,8,0,0" ItemsSource="{Binding GroupDepartments}"
+                                      IsEditable="True" 
+                                      materialDesign:HintAssist.Hint="Nhóm đơn vị"
+                                      DisplayMemberPath="Name"
+                                      SelectedItem="{Binding SelectedNewGroupDepartment, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            </ComboBox>
+                            <ComboBox Grid.Row="0" Margin="0,8,0,0" ItemsSource="{Binding Positions}"
+                                      IsEditable="True" 
+                                      materialDesign:HintAssist.Hint="Chức danh quản lý trưởng đơn vị"
+                                      DisplayMemberPath="Name"
+                                      SelectedItem="{Binding SelectedNewPosition1, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            </ComboBox>
+                            <ComboBox Grid.Row="0" Margin="0,8,0,0" ItemsSource="{Binding Positions}"
+                                      IsEditable="True" 
+                                      materialDesign:HintAssist.Hint="Chức danh quản lý phó đơn vị"
+                                      DisplayMemberPath="Name"
+                                      SelectedItem="{Binding SelectedNewPosition2, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button Margin="0,8,8,0" 
+                                Content="ACCEPT" IsDefault="True"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding NewDepartmentCommand}">
+                                            <i:InvokeCommandAction.CommandParameter>
+                                                <system:Boolean>True</system:Boolean>
+                                            </i:InvokeCommandAction.CommandParameter>
+                                        </i:InvokeCommandAction>
+                                        <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" >
+                                            <i:InvokeCommandAction.CommandParameter>
+                                                <system:Boolean>True</system:Boolean>
+                                            </i:InvokeCommandAction.CommandParameter>
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Button Margin="0,8,8,0" 
+                                Content="CANCEL"
+                                IsCancel="True"
+                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                                <Button.CommandParameter>
+                                    <system:Boolean>False</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:DialogHost.DialogContent>
+                <Border MinHeight="256"
+                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                        BorderThickness="1"
+                        ClipToBounds="True">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" MinHeight="250" Name="dataGridDepartment"
+                                  CanUserAddRows="False"
+                                  SelectionMode="Single"
+                                  SelectedItem="{Binding DepartmentSelected}"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding Source={StaticResource moduls}}">
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Xóa" Command="{Binding DeleteDepartmentCommand}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                                    <MenuItem Header="Khóa" Command="{Binding LockDepartmentCommand}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                                    <MenuItem Header="Mở khóa" Command="{Binding UnLockDepartmentCommand}"
+                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.ContainerStyle>
+                                        <Style TargetType="{x:Type GroupItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                        <Expander IsExpanded="True" >
+                                                            <Expander.Header>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding Path=Name}" FontWeight="Bold"/>
+                                                                    <TextBlock Text="{Binding ItemCount}"  Foreground="Green" FontWeight="Bold" FontStyle="Italic" VerticalAlignment="Center" Margin="10,0,0,0" />
+                                                                </StackPanel>
+                                                            </Expander.Header>
+                                                            <ItemsPresenter />
+                                                        </Expander>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </GroupStyle.ContainerStyle>
+                                </GroupStyle>
+                            </DataGrid.GroupStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Đơn vị" IsReadOnly="True" Binding="{Binding Name}"/>
+                                <DataGridCheckBoxColumn Header="Khóa" IsReadOnly="True" Binding="{Binding Locked}"/>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                        <materialDesign:ColorZone Grid.Row="1"
+                                                  Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                                  Mode="PrimaryMid">
+                            <TextBlock Margin="16" Text="Danh sách đơn vị" />
+                        </materialDesign:ColorZone>
+
+                        <Button Grid.Row="0"   Margin="0,0,28,-20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                Content="{materialDesign:PackIcon Kind=Plus,Size=22}"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost>
+
+            <materialDesign:DialogHost Grid.Column="1"
+                                       DialogTheme="Inherit">
+                <materialDesign:DialogHost.DialogContent>
+                    <StackPanel Width="300"  Margin="10">
+                        <TextBlock Text="Add new User to Department."/>
+                        <ComboBox x:Name="FindUsercomboBox"
+                                  materialDesign:HintAssist.Hint="Search"
+                                  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26"
+                                  ItemsSource="{Binding Users}"        
+                                  SelectedItem="{Binding AddUserToDepartment}"
+                                  FontSize="15"
+                                  DisplayMemberPath="FullName"
+                                  Margin="0,8,0,0" HorizontalAlignment="Stretch" />
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                            <Button Margin="0,8,8,0"   
+                                    Content="ACCEPT" IsDefault="True"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding CloseDialogCommand}">
+                                            <i:InvokeCommandAction.CommandParameter>
+                                                <system:Boolean>True</system:Boolean>
+                                            </i:InvokeCommandAction.CommandParameter>
+                                        </i:InvokeCommandAction>
+                                        <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" >
+                                            <i:InvokeCommandAction.CommandParameter>
+                                                <system:Boolean>False</system:Boolean>
+                                            </i:InvokeCommandAction.CommandParameter>
+                                        </i:InvokeCommandAction>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Button Margin="0,8,8,0" 
+                                Content="CANCEL"
+                                IsCancel="True"
+                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                                <Button.CommandParameter>
+                                    <system:Boolean>False</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:DialogHost.DialogContent>
+                <Border MinHeight="256"
+                        BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                        BorderThickness="1"
+                        ClipToBounds="True">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ListView  Grid.Row="0"
+                               Name="listViewUserOfDepartment" 
+                               ItemsSource="{Binding UserDepartmentsOfDepartmentSelected,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"                               
+                               SelectedItem="{Binding UserDepartmentSelected}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding PriorityProcessing}"  Value="2">
+                                            <Setter Property="Background"  Value="LightGreen" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding PriorityProcessing}"  Value="1">
+                                            <Setter Property="Background"  Value="LightGreen" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="Height" Value="30"></Setter>
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Xóa khỏi đơn vị"
+                                  Command="{Binding RemoveUserCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                            <ListView.View>
+                                <GridView >
+                                    <GridViewColumn DisplayMemberBinding="{Binding User.UserName}" Header="Tài khoản"  Width="Auto" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding User.FullName}" Header="Họ và Tên" Width="Auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Position.Name}" Header="Chức vụ"  Width="Auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding PriorityProcessing}" Header="Cấp xử lý văn bản"  Width="Auto"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <materialDesign:ColorZone Grid.Row="1"
+                                              Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                              Mode="PrimaryMid">
+                            <TextBlock Margin="16" Text="{Binding DepartmentSelected.Name}" />
+                        </materialDesign:ColorZone>
+
+                        <Button Grid.Row="0"   Margin="0,0,28,-20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                Content="{materialDesign:PackIcon Kind=Plus,Size=22}"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost>
+            <materialDesign:Card Grid.Column="2" Margin="5">
+                <Grid  Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" Margin="10" ItemsSource="{Binding Positions}"
+                          IsEditable="True" 
+                          materialDesign:HintAssist.Hint="Chức vụ"
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding PositionSelected, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <TextBox Grid.Row="1" 
+                         Height="50"
+                         materialDesign:HintAssist.Hint="Cấp xử lý văn bản"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         VerticalContentAlignment="Center"
+                         Margin="5,0,0,0"
+                         Text="{Binding UserDepartmentSelected.PriorityProcessing}"/>
+                    <StackPanel Grid.Column="0"  Grid.Row="4" Orientation="Vertical" Margin="10">
+                        <Button Command="{Binding ApplyCommand}"  Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="Apply" Margin="10" Width="150" ></Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </dx:LoadingDecorator>
+</UserControl>
+

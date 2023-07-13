@@ -122,6 +122,48 @@
                                            RibbonStyle="All" LargeGlyph="{dx:DXImage SvgImages/XAF/Action_Inline_New.svg}"/>
                     </dxr:RibbonPageGroup>    
                 </dxr:RibbonPage>
+                <dxr:RibbonPage Caption="User Manager">
+                    <dxr:RibbonPageGroup Caption="Quản lý người dùng">
+                        <dxb:BarButtonItem Content="Danh sách nhân viên"
+                                           Command="{Binding OpenListUserCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Customer.svg}" />
+                        <dxb:BarButtonItem Content="Thêm mới"
+                                           Command="{Binding NewUserCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewCustomer.svg}" />
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Phòng ban">
+                        <dxb:BarButtonItem Content="Quản lý phòng ban"
+                                           Command="{Binding OpenDepartmentManagerCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Category.svg}"
+                                           RibbonStyle="Large" />
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Quản lý nhóm">
+                        <dxb:BarButtonItem Content="Danh sách nhóm"
+                                           Command="{Binding OpenListGroupCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Department.svg}"
+                                           RibbonStyle="Large" />
+                        <dxb:BarButtonItem Content="Thêm nhóm mới"
+                                           Command="{Binding NewGroupsUserCommand}"
+                                           RibbonStyle="Large"
+                                           LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/AddColumn.svg}" />
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Phân Quyền">
+                        <dxb:BarButtonItem Content="Danh sách chức năng"
+                                           Command="{Binding OpenFunctionManagerCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/ListBullets.svg}" />
+                        <dxb:BarButtonItem Command="{Binding OpenPhanQuyenCommand}"
+                                           Content="Phân quyền"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Security_Permission.svg}" />
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Nhật ký">
+                        <dxb:BarButtonItem Content="Giám sát đăng nhập"
+                                           Command="{Binding OpenLoginManagerCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_MyDetails.svg}" />
+                        <dxb:BarButtonItem Command="{Binding OpenLogsCommand}"
+                                           Content="Logs"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Audit_ChangeHistory.svg}" />
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
         <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">

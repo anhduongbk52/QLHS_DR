@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="QLHS_DR.View.UserView.ListGroupUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QLHS_DR.View.UserView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource Locator},Path=ListGroupViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView
+                Width="Auto"
+                Name="listViewGroup" 
+                ItemsSource="{Binding Roles, UpdateSourceTrigger=PropertyChanged}" 
+                Grid.Column="0" 
+                SelectedItem="{Binding RoleSelected, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Xóa nhóm"
+                                  Command="{Binding RemoveRoleCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                        <MenuItem Header="Đổi tên nhóm"
+                                  Command="{Binding RenameRoleCommand}"/>
+                        <MenuItem Header="Sửa đổi mô tả"
+                                  Command="{Binding ChangeDescriptionRoleCommand}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID" Width="Auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên Nhóm" Width="Auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Mô tả"  Width="Auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <materialDesign:Card Margin="10" Grid.Column="1" MinWidth="300" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView 
+                        Name="listViewUserInRoles" 
+                        ItemsSource="{Binding UsersInRole,UpdateSourceTrigger=PropertyChanged}">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Xóa thành viên khỏi nhóm" Command="{Binding RemoveUserInRoleCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"></MenuItem>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID" Width="Auto"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding UserName}" Header="UserName" Width="Auto"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding FullName}" Header="Full Name"  Width="Auto"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox IsEditable="True" Name="comboboxListUser" Grid.Column="0" ItemsSource="{Binding Users}" DisplayMemberPath="FullName" Margin="5">
+                        </ComboBox>
+                        <Button Command="{Binding AddNewUserToRoleCommand}" CommandParameter="{Binding ElementName=comboboxListUser,Path=SelectedItem}" Grid.Column="1" Content ="Add"  Width="70" Margin="5"></Button>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</UserControl>

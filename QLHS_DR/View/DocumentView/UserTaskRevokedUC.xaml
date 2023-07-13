@@ -33,12 +33,12 @@
                 </ContextMenu>
             </dxg:GridControl.ContextMenu>
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Subject" MinWidth="400" ReadOnly="True" Header="Tên tài liệu"  />
-                <dxg:GridColumn FieldName="Description" ReadOnly="True" Header="Mã số" />
-                <dxg:GridColumn FieldName="Task.TimeCreate" ReadOnly="True" Header="Ngày nhận" />
-                <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Header="Ngày bắt đầu" />
-                <dxg:GridColumn FieldName="JobContent"  ReadOnly="True" Header="Yêu cầu thực hiện"/>
-                <dxg:GridColumn FieldName="Note"  ReadOnly="True" Header="Ghi chú"/>
+                <dxg:GridColumn FieldName="Subject" MinWidth="400" Width="*" ReadOnly="True" Header="Tên tài liệu"  />
+                <dxg:GridColumn FieldName="Description" ReadOnly="True" Width="Auto" Header="Mã số" />
+                <dxg:GridColumn FieldName="Task.TimeCreate" ReadOnly="True" Width="Auto" Header="Ngày nhận" />
+                <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Width="Auto" Header="Ngày bắt đầu" />
+                <!--<dxg:GridColumn FieldName="JobContent"  ReadOnly="True" Width="Auto" Header="Yêu cầu thực hiện"/>
+                <dxg:GridColumn FieldName="Note"  ReadOnly="True" Width="Auto" Header="Ghi chú"/>-->
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView />
@@ -49,41 +49,45 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </dxg:GridControl>
-        <Grid  Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-   
-            <dxg:GridControl Grid.Row="1" Margin="0"
+        <Expander  ExpandDirection="Left" IsExpanded="False" Grid.Column="1">
+            <Expander.Header>
+                <TextBlock Text="Quá trình xử lý" RenderTransformOrigin="1,1">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <GroupBox Header="{Binding UserTaskSelected.Task.Subject}">
+                <dxg:GridControl Grid.Row="1" Margin="0"
                          AutoGenerateColumns="None" 
                          AutoExpandAllGroups="True"
                          ItemsSource="{Binding ListUserTaskOfTask,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                          EnableSmartColumnsGeneration="True" 
                          SelectionMode="Row">
-                <dxg:GridControl.Columns>
-                    <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
-                    <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
-                    <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-                    <dxg:GridColumn FieldName="CanSave" Header="Cho phép lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-                    <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>
-                    <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
-                </dxg:GridControl.Columns>
-                <dxg:GridControl.View>
-                    <dxg:TableView>
-                        <dxg:TableView.RowStyle>
-                            <Style TargetType="dxg:RowControl">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Row.IsProcessing}" Value="True">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </dxg:TableView.RowStyle>
-                    </dxg:TableView>
-                </dxg:GridControl.View>
-            </dxg:GridControl>
-        </Grid>
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
+                        <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
+                        <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                        <dxg:GridColumn FieldName="CanSave" Header="Quyền lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                        <dxg:GridColumn FieldName="Seen" ReadOnly="True" Header="Đã xem" Width="50"/>
+                        <dxg:GridColumn FieldName="HasPrinted" ReadOnly="True" Header="Đã in" Width="50"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView>
+                            <dxg:TableView.RowStyle>
+                                <Style TargetType="dxg:RowControl">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=Row.IsProcessing}" Value="True">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </dxg:TableView.RowStyle>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </GroupBox>
+        </Expander>
 
     </Grid>
 </UserControl>
