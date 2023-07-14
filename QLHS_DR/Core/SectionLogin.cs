@@ -50,6 +50,14 @@ namespace QLHS_DR.Core
                         _CanRemoveApprovalDocumentProduct = _ListPermissions.Any(x => x.Code == "productRemoveApprovalDocumentProduct");
                         _CanUpdateApprovalDocumentProduct = _ListPermissions.Any(x => x.Code == "productUpdateApprovalDocumentProduct");
                         _CanConfirmDisposedPrintedDocument = _ListPermissions.Any(x => x.Code == "taskConfirmDisposedPrintedDocument");
+                        _CanViewLogs=_ListPermissions.Any(x => x.Code == "userViewLog");
+                        _CanViewListGroup= _ListPermissions.Any(x => x.Code == "userViewListGroup");
+                        _CanPermissionManager = _ListPermissions.Any(x => x.Code == "userPermissionManager");
+                        _CanNewRole = _ListPermissions.Any(x => x.Code == "userNewRole");
+                        _CanNewUser = _ListPermissions.Any(x => x.Code == "userNewUser");
+                        _CanViewListUsers=_ListPermissions.Any(x => x.Code == "userViewListUsers");
+                        _CanUploadTransformerManualFile=_ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile");
+                        _CanViewListProduct = _ListPermissions.Any(x => x.Code == "productViewListProduct");
                     }
                 }
             }
@@ -91,6 +99,22 @@ namespace QLHS_DR.Core
         public bool CanUpdateApprovalDocumentProduct { get { return _CanUpdateApprovalDocumentProduct; } }
         private bool _CanConfirmDisposedPrintedDocument;
         public bool CanConfirmDisposedPrintedDocument { get { return _CanConfirmDisposedPrintedDocument; } }
+        private bool _CanViewLogs;
+        public bool CanViewLogs { get { return _CanViewLogs; } }
+        private bool _CanViewListGroup;
+        public bool CanViewListGroup { get { return _CanViewListGroup; } }
+        private bool _CanPermissionManager;
+        public bool CanPermissionManager { get { return _CanPermissionManager; } }
+        private bool _CanNewRole;
+        public bool CanNewRole { get { return _CanNewRole; } }
+        private bool _CanNewUser;
+        public bool CanNewUser { get { return _CanNewUser; } }
+        private bool _CanViewListUsers;
+        public bool CanViewListUsers { get { return _CanViewListUsers; } }
+        private bool _CanUploadTransformerManualFile;
+        public bool CanUploadTransformerManualFile { get { return _CanUploadTransformerManualFile; } }
+        private bool _CanViewListProduct;
+        public bool CanViewListProduct { get { return _CanViewListProduct; } }        
 
     }
 }

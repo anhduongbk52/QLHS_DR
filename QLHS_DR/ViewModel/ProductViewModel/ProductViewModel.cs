@@ -6,6 +6,7 @@ using QLHS_DR.View.ProductView;
 using QLHS_DR.ViewModel.ContractViewModel;
 using QLHS_DR.ViewModel.HoSoViewModel;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -39,6 +40,18 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 {
                     _ProductTypeNew = value;
                     OnPropertyChanged("ProductTypeNew");
+                }
+            }
+        }
+        private ObservableCollection<ProductTypeNew> _ProductTypeNews;
+        public ObservableCollection<ProductTypeNew> ProductTypeNews
+        {
+            get => _ProductTypeNews;
+            set
+            {
+                if (_ProductTypeNews != value)
+                {
+                    _ProductTypeNews = value; OnPropertyChanged("ProductTypeNews");
                 }
             }
         }

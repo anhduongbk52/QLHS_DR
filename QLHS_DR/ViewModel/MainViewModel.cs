@@ -20,6 +20,7 @@ using QLHS_DR.ViewModel.DocumentViewModel;
 using QLHS_DR.ViewModel.HoSoViewModel;
 using QLHS_DR.ViewModel.Message;
 using QLHS_DR.ViewModel.PhanQuyen;
+using QLHS_DR.ViewModel.UserViewModel;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -567,7 +568,7 @@ namespace QLHS_DR.ViewModel
                 window.DataContext = model;
                 window.ShowDialog();
             });
-            OpenProductManagerCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productViewListProduct")) return true; else return false; }, (p) =>
+            OpenProductManagerCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanViewListProduct) return true; else return false; }, (p) =>
             {
                 ProductManagerUC uc = new ProductManagerUC();
                 TabContainer item = Workspaces.Where(x => x.Header == "Products").FirstOrDefault();
@@ -603,14 +604,14 @@ namespace QLHS_DR.ViewModel
                 addContractWindow.DataContext = addContractViewModel;
                 addContractWindow.ShowDialog();
             });
-            UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile")) return true; else return false; }, (p) =>
+            UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanUploadTransformerManualFile) return true; else return false; }, (p) =>
             {
                 UploadHoSoWindow uploadHoSo = new UploadHoSoWindow();
                 UploadHoSoViewModel hoSoViewModel = new UploadHoSoViewModel(null);
                 uploadHoSo.DataContext = hoSoViewModel;
                 uploadHoSo.ShowDialog();
             });
-            UploadApprovalDocumentProductCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile")) return true; else return false; }, (p) =>
+            UploadApprovalDocumentProductCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanUploadTransformerManualFile) return true; else return false; }, (p) =>
             {
                 UploadApprovalDocumentProductViewModel uploadApprovalDocumentProductViewModel = new UploadApprovalDocumentProductViewModel(null);
                 UploadApprovalDocumentProductWindow uploadApprovalDocumentProductWindow = new UploadApprovalDocumentProductWindow() { DataContext = uploadApprovalDocumentProductViewModel };
@@ -656,7 +657,7 @@ namespace QLHS_DR.ViewModel
                 }
                 else IsActiveRibbonPageCategoryQLSP = false;
             });
-            OpenListUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userViewListUsers")) return true; else return false; }, (p) =>
+            OpenListUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanViewListUsers) return true; else return false; }, (p) =>
             {
                 ListUserUC viewListUser = new ListUserUC();
                 Workspaces.Clear();
@@ -669,7 +670,7 @@ namespace QLHS_DR.ViewModel
                 };
                 Workspaces.Add(tabItemMain);
             });
-            NewUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userNewUser")) return true; else return false; }, (p) =>
+            NewUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanNewUser) return true; else return false; }, (p) =>
             {
                 AddNewUserUC addNewUserUC = new AddNewUserUC();
                 TabContainer tabItemMain = new TabContainer
@@ -691,7 +692,7 @@ namespace QLHS_DR.ViewModel
                     Workspaces.Add(tabItemMain);
                 }
             });
-            NewGroupsUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userNewRole")) return true; else return false; }, (p) =>
+            NewGroupsUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanNewRole) return true; else return false; }, (p) =>
             {
                 NewGroupsUserUC newGroupsUserUC = new NewGroupsUserUC();
                 TabContainer tabItemMain = new TabContainer
@@ -713,7 +714,7 @@ namespace QLHS_DR.ViewModel
                     Workspaces.Add(tabItemMain);
                 }
             });
-            OpenListGroupCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userViewListGroup")) return true; else return false; }, (p) =>
+            OpenListGroupCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanViewListGroup) return true; else return false; }, (p) =>
             {
                 ListGroupUC viewListGroups = new ListGroupUC();
                 TabContainer tabItemListUser = new TabContainer()
@@ -732,9 +733,8 @@ namespace QLHS_DR.ViewModel
                 }
                 else Workspaces.Add(tabItemListUser);
             });
-            OpenPhanQuyenCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "userPermissionManager")) return true; else return false; }, (p) =>
-            {
-                //Chức năng phân quyền               
+            OpenPhanQuyenCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanPermissionManager) return true; else return false; }, (p) =>
+            {          
                 PhanQuyenWindow phanQuyenWindow = new PhanQuyenWindow() { DataContext = new PhanQuyenViewModel() };               
                 phanQuyenWindow.ShowDialog();
             });
@@ -804,7 +804,12 @@ namespace QLHS_DR.ViewModel
                     Workspaces.Add(tabItemMain);
                 }
             });
-        }      
+            OpenLogsCommand = new RelayCommand<Object>((p) => {if(SectionLogin.Ins.CanViewLogs) return true; else return false; }, (p) =>
+            {
+                LogView logView = new LogView() { DataContext = new LogViewModel() };
+                logView.ShowDialog();
+            });
+        }
 
         public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {

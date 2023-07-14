@@ -138,6 +138,6 @@
                 <Button Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=receiveDepartmentManager}" Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="OK" Margin="10" Width="150" Height="40"></Button>
                 <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=receiveDepartmentManager}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="CANCEL" Margin="10" Width="150" Height="40"></Button>  </StackPanel>
         </Grid>
-        <dxpdf:PdfViewerControl Name="pdfViwer" DocumentSource="{Binding PdfContent}" Grid.Column="1"/>
+        <dxpdf:PdfViewerControl Name="pdfViwer" IsReadOnly="True" CursorMode="HandTool" DocumentSource="{Binding PdfContent}" Grid.Column="1"/>
     </Grid>
 </Window>

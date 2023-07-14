@@ -32,23 +32,9 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid materialDesign:ShadowAssist.Darken="True" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel>
-                <materialDesign:ColorZone>
-                    <ComboBox
+        <StackPanel  Grid.Column="0">
+            <materialDesign:ColorZone>
+                <ComboBox
                         ItemsSource="{Binding ProductTypeNews,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                         DisplayMemberPath="TypeName"  SelectedItem="{Binding SelectedProductTypeNew}"
                         Margin="8 0 0 0"
@@ -57,9 +43,9 @@
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone>
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox
                     Text="{Binding CodeKeyWord,UpdateSourceTrigger=PropertyChanged}"                       
                     Margin="5 0 0 0"
                     materialDesign:HintAssist.Hint="Mã số" 
@@ -67,9 +53,9 @@
                     BorderThickness="0"
                     MinWidth="200"                    
                     VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone>
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox
                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
                         Margin="8 0 0 0"
                         materialDesign:HintAssist.Hint="Năm sản xuất"
@@ -77,9 +63,9 @@
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone>
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox
                     Text="{Binding NoteKeyWord,UpdateSourceTrigger=PropertyChanged}" 
                     Margin="8 0 0 0"
                     materialDesign:HintAssist.Hint="Ghi chú" 
@@ -87,9 +73,9 @@
                     BorderThickness="0"
                     MinWidth="200"                    
                     VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone Visibility="Collapsed">
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Visibility="Collapsed">
+                <TextBox
                         Text="{Binding StationKeyWord,UpdateSourceTrigger=PropertyChanged}"
                         Margin="8 0 0 0"
                         materialDesign:HintAssist.Hint="Trạm/Công trình/Dự án" 
@@ -97,9 +83,9 @@
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone>
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox
                         Text="{Binding ProductNameKeyword,UpdateSourceTrigger=PropertyChanged}"
                         Margin="8 0 0 0"
                         materialDesign:HintAssist.Hint="Tên sản phẩm" 
@@ -107,9 +93,9 @@
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone Visibility="Collapsed">
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Visibility="Collapsed">
+                <TextBox
                         Text="{Binding RatedPowerKeyWord,UpdateSourceTrigger=PropertyChanged}"
                         Margin="8 0 0 0"
                         materialDesign:HintAssist.Hint="Dung lượng định mức"
@@ -117,9 +103,9 @@
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone Visibility="Collapsed">
-                    <TextBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Visibility="Collapsed">
+                <TextBox
                         Text="{Binding RatedVoltageKeyWord,UpdateSourceTrigger=PropertyChanged}" 
                         Margin="8 0 0 0"
                         materialDesign:HintAssist.Hint="Điện áp định mức" 
@@ -127,9 +113,9 @@
                         BorderThickness="0"
                         MinWidth="200"                    
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-                <materialDesign:ColorZone Visibility="Collapsed">
-                    <ComboBox
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Visibility="Collapsed">
+                <ComboBox
                         ItemsSource="{Binding Standards}"
                         DisplayMemberPath="Name"
                         SelectedItem="{Binding SelectedStandard}"
@@ -139,14 +125,10 @@
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
-                </materialDesign:ColorZone>
-
-            </StackPanel>
-
+            </materialDesign:ColorZone>
             <Button Command="{Binding SearchCommand}" IsDefault="True" Margin="5" Grid.Row="8" Content="Tìm kiếm"></Button>
             <Button Command="{Binding ClearCommand}" Margin="5" Grid.Row="9" Content="Clear"></Button>
-        </Grid>
-
+        </StackPanel>
         <ListView ItemsSource="{Binding Products,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"
                   SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ContextMenu>

@@ -203,6 +203,7 @@
     <Compile Include="ViewModel\UserViewModel\ListGroupViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\ListUserViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\LoginManagerViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel\LogViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\NewGroupsUserViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel\UserChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -353,6 +354,9 @@
     </Compile>
     <Compile Include="View\UserView\LoginManagerWindow.xaml.cs">
       <DependentUpon>LoginManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\LogView.xaml.cs">
+      <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView\NewGroupsUserUC.xaml.cs">
       <DependentUpon>NewGroupsUserUC.xaml</DependentUpon>
@@ -577,6 +581,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserView\LoginManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\LogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

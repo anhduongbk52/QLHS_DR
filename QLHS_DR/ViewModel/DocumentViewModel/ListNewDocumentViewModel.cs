@@ -198,6 +198,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     receiveDepartmentManagerViewModel.WindowTitle = _UserTaskSelected.Task.Subject;
                     receiveDepartmentManagerWD.DataContext = receiveDepartmentManagerViewModel;
                     receiveDepartmentManagerWD.ShowDialog();
+                    receiveDepartmentManagerViewModel.Dispose();
                     ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                     UpdateHeaderTabControl();
                 }

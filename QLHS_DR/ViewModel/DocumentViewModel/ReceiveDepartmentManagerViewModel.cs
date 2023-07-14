@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class ReceiveDepartmentManagerViewModel : BaseViewModel
+    internal class ReceiveDepartmentManagerViewModel : BaseViewModel,IDisposable
     {
         #region "Properties and Field"
         private bool _DataChanged;
@@ -87,10 +87,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
                         DecryptTaskAttachedFile(taskAttachedFileDTOs[0], userTask);
-                        PdfContent = new MemoryStream(taskAttachedFileDTOs[0].Content);
+                        PdfContent = new MemoryStream(taskAttachedFileDTOs[0].Content,false);
                     }
                 }
-
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -193,6 +192,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 System.Windows.MessageBox.Show(ex.Message + "Function: GetReceiveDepartments");
             }
             return result;
+        }
+
+        public void Dispose()
+        {
+            PdfContent.Dispose();
+            PdfContent = null;            
         }
     }
     internal class ReceiveDepartment : BaseViewModel

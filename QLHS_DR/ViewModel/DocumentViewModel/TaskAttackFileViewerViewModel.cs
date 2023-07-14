@@ -169,7 +169,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                 if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                                 {
                                     AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
-                                    DocScan.AddValidStamp(processor, textBrush1, 50, 50, 96f, 12);
+                                    //DocScan.AddValidStamp(processor, textBrush1, 50, 50, 96f, 12);
                                 }
                             }
                             processor.SaveDocument(_outputStream);

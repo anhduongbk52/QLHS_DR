@@ -2,6 +2,7 @@
 using EofficeClient.Core;
 using QLHS_DR.ChatAppServiceReference;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -1208,6 +1209,24 @@ namespace QLHS_DR.Core
                 MessageBox.Show(ex.Message);
             }
         }
+        internal ObservableCollection<Log> GetLogs(DateTime from, DateTime dateTime_0, LogType type, int filterUserId)
+        {
+            ObservableCollection<Log> logs = new ObservableCollection<Log>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                logs = _Client.GetLogs(from, dateTime_0, type, filterUserId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return logs;
+        }
+
     }
 }
 

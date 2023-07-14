@@ -1,0 +1,85 @@
+﻿<Window x:Class="QLHS_DR.View.UserView.LogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.UserView"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        mc:Ignorable="d"
+        Title="Nhật ký sử dụng chương trình" Height="450" Width="800">
+    <Grid>
+        <Grid Background="Transparent">
+            <Grid.Resources>
+                <Style TargetType="materialDesign:ColorZone">
+                    <Setter Property="Padding" Value="8 4 8 4"></Setter>
+                    <Setter Property="CornerRadius" Value="2"></Setter>
+                    <Setter Property="Mode" Value="Standard"></Setter>
+                    <Setter Property="Panel.ZIndex" Value="1"></Setter>
+                    <Setter Property="Margin" Value="5 5 5 5"></Setter>
+                    <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth1"></Setter>
+                    <Setter Property="CornerRadius" Value="2"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="5"  Grid.Column="0">
+                <materialDesign:ColorZone>
+                    <ComboBox
+                        ItemsSource="{Binding LogTypes,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         SelectedItem="{Binding LogTypeSelected}"
+                        Margin="8 0 0 0"  BorderThickness="0"  MinWidth="200"  VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Log Type"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <ComboBox
+                        ItemsSource="{Binding Users,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                        DisplayMemberPath="FullName"  SelectedItem="{Binding UserSelected}"
+                        Margin="8 0 0 0"  BorderThickness="0"  MinWidth="200"  VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="User"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+                </materialDesign:ColorZone>
+              
+                <materialDesign:ColorZone>
+                    <TextBox
+                        Text="{Binding MaxResult,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                        Margin="8 0 0 0" materialDesign:HintAssist.Hint="Max Result"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0" MinWidth="200"   VerticalAlignment="Center"/>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <dxe:DateEdit EditValue="{Binding FromDate}">
+                        <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditNavigatorStyleSettings/>
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone>
+                    <dxe:DateEdit EditValue="{Binding ToDate}">
+                        <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditNavigatorStyleSettings/>
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                </materialDesign:ColorZone>
+               
+                <Button Command="{Binding SearchCommand}" IsDefault="True" Margin="5" Grid.Row="8" Content="Tìm kiếm"></Button>
+                <Button Command="{Binding ClearCommand}" Margin="5" Grid.Row="9" Content="Clear"></Button>
+                
+            </StackPanel>
+            <ListView ItemsSource="{Binding Logs,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="No."   Width="90"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Created}" Header="Time"  Width="Auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding User.FullName}" Header="User" Width="Auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Nội dung"  Width="Auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding LogType}" Header="Log Type"  Width="Auto"/>
+                    </GridView>
+                </ListView.View>              
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
