@@ -1,4 +1,5 @@
 ﻿using DevExpress.Pdf;
+using DevExpress.Xpf.Grid.Native;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.ChatAppServiceReference;
@@ -8,11 +9,14 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
 {
-    internal class TaskAttackFileViewerViewModel : BaseViewModel, IDisposable
+    internal class TaskAttackFileViewerViewModel1 : BaseViewModel, IDisposable
     {
         const float DrawingDpi = 72f;
 
@@ -97,8 +101,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-        private Object _DocumentSource;
-        public Object DocumentSource
+        private string _DocumentSource;
+        public string DocumentSource
         {
             get => _DocumentSource;
             set
@@ -110,73 +114,81 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
+        private string _OriginFilePath;
+        private string _TempFilePath1;
+        private string _TempFilePath2;
+        private string _TempFolder;
+
         private int _currentPage;
-        private MemoryStream _outputStream;
-        private MemoryStream _outputStream1;
+      
         public ICommand LoadedWindowCommand { get; private set; }
         public ICommand CustomPrintCommand { get; private set; }
         public ICommand CustomSaveCommand { get; private set; }
         public ICommand ClosedWindowCommand { get; private set; }
 
-        internal TaskAttackFileViewerViewModel(TaskAttachedFileDTO taskAttachedFileDTO, bool canPrint, bool canSave, UserTask userTask)
+        internal TaskAttackFileViewerViewModel1(TaskAttachedFileDTO taskAttachedFileDTO, bool canPrint, bool canSave, UserTask userTask)
         {
             _TaskAttachedFileDTO = taskAttachedFileDTO;
-            taskAttachedFileDTO = null;
             UserTaskPrint = userTask;
             CanPrintFile = canPrint;
             CanSaveFile = canSave;
-            ClosedWindowCommand = new RelayCommand<Object>((p) => { return true; },(p)=>
+
+            DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
+            FileName = _TaskAttachedFileDTO.FileName;
+            TaskName = _UserTaskPrint.Task.Subject;
+            _TempFolder = DocScan.GetTemporaryDirectory();
+            _OriginFilePath = Path.Combine(_TempFolder, _FileName);
+            _TempFilePath1 = Path.Combine(_TempFolder, $"Temp1-{_FileName}");
+            _TempFilePath2 = Path.Combine(_TempFolder, $"Temp2-{_FileName}");
+            System.IO.File.WriteAllBytes(_OriginFilePath, _TaskAttachedFileDTO.Content);
+
+            _TaskAttachedFileDTO.Content = null;
+            taskAttachedFileDTO.Content = null;
+             ClosedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 this.Dispose();
             });
+      
 
             LoadedWindowCommand = new RelayCommand<PdfViewerControlEx>((p) => { return true; }, (p) =>
             {
                 try
                 {
-                    p.CanSave = _CanSaveFile;
-                    FileName = _TaskAttachedFileDTO.FileName;
-                    TaskName = _UserTaskPrint.Task.Subject;
-
+                    p.CanSave = _CanSaveFile;               
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-                    DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
-                    
-                    _outputStream = new MemoryStream();
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
-                        using (MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content))
-                        {
-                            processor.LoadDocument(stream);
-                            List<int> countPrinteds = new List<int>();
-                            for (int i = 0; i < processor.Document.Pages.Count; i++)
-                            {
-                                countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1));
-                            }
-                            string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
+                        processor.LoadDocument(_OriginFilePath, true);
 
-                            using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
+                        List<int> countPrinteds = new List<int>();
+                        for (int i = 0; i < processor.Document.Pages.Count; i++)
+                        {
+                            countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1));
+                        }
+                        string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
+
+                        using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
+                        {
+                            AddGraphics(processor, addText, textBrush, countPrinteds);
+                        }
+                        using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
+                        {
+                            if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                             {
-                                AddGraphics(processor, addText, textBrush, countPrinteds);
+                                AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
+                                //DocScan.AddValidStamp(processor, textBrush1, 50, 50, 96f, 12);
                             }
-                            using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
-                            {
-                                if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
-                                {
-                                    AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
-                                    //DocScan.AddValidStamp(processor, textBrush1, 50, 50, 96f, 12);
-                                }
-                            }
-                            processor.SaveDocument(_outputStream);
-                            if (processor.Document.Pages.Count > 0)
-                            {
-                                DocumentSource = _outputStream;
-                            }
-                            else
-                            {
-                                // Do something if the document does not contain any pages
-                            }
-                        }                           
+                        }
+                        processor.SaveDocument(_TempFilePath1);
+                        if (processor.Document.Pages.Count > 0)
+                        {
+                            DocumentSource = _TempFilePath1;
+                        }
+                        else
+                        {
+                            // Do something if the document does not contain any pages
+                        }
                     }
                     _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
                     _MyClient.Close();
@@ -203,13 +215,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                     _currentPage = p.CurrentPageNumber;
 
-
-                    _outputStream1 = new MemoryStream();
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
-                        using (MemoryStream stream = new MemoryStream(_TaskAttachedFileDTO.Content))
-                        {
-                            processor.LoadDocument(stream);
+                     
+                            processor.LoadDocument(_OriginFilePath);
                             List<int> countPrinteds = new List<int>();
                             for (int i = 0; i < processor.Document.Pages.Count; i++)
                             {
@@ -228,16 +237,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                     AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
                                 }
                             }
-                            processor.SaveDocument(_outputStream1);
+                            processor.SaveDocument(_TempFilePath2);
                             if (processor.Document.Pages.Count > 0)
                             {
-                                pdfViewerControlEx.DocumentSource = _outputStream1;
+                                pdfViewerControlEx.DocumentSource = _TempFilePath2;
                             }
                             else
                             {
                                 // Do something if the document does not contain any pages
-                            }
-                        }                            
+                            }                        
                     }
                     pdfViewerControlEx.DocumentLoaded += PdfViewerControlEx_DocumentLoaded;
                     _MyClient.Close();
@@ -412,8 +420,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public void Dispose()
         {
             DocumentSource = null;
-            _outputStream?.Dispose();
-            _outputStream1?.Dispose();
+            System.IO.File.Delete(_OriginFilePath);
+            System.IO.File.Delete(_TempFilePath1);
+            System.IO.File.Delete(_TempFilePath2);
+            Directory.Delete(_TempFolder, true);        
             _MyClient = null;
         }
     }

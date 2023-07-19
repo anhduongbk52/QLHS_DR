@@ -70,7 +70,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </dxg:GridControl>
-        <Expander  ExpandDirection="Left" IsExpanded="False" Grid.Column="1">
+        <Expander  ExpandDirection="Left" IsExpanded="{Binding IsExpander,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1">
             <Expander.Header>
                 <TextBlock Text="Quá trình xử lý" RenderTransformOrigin="1,1">
                     <TextBlock.LayoutTransform>

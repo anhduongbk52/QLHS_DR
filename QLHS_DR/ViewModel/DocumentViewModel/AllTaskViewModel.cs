@@ -19,7 +19,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class AllTaskViewModel : BaseViewModel
     {
         #region "Properties and Field"
-
+        private bool _IsExpander;
+        public bool IsExpander
+        {
+            get => _IsExpander;
+            set
+            {
+                if (_IsExpander != value)
+                {
+                    _IsExpander = value; OnPropertyChanged("IsExpander");
+                }
+            }
+        }
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
         public ObservableCollection<Department> Departments
@@ -156,7 +167,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<ReloadAllTaskTabEvent>().Subscribe(OnLoadUserControl);
             IsReadOnlyPermission = true;
-
+            IsExpander = false;
             try
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -186,10 +197,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
             {
-                Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
-                thread5.SetApartmentState(ApartmentState.STA);
-                thread5.IsBackground = true;
-                thread5.Start();
+                OpenFilePdf();
+                //Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
+                //thread5.SetApartmentState(ApartmentState.STA);
+                //thread5.IsBackground = true;
+                //thread5.Start();
             });
             OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK) && _TaskSelected != null) return true; else return false; }, (p) =>
             {
@@ -199,7 +211,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 receiveUserManagerWD.ShowDialog();
                 ListTaskOfUser = GetAllTask(SectionLogin.Ins.CurrentUser.Id);
             });
-            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null&&_IsExpander) return true; else return false; }, (p) =>
             {
                 ListUserTaskOfTask = new ObservableCollection<UserTask>();
                 try
@@ -247,15 +259,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
-                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected);
+                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, _UserTaskSelected);
                         taskAttackFileViewerViewModel.FileName = taskAttachedFileDTOs[0].FileName;
                         taskAttackFileViewerViewModel.TaskName = _UserTaskSelected.Task.Subject;
 
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
-                        taskAttackFileViewerWindow.Show();
+                        taskAttackFileViewerWindow.ShowDialog();
 
-                        System.Windows.Threading.Dispatcher.Run();
+                       // System.Windows.Threading.Dispatcher.Run();
                     }
                     else
                     {

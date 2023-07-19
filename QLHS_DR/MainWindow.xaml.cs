@@ -34,7 +34,7 @@ namespace QLHS_DR
                 {
                     if (loginName.Content != null)
                     {
-                        this.Show();
+                        this.Show(); 
                         this.WindowState = System.Windows.WindowState.Normal;
                         this.Activate();
                     }
@@ -45,13 +45,15 @@ namespace QLHS_DR
             //comment this for memory leak
             DXTabControl tabControl = (DXTabControl)sender;
             IList source = tabControl.ItemsSource as IList;
-            if (source != null)
+            if(source != null)
             {
                 Dispatcher.BeginInvoke((Action)(() =>
                 {
+                    TabContainer temp = (TabContainer)( e.Item);                   
+                    temp.Dispose();
                     source.RemoveAt(e.TabIndex);
+                   // temp.Dis
                 }), DispatcherPriority.Render);
-
                 tabControl.SelectedIndex = 0;
             }
         }
@@ -74,8 +76,7 @@ namespace QLHS_DR
                     ApplicationName = AppDomain.CurrentDomain.FriendlyName
                 };
                 serviceManager.RecordLogin(loginManager);
-            }
-            Environment.Exit(Environment.ExitCode);
+            }            
             base.OnClosing(e);
         }
        

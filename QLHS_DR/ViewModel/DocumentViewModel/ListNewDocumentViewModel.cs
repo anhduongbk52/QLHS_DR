@@ -30,6 +30,19 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         private IReadOnlyList<User> iReadOnlyListUser;
         private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
         private bool _TrackChange;
+      
+        private bool _IsExpander;
+        public bool IsExpander
+        {
+            get => _IsExpander;
+            set
+            {
+                if (_IsExpander != value)
+                {
+                    _IsExpander = value; OnPropertyChanged("IsExpander");
+                }
+            }
+        }
         private bool _IsReadOnlyPermission;
         public bool IsReadOnlyPermission
         {
@@ -160,6 +173,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<QLHS_DR.ViewModel.Message.ReloadNewTasksTabEvent>().Subscribe(OnLoadUserControl);
             _TrackChange = false;
+            IsExpander = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
             MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             try
@@ -265,7 +279,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                 UpdateHeaderTabControl();
             });
-            UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && _IsExpander) return true; else return false; }, (p) =>
             {
                 ListUserTaskOfTask = new ObservableCollection<UserTask>();
                 MessageServiceClient _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -298,10 +312,11 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
-                Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
-                thread5.SetApartmentState(ApartmentState.STA);
-                thread5.IsBackground = true;
-                thread5.Start();
+                OpenFilePdf();
+                //Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
+                //thread5.SetApartmentState(ApartmentState.STA);
+                //thread5.IsBackground = true;
+                //thread5.Start();
             });
             FinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelecteds.Count() > 0) return true; else return false; }, (p) =>
             {
@@ -371,14 +386,18 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
-                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected);
+                       // TaskAttackFileViewerViewModel1 taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel1(taskAttachedFileDTOs[0], printable, saveable,  _UserTaskSelected);
+
+                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, _UserTaskSelected);
+
                         taskAttackFileViewerViewModel.FileName = taskAttachedFileDTOs[0].FileName;
                         taskAttackFileViewerViewModel.TaskName = _UserTaskSelected.Task.Subject;
 
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
-                        taskAttackFileViewerWindow.Show();
-                        System.Windows.Threading.Dispatcher.Run();
+                        taskAttackFileViewerWindow.ShowDialog();
+                        
+                        //System.Windows.Threading.Dispatcher.Run();
                     }
                     else
                     {

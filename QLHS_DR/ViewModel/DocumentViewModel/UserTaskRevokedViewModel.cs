@@ -18,6 +18,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class UserTaskRevokedViewModel : BaseViewModel
     {
         #region "Properties and Field"
+        private bool _IsExpander;
+        public bool IsExpander
+        {
+            get => _IsExpander;
+            set
+            {
+                if (_IsExpander != value)
+                {
+                    _IsExpander = value; OnPropertyChanged("IsExpander");
+                }
+            }
+        }
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
         public ObservableCollection<Department> Departments
@@ -151,7 +163,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             //MessageServiceCallBack.SetDelegate(SetLabelMsg);
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<ReloadRevokedTasksTabEvent>().Subscribe(OnLoadUserControl);
-
+            IsExpander = false;
             try
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -171,14 +183,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient.Abort();
             }
 
-            //ListTaskOfUser = new List<Task>();
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
             {
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
                 OnLoadUserControl(new object());
             });
-            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            TaskSelectedCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null && _IsExpander) return true; else return false; }, (p) =>
             {
                 try
                 {

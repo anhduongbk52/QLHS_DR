@@ -24,7 +24,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <local:PdfViewerControlEx IsReadOnly="True" CursorMode="HandTool" 
+        <local:PdfViewerControlEx IsReadOnly="True" CursorMode="HandTool" AllowCachePages="True"  
             DocumentSource="{Binding DocumentSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
             CommandBarStyle="Bars"
             Grid.Row="0"

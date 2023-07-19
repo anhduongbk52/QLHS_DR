@@ -21,6 +21,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class UserTaskFinishViewModel : BaseViewModel
     {
         #region "Properties and Field"
+        private bool _IsExpander;
+        public bool IsExpander
+        {
+            get => _IsExpander;
+            set
+            {
+                if (_IsExpander != value)
+                {
+                    _IsExpander = value; OnPropertyChanged("IsExpander");
+                }
+            }
+        }
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<Department> _Departments;
 
@@ -150,6 +162,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<ReloadFinishTasksTabEvent>().Subscribe(OnLoadUserControl);
             _TrackChange = false;
+            IsExpander = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
             //MessageServiceCallBack.SetDelegate(SetLabelMsg);
 
@@ -244,7 +257,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _MyClient.Abort();
                 }
             });
-            UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && _IsExpander) return true; else return false; }, (p) =>
             {
 
                 ListUserTaskOfTask = new ObservableCollection<UserTask>();
@@ -277,10 +290,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             });
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
-                Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
-                thread5.SetApartmentState(ApartmentState.STA);
-                thread5.IsBackground = true;
-                thread5.Start();
+                OpenFilePdf();
+                //Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
+                //thread5.SetApartmentState(ApartmentState.STA);
+                //thread5.IsBackground = true;
+                //thread5.Start();
             });
             UnFinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
@@ -346,15 +360,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
-                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected);
+                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, _UserTaskSelected);
                         taskAttackFileViewerViewModel.FileName = taskAttachedFileDTOs[0].FileName;
                         taskAttackFileViewerViewModel.TaskName = _UserTaskSelected.Task.Subject;
 
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
-                        taskAttackFileViewerWindow.Show();
+                        taskAttackFileViewerWindow.ShowDialog();
 
-                        System.Windows.Threading.Dispatcher.Run();
+                        //System.Windows.Threading.Dispatcher.Run();
                     }
                     else
                     {

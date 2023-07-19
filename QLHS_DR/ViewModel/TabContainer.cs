@@ -1,8 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace QLHS_DR.ViewModel
 {
-    class TabContainer : BaseViewModel
+    class TabContainer : BaseViewModel,IDisposable
     {
         private string _Header;
         private string _AllowHide;
@@ -54,6 +55,11 @@ namespace QLHS_DR.ViewModel
                 _Content = value;
                 OnPropertyChanged("Content");
             }
+        }
+
+        public void Dispose()
+        {
+            Content = null;
         }
     }
 }

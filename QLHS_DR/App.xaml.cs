@@ -1,5 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Xpf.Core;
+using QLHS_DR.ViewModel;
+using System;
 using System.Windows;
 
 namespace QLHS_DR
@@ -12,7 +14,8 @@ namespace QLHS_DR
 
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        MainViewModel mainViewModel;
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
             if (SingleInstance.AlreadyRunning())
             {
@@ -29,8 +32,16 @@ namespace QLHS_DR
             };
             var splashScreen = SplashScreenManager.CreateThemed(viewModel, false);
             splashScreen.ShowOnStartup();
-            base.OnStartup(e);
+            mainViewModel = new MainViewModel();
+            var mainWindow = new MainWindow() { DataContext = mainViewModel };
+            mainWindow.Show();
+            mainWindow.Closed += MainWindow_Closed;
+        }
 
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            mainViewModel.Dispose();
+            Application.Current.Shutdown();
         }
     }
 }

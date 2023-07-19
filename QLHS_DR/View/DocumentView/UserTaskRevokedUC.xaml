@@ -34,8 +34,7 @@
             </dxg:GridControl.ContextMenu>
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Subject" MinWidth="400" Width="*" ReadOnly="True" Header="Tên tài liệu"  />
-                <dxg:GridColumn FieldName="Description" ReadOnly="True" Width="Auto" Header="Mã số" />
-                <dxg:GridColumn FieldName="Task.TimeCreate" ReadOnly="True" Width="Auto" Header="Ngày nhận" />
+                <dxg:GridColumn FieldName="Description" ReadOnly="True" Width="Auto" Header="Mã số" />              
                 <dxg:GridColumn FieldName="StartDate" ReadOnly="True" Width="Auto" Header="Ngày bắt đầu" />
                 <!--<dxg:GridColumn FieldName="JobContent"  ReadOnly="True" Width="Auto" Header="Yêu cầu thực hiện"/>
                 <dxg:GridColumn FieldName="Note"  ReadOnly="True" Width="Auto" Header="Ghi chú"/>-->
@@ -49,7 +48,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </dxg:GridControl>
-        <Expander  ExpandDirection="Left" IsExpanded="False" Grid.Column="1">
+        <Expander  ExpandDirection="Left" IsExpanded="{Binding IsExpander,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1">
             <Expander.Header>
                 <TextBlock Text="Quá trình xử lý" RenderTransformOrigin="1,1">
                     <TextBlock.LayoutTransform>

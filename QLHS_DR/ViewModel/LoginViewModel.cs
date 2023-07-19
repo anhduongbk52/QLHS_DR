@@ -18,7 +18,7 @@ using System.Windows.Input;
 namespace EofficeClient.ViewModel
 {
 
-    class LoginViewModel : BaseViewModel, IDataErrorInfo
+    class LoginViewModel : BaseViewModel, IDataErrorInfo, IDisposable
     {
         private MessageServiceClient _MyClient;
 
@@ -133,9 +133,7 @@ namespace EofficeClient.ViewModel
             IsBusy = true;
             if (p == null) return;
             string passEncode = Convert.ToBase64String(CryptoUtil.HashPassword(Encoding.UTF8.GetBytes(_Password), CryptoUtil.GetSalt(_UserName)));
-
             _MyClient = ServiceHelper.NewMessageServiceClient(_UserName, passEncode);
-
             try
             {
                 _MyClient.Open();
@@ -179,12 +177,7 @@ namespace EofficeClient.ViewModel
                     catch (Exception ex)
                     {
                         MessageBox.Show("Exceptiton: " + ex.Message);
-                    }
-                    //ConfigurationUtil.SaveCredentialData(new CredentialData
-                    //{
-                    //    Password = _Password,
-                    //    UserId = _UserName
-                    //}, AppInfo.FolderPath);
+                    }                  
                 }
                 else
                 {
@@ -228,6 +221,11 @@ namespace EofficeClient.ViewModel
         {
             QLHS_DR.Properties.Settings.Default.StatusSavePass = status;
             QLHS_DR.Properties.Settings.Default.Save();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

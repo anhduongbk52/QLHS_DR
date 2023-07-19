@@ -43,7 +43,7 @@ using ToastNotifications.Position;
 
 namespace QLHS_DR.ViewModel
 {
-    class MainViewModel : BaseViewModel
+    class MainViewModel : BaseViewModel,IDisposable
     {
         private BackgroundWorker backgroundWorker;
         ObservableCollection<UserTask> _OldUserTasks;
@@ -56,7 +56,6 @@ namespace QLHS_DR.ViewModel
 
         Notifier notifierForNormalUser;
         MessageOptions optionsForNormalUser;
-        private SqlTableDependency<NortifyUserTask> _TbRequestSendDocumentDependency;
 
         private Window window;
         private MessageServiceClient _MyClient;
@@ -285,7 +284,7 @@ namespace QLHS_DR.ViewModel
                 window = p;
                 //Load current version
                 Version version = GetRunningVersion();
-                TileApplication = "EEMC Office - " + version?.Major + "." + version?.Minor + "." + version?.Build + "." + version?.Revision;
+                TileApplication = $"EEMC Office - {version?.Major}.{version?.Minor}.{+version?.Build}.{+version?.Revision}";
 
                 //Login process
                 Isloaded = true;
@@ -320,15 +319,15 @@ namespace QLHS_DR.ViewModel
                                 backgroundWorker.RunWorkerAsync();
                             }
 
-                            var mapper = new ModelToTableMapper<NortifyUserTask>();
-                            mapper.AddMapping(c => c.Id, "Id");
-                            mapper.AddMapping(c => c.UserId, "UserId");
-                            mapper.AddMapping(c => c.TaskId, "TaskId");
-                            mapper.AddMapping(c => c.AssignedById, "AssignedById");
-                            mapper.AddMapping(c => c.ProductCode, "ProductCode");
-                            mapper.AddMapping(c => c.Subject, "Subject");
-                            mapper.AddMapping(c => c.Actived, "Actived");
-                            mapper.AddMapping(c => c.TimeCreate, "TimeCreate");
+                            //var mapper = new ModelToTableMapper<NortifyUserTask>();
+                            //mapper.AddMapping(c => c.Id, "Id");
+                            //mapper.AddMapping(c => c.UserId, "UserId");
+                            //mapper.AddMapping(c => c.TaskId, "TaskId");
+                            //mapper.AddMapping(c => c.AssignedById, "AssignedById");
+                            //mapper.AddMapping(c => c.ProductCode, "ProductCode");
+                            //mapper.AddMapping(c => c.Subject, "Subject");
+                            //mapper.AddMapping(c => c.Actived, "Actived");
+                            //mapper.AddMapping(c => c.TimeCreate, "TimeCreate");
                             //_TbRequestSendDocumentDependency = new SqlTableDependency<NortifyUserTask>(_ConnectionString, tableName: "NortifyUserTask", schemaName: "dbo");
                             //_TbRequestSendDocumentDependency.OnChanged += RequestSendDocument_OnChanged;
                             //_TbRequestSendDocumentDependency.OnError += RequestSendDocument_OnError;
@@ -957,13 +956,6 @@ namespace QLHS_DR.ViewModel
         {
             if (args.IsUpdateAvailable)
             {
-                //DialogResult dialogResult;
-                //dialogResult = System.Windows.Forms.MessageBox.Show($@"Bạn ơi, phần mềm của bạn có phiên bản mới {args.CurrentVersion}. Phiên bản bạn đang sử dụng hiện tại  {args.InstalledVersion}. Bạn có muốn cập nhật phần mềm không?", @"Cập nhật phần mềm",
-                //            MessageBoxButtons.YesNo,
-                //            MessageBoxIcon.Information);
-
-                //if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
-                //{
                 try
                 {
                     Process.Start(args.ChangelogURL);
@@ -978,7 +970,6 @@ namespace QLHS_DR.ViewModel
                 {
                  MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                //}
             }
         }
         public static string GetLocalIPAddress()
@@ -1004,15 +995,14 @@ namespace QLHS_DR.ViewModel
                 return Assembly.GetExecutingAssembly().GetName().Version;
             }
         }
-        //public static void CertificateValidation()
-        //{
-        //    ServicePointManager.ServerCertificateValidationCallback = (RemoteCertificateValidationCallback)Delegate.Combine(ServicePointManager.ServerCertificateValidationCallback, new RemoteCertificateValidationCallback(IsSSL));
-        //}
+
+        public void Dispose()
+        {
+            backgroundWorker?.Dispose();
+            backgroundWorker = null;
+        }
         #endregion
-        //public static bool IsSSL(object A_0, X509Certificate A_1, X509Chain A_2, SslPolicyErrors A_3)
-        //{
-        //    return true;
-        //}
+
         public class NortifyUserTask
         {
             public int Id { get; set; }

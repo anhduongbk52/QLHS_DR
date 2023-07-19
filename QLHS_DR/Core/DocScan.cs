@@ -38,6 +38,12 @@ namespace QLHS_DR.Core
                 }
             }
         }
+        public static string GetTemporaryDirectory()
+        {
+            string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(tempDirectory);
+            return tempDirectory;
+        }
         public static SizeF PrepareGraphics(PdfPage page, PdfGraphics graphics)
         {
             PdfRectangle cropBox = page.CropBox;

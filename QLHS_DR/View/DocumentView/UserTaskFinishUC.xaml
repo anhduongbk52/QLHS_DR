@@ -7,8 +7,7 @@
              xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
-             mc:Ignorable="d" 
-             x:Name="userTaskFinishUC"
+             mc:Ignorable="d" x:Name="userTaskFinishUC"
              d:DesignHeight="450" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -89,7 +88,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </dxg:GridControl>
-        <Expander  ExpandDirection="Left" IsExpanded="False" Grid.Column="1">
+        <Expander  ExpandDirection="Left" IsExpanded="{Binding IsExpander,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1">
             <Expander.Header>
                 <TextBlock Text="Quá trình xử lý" RenderTransformOrigin="1,1">
                     <TextBlock.LayoutTransform>

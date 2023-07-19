@@ -168,6 +168,7 @@
     <Compile Include="ViewModel\DocumentViewModel\RevokedPrintedDocumentManagerViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\SignPdfViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\TaskAttackFileViewerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel\TaskAttackFileViewModel1.cs" />
     <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
