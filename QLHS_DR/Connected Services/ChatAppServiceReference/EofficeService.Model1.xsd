@@ -496,6 +496,7 @@
       <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsEncrypted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeyFile" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Modified" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ModifiedBy" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Task" nillable="true" type="tns:Task" />
@@ -1828,6 +1829,8 @@
       <xs:element minOccurs="0" name="Content" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEncrypted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeyFile" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="ModifiedBy" type="xs:int" />
       <xs:element minOccurs="0" name="TaskId" type="xs:int" />
     </xs:sequence>

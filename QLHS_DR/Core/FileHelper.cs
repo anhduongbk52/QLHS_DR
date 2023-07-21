@@ -43,15 +43,13 @@ namespace QLHS_DR.Core
         }
         private byte[] GetMasterKey()
         {
-            byte[] password = null;
-            byte[] masterKey = null;
             try
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(_username, _token);
                 _MyClient.Open();
-                password = Convert.FromBase64String(_MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
+                byte[]  password = Convert.FromBase64String(_MyClient.ChannelFactory.Endpoint.Behaviors.Find<ClientCredentials>().UserName.Password);
                 _MyClient.Close();
-                masterKey = CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
+                return CryptoUtil.HashPassword(CryptoUtil.GetKeyFromPassword(password), CryptoUtil.GetSaltFromPassword(password));
             }
             catch (Exception ex)
             {
@@ -61,8 +59,8 @@ namespace QLHS_DR.Core
                     System.Windows.MessageBox.Show(ex.InnerException.Message);
                 }
                 _MyClient.Abort();
-            }
-            return masterKey;
+                return null;
+            }           
         }
         internal byte[] GetKeyDecryptOfTask(int taskId)
         {
@@ -101,7 +99,7 @@ namespace QLHS_DR.Core
             }
             return null;
         }
-        internal byte[] GetKeyDecryptOfTask(int taskId, UserTask userTask)
+        internal byte[] GetKeyDecryptOfTask(UserTask userTask)
         {
             try
             {

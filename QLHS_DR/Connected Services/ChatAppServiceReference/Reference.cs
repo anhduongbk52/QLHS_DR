@@ -5970,6 +5970,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         private System.Nullable<bool> IsEncryptedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] KeyFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> ModifiedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -6084,6 +6087,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.IsEncryptedField.Equals(value) != true)) {
                     this.IsEncryptedField = value;
                     this.RaisePropertyChanged("IsEncrypted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] KeyFile {
+            get {
+                return this.KeyFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyFileField, value) != true)) {
+                    this.KeyFileField = value;
+                    this.RaisePropertyChanged("KeyFile");
                 }
             }
         }
@@ -11886,6 +11902,12 @@ namespace QLHS_DR.ChatAppServiceReference {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> IsEncryptedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] KeyFileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ModifiedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -11949,6 +11971,32 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> IsEncrypted {
+            get {
+                return this.IsEncryptedField;
+            }
+            set {
+                if ((this.IsEncryptedField.Equals(value) != true)) {
+                    this.IsEncryptedField = value;
+                    this.RaisePropertyChanged("IsEncrypted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] KeyFile {
+            get {
+                return this.KeyFileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KeyFileField, value) != true)) {
+                    this.KeyFileField = value;
+                    this.RaisePropertyChanged("KeyFile");
                 }
             }
         }

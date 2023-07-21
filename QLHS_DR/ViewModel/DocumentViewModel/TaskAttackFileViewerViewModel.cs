@@ -1,5 +1,6 @@
 ﻿using DevExpress.Pdf;
 using EofficeClient.Core;
+using EofficeCommonLibrary.Common.Ultil;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
@@ -127,7 +128,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             CanSaveFile = canSave;
             ClosedWindowCommand = new RelayCommand<Object>((p) => { return true; },(p)=>
             {
-                this.Dispose();
+                this.Dispose();                
             });
 
             LoadedWindowCommand = new RelayCommand<PdfViewerControlEx>((p) => { return true; }, (p) =>
@@ -140,8 +141,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-                    DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
                     
+                    if(_TaskAttachedFileDTO.KeyFile!=null)
+                    {
+                        _TaskAttachedFileDTO.Content = AESHelper.DecryptWithoutIV(_TaskAttachedFileDTO.KeyFile, _TaskAttachedFileDTO.Content);
+                    }
+                    else DecryptTaskAttachedFile(_TaskAttachedFileDTO, _UserTaskPrint);
+
                     _outputStream = new MemoryStream();
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
@@ -180,9 +186,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     }
                     _MyClient.SetSeenUserInTask(_UserTaskPrint.TaskId, SectionLogin.Ins.CurrentUser.Id);
                     _MyClient.Close();
-
                     Title = _TaskName + " -------- " + _FileName;
-
                 }
                 catch (Exception ex)
                 {
@@ -196,14 +200,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-
                     PdfViewerControlEx pdfViewerControlEx = new PdfViewerControlEx();
                     pdfViewerControlEx.CanPrint = _CanPrintFile;
                     pdfViewerControlEx.CanSave = _CanSaveFile;
-
                     _currentPage = p.CurrentPageNumber;
-
-
                     _outputStream1 = new MemoryStream();
                     using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
                     {
@@ -215,7 +215,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             {
                                 countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1) + 1);
                             }
-                            string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
+                            string addText = $"{SectionLogin.Ins.CurrentUser.FullName} - Time: + {DateTime.Now.ToString()} IP: {EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress()}";
 
                             using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
                             {
@@ -225,7 +225,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             {
                                 if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                                 {
-                                    AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
+                                    AddValidStamp1(processor, textBrush1, $"BẢO MẬT CẤP{ _TaskAttachedFileDTO.ConfidentialLevel}");
                                 }
                             }
                             processor.SaveDocument(_outputStream1);
@@ -303,11 +303,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-
         public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {
             FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(taskAttachedFileDTO.TaskId, userTask);
+            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(userTask);
             if (orAdd != null)
             {
                 taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
@@ -368,41 +367,33 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             int _StartY = 5;
             int _Stamp_Width;
             int _Stamp_Heigh;
-            int fontSize = 12;
+            int fontSize;
+            PdfPage page;
+            SizeF actualPageSize;
+            SizeF text1Size;
+            PointF center;
+            PointF topLeftText1;
+            string text1 = confidentialLevel;
+            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red));
+
+            System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
             IList<PdfPage> pages = processor.Document.Pages;
-
-            for (int i = 0; i < pages.Count; i++)
+            using (PdfGraphics graphics = processor.CreateGraphics())
             {
-                PdfPage page = pages[i];
-                using (PdfGraphics graphics = processor.CreateGraphics())
+                for (int i = 0; i < pages.Count; i++)
                 {
-                    SizeF actualPageSize = PrepareGraphics(page, graphics);
-
-                    fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.02);
-                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
+                    page = pages[i];
+                    actualPageSize = PrepareGraphics(page, graphics);
+                    fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.02);                   
                     using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold), font1 = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
                     {
-                        string text1 = confidentialLevel;
-                        //string text2 = confidentialLevel;
-
-                        SizeF text1Size = graphics.MeasureString(text1, font, PdfStringFormat.GenericDefault);
-                        //SizeF text2Size = graphics.MeasureString(text2, font1, PdfStringFormat.GenericDefault);
-
+                        text1Size = graphics.MeasureString(text1, font, PdfStringFormat.GenericDefault);                       
                         _Stamp_Width = (int)(text1Size.Width * 1.1);
-
                         _Stamp_Heigh = (int)((text1Size.Height) * 1.1);
-
-                        PointF center = new PointF(_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
-
-                        PointF topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);
-                        // PointF topLeftText2 = new PointF(center.X - text2Size.Width / 2, center.Y - text2Size.Height / 2);                    
-
-                        graphics.DrawString(text1, font, textBrush, topLeftText1);
-                        //graphics.DrawString(text2, font1, textBrush, topLeftText2);                      
-
-                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red));
+                        center = new PointF(_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
+                        topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);              
+                        graphics.DrawString(text1, font, textBrush, topLeftText1);                       
                         graphics.DrawRectangle(pen, new RectangleF(_StartX, _StartY, _Stamp_Width, _Stamp_Heigh));
-
                         graphics.AddToPageForeground(page, 96f, 96f);
                     }
                 }
@@ -411,10 +402,21 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         public void Dispose()
         {
+            _TaskAttachedFileDTO = null;
+            _UserTaskPrint = null;
+            _TaskName = null;
+            _FileName = null;
+            _Title = null;
+            LoadedWindowCommand = null;
+            CustomPrintCommand = null;
+            ClosedWindowCommand = null;
             DocumentSource = null;
             _outputStream?.Dispose();
             _outputStream1?.Dispose();
+            _outputStream = null;
+            _outputStream1 = null;
             _MyClient = null;
+           
         }
     }
 }

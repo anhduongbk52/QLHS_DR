@@ -179,7 +179,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                     UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);
 
-                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(_Task.Id, userTask_0);
+                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(userTask_0);
                     byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
 
                     foreach (var receiveuser in ReceiveUsers)

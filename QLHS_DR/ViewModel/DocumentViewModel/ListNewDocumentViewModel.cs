@@ -28,7 +28,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         private readonly IEventAggregator _eventAggregator;
         private MessageServiceClient _MyClient;
         private IReadOnlyList<User> iReadOnlyListUser;
-        private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
+      
         private bool _TrackChange;
       
         private bool _IsExpander;
@@ -374,16 +374,19 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         {
             try
             {
-                _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                _MyClient.Open();
-                PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
-                bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
-                bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
-                bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
                 //if (_UserTaskSelected.CanViewAttachedFile == true)
                 if (true)
                 {
+                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                    _MyClient.Open();
+
+                    PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
+                    bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
+                    bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
+                    bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
+
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
+                    _MyClient.Close();
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
                        // TaskAttackFileViewerViewModel1 taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel1(taskAttachedFileDTOs[0], printable, saveable,  _UserTaskSelected);
@@ -396,7 +399,8 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
                         taskAttackFileViewerWindow.ShowDialog();
-                        
+                        taskAttackFileViewerViewModel = null;
+                        taskAttackFileViewerWindow = null;
                         //System.Windows.Threading.Dispatcher.Run();
                     }
                     else
@@ -408,7 +412,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 {
                     MessageBox.Show("Bạn chưa có quyền xem tài liệu này, vui lòng liên hệ quản trị viên!");
                 }
-                _MyClient.Close();
+               
             }
             catch (Exception ex)
             {
@@ -474,7 +478,6 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 {
                     usertask.Task = tasks.Where(x => x.Id == usertask.TaskId).FirstOrDefault();
                 }
-
             }
             catch (Exception ex)
             {
