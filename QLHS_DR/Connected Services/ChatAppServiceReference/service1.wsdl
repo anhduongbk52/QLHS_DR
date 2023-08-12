@@ -1441,11 +1441,11 @@
   <wsdl:message name="IMessageService_SearchTransformer_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchTransformerResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SearchProducts_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchProducts" />
+  <wsdl:message name="IMessageService_SearchTransformers_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTransformers" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SearchProducts_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchProductsResponse" />
+  <wsdl:message name="IMessageService_SearchTransformers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchTransformersResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_SearchAllProducts_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchAllProducts" />
@@ -2414,9 +2414,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SearchTransformer" message="tns:IMessageService_SearchTransformer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SearchTransformerResponse" message="tns:IMessageService_SearchTransformer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SearchProducts">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SearchProducts" message="tns:IMessageService_SearchProducts_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SearchProductsResponse" message="tns:IMessageService_SearchProducts_OutputMessage" />
+    <wsdl:operation name="SearchTransformers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SearchTransformers" message="tns:IMessageService_SearchTransformers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SearchTransformersResponse" message="tns:IMessageService_SearchTransformers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SearchAllProducts">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SearchAllProducts" message="tns:IMessageService_SearchAllProducts_InputMessage" />
@@ -4443,8 +4443,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SearchProducts">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SearchProducts" style="document" />
+    <wsdl:operation name="SearchTransformers">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SearchTransformers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

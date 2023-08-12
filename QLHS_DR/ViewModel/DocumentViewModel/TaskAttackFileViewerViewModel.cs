@@ -169,8 +169,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             {
                                 if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                                 {
-                                    AddValidStamp1(processor, textBrush1, "BẢO MẬT CẤP " + _TaskAttachedFileDTO.ConfidentialLevel);
-                                    //DocScan.AddValidStamp(processor, textBrush1, 50, 50, 96f, 12);
+                                    AddValidStamp1(processor, textBrush1, $"BẢO MẬT CẤP {_TaskAttachedFileDTO.ConfidentialLevel}");
                                 }
                             }
                             processor.SaveDocument(_outputStream);
@@ -374,27 +373,28 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             PointF center;
             PointF topLeftText1;
             string text1 = confidentialLevel;
-            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red));
+            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(125, System.Drawing.Color.Red));
 
             System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
             IList<PdfPage> pages = processor.Document.Pages;
-            using (PdfGraphics graphics = processor.CreateGraphics())
+
+            for (int i = 0; i < pages.Count; i++)
             {
-                for (int i = 0; i < pages.Count; i++)
+                page = pages[i];
+                using (PdfGraphics graphics = processor.CreateGraphics())
                 {
-                    page = pages[i];
                     actualPageSize = PrepareGraphics(page, graphics);
-                    fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.02);                   
+                    fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.02);
                     using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold), font1 = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
                     {
-                        text1Size = graphics.MeasureString(text1, font, PdfStringFormat.GenericDefault);                       
+                        text1Size = graphics.MeasureString(text1, font1, PdfStringFormat.GenericTypographic, 72f, 72f);
                         _Stamp_Width = (int)(text1Size.Width * 1.1);
                         _Stamp_Heigh = (int)((text1Size.Height) * 1.1);
                         center = new PointF(_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
-                        topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);              
-                        graphics.DrawString(text1, font, textBrush, topLeftText1);                       
+                        topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);
+                        graphics.DrawString(text1, font, textBrush, topLeftText1);
                         graphics.DrawRectangle(pen, new RectangleF(_StartX, _StartY, _Stamp_Width, _Stamp_Heigh));
-                        graphics.AddToPageForeground(page, 96f, 96f);
+                        graphics.AddToPageForeground(page, 72f, 72f);
                     }
                 }
             }

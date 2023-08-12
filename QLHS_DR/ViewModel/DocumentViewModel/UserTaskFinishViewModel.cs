@@ -288,6 +288,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _MyClient.Abort();
                 }
             });
+            
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
                 OpenFilePdf();

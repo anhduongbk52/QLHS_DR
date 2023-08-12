@@ -195,7 +195,6 @@
     <Compile Include="ViewModel\ProductViewModel\NewProductViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\ProductManagerViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\ProductViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModel\TransformerManagerViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\TransformerTDViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\UploadHoSoViewModel.cs" />
     <Compile Include="ViewModel\TabContainer.cs" />

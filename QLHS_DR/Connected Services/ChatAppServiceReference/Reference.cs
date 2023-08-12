@@ -14219,11 +14219,11 @@ namespace QLHS_DR.ChatAppServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchTransformer", ReplyAction="http://tempuri.org/IMessageService/SearchTransformerResponse")]
         System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO[]> SearchTransformerAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, QLHS_DR.ChatAppServiceReference.ProductType productType, int StandardId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchProducts", ReplyAction="http://tempuri.org/IMessageService/SearchProductsResponse")]
-        QLHS_DR.ChatAppServiceReference.TransformerDTO[] SearchProducts(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchTransformers", ReplyAction="http://tempuri.org/IMessageService/SearchTransformersResponse")]
+        QLHS_DR.ChatAppServiceReference.Product[] SearchTransformers(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchProducts", ReplyAction="http://tempuri.org/IMessageService/SearchProductsResponse")]
-        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO[]> SearchProductsAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchTransformers", ReplyAction="http://tempuri.org/IMessageService/SearchTransformersResponse")]
+        System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Product[]> SearchTransformersAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SearchAllProducts", ReplyAction="http://tempuri.org/IMessageService/SearchAllProductsResponse")]
         QLHS_DR.ChatAppServiceReference.Product[] SearchAllProducts(string codeKey, int yearOfManufactureKey, string noteKey, string productName, int productTypeNewId);
@@ -16093,12 +16093,12 @@ namespace QLHS_DR.ChatAppServiceReference {
             return base.Channel.SearchTransformerAsync(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productType, StandardId);
         }
         
-        public QLHS_DR.ChatAppServiceReference.TransformerDTO[] SearchProducts(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId) {
-            return base.Channel.SearchProducts(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productTypeNewId, StandardId);
+        public QLHS_DR.ChatAppServiceReference.Product[] SearchTransformers(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId) {
+            return base.Channel.SearchTransformers(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productTypeNewId, StandardId);
         }
         
-        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.TransformerDTO[]> SearchProductsAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId) {
-            return base.Channel.SearchProductsAsync(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productTypeNewId, StandardId);
+        public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Product[]> SearchTransformersAsync(string codeKey, string ratedPowerKey, string ratedVoltageKey, int yearOfManufactureKey, string noteKey, string stationKey, int productTypeNewId, int StandardId) {
+            return base.Channel.SearchTransformersAsync(codeKey, ratedPowerKey, ratedVoltageKey, yearOfManufactureKey, noteKey, stationKey, productTypeNewId, StandardId);
         }
         
         public QLHS_DR.ChatAppServiceReference.Product[] SearchAllProducts(string codeKey, int yearOfManufactureKey, string noteKey, string productName, int productTypeNewId) {

@@ -32,6 +32,19 @@
             <local:PdfViewerControlEx.CommandProvider>
                 <dxpdf:PdfCommandProvider>
                     <dxpdf:PdfCommandProvider.Actions>
+                        <dxb:CollectionAction Kind="Insert" ContainerName="rgFile">
+                            <dxb:CollectionAction.Element>
+                                <dxb:BarButtonItem Content="Clockwise Rotation" LargeGlyph="{dx:DXImage Image=Refresh2_32x32.png}"  Command="{Binding RotateClockwiseCommand}" />
+                            </dxb:CollectionAction.Element>
+                        </dxb:CollectionAction>
+                        <dxb:CollectionAction Kind="Insert" ContainerName="rgFile">
+                            <dxb:CollectionAction.Element>
+                                <dxb:BarButtonItem Content="Counter Clockwise Rotation" LargeGlyph="{dx:DXImage Image=AddNewDataSource_32x32.png}"  Command="{Binding RotateCounterClockwiseCommand}" />
+                            </dxb:CollectionAction.Element>
+                        </dxb:CollectionAction>
+
+                        
+
                         <dxb:RemoveAction ElementName="{x:Static dxdv:DefaultBarManagerItemNames.Close}"/>
                         <dxb:RemoveAction ElementName="{x:Static dxdv:DefaultBarManagerItemNames.Open}"/>
                         <dxb:RemoveAction ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.OpenFromWeb}"/>
@@ -41,6 +54,8 @@
                                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CustomPrintCommand}"
                                                CommandParameter="{Binding ElementName=pdfViewer}"/>
                         </dxb:ReplaceAction>
+                        
+                        
                         <dxb:UpdateAction Property="dxb:BarItem.Glyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding SmallGlyph}" />
                         <dxb:UpdateAction Property="dxb:BarItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding LargeGlyph}" />
                         <dxb:UpdateAction Property="dxb:BarItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Caption}" />
@@ -56,7 +71,13 @@
                         <dxb:UpdateAction Property="dxb:BarItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding LargeGlyph}" />
                         <dxb:UpdateAction Property="dxb:BarItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Caption}" />
                         <dxb:UpdateAction Property="dxb:BarItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Hint}"/>
+                        <dxb:InsertAction Index="5" ContainerName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Bar}">
+                            <dxb:BarButtonItem Content="Xoay theo chiều kim đồng hồ" Glyph="{dx:DXImage SvgImages/PDF Viewer/RotateClockwise.svg}"  Command="{Binding ElementName=pdfViewer, Path=ClockwiseRotateCommand}"/>
 
+                        </dxb:InsertAction>
+                        <dxb:InsertAction Index="6" ContainerName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Bar}">
+                            <dxb:BarButtonItem Content="Xoay ngược chiều kim đồng hồ" Glyph="{dx:DXImage SvgImages/PDF Viewer/RotateCounterclockwise.svg}"  Command="{Binding ElementName=pdfViewer, Path=CounterClockwiseRotateCommand}"/>
+                        </dxb:InsertAction>
 
                     </dxpdf:PdfCommandProvider.Actions>
                 </dxpdf:PdfCommandProvider>

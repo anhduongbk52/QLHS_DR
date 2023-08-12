@@ -2993,7 +2993,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SearchProducts">
+  <xs:element name="SearchTransformers">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="codeKey" nillable="true" type="xs:string" />
@@ -3007,10 +3007,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SearchProductsResponse">
+  <xs:element name="SearchTransformersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q150="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="SearchProductsResult" nillable="true" type="q150:ArrayOfTransformerDTO" />
+        <xs:element xmlns:q150="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="SearchTransformersResult" nillable="true" type="q150:ArrayOfProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
