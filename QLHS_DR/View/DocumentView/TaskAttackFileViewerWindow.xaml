@@ -12,7 +12,7 @@
         xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer" 
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         x:Class="QLHS_DR.View.DocumentView.TaskAttackFileViewerWindow"
-        mc:Ignorable="d" 
+        mc:Ignorable="d" Loaded="TaskAttackFileViewer_Loaded"
         x:Name="TaskAttackFileViewer"
         Title="{Binding Title}" Height="Auto" Width="Auto">
     <i:Interaction.Triggers>
@@ -72,12 +72,11 @@
                         <dxb:UpdateAction Property="dxb:BarItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Caption}" />
                         <dxb:UpdateAction Property="dxb:BarItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.SaveAs}" ValueBinding="{Binding Hint}"/>
                         <dxb:InsertAction Index="5" ContainerName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Bar}">
-                            <dxb:BarButtonItem Content="Xoay theo chiều kim đồng hồ" Glyph="{dx:DXImage SvgImages/PDF Viewer/RotateClockwise.svg}"  Command="{Binding ElementName=pdfViewer, Path=ClockwiseRotateCommand}"/>
-
-                        </dxb:InsertAction>
-                        <dxb:InsertAction Index="6" ContainerName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Bar}">
                             <dxb:BarButtonItem Content="Xoay ngược chiều kim đồng hồ" Glyph="{dx:DXImage SvgImages/PDF Viewer/RotateCounterclockwise.svg}"  Command="{Binding ElementName=pdfViewer, Path=CounterClockwiseRotateCommand}"/>
                         </dxb:InsertAction>
+                        <dxb:InsertAction Index="6" ContainerName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Bar}">
+                            <dxb:BarButtonItem Content="Xoay theo chiều kim đồng hồ" Glyph="{dx:DXImage SvgImages/PDF Viewer/RotateClockwise.svg}"  Command="{Binding ElementName=pdfViewer, Path=ClockwiseRotateCommand}"/>
+                        </dxb:InsertAction>                       
 
                     </dxpdf:PdfCommandProvider.Actions>
                 </dxpdf:PdfCommandProvider>

@@ -177,7 +177,7 @@ namespace EofficeClient.ViewModel
                     catch (Exception ex)
                     {
                         MessageBox.Show("Exceptiton: " + ex.Message);
-                    }                  
+                    }
                 }
                 else
                 {
@@ -197,19 +197,20 @@ namespace EofficeClient.ViewModel
                         MessageBox.Show("Exceptiton: " + ex.Message);
                     }
                 }
-                //ChatApp Login
-                //var uri = "net.tcp://192.168.11.12:8080/EofficeService/Service";
-                //var callBack = new InstanceContext(new MessageServiceCallBack());
-                //var binding = new NetTcpBinding(SecurityMode.None);
-                //var channel = new DuplexChannelFactory<IMessageService>(callBack, binding);
-                //var endPoint = new EndpointAddress(uri);
-                //var proxy = channel.CreateChannel(endPoint);
-                //proxy?.Connect(User.Id);              
+
                 p.Close();
             }
             catch (Exception ex)
             {
                 _MyClient.Abort();
+                ConfigurationUtil.RemoveCreditalData(AppInfo.FolderPath);
+                string keyName = "QLHS_DR"; // Tên khóa đăng ký của ứng dụng của bạn
+
+                RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                if (rk != null)
+                {
+                    rk.DeleteValue(keyName, false);
+                }
                 IsLogin = false;
                 MessageBox.Show("Exceptiton: " + ex.Message);
             }

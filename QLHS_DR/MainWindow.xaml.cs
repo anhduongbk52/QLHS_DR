@@ -40,6 +40,7 @@ namespace QLHS_DR
                     }
                 };
         }
+
         private void tabControl_TabHidden(object sender, TabControlTabHiddenEventArgs e)
         {
             //comment this for memory leak
