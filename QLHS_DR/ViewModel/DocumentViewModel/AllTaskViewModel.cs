@@ -248,9 +248,10 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient.Open();
 
                 _UserTaskSelected = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _TaskSelected.Id);
-                _UserTaskSelected.Task = _TaskSelected;
-                if (_UserTaskSelected != null)
+               
+                if (_UserTaskSelected != null && _UserTaskSelected.CanViewAttachedFile == true)
                 {
+                    _UserTaskSelected.Task = _TaskSelected;
                     PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
                     bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
                     bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_TaskSelected.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
@@ -265,8 +266,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
-                        taskAttackFileViewerWindow.ShowDialog();
-
+                        taskAttackFileViewerWindow.Show();
                        // System.Windows.Threading.Dispatcher.Run();
                     }
                     else

@@ -71,10 +71,10 @@
 
                         <dxb:BarButtonItem Command="{Binding RefeshCommand}" Content="Refesh" Glyph="{dx:DXImage 'SvgImages/Actions/Actions_Refresh.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
                     </dxr:RibbonPageGroup>
-                    <dxr:RibbonPageGroup Caption="Quản lý các tài liệu in">
+                    <!--<dxr:RibbonPageGroup Caption="Quản lý các tài liệu in">
                         <dxb:BarButtonItem Command="{Binding OpenDocumentPrintedByUserWindowCommand}" Content="Tài liệu đã in của người dùng" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Spreadsheet/PrintTitles.svg}"/>
                         <dxb:BarButtonItem Command="{Binding OpenRevokedPrintedDocumentManagerCommand}" Content="Tài liệu đã in cần thu hồi" Glyph="{dx:DXImage 'SvgImages/Actions/New.svg'}" LargeGlyph="{dx:DXImage SvgImages/Icon Builder/Actions_Rollback.svg}"/>
-                    </dxr:RibbonPageGroup>
+                    </dxr:RibbonPageGroup>-->
                 </dxr:RibbonPage>
                 <dxr:RibbonPage Caption="Quản lý sản phẩm">
                     <dxr:RibbonPageGroup Caption="Product">
@@ -162,6 +162,13 @@
                                            Content="Logs"
                                            LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Audit_ChangeHistory.svg}" />
                     </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+                <dxr:RibbonPage Caption="Setting">
+                    <dxr:RibbonPageGroup Caption="Option">
+                        <dxb:BarButtonItem Content="Nortification Setting"
+                                           Command="{Binding OpenListUserCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Notifications.svg}" />                      
+                    </dxr:RibbonPageGroup>                   
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>

@@ -296,11 +296,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     }
                     if (userIdAddPrintAble.Count > 0) //Set quyen in file
                     {
-                        _MyClient.SetUserTaskSaveFileAble(_Task.Id, userIdAddPrintAble.ToArray(), true, SectionLogin.Ins.CurrentUser.Id);
+                        _MyClient.SetPrintableUsersInTask(_Task.Id, userIdAddPrintAble.ToArray(), true, SectionLogin.Ins.CurrentUser.Id);
                     }
                     if (userIdRemovePrintAble.Count > 0) //Xoa quyen in file
                     {
-                        _MyClient.SetUserTaskSaveFileAble(_Task.Id, userIdRemovePrintAble.ToArray(), false, SectionLogin.Ins.CurrentUser.Id);
+                        _MyClient.SetPrintableUsersInTask(_Task.Id, userIdRemovePrintAble.ToArray(), false, SectionLogin.Ins.CurrentUser.Id);
                     }
                     if (userIdAddIsMainProcess.Count > 0)
                     {

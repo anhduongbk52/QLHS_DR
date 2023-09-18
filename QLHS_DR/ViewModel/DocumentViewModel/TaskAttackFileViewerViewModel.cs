@@ -1,4 +1,7 @@
-﻿using DevExpress.Pdf;
+﻿using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
+using DevExpress.Mvvm;
+using DevExpress.Pdf;
 using EofficeClient.Core;
 using EofficeCommonLibrary.Common.Ultil;
 using EofficeCommonLibrary.Common.Util;
@@ -72,6 +75,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
+
         private string _FileName;
         public string FileName
         {
@@ -114,6 +118,11 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         private int _currentPage;
         private MemoryStream _outputStream;
         private MemoryStream _outputStream1;
+        [Command]
+        public void SaveAs()
+        {
+            this.GetService<IMessageBoxService>().ShowMessage("Saved");
+        }
         public ICommand LoadedWindowCommand { get; private set; }
         public ICommand CustomPrintCommand { get; private set; }
         public ICommand CustomSaveCommand { get; private set; }
@@ -126,6 +135,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             UserTaskPrint = userTask;
             CanPrintFile = canPrint;
             CanSaveFile = canSave;
+            FileName = _TaskAttachedFileDTO.FileName;
             ClosedWindowCommand = new RelayCommand<Object>((p) => { return true; },(p)=>
             {
                 this.Dispose();                
@@ -136,7 +146,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 try
                 {
                     p.CanSave = _CanSaveFile;
-                    FileName = _TaskAttachedFileDTO.FileName;
+                    
                     TaskName = _UserTaskPrint.Task.Subject;
 
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);

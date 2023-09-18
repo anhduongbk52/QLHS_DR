@@ -292,10 +292,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             OpenFileCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
                 OpenFilePdf();
-                //Thread thread5 = new Thread(new ThreadStart(OpenFilePdf));
-                //thread5.SetApartmentState(ApartmentState.STA);
-                //thread5.IsBackground = true;
-                //thread5.Start();
+              
             });
             UnFinishUserTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
             {
@@ -355,8 +352,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
                 bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
                 bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
-                //if (_UserTaskSelected.CanViewAttachedFile == true)
-                if (true)
+                if (_UserTaskSelected.CanViewAttachedFile == true)
                 {
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
@@ -367,7 +363,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
-                        taskAttackFileViewerWindow.ShowDialog();
+                        taskAttackFileViewerWindow.Show();
 
                         //System.Windows.Threading.Dispatcher.Run();
                     }

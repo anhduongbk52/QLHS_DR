@@ -24,11 +24,19 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
+       
         <local:PdfViewerControlEx IsReadOnly="True" CursorMode="HandTool" AllowCachePages="True"  
             DocumentSource="{Binding DocumentSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            CommandBarStyle="Bars"
+            CommandBarStyle="Bars" 
             Grid.Row="0"
             x:Name="pdfViewer">
+            <local:PdfViewerControlEx.SaveFileDialogTemplate>
+                <DataTemplate >
+                    <ContentControl >
+                        <dxmvvm:SaveFileDialogService  DefaultFileName="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PdfViewerControlEx}}, Path=DataContext.FileName }" DefaultExt=".pdf" Filter="Adobe Acrobat (*.pdf)|*.pdf" />
+                    </ContentControl>
+                </DataTemplate>
+            </local:PdfViewerControlEx.SaveFileDialogTemplate>
             <local:PdfViewerControlEx.CommandProvider>
                 <dxpdf:PdfCommandProvider>
                     <dxpdf:PdfCommandProvider.Actions>
@@ -41,9 +49,7 @@
                             <dxb:CollectionAction.Element>
                                 <dxb:BarButtonItem Content="Counter Clockwise Rotation" LargeGlyph="{dx:DXImage Image=AddNewDataSource_32x32.png}"  Command="{Binding RotateCounterClockwiseCommand}" />
                             </dxb:CollectionAction.Element>
-                        </dxb:CollectionAction>
-
-                        
+                        </dxb:CollectionAction>                        
 
                         <dxb:RemoveAction ElementName="{x:Static dxdv:DefaultBarManagerItemNames.Close}"/>
                         <dxb:RemoveAction ElementName="{x:Static dxdv:DefaultBarManagerItemNames.Open}"/>

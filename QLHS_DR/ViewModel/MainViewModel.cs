@@ -204,7 +204,7 @@ namespace QLHS_DR.ViewModel
         public ICommand OpenLogsCommand { get; set; }
 
         #endregion
-
+        private LoginWindow loginWindow;
         private ListNewDocumentUC listNewDocumentUC;
         private UserTaskFinishUC userTaskFinishUC;
         private UserTaskRevokedUC userTaskRevokedUC;
@@ -233,8 +233,9 @@ namespace QLHS_DR.ViewModel
             ///////////////////////////////
             notifierForNormalUser = new Notifier(cfg =>
             {
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(5), MaximumNotificationCount.FromCount(10));
                 cfg.PositionProvider = new PrimaryScreenPositionProvider(corner: Corner.BottomRight, offsetX: 10, offsetY: 10);
-                cfg.LifetimeSupervisor = new CountBasedLifetimeSupervisor(maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications());
+                //cfg.LifetimeSupervisor = new CountBasedLifetimeSupervisor(maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications());
                 cfg.DisplayOptions.TopMost = true; // set the option to show notifications over other windows
                 cfg.DisplayOptions.Width = 350; // set the notifications width
                 cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
@@ -290,7 +291,7 @@ namespace QLHS_DR.ViewModel
                 Isloaded = true;
                 if (p == null) return;
                 p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
+                loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
                 if (loginWindow.DataContext == null) return;
                 var loginVM = loginWindow.DataContext as LoginViewModel;
@@ -319,19 +320,7 @@ namespace QLHS_DR.ViewModel
                                 backgroundWorker.RunWorkerAsync();
                             }
 
-                            //var mapper = new ModelToTableMapper<NortifyUserTask>();
-                            //mapper.AddMapping(c => c.Id, "Id");
-                            //mapper.AddMapping(c => c.UserId, "UserId");
-                            //mapper.AddMapping(c => c.TaskId, "TaskId");
-                            //mapper.AddMapping(c => c.AssignedById, "AssignedById");
-                            //mapper.AddMapping(c => c.ProductCode, "ProductCode");
-                            //mapper.AddMapping(c => c.Subject, "Subject");
-                            //mapper.AddMapping(c => c.Actived, "Actived");
-                            //mapper.AddMapping(c => c.TimeCreate, "TimeCreate");
-                            //_TbRequestSendDocumentDependency = new SqlTableDependency<NortifyUserTask>(_ConnectionString, tableName: "NortifyUserTask", schemaName: "dbo");
-                            //_TbRequestSendDocumentDependency.OnChanged += RequestSendDocument_OnChanged;
-                            //_TbRequestSendDocumentDependency.OnError += RequestSendDocument_OnError;
-                            //_TbRequestSendDocumentDependency.Start();
+                          
                         }
                         catch (Exception ex)
                         {
@@ -367,7 +356,7 @@ namespace QLHS_DR.ViewModel
                     SectionLogin.Ins = null;
                    
                     p.Hide();
-                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow = new LoginWindow();
                     loginWindow.ShowDialog();
                     if (loginWindow.DataContext == null) return;
                     var loginVM = loginWindow.DataContext as LoginViewModel;
@@ -963,6 +952,7 @@ namespace QLHS_DR.ViewModel
                     if (AutoUpdater.DownloadUpdate(args))
                     {
                         window.Close();
+                        loginWindow.Close();
                     }
                     //AutoUpdater.BasicAuthChangeLog();
                 }

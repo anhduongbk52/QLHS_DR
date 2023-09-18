@@ -374,8 +374,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         {
             try
             {
-                //if (_UserTaskSelected.CanViewAttachedFile == true)
-                if (true)
+                if (_UserTaskSelected.CanViewAttachedFile == true)               
                 {
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
@@ -398,10 +397,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
 
                         TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
                         taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
-                        taskAttackFileViewerWindow.ShowDialog();
-                        taskAttackFileViewerViewModel = null;
-                        taskAttackFileViewerWindow = null;
-                        //System.Windows.Threading.Dispatcher.Run();
+                        taskAttackFileViewerWindow.Show();                      
                     }
                     else
                     {

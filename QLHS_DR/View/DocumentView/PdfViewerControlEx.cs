@@ -1,4 +1,7 @@
-﻿using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm;
+using DevExpress.Mvvm.Native;
+using DevExpress.Mvvm.UI;
+using DevExpress.Pdf;
 using DevExpress.Xpf.PdfViewer;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +44,8 @@ namespace QLHS_DR.View.DocumentView
                 }
             }
         }
+    
+       
         public ICommand CustomPrintCommand { get; private set; }
         public ICommand CustomSaveCommand { get; private set; }
 
@@ -64,6 +69,15 @@ namespace QLHS_DR.View.DocumentView
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+        //protected override DevExpress.Mvvm.UI.SaveFileDialogService CreateDefaultSaveFileDialogService()
+        //{
+        //    return new SaveFileDialogService()
+        //    {
+        //        DefaultExt = PdfViewerLocalizer.GetString(PdfViewerStringId.PdfFileExtension),
+        //        Filter = PdfViewerLocalizer.GetString(PdfViewerStringId.PdfFileFilter),
+        //        DefaultFileName = DefaultFileName //custom dependency property of the PdfViewerControl  
+        //    };
+        //}
         public PdfViewerControlEx()
         {
             //CustomPrintCommand = DelegateCommandFactory.Create(() => PrintDocumentCommand.Execute(null), () => PrintDocumentCommand.CanExecute(null) && CanPrint);
