@@ -947,12 +947,13 @@ namespace QLHS_DR.ViewModel
             {
                 try
                 {
-                    Process.Start(args.ChangelogURL);
+                    //Process.Start(args.ChangelogURL);
 
                     if (AutoUpdater.DownloadUpdate(args))
                     {
                         window.Close();
                         loginWindow.Close();
+                        Application.Current.Shutdown(); // Đóng ứng dụng
                     }
                     //AutoUpdater.BasicAuthChangeLog();
                 }
