@@ -627,7 +627,13 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ApprovalDocumentProduct.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BAInfor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BCTDesign.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BIInfor.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Contract.datasource">
@@ -663,10 +669,16 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MainJobTodo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MainJobTodoPYC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Message.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Modul.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MOFInfor.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Permission.datasource">
@@ -757,6 +769,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.UserTaskPrintManager.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.VoltageTransformerInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\service1.wsdl" />

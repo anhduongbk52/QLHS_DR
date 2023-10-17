@@ -1,4 +1,7 @@
-﻿namespace QLHS_DR.ViewModel.ChatAppViewModel
+﻿using QLHS_DR.ChatAppServiceReference;
+using System;
+
+namespace QLHS_DR.ViewModel.ChatAppViewModel
 {
     //public class MessageServiceCallBack : IMessageServiceCallback
     //{
@@ -19,14 +22,8 @@
     //    }
 
     //    public void UserTaskChanged()
-    //    {            
-    //        var uri = "net.tcp://192.168.11.12:8080/EofficeService/Service";
-    //        var callBack = new InstanceContext(new MessageServiceCallBack());
-    //        var binding = new NetTcpBinding(SecurityMode.None);
-    //        var channel = new DuplexChannelFactory<IMessageService>(callBack, binding);
-    //        var endPoint = new EndpointAddress(uri);
-    //        var proxy = channel.CreateChannel(endPoint);
-    //        proxy?.Connect(SectionLogin.Ins.CurrentUser.Id);
+    //    {
+    //        throw new System.NotImplementedException();
     //    }
     //}
 }

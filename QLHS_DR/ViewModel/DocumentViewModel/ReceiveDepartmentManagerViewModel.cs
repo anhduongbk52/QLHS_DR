@@ -1,4 +1,5 @@
 ﻿using EofficeClient.Core;
+using EofficeCommonLibrary.Common.Ultil;
 using EofficeCommonLibrary.Common.Util;
 using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
@@ -53,15 +54,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand CancelCommand { get; set; }
         public ICommand OkCommand { get; set; }
-        private void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
-        {
-            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(userTask);
-            if (orAdd != null)
-            {
-                taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
-            }
-        }
+       
         #endregion
         internal ReceiveDepartmentManagerViewModel(UserTask userTask)
         {
@@ -79,15 +72,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-                    _MyClient.Open();
-                    var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_Task.Id); //get all file PDF in task
-                    _MyClient.SetSeenUserInTask(_Task.Id, SectionLogin.Ins.CurrentUser.Id);
-                    _MyClient.Close();
-                    if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
+                    if(userTask.CanViewAttachedFile==true)
                     {
-                        DecryptTaskAttachedFile(taskAttachedFileDTOs[0], userTask);
-                        PdfContent = new MemoryStream(taskAttachedFileDTOs[0].Content,false);
+                        _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                        _MyClient.Open();
+                        var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_Task.Id); //get all file PDF in task
+                        _MyClient.SetSeenUserInTask(_Task.Id, SectionLogin.Ins.CurrentUser.Id);
+                        _MyClient.Close();
+                        if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
+                        {
+                            taskAttachedFileDTOs[0].Content = AESHelper.DecryptWithoutIV(taskAttachedFileDTOs[0].KeyFile, taskAttachedFileDTOs[0].Content);
+                            PdfContent = new MemoryStream(taskAttachedFileDTOs[0].Content, false);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -196,7 +192,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         public void Dispose()
         {
-            PdfContent.Dispose();
+            PdfContent?.Dispose();
             PdfContent = null;            
         }
     }
