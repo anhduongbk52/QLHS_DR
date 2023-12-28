@@ -48,10 +48,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
         }
 
-        private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
-
-        private IReadOnlyList<User> iReadOnlyListUser;
-
         private Object _DocumentSourcePdf;
         public Object DocumentSourcePdf
         {

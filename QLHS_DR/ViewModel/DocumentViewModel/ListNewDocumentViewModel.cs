@@ -43,6 +43,18 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 }
             }
         }
+        private bool _IsBusy;
+        public bool IsBusy
+        {
+            get => _IsBusy;
+            set
+            {
+                if (_IsBusy != value)
+                {
+                    _IsBusy = value; OnPropertyChanged("IsBusy");
+                }
+            }
+        }
         private bool _IsReadOnlyPermission;
         public bool IsReadOnlyPermission
         {
@@ -166,6 +178,7 @@ namespace EofficeClient.ViewModel.DocumentViewModel
         public ICommand RevokeTaskCommand { get; set; }
         public ICommand AddUserOfMyDepartmentToTaskCommand { get; set; }
         public ICommand EditTaskCommand { get; set; }
+        public ICommand RequirePermisionCommand { get; set; }
         #endregion
 
         public ListNewDocumentViewModel(IEventAggregator eventAggregator)
@@ -195,7 +208,11 @@ namespace EofficeClient.ViewModel.DocumentViewModel
                 System.Windows.MessageBox.Show(ex.Message);
             }
             UsersInTask = new ObservableCollection<User>();
-
+            RequirePermisionCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            {
+                RequestPermissionDocumentWindow requestPermissionDocumentWindow = new RequestPermissionDocumentWindow(_UserTaskSelected.TaskId);
+                requestPermissionDocumentWindow.ShowDialog();               
+            });
             LoadedWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 UserTaskSelecteds = new ObservableCollection<UserTask>();
@@ -272,12 +289,12 @@ namespace EofficeClient.ViewModel.DocumentViewModel
             });
             EditTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskEditTask") && _UserTaskSelected != null) return true; else return false; }, (p) =>
             {
-                EditTaskWindow editTaskWindow = new EditTaskWindow();
-                //ReceiveUserOfMyDepartmentManagerViewModel receiveUserOfMyDepartmentManagerViewModel = new ReceiveUserOfMyDepartmentManagerViewModel(_UserTaskSelected.Task);
-                //editTaskWindow.DataContext = receiveUserOfMyDepartmentManagerViewModel;
-                editTaskWindow.ShowDialog();
-                ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-                UpdateHeaderTabControl();
+                ////EditTaskWindow editTaskWindow = new EditTaskWindow();
+                ////ReceiveUserOfMyDepartmentManagerViewModel receiveUserOfMyDepartmentManagerViewModel = new ReceiveUserOfMyDepartmentManagerViewModel(_UserTaskSelected.Task);
+                ////editTaskWindow.DataContext = receiveUserOfMyDepartmentManagerViewModel;
+                //editTaskWindow.ShowDialog();
+                //ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
+                //UpdateHeaderTabControl();
             });
             UserTaskSelectedCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && _IsExpander) return true; else return false; }, (p) =>
             {

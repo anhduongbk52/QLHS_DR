@@ -1,7 +1,10 @@
 ﻿
 using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
+using QLHS_DR.EofficeMainServiceReference;
+using QLHS_DR.ViewModel.ChatAppViewModel;
 using System;
+using System.ServiceModel;
 using System.Windows;
 
 namespace EofficeClient.Core
@@ -15,7 +18,14 @@ namespace EofficeClient.Core
         private const int port = 8888;
 
         private const string servicePath = "EEMCDRWcfService/service";
-
+        public static EofficeMainServiceClient NewEofficeMainServiceClient()
+        {
+            EofficeMainServiceClient client = new EofficeMainServiceClient(new InstanceContext(new MessageServiceCallBack()), "NetTcpBinding_IEofficeMainService");
+            client.ClientCredentials.UserName.UserName = SectionLogin.Ins.CurrentUser.UserName;
+            client.ClientCredentials.UserName.Password = SectionLogin.Ins.Token;
+            client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
+            return client;
+        }
         public static MessageServiceClient NewMessageServiceClient()
         {
             MessageServiceClient client = new MessageServiceClient();

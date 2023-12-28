@@ -1,0 +1,3724 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
+  <xs:element name="GetBCTDesigns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bCTDesignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBCTDesignsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetBCTDesignsResult" nillable="true" type="q1:BCTDesign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadBCTDesignFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bCTDesignId" type="xs:int" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="fileOfBctDesign" nillable="true" type="q2:FileOfBctDesign" />
+        <xs:element minOccurs="0" name="fileContent" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadBCTDesignFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadBCTDesignFileResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeleteBCTDesignFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileOfBctDesignId" type="xs:int" />
+        <xs:element minOccurs="0" name="isDelete" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeleteBCTDesignFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBCTDesignFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="fileOfBctDesign" nillable="true" type="q3:FileOfBctDesign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBCTDesignFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadFileOfBCTDesign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileOfBctDesignId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadFileOfBCTDesignResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadFileOfBCTDesignResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSignatureImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="signatureImageType" type="q4:SignatureImageType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSignatureImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSignatureImageResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDraftSignatureImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDraftSignatureImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDraftSignatureImageResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewSignatureDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="documentName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q5:ArrayOfint" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="signatureTypes" nillable="true" type="q6:ArrayOfSignatureType" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewSignatureDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadReQuestSignatureDocumentToMe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadReQuestSignatureDocumentToMeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadReQuestSignatureDocumentToMeResult" nillable="true" type="q7:ArrayOfSignatureDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadSignatureDocumentCreateByMe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="signatureDocumentStatus" type="q8:SignatureDocumentStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadSignatureDocumentCreateByMeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadSignatureDocumentCreateByMeResult" nillable="true" type="q9:ArrayOfSignatureDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadSignatureDocumentFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="documentSignatureId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadSignatureDocumentFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadSignatureDocumentFileResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSignatureDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signatureDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSignatureDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserSignatureDocumentResult" nillable="true" type="q10:UserSignatureDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSignatureDocuments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signatureDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSignatureDocumentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserSignatureDocumentsResult" nillable="true" type="q11:ArrayOfUserSignatureDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSignatureDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signatureDocumentId" type="xs:int" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="signComment" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSignatureDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateSignatureDocumentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSignatureDocumentStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signatureDocumentId" type="xs:int" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="signatureDocumentStatus" type="q12:SignatureDocumentStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSignatureDocumentStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskResult" nillable="true" type="q13:UserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskCreateByMe">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskCreateByMeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskCreateByMeResult" nillable="true" type="q14:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskFinish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskFinishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskFinishResult" nillable="true" type="q15:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskRevoked">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskRevokedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskRevokedResult" nillable="true" type="q16:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserInTaskResult" nillable="true" type="q17:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrintableUserInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrintableUserInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPrintableUserInTaskResult" nillable="true" type="q18:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPrintableUsersInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q19:ArrayOfint" />
+        <xs:element minOccurs="0" name="prinable" type="xs:boolean" />
+        <xs:element minOccurs="0" name="changeByUserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPrintableUsersInTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskViewFileAble">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q20:ArrayOfint" />
+        <xs:element minOccurs="0" name="viewAble" type="xs:boolean" />
+        <xs:element minOccurs="0" name="changeByUserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskViewFileAbleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskSaveFileAble">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q21:ArrayOfint" />
+        <xs:element minOccurs="0" name="saveAble" type="xs:boolean" />
+        <xs:element minOccurs="0" name="changeByUserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskSaveFileAbleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskIsProcess">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="userIds" nillable="true" type="q22:ArrayOfint" />
+        <xs:element minOccurs="0" name="isMainProcess" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskIsProcessResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetJobContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="jobContent" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetJobContentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="deletedBy" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AssignUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="assignedBy" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AssignUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeTasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskIds" nillable="true" type="q23:ArrayOfint" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeTasksResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q24:Task" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTaskAndTaskAttackedFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q25:Task" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="taskAttachedFile" nillable="true" type="q26:TaskAttachedFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTaskAndTaskAttackedFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProcessingUserInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProcessingUserInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProcessingUserInTaskResult" nillable="true" type="q27:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSeenUsersInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSeenUsersInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetSeenUsersInTaskResult" nillable="true" type="q28:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrintedUserInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPrintedUserInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPrintedUserInTaskResult" nillable="true" type="q29:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSeenUserInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSeenUserInTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPrintedUserInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPrintedUserInTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProcessingUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="removedBy" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProcessingUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasSeenInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasSeenInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="HasSeenInTaskResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsProcessingInTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsProcessingInTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsProcessingInTaskResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskFinish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="isFinish" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserTaskFinishResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentTaskResult" nillable="true" type="q30:DepartmentTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDepartmentTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="assignedByUserId" type="xs:int" />
+        <xs:element minOccurs="0" name="processedByUserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDepartmentTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddDepartmentTaskResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q31:Task" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="ReceivedDepartmentDTOs" nillable="true" type="q32:ArrayOfReceivedDepartmentDTO" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q33:TaskAttachedFileDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceivedDepartmentDTO">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceivedDepartmentDTOResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetReceivedDepartmentDTOResult" nillable="true" type="q34:ReceivedDepartmentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDepartmentToTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="taskId" nillable="true" type="q35:Task" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="ReceivedDepartmentDTOs" nillable="true" type="q36:ArrayOfReceivedDepartmentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddDepartmentToTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTotlPageForAttackedFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskAttackedFileId" type="xs:int" />
+        <xs:element minOccurs="0" name="totalPage" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTotlPageForAttackedFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountPrintDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userTaskId" type="xs:int" />
+        <xs:element minOccurs="0" name="pageNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="printCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountPrintDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountPrintDocument1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userTaskId" type="xs:int" />
+        <xs:element minOccurs="0" name="pageNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="printCount" type="xs:int" />
+        <xs:element minOccurs="0" name="success" type="xs:boolean" />
+        <xs:element minOccurs="0" name="printerName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountPrintDocument1Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountPrintDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userTaskId" type="xs:int" />
+        <xs:element minOccurs="0" name="pageNumber" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountPrintDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCountPrintDocumentResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromId" type="xs:int" />
+        <xs:element minOccurs="0" name="toId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadMessagesResult" nillable="true" type="q37:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserStatusResult" type="q38:UserStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserLastOnline">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserLastOnlineResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUserLastOnlineResult" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadMessagesFromMessageId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromId" type="xs:int" />
+        <xs:element minOccurs="0" name="toId" type="xs:int" />
+        <xs:element minOccurs="0" name="fromMessageId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadMessagesFromMessageIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadMessagesFromMessageIdResult" nillable="true" type="q39:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecordLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="loginManager" nillable="true" type="q40:LoginManager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecordLoginResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadLoginManagers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadLoginManagersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadLoginManagersResult" nillable="true" type="q41:ArrayOfLoginManager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTrustedLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="loginManagerId" type="xs:int" />
+        <xs:element minOccurs="0" name="isTrusted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTrustedLoginResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLoginManager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="loginManager" nillable="true" type="q42:LoginManager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLoginManagerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateLoginManagerResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddLog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="log_0" nillable="true" type="q43:Log" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddLogResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="from" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dateTime_0" type="xs:dateTime" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="type" type="q44:LogType" />
+        <xs:element minOccurs="0" name="filterUserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetLogsResult" nillable="true" type="q45:ArrayOfLog" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadLsxes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadLsxesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadLsxesResult" nillable="true" type="q46:ArrayOfLsx" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLsxByDOfficeNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dOfficeNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLsxByDOfficeNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetLsxByDOfficeNumberResult" nillable="true" type="q47:Lsx" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPycByDOfficeNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dOfficeNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPycByDOfficeNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPycByDOfficeNumberResult" nillable="true" type="q48:PYC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLsxIdByDOfficeNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dOfficeNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLsxIdByDOfficeNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLsxIdByDOfficeNumberResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLsxesOfProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLsxesOfProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetLsxesOfProductResult" nillable="true" type="q49:ArrayOfLsx" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="lsx" nillable="true" type="q50:Lsx" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="publicFile" nillable="true" type="q51:PublicFile" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewLsxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewLsxResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadPublicFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="publicFile" nillable="true" type="q52:PublicFile" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadPublicFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadPublicFileResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewFileOfLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="publicFile" nillable="true" type="q53:PublicFile" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewFileOfLsxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewFileOfLsxResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewLsxProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+        <xs:element xmlns:q54="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="productIds" nillable="true" type="q54:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewLsxProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q55="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NewLsxProductResult" nillable="true" type="q55:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadFileLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadFileLsxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadFileLsxResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadPublicFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publicFileId" type="xs:int" />
+        <xs:element minOccurs="0" name="convertToPdf" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadPublicFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadPublicFileResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLsxResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFileInLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publicFileId" type="xs:int" />
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFileInLsxResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPublicFilesOfLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPublicFilesOfLsxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPublicFilesOfLsxResult" nillable="true" type="q56:ArrayOfPublicFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainJobTodoes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainJobTodoesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetMainJobTodoesResult" nillable="true" type="q57:ArrayOfMainJobTodo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainJobTodoesPYCs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainJobTodoesPYCsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetMainJobTodoesPYCsResult" nillable="true" type="q58:ArrayOfMainJobTodoPYC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewMainJobTodo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mainJobTodo" nillable="true" type="q59:MainJobTodo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewMainJobTodoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewMainJobTodoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewMainJobTodoPYC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mainJobTodoPYC" nillable="true" type="q60:MainJobTodoPYC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewMainJobTodoPYCResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewMainJobTodoPYCResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOrUpdateMainJobTodo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mainJobTodo" nillable="true" type="q61:MainJobTodo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOrUpdateMainJobTodoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOrUpdateMainJobTodoPYC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mainJobTodoPYC" nillable="true" type="q62:MainJobTodoPYC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOrUpdateMainJobTodoPYCResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductToLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductToLsxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddProductToLsxResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductToPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductToPycResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddProductToPycResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductsToLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+        <xs:element xmlns:q63="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="productIds" nillable="true" type="q63:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductsToLsxResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProductToLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProductToLsxResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMainJobTodo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mainJobTodoId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMainJobTodoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMainJobTodoPYC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mainJobTodoPYCId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMainJobTodoPYCResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductsInLsx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="lsxId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductsInLsxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProductsInLsxResult" nillable="true" type="q64:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPyces">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPycesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadPycesResult" nillable="true" type="q65:ArrayOfPYC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="pyc" nillable="true" type="q66:PYC" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPycResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewPycResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewFileOfPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="fileOfPyc" nillable="true" type="q67:FileOfPyc" />
+        <xs:element minOccurs="0" name="fileBytes" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewFileOfPycResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewFileOfPycResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductsToPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+        <xs:element xmlns:q68="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="productIds" nillable="true" type="q68:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProductsToPycResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePycResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadPycFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadPycFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadPycFileResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilesOfPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilesOfPycResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetFilesOfPycResult" nillable="true" type="q69:ArrayOfFileOfPyc" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductsInPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pycId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductsInPycResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProductsInPycResult" nillable="true" type="q70:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFileOfPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileOfPycId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFileOfPycResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadFileAttachedInPyc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileOfPycId" type="xs:int" />
+        <xs:element minOccurs="0" name="convertToPdf" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadFileAttachedInPycResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadFileAttachedInPycResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBCTDesign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bCTDesign" nillable="true" type="q71:BCTDesign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBCTDesignResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewBCTDesignResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveBCTDesign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bCTDesignId" type="xs:int" />
+        <xs:element minOccurs="0" name="isActive" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetActiveBCTDesignResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBCTDesign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bCTDesign" nillable="true" type="q72:BCTDesign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBCTDesignResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadBCTDesigns">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadBCTDesignsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadBCTDesignsResult" nillable="true" type="q73:ArrayOfBCTDesign" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByProductCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByProductCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProductByProductCodeResult" nillable="true" type="q74:Product" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTransformerManual">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="transformerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTransformerManualResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTransformerManualResult" nillable="true" type="q75:ArrayOfTransformerManualDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadContracts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="transformerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadContractsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadContractsResult" nillable="true" type="q76:ArrayOfContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadTransformerManualFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="transformerManualId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadTransformerManualFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadTransformerManualFileResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadContractFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contractId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadContractFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadContractFileResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadDoctitle">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadDoctitleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadDoctitleResult" nillable="true" type="q77:ArrayOfDocTittle" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeletedTransformerManual">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="transformerManualId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeletedTransformerManualResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeletedContract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contractId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeletedContractResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q78:Product" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewProductResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewTransformer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="transformerDTO" nillable="true" type="q79:TransformerDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewTransformerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTransformer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="transformerDTO" nillable="true" type="q80:TransformerDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTransformerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBA">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q81:Product" />
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bAInfor" nillable="true" type="q82:BAInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBAResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBA">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q83:Product" />
+        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bAInfor" nillable="true" type="q84:BAInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBAResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewBAResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBU">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q85:Product" />
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="voltageTransformerInfo" nillable="true" type="q86:VoltageTransformerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBUResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMOF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q87:Product" />
+        <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mOFInfor" nillable="true" type="q88:MOFInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMOFResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBI">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q89:Product" />
+        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bIInfor" nillable="true" type="q90:BIInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBIResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBU">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q91:Product" />
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="voltageTransformerInfo" nillable="true" type="q92:VoltageTransformerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBUResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewBUResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewMOF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q93:Product" />
+        <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mOFInfor" nillable="true" type="q94:MOFInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewMOFResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewMOFResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBI">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q95:Product" />
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bIInfor" nillable="true" type="q96:BIInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewBIResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewBIResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveProductResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+        <xs:element minOccurs="0" name="islock" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LockProductResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnLockProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnLockProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnLockProductResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadContract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+        <xs:element minOccurs="0" name="contractName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="contractDescription" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isDeleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadContractResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadContractResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPublishDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="publishDocumentDTO" nillable="true" type="q97:PublishDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPublishDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPublishDocumentDTOs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPublishDocumentDTOsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadPublishDocumentDTOsResult" nillable="true" type="q98:ArrayOfPublishDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPublishDocumentDTODeleteds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPublishDocumentDTODeletedsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q99="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadPublishDocumentDTODeletedsResult" nillable="true" type="q99:ArrayOfPublishDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPublishDocuments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="publishDocumentDTO" nillable="true" type="q100:PublishDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPublishDocumentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddPublishDocumentsResult" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeletedPublishDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeletedPublishDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletedPublishDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletedPublishDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePublishDocumentInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="publishDocumentId" nillable="true" type="q101:PublishDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePublishDocumentInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestorePublishDocumentDeleted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestorePublishDocumentDeletedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRequestPermissionDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q102="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="entity" nillable="true" type="q102:RequestPermissionDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRequestPermissionDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="documentName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+        <xs:element xmlns:q103="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="requestSendDocumentDTOs" nillable="true" type="q103:ArrayOfRequestSendDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRequestSendDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckExistRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckExistRequestSendDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckExistRequestSendDocumentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestSendDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestSendDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q104="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetRequestSendDocumentResult" nillable="true" type="q104:RequestSendDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequireRevokeDocumentsOfMyDepartment">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequireRevokeDocumentsOfMyDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q105="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRequireRevokeDocumentsOfMyDepartmentResult" nillable="true" type="q105:ArrayOfRequestSendDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequireRevokeDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestSendDocumentId" type="xs:int" />
+        <xs:element minOccurs="0" name="reasonRevoke" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequireRevokeDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RequireRevokeDocumentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessRequireRevokeDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestSendDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessRequireRevokeDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProcessRequireRevokeDocumentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DenyRequireRevokeDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestSendDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DenyRequireRevokeDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DenyRequireRevokeDocumentResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentsOfMyDepartment">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentsOfMyDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q106="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRequestSendDocumentsOfMyDepartmentResult" nillable="true" type="q106:ArrayOfRequestSendDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentsDone">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentsDoneResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q107="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRequestSendDocumentsDoneResult" nillable="true" type="q107:ArrayOfDisplayRequestSendDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentDTOOfRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentDTOOfRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q108="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRequestSendDocumentDTOOfRequestResult" nillable="true" type="q108:ArrayOfRequestSendDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentToDepartments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRequestSendDocumentToDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q109="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRequestSendDocumentToDepartmentsResult" nillable="true" type="q109:ArrayOfRequestSendDocumentToDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRequestSendDocumentToDepartments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestId" type="xs:int" />
+        <xs:element xmlns:q110="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="requestSendDocumentDTOs" nillable="true" type="q110:ArrayOfRequestSendDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRequestSendDocumentToDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRequestSendDocumentToDepartments1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestId" type="xs:int" />
+        <xs:element minOccurs="0" name="confidentialLevel" nillable="true" type="xs:int" />
+        <xs:element xmlns:q111="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="requestSendDocumentDTOs" nillable="true" type="q111:ArrayOfRequestSendDocumentDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRequestSendDocumentToDepartments1Response">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRevokedRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="requestId" type="xs:int" />
+        <xs:element minOccurs="0" name="isRevoked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRevokedRequestSendDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q112="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q112:Task" />
+        <xs:element minOccurs="0" name="requestId" type="xs:int" />
+        <xs:element xmlns:q113="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q113:TaskAttachedFileDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessRequestSendDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPublishDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPublishDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q114="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPublishDocumentResult" nillable="true" type="q114:PublishDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransformerInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransformerInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q115="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTransformerInfoResult" nillable="true" type="q115:TransformerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBAInfor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBAInforResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q116="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetBAInforResult" nillable="true" type="q116:BAInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBUInfor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBUInforResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q117="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetBUInforResult" nillable="true" type="q117:VoltageTransformerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMOFInfor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMOFInforResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q118="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetMOFInforResult" nillable="true" type="q118:MOFInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBIInfor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBIInforResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q119="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetBIInforResult" nillable="true" type="q119:BIInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+        <xs:element minOccurs="0" name="documentName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRequestSendDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditTransformerManual">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileId" type="xs:int" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="docTitleId" type="xs:int" />
+        <xs:element minOccurs="0" name="documentName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditTransformerManualResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadProducTypeNews">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadProducTypeNewsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q120="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadProducTypeNewsResult" nillable="true" type="q120:ArrayOfProductTypeNew" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPublishDocumentToProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+        <xs:element minOccurs="0" name="publishDocumentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPublishDocumentToProductResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTaskByConfidentialLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="confidentialLevel" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTaskByConfidentialLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q121="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTaskByConfidentialLevelResult" nillable="true" type="q121:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserTaskOfMyByConfidentialLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="confidentialLevel" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserTaskOfMyByConfidentialLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q122="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserTaskOfMyByConfidentialLevelResult" nillable="true" type="q122:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserTaskOfTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserTaskOfTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q123="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetAllUserTaskOfTaskResult" nillable="true" type="q123:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskNotFinish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskNotFinishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q124="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskNotFinishResult" nillable="true" type="q124:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksNotFinish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksNotFinishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q125="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksNotFinishResult" nillable="true" type="q125:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserTasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q126="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="userTasks" nillable="true" type="q126:ArrayOfUserTask" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserTasksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateUserTasksResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q127="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTaskResult" nillable="true" type="q127:Task" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskDocumentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q128="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskDocumentResult" nillable="true" type="q128:TaskAttachedFileDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskDocuments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskDocumentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q129="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskDocumentsResult" nillable="true" type="q129:ArrayOfTaskAttachedFileDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskPermissions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskPermissionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q130="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskPermissionsResult" type="q130:PermissionType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmDisposedPrintedDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userTaskPrintManagerId" type="xs:int" />
+        <xs:element minOccurs="0" name="numberDisposed" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmDisposedPrintedDocumentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskAttachedFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTaskAttachedFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q131="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTaskAttachedFileResult" nillable="true" type="q131:TaskAttachedFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskPrintManagers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userTaskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTaskPrintManagersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q132="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserTaskPrintManagersResult" nillable="true" type="q132:ArrayOfUserTaskPrintManager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeTaskByCurrentUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RevokeTaskByCurrentUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDepartmentsOfTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDepartmentsOfTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q133="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserDepartmentsOfTaskResult" nillable="true" type="q133:ArrayOfUserDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q134="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksResult" nillable="true" type="q134:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksCreateByMe">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksCreateByMeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q135="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksCreateByMeResult" nillable="true" type="q135:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksFinish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksFinishResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q136="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksFinishResult" nillable="true" type="q136:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksRevoked">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksRevokedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q137="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksRevokedResult" nillable="true" type="q137:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadAllTasks">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadAllTasksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q138="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadAllTasksResult" nillable="true" type="q138:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q139="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="task" nillable="true" type="q139:Task" />
+        <xs:element minOccurs="0" name="ownerTaskKey" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="assignedTaskKey" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTaskResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddTaskResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTaskAttachedFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q140="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="attachedFilesDTO" nillable="true" type="q140:TaskAttachedFileDTO" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTaskAttachedFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksFromTaskId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="fromTaskId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTasksFromTaskIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q141="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadTasksFromTaskIdResult" nillable="true" type="q141:ArrayOfTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsExistTaskName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsExistTaskNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsExistTaskNameResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q142="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskIds" nillable="true" type="q142:ArrayOfint" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTasksResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTaskAttachedFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q143="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="taskAttachedFileIds" nillable="true" type="q143:ArrayOfint" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTaskAttachedFilesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserTask">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="taskId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="assignedBy" type="xs:int" />
+        <xs:element minOccurs="0" name="userTaskKey" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserTaskResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserTasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q144="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="userTasks" nillable="true" type="q144:ArrayOfUserTask" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserTasksResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddUserTasksResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connect">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Unsubscribe">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q145="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="message" nillable="true" type="q145:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingToAll">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PingToAllResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConnectedUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetConnectedUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q146="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetConnectedUsersResult" nillable="true" type="q146:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadAvatar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Data" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadAvatarResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserContactDTOs">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserContactDTOsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q147="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserContactDTOsResult" nillable="true" type="q147:ArrayOfUserContactDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServerDateTime">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServerDateTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetServerDateTimeResult" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q148="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="user" nillable="true" type="q148:User" />
+        <xs:element minOccurs="0" name="isDefaultPassword" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnLockUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnLockUserResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q149="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUsersResult" nillable="true" type="q149:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q150="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q150:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersOfDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersOfDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q151="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUsersOfDepartmentResult" nillable="true" type="q151:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentManagers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentManagersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q152="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentManagersResult" nillable="true" type="q152:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApproveManagers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApproveManagersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q153="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetApproveManagersResult" nillable="true" type="q153:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q154="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserByIdResult" nillable="true" type="q154:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserECPrKeyFor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q155="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="purpose" type="q155:ECKeyPurpose" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserECPrKeyForResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUserECPrKeyForResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Logout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogoutResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserContacts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserContactsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q156="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetUserContactsResult" nillable="true" type="q156:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartments">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q157="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentsResult" nillable="true" type="q157:ArrayOfDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserDepartments">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q158="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserDepartmentsResult" nillable="true" type="q158:ArrayOfUserDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserDepartmentsByDepartmentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserDepartmentsByDepartmentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q159="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserDepartmentsByDepartmentIdResult" nillable="true" type="q159:ArrayOfUserDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q160="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionsResult" type="q160:PermissionType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TryLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TryLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q161="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="TryLoginResult" type="q161:LoginStatusType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oldPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q162="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" minOccurs="0" name="ChangePasswordResult" type="q162:LoginStatusType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q163="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetDepartmentResult" nillable="true" type="q163:Department" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDepartmentNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDepartmentNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupDepartmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q164="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetGroupDepartmentResult" nillable="true" type="q164:GroupDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadGroupDepartments">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadGroupDepartmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q165="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadGroupDepartmentsResult" nillable="true" type="q165:ArrayOfGroupDepartment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionOfUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionOfUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q166="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionOfUserResult" nillable="true" type="q166:ArrayOfPermission" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionOfUserProc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionOfUserProcResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q167="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionOfUserProcResult" nillable="true" type="q167:ArrayOfPermission" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q168="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="user" nillable="true" type="q168:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserInformationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetPasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetAttemptCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetAttemptCountResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRoles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRolesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q169="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRolesResult" nillable="true" type="q169:ArrayOfRole" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserRolesByRoleId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserRolesByRoleIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q170="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserRolesByRoleIdResult" nillable="true" type="q170:ArrayOfUserRole" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserInRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadUserInRoleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q171="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadUserInRoleResult" nillable="true" type="q171:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewUserRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewUserRoleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserRoleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RenameRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="newName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RenameRoleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeDescriptionRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element minOccurs="0" name="newName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeDescriptionRoleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roleDescription" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRoleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRoleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPositions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPositionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q172="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadPositionsResult" nillable="true" type="q172:ArrayOfPosition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserToDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserToDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserToDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserToDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePositionOfUserDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userDepartmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="positionId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePositionOfUserDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePriorityProcessingOfUserDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userDepartmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="priorityProcessing" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePriorityProcessingOfUserDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="islock" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="departmentName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="groupDepartmentId" type="xs:int" />
+        <xs:element minOccurs="0" name="positionManagerId1" type="xs:int" />
+        <xs:element minOccurs="0" name="positionManagerId2" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadModuls">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadModulsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q173="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadModulsResult" nillable="true" type="q173:ArrayOfModul" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewModul">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewModulResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteModul">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="modulId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteModulResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionsOfModul">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="modulId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPermissionsOfModulResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q174="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetPermissionsOfModulResult" nillable="true" type="q174:ArrayOfPermission" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPermissions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadPermissionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q175="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadPermissionsResult" nillable="true" type="q175:ArrayOfPermission" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPermission">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="modulId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewPermissionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePermission">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="permissionId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePermissionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRolePermissionDs">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadRolePermissionDsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q176="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadRolePermissionDsResult" nillable="true" type="q176:ArrayOfRolePermissionD" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRolePermissionD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="permissionId" type="xs:int" />
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewRolePermissionDResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRolePermissionD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="permissionId" type="xs:int" />
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRolePermissionDResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRolePermissionD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleId" type="xs:int" />
+        <xs:element xmlns:q177="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="permissionIds" nillable="true" type="q177:ArrayOfint" />
+        <xs:element xmlns:q178="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="isChecked" nillable="true" type="q178:ArrayOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRolePermissionDResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductTypeNew">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productTypeNewId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductTypeNewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q179="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProductTypeNewResult" nillable="true" type="q179:ProductTypeNew" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadTransformerManual">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="transformerCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isDeleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadTransformerManualResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadTransformerManualResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadTransformerManual1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="transformerCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isDeleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadTransformerManual1Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UploadTransformerManual1Result" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadProductManual">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="docTitleId" type="xs:int" />
+        <xs:element xmlns:q180="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="productIds" nillable="true" type="q180:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadProductManualResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadApprovalDocumentProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:base64Binary" />
+        <xs:element xmlns:q181="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="approvalDocumentProducts" nillable="true" type="q181:ArrayOfApprovalDocumentProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadApprovalDocumentProductResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApprovalDocumentProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+        <xs:element minOccurs="0" name="isExpired" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApprovalDocumentProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q182="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetApprovalDocumentProductsResult" nillable="true" type="q182:ArrayOfApprovalDocumentProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastApprovalNumber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastApprovalNumberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLastApprovalNumberResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetExpiredApprovalDocumentProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="approvalDocumentProductId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetExpiredApprovalDocumentProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetExpiredApprovalDocumentProductResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestoreApprovalDocumentProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="approvalDocumentProductId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RestoreApprovalDocumentProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RestoreApprovalDocumentProductResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadApprovalDocumentProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="approvalDocumentProductId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadApprovalDocumentProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DownloadApprovalDocumentProductResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateApprovalDocumentProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q183="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="approvalDocumentProduct" nillable="true" type="q183:ApprovalDocumentProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateApprovalDocumentProductResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateApprovalDocumentProductResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddApprovalDocToOtherProduct">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q184="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="approvalDocumentProductIds" nillable="true" type="q184:ArrayOfint" />
+        <xs:element xmlns:q185="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="productIds" nillable="true" type="q185:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddApprovalDocToOtherProductResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyBUInforToProductRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q186="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q186:Product" />
+        <xs:element xmlns:q187="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="voltageTransformerInfo" nillable="true" type="q187:VoltageTransformerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyBUInforToProductRangeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyMOFInforToProductRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q188="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q188:Product" />
+        <xs:element xmlns:q189="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="mOFInfor" nillable="true" type="q189:MOFInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyMOFInforToProductRangeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyBIInforToProductRange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q190="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="product" nillable="true" type="q190:Product" />
+        <xs:element xmlns:q191="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="bIInfor" nillable="true" type="q191:BIInfor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyBIInforToProductRangeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchTransformer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codeKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ratedPowerKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ratedVoltageKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="yearOfManufactureKey" type="xs:int" />
+        <xs:element minOccurs="0" name="noteKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stationKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q192="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="productType" type="q192:ProductType" />
+        <xs:element minOccurs="0" name="StandardId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchTransformerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q193="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="SearchTransformerResult" nillable="true" type="q193:ArrayOfTransformerDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchTransformers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codeKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ratedPowerKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ratedVoltageKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="yearOfManufactureKey" type="xs:int" />
+        <xs:element minOccurs="0" name="noteKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="stationKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productTypeNewId" type="xs:int" />
+        <xs:element minOccurs="0" name="StandardId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchTransformersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q194="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="SearchTransformersResult" nillable="true" type="q194:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchAllProducts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codeKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="yearOfManufactureKey" type="xs:int" />
+        <xs:element minOccurs="0" name="noteKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="productTypeNewId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchAllProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q195="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="SearchAllProductsResult" nillable="true" type="q195:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransformerDTOById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransformerDTOByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q196="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTransformerDTOByIdResult" nillable="true" type="q196:TransformerDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransformerDTOByProductCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTransformerDTOByProductCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q197="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetTransformerDTOByProductCodeResult" nillable="true" type="q197:TransformerDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadStandards">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadStandardsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q198="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="LoadStandardsResult" nillable="true" type="q198:ArrayOfStandard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q199="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="GetProductByIdResult" nillable="true" type="q199:Product" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ForwardToClient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q200="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="message" nillable="true" type="q200:Message" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NortifyRequestSendDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q201="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="requestSendDocument" nillable="true" type="q201:RequestSendDocument" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserConnected">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q202="http://schemas.datacontract.org/2004/07/EofficeService.Model" minOccurs="0" name="users" nillable="true" type="q202:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserTaskChanged">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

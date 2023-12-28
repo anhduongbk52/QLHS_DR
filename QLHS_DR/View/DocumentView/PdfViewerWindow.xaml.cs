@@ -23,11 +23,9 @@ namespace QLHS_DR.View.DocumentView
 
         MessageServiceClient _MyClient;
         public event PropertyChangedEventHandler PropertyChanged;
-        private bool _CanPrint;
-        private bool _CanSave;
-        private TaskAttachedFileDTO _TaskAttachedFileDTO;
-        private byte[] contextFile;
-        private IReadOnlyList<User> _IReadOnlyListUser;
+        private readonly bool _CanPrint;
+        private readonly bool _CanSave;
+        private readonly TaskAttachedFileDTO _TaskAttachedFileDTO;
         private UserTask _UserTaskPrint;
 
         public UserTask UserTaskPrint
@@ -142,8 +140,7 @@ namespace QLHS_DR.View.DocumentView
         }
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         private void pdfViewer_PrintPage(DependencyObject d, DevExpress.Xpf.PdfViewer.PdfPrintPageEventArgs e)
@@ -276,10 +273,6 @@ namespace QLHS_DR.View.DocumentView
                 }
             }
         }
-
-        private void pdfViewer_PageSetupDialogShowing(DependencyObject d, PageSetupDialogShowingEventArgs e)
-        {
-
-        }
+        
     }
 }

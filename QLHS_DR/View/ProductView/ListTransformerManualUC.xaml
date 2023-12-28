@@ -32,9 +32,13 @@
                     <MenuItem Header="Sửa đổi"
                               Command="{Binding ChangeFileHoSoCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                    <MenuItem Header="Download"
+                              Command="{Binding DownloadCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItems}"/>
                     <MenuItem Header="Xóa"
                               Command="{Binding RemoveFileHoSoCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>
+                    
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.GroupStyle>

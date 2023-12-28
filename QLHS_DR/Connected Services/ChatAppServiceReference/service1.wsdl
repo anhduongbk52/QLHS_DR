@@ -139,6 +139,12 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IMessageService_LoadSignatureDocumentCreateByMe_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadSignatureDocumentCreateByMe" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadSignatureDocumentCreateByMe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadSignatureDocumentCreateByMeResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_DownloadSignatureDocumentFile_InputMessage">
     <wsdl:part name="parameters" element="tns:DownloadSignatureDocumentFile" />
   </wsdl:message>
@@ -168,6 +174,30 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_SetSignatureDocumentStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetSignatureDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskIsProcess_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcess" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetUserTaskIsProcess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetJobContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetJobContent" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetJobContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetJobContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DeleteUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AssignUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignUser" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AssignUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignUserResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_RevokeTasks_InputMessage">
     <wsdl:part name="parameters" element="tns:RevokeTasks" />
@@ -294,18 +324,6 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_GetCountPrintDocument_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCountPrintDocumentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_Connect_InputMessage">
-    <wsdl:part name="parameters" element="tns:Connect" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_SendMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendMessage" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_GetConnectedUsers_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetConnectedUsers" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_GetConnectedUsers_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetConnectedUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_LoadMessages_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadMessages" />
@@ -667,11 +685,29 @@
   <wsdl:message name="IMessageService_LoadReQuestSignatureDocumentToMe_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadReQuestSignatureDocumentToMeResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_LoadSignatureDocumentCreateByMe_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadSignatureDocumentCreateByMe" />
+  <wsdl:message name="IMessageService_DownloadTransformerManualFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFile" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_LoadSignatureDocumentCreateByMe_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadSignatureDocumentCreateByMeResponse" />
+  <wsdl:message name="IMessageService_DownloadTransformerManualFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadContractFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContractFile" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadContractFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContractFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadDoctitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDoctitle" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadDoctitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDoctitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedTransformerManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManual" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeletedTransformerManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManualResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_SetDeletedContract_InputMessage">
     <wsdl:part name="parameters" element="tns:SetDeletedContract" />
@@ -1159,29 +1195,17 @@
   <wsdl:message name="IMessageService_SetUserTaskSaveFileAble_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetUserTaskSaveFileAbleResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SetUserTaskIsProcess_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcess" />
+  <wsdl:message name="IMessageService_LoadRequestPermissionDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocuments" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SetUserTaskIsProcess_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetUserTaskIsProcessResponse" />
+  <wsdl:message name="IMessageService_LoadRequestPermissionDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocumentsResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SetJobContent_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetJobContent" />
+  <wsdl:message name="IMessageService_LoadRequestPermissionDocumentsDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocumentsDTO" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SetJobContent_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetJobContentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DeleteUserTask_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteUserTask" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DeleteUserTask_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteUserTaskResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_AssignUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:AssignUser" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_AssignUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AssignUserResponse" />
+  <wsdl:message name="IMessageService_LoadRequestPermissionDocumentsDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocumentsDTOResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_GetServerDateTime_InputMessage">
     <wsdl:part name="parameters" element="tns:GetServerDateTime" />
@@ -1519,6 +1543,18 @@
   <wsdl:message name="IMessageService_UpdateRolePermissionD_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateRolePermissionDResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_LoadNortifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadNortifications" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadNortifications_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadNortificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetReadedNortifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetReadedNortifications" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetReadedNortifications_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetReadedNortificationsResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_GetProductTypeNew_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProductTypeNew" />
   </wsdl:message>
@@ -1669,31 +1705,11 @@
   <wsdl:message name="IMessageService_LoadContracts_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadContractsResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadTransformerManualFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFile" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadTransformerManualFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadTransformerManualFileResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadContractFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadContractFile" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DownloadContractFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadContractFileResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_LoadDoctitle_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadDoctitle" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_LoadDoctitle_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadDoctitleResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_SetDeletedTransformerManual_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManual" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_SetDeletedTransformerManual_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetDeletedTransformerManualResponse" />
-  </wsdl:message>
   <wsdl:portType name="IMessageService">
+    <wsdl:operation name="LoadSignatureDocumentCreateByMe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMe" message="tns:IMessageService_LoadSignatureDocumentCreateByMe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMeResponse" message="tns:IMessageService_LoadSignatureDocumentCreateByMe_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DownloadSignatureDocumentFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadSignatureDocumentFile" message="tns:IMessageService_DownloadSignatureDocumentFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadSignatureDocumentFileResponse" message="tns:IMessageService_DownloadSignatureDocumentFile_OutputMessage" />
@@ -1713,6 +1729,22 @@
     <wsdl:operation name="SetSignatureDocumentStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetSignatureDocumentStatus" message="tns:IMessageService_SetSignatureDocumentStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetSignatureDocumentStatusResponse" message="tns:IMessageService_SetSignatureDocumentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskIsProcess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskIsProcess" message="tns:IMessageService_SetUserTaskIsProcess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskIsProcessResponse" message="tns:IMessageService_SetUserTaskIsProcess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetJobContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetJobContent" message="tns:IMessageService_SetJobContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetJobContentResponse" message="tns:IMessageService_SetJobContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteUserTask" message="tns:IMessageService_DeleteUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteUserTaskResponse" message="tns:IMessageService_DeleteUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AssignUser" message="tns:IMessageService_AssignUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AssignUserResponse" message="tns:IMessageService_AssignUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RevokeTasks">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RevokeTasks" message="tns:IMessageService_RevokeTasks_InputMessage" />
@@ -1797,16 +1829,6 @@
     <wsdl:operation name="GetCountPrintDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetCountPrintDocument" message="tns:IMessageService_GetCountPrintDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetCountPrintDocumentResponse" message="tns:IMessageService_GetCountPrintDocument_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Connect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/Connect" message="tns:IMessageService_Connect_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SendMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SendMessage" message="tns:IMessageService_SendMessage_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetConnectedUsers">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetConnectedUsers" message="tns:IMessageService_GetConnectedUsers_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetConnectedUsersResponse" message="tns:IMessageService_GetConnectedUsers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoadMessages">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadMessages" message="tns:IMessageService_LoadMessages_InputMessage" />
@@ -2048,9 +2070,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadReQuestSignatureDocumentToMe" message="tns:IMessageService_LoadReQuestSignatureDocumentToMe_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadReQuestSignatureDocumentToMeResponse" message="tns:IMessageService_LoadReQuestSignatureDocumentToMe_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="LoadSignatureDocumentCreateByMe">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMe" message="tns:IMessageService_LoadSignatureDocumentCreateByMe_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMeResponse" message="tns:IMessageService_LoadSignatureDocumentCreateByMe_OutputMessage" />
+    <wsdl:operation name="DownloadTransformerManualFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadTransformerManualFile" message="tns:IMessageService_DownloadTransformerManualFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadTransformerManualFileResponse" message="tns:IMessageService_DownloadTransformerManualFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContractFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadContractFile" message="tns:IMessageService_DownloadContractFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadContractFileResponse" message="tns:IMessageService_DownloadContractFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDoctitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadDoctitle" message="tns:IMessageService_LoadDoctitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadDoctitleResponse" message="tns:IMessageService_LoadDoctitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedTransformerManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeletedTransformerManual" message="tns:IMessageService_SetDeletedTransformerManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeletedTransformerManualResponse" message="tns:IMessageService_SetDeletedTransformerManual_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetDeletedContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeletedContract" message="tns:IMessageService_SetDeletedContract_InputMessage" />
@@ -2376,21 +2410,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskSaveFileAble" message="tns:IMessageService_SetUserTaskSaveFileAble_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskSaveFileAbleResponse" message="tns:IMessageService_SetUserTaskSaveFileAble_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetUserTaskIsProcess">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskIsProcess" message="tns:IMessageService_SetUserTaskIsProcess_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetUserTaskIsProcessResponse" message="tns:IMessageService_SetUserTaskIsProcess_OutputMessage" />
+    <wsdl:operation name="LoadRequestPermissionDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadRequestPermissionDocuments" message="tns:IMessageService_LoadRequestPermissionDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadRequestPermissionDocumentsResponse" message="tns:IMessageService_LoadRequestPermissionDocuments_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SetJobContent">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetJobContent" message="tns:IMessageService_SetJobContent_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetJobContentResponse" message="tns:IMessageService_SetJobContent_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DeleteUserTask">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteUserTask" message="tns:IMessageService_DeleteUserTask_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteUserTaskResponse" message="tns:IMessageService_DeleteUserTask_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AssignUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AssignUser" message="tns:IMessageService_AssignUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AssignUserResponse" message="tns:IMessageService_AssignUser_OutputMessage" />
+    <wsdl:operation name="LoadRequestPermissionDocumentsDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadRequestPermissionDocumentsDTO" message="tns:IMessageService_LoadRequestPermissionDocumentsDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadRequestPermissionDocumentsDTOResponse" message="tns:IMessageService_LoadRequestPermissionDocumentsDTO_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetServerDateTime">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetServerDateTime" message="tns:IMessageService_GetServerDateTime_InputMessage" />
@@ -2616,6 +2642,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateRolePermissionD" message="tns:IMessageService_UpdateRolePermissionD_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateRolePermissionDResponse" message="tns:IMessageService_UpdateRolePermissionD_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LoadNortifications">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadNortifications" message="tns:IMessageService_LoadNortifications_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadNortificationsResponse" message="tns:IMessageService_LoadNortifications_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetReadedNortifications">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetReadedNortifications" message="tns:IMessageService_SetReadedNortifications_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetReadedNortificationsResponse" message="tns:IMessageService_SetReadedNortifications_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetProductTypeNew">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetProductTypeNew" message="tns:IMessageService_GetProductTypeNew_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetProductTypeNewResponse" message="tns:IMessageService_GetProductTypeNew_OutputMessage" />
@@ -2716,27 +2750,20 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadContracts" message="tns:IMessageService_LoadContracts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadContractsResponse" message="tns:IMessageService_LoadContracts_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DownloadTransformerManualFile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadTransformerManualFile" message="tns:IMessageService_DownloadTransformerManualFile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadTransformerManualFileResponse" message="tns:IMessageService_DownloadTransformerManualFile_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DownloadContractFile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadContractFile" message="tns:IMessageService_DownloadContractFile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadContractFileResponse" message="tns:IMessageService_DownloadContractFile_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="LoadDoctitle">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadDoctitle" message="tns:IMessageService_LoadDoctitle_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadDoctitleResponse" message="tns:IMessageService_LoadDoctitle_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetDeletedTransformerManual">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeletedTransformerManual" message="tns:IMessageService_SetDeletedTransformerManual_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeletedTransformerManualResponse" message="tns:IMessageService_SetDeletedTransformerManual_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IMessageService" type="tns:IMessageService">
     <wsp:PolicyReference URI="#NetTcpBinding_IMessageService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="LoadSignatureDocumentCreateByMe">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DownloadSignatureDocumentFile">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadSignatureDocumentFile" style="document" />
       <wsdl:input>
@@ -2775,6 +2802,42 @@
     </wsdl:operation>
     <wsdl:operation name="SetSignatureDocumentStatus">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/SetSignatureDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserTaskIsProcess">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetUserTaskIsProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetJobContent">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetJobContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignUser">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AssignUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2964,27 +3027,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetCountPrintDocument">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetCountPrintDocument" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Connect">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/Connect" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="SendMessage">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SendMessage" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="GetConnectedUsers">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetConnectedUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3532,8 +3574,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LoadSignatureDocumentCreateByMe">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadSignatureDocumentCreateByMe" style="document" />
+    <wsdl:operation name="DownloadTransformerManualFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadTransformerManualFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContractFile">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadContractFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDoctitle">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadDoctitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeletedTransformerManual">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeletedTransformerManual" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4270,8 +4339,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetUserTaskIsProcess">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetUserTaskIsProcess" style="document" />
+    <wsdl:operation name="LoadRequestPermissionDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadRequestPermissionDocuments" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4279,26 +4348,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SetJobContent">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetJobContent" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteUserTask">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteUserTask" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AssignUser">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/AssignUser" style="document" />
+    <wsdl:operation name="LoadRequestPermissionDocumentsDTO">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadRequestPermissionDocumentsDTO" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4810,6 +4861,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LoadNortifications">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadNortifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetReadedNortifications">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetReadedNortifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetProductTypeNew">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetProductTypeNew" style="document" />
       <wsdl:input>
@@ -5028,42 +5097,6 @@
     </wsdl:operation>
     <wsdl:operation name="LoadContracts">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadContracts" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DownloadTransformerManualFile">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadTransformerManualFile" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DownloadContractFile">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadContractFile" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="LoadDoctitle">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadDoctitle" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetDeletedTransformerManual">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeletedTransformerManual" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -32,6 +32,11 @@
                             <materialDesign:PackIcon Kind="Eye" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Yêu cầu thêm quyền" Command="{Binding RequirePermisionCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Required"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator Padding="2"/>
                     <MenuItem Header="Thêm người nhận trong nội bộ đơn vị" Command="{Binding AddUserOfMyDepartmentToTaskCommand}" Foreground="Red">
                         <MenuItem.Icon>

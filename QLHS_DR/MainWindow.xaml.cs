@@ -21,14 +21,15 @@ namespace QLHS_DR
     /// </summary>
     public partial class MainWindow : ThemedWindow
     {
-        NotifyIcon nIcon = new NotifyIcon();
         public MainWindow()
         {
             InitializeComponent();
-            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
-            ni.Icon = new Icon(System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/eemcicon.ico")).Stream);
-            ni.Text = "QLHS_DR";
-            ni.Visible = true;
+            NotifyIcon ni = new()
+            {
+                Icon = new Icon(System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/eemcicon.ico")).Stream),
+                Text = "QLHS_DR",
+                Visible = true
+            };
             ni.DoubleClick +=
                 delegate (object sender, EventArgs args)
                 {
@@ -41,19 +42,18 @@ namespace QLHS_DR
                 };
         }
 
-        private void tabControl_TabHidden(object sender, TabControlTabHiddenEventArgs e)
+        private void TabControl_TabHidden(object sender, TabControlTabHiddenEventArgs e)
         {
             //comment this for memory leak
             DXTabControl tabControl = (DXTabControl)sender;
-            IList source = tabControl.ItemsSource as IList;
-            if(source != null)
+            if (tabControl.ItemsSource is IList source)
             {
                 Dispatcher.BeginInvoke((Action)(() =>
                 {
-                    TabContainer temp = (TabContainer)( e.Item);                   
+                    TabContainer temp = (TabContainer)(e.Item);
                     temp.Dispose();
                     source.RemoveAt(e.TabIndex);
-                   // temp.Dis
+                    // temp.Dis
                 }), DispatcherPriority.Render);
                 tabControl.SelectedIndex = 0;
             }
@@ -67,8 +67,8 @@ namespace QLHS_DR
         {
             if (SectionLogin.Ins.CurrentUser != null && SectionLogin.Ins.Token!=null)
             {
-                ServiceFactory serviceManager = new ServiceFactory();
-                LoginManager loginManager = new LoginManager()
+                ServiceFactory serviceManager = new();
+                LoginManager loginManager = new()
                 {
                     ComputerName = Environment.MachineName,
                     LoginIp = MainViewModel.GetLocalIPAddress(),

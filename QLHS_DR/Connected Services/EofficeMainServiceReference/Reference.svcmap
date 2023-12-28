@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="67ff4d7c-2a04-4314-93c2-c099b46fb349" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ca1a52d8-90a3-4153-8760-265d33947aca" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3142be78-41b3-4815-b08f-c2e07b3abf94" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="66028ab1-d622-49d9-9306-a3ae4747ff55" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" />
+    <MetadataFile FileName="EofficeService.Model.xsd" MetadataType="Schema" ID="841b1d80-d9c9-4771-a588-bfc40d1150e0" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="2a9fce19-b0a8-4c7d-8cc8-94ffcd81e3ad" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" />
+    <MetadataFile FileName="EEMCDatabaseLibrary.Model.Database.DataType.xsd" MetadataType="Schema" ID="0aca87ff-9549-4c1d-84fd-da068fd936b1" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/EofficeMainService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

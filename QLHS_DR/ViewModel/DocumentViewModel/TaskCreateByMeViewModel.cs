@@ -24,8 +24,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         private readonly IEventAggregator _eventAggregator;
         private MessageServiceClient _MyClient;
-        private IReadOnlyList<User> iReadOnlyListUser;
-        private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
+        private readonly IReadOnlyList<User> iReadOnlyListUser;
+        
         private bool _TrackChange;
         private bool _IsReadOnlyPermission;
         public bool IsReadOnlyPermission
@@ -180,10 +180,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             {
                 try
                 {
-                    ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD();
-                    ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new ReceiveDepartmentManagerViewModel(_UserTaskSelected);
-                    receiveDepartmentManagerViewModel.WindowTitle = _UserTaskSelected.Task.Subject;
-                    receiveDepartmentManagerWD.DataContext = receiveDepartmentManagerViewModel;
+                    
+                    ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new(_UserTaskSelected)
+                    {
+                        WindowTitle = _UserTaskSelected.Task.Subject
+                    };
+                    ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD
+                    {
+                        DataContext = receiveDepartmentManagerViewModel
+                    };
                     receiveDepartmentManagerWD.ShowDialog();
                     ListUserTaskOfUser = GetAllUserTaskNotFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                     UpdateHeaderTabControl();
@@ -336,16 +341,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
                 bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
                 bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
-                bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
+                bool saveable = _UserTaskSelected.CanSave.HasValue && _UserTaskSelected.CanSave.Value;
                 //if (_UserTaskSelected.CanViewAttachedFile == true)
                 if (true)
                 {
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
-                        PdfViewerWindow pdfViewer = new PdfViewerWindow(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected);
-                        pdfViewer.FileName = taskAttachedFileDTOs[0].FileName;
-                        pdfViewer.TaskName = _UserTaskSelected.Task.Subject;
+                        PdfViewerWindow pdfViewer = new(taskAttachedFileDTOs[0], printable, saveable, iReadOnlyListUser, _UserTaskSelected)
+                        {
+                            FileName = taskAttachedFileDTOs[0].FileName,
+                            TaskName = _UserTaskSelected.Task.Subject
+                        };
                         pdfViewer.Show();
                         System.Windows.Threading.Dispatcher.Run();
                     }

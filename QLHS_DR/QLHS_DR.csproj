@@ -134,6 +134,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\EofficeMainServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\GenderConverter.cs" />
@@ -142,7 +147,6 @@
     <Compile Include="Core\AppInfo.cs" />
     <Compile Include="Core\DocScan.cs" />
     <Compile Include="Core\FileHelper.cs" />
-    <Compile Include="Core\G6Class.cs" />
     <Compile Include="Core\SectionLogin.cs" />
     <Compile Include="Core\ServiceFactory.cs" />
     <Compile Include="Core\ServiceHelper.cs" />
@@ -258,6 +262,9 @@
     </Compile>
     <Compile Include="View\DocumentView\ReceiveUserOfMyDepartmentManagerWD.xaml.cs">
       <DependentUpon>ReceiveUserOfMyDepartmentManagerWD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DocumentView\RequestPermissionDocumentWindow.xaml.cs">
+      <DependentUpon>RequestPermissionDocumentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DocumentView\RevokedPrintedDocumentManagerWD.xaml.cs">
       <DependentUpon>RevokedPrintedDocumentManagerWD.xaml</DependentUpon>
@@ -456,6 +463,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DocumentView\RequestPermissionDocumentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DocumentView\RevokedPrintedDocumentManagerWD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -615,6 +626,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -681,6 +695,9 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MOFInfor.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Nortification.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Permission.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -709,6 +726,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ReceivedDepartmentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestPermissionDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestPermissionDocumentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RequestSendDocument.datasource">
@@ -781,6 +804,178 @@
     <None Include="Connected Services\ChatAppServiceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\EofficeMainServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\EEMCDatabaseLibrary.Model.Database.DataType.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\EofficeService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.ApprovalDocumentProduct.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.BAInfor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.BCTDesign.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.BIInfor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Contract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Department.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.DepartmentTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.DisplayRequestSendDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.DocTittle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.FileOfPyc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.GroupDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Log.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.LoginManager.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.LoginStatusType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Lsx.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.MainJobTodo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.MainJobTodoPYC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Message.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Modul.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.MOFInfor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Permission.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.PermissionType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Position.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.ProductTypeNew.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.PublicFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.PublishDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.PublishDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.PYC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.ReceivedDepartmentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RequestSendDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RequestSendDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RequestSendDocumentToDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RolePermissionD.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.SignatureDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Standard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.Task.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.TaskAttachedFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.TaskAttachedFileDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.TransformerDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.TransformerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.TransformerManualDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserContactDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserRole.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserSignatureDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.UserTaskPrintManager.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.VoltageTransformerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\service.wsdl" />
+    <None Include="Connected Services\EofficeMainServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -834,6 +1029,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ChatAppServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\EofficeMainServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Accessibility">
@@ -873,6 +1069,18 @@
     <Resource Include="TestSignature\SignPicture.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EofficeMainServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EofficeMainServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EofficeMainServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

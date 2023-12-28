@@ -34,6 +34,11 @@
                                 <materialDesign:PackIcon Kind="Eye" />
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="Yêu cầu thêm quyền" Command="{Binding RequirePermisionCommand}">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="Required"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                         <MenuItem Header="Chỉnh sửa" Command="{Binding EditTaskCommand}">
                             <MenuItem.Icon>
                                 <materialDesign:PackIcon Kind="Edit" />
@@ -123,7 +128,7 @@
                          SelectionMode="Row">
                         <dxg:GridControl.Columns>
                             <dxg:GridColumn FieldName="User.FullName"  ReadOnly="True"  Header="Người xử lý"  />
-                            <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
+                            <dxg:GridColumn Binding="{Binding User.UserDepartments[0].Department.Name,UpdateSourceTrigger=PropertyChanged }"  ReadOnly="True" Header="Đơn vị" GroupIndex="0"/>
                             <dxg:GridColumn FieldName="CanViewAttachedFile" Header="Quyền xem"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                             <dxg:GridColumn Header="Quyền in" Width="Auto" Binding="{Binding PermissionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource PermissionTypeToTextConverter} }"  ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
                             <dxg:GridColumn FieldName="CanSave" Header="Quyền lưu"  Width="Auto" ReadOnly="{Binding IsReadOnlyPermission,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />

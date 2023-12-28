@@ -32,6 +32,16 @@
                             <materialDesign:PackIcon Kind="Eye"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Yêu cầu thêm quyền" Command="{Binding RequirePermisionCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Required"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Chỉnh sửa" Command="{Binding EditTaskCommand}">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Edit" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem Header="Chỉnh sửa người nhận" Command="{Binding OpenReceiveUserManagerCommand}">
                         <MenuItem.Icon>
                             <materialDesign:PackIcon Kind="FileExchange"/>

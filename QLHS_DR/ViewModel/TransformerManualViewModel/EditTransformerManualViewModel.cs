@@ -12,7 +12,7 @@ namespace QLHS_DR.ViewModel.TransformerManualViewModel
     internal class EditTransformerManualViewModel : BaseViewModel
     {
         #region "Field and Properties"
-        private bool status = false;
+        private readonly bool status = false;
         public bool Status { get; set; }
 
         private string _TittleWindow;

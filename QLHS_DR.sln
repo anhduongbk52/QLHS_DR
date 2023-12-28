@@ -11,6 +11,11 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QLHS_DR_SETUP_64bit", "QLH_
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QLHS_DR_SETUP_32bit", "QLHS_DR_SETUP_X86\QLHS_DR_SETUP_X86.vdproj", "{932DF470-4B1C-45B8-A1D6-83EA99DC6233}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{16DABFEA-F10E-4CC7-A3A9-2E5A771B619B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

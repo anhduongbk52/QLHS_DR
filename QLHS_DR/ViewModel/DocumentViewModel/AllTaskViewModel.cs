@@ -155,6 +155,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand TaskSelectedCommand { get; set; }
         public ICommand OpenFileCommand { get; set; }
+        public ICommand RequirePermisionCommand { get; set; }
+        public ICommand EditTaskCommand { get; set; }
         #endregion
         public void SetLabelMsg(string message)
         {
@@ -202,6 +204,18 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 //thread5.SetApartmentState(ApartmentState.STA);
                 //thread5.IsBackground = true;
                 //thread5.Start();
+            });
+            EditTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskEditTask") && _TaskSelected != null) return true; else return false; }, (p) =>
+            {
+                EditTaskWindow editTaskWindow = new EditTaskWindow(_TaskSelected);
+                editTaskWindow.ShowDialog();
+                ListTaskOfUser = GetAllTask(SectionLogin.Ins.CurrentUser.Id);
+                UpdateHeaderTabControl();
+            });
+            RequirePermisionCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null) return true; else return false; }, (p) =>
+            {
+                RequestPermissionDocumentWindow requestPermissionDocumentWindow = new RequestPermissionDocumentWindow(_TaskSelected.Id);
+                requestPermissionDocumentWindow.ShowDialog();
             });
             OpenReceiveUserManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.ADD_USER_TO_TASK) && _TaskSelected != null) return true; else return false; }, (p) =>
             {

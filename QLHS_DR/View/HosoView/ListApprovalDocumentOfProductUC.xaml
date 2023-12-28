@@ -33,6 +33,9 @@
                     <MenuItem Header="Thêm vào hồ sơ của sản phẩm khác"
                               Command="{Binding AddAppDocToOtherProductCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItems}"/>
+                    <MenuItem Header="Download"
+                              Command="{Binding DownloadCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItems}"/>
                     <MenuItem Header="Xóa"
                               Command="{Binding RemoveApprovalDocumentCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}"/>

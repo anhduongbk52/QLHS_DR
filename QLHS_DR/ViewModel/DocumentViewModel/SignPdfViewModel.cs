@@ -23,7 +23,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     {
         #region "Properties and Field"
 
-        MessageServiceClient _Proxy;
 
         private bool _CanOpenFile;
         public bool CanOpenFile
@@ -74,12 +73,12 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             Pkcs7Signer pkcs7Signature = new Pkcs7Signer(x509Certificate, HashAlgorithmType.SHA256);
 
                             // Create a signature field on the first page:
-                            var signatureFieldInfo = new PdfSignatureFieldInfo(1);
-
-                            // Specify the field's name, location and rotation angle:
-                            signatureFieldInfo.Name = "SignatureField";
-                            signatureFieldInfo.SignatureBounds = new PdfRectangle(10, 10, 150, 150);
-                            signatureFieldInfo.RotationAngle = PdfAcroFormFieldRotation.Rotate90;
+                            var signatureFieldInfo = new PdfSignatureFieldInfo(1)
+                            {
+                                Name = "SignatureField",
+                                SignatureBounds = new PdfRectangle(10, 10, 150, 150),
+                                RotationAngle = PdfAcroFormFieldRotation.Rotate90
+                            };
 
                             // Create a PKCS#7 signature:
 

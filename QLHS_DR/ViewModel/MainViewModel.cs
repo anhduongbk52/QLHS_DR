@@ -46,16 +46,13 @@ namespace QLHS_DR.ViewModel
     class MainViewModel : BaseViewModel,IDisposable
     {
         private BackgroundWorker backgroundWorker;
-        ObservableCollection<UserTask> _OldUserTasks;
 
-        string _ConnectionString = "";
         private readonly IEventAggregator _eventAggregator;
-        private readonly SubscriptionToken _subscriptionToken;
 
         #region "Field and properties"
 
-        Notifier notifierForNormalUser;
-        MessageOptions optionsForNormalUser;
+        readonly Notifier notifierForNormalUser;
+        readonly MessageOptions optionsForNormalUser;
 
         private Window window;
         private MessageServiceClient _MyClient;
@@ -205,10 +202,10 @@ namespace QLHS_DR.ViewModel
 
         #endregion
         private LoginWindow loginWindow;
-        private ListNewDocumentUC listNewDocumentUC;
-        private UserTaskFinishUC userTaskFinishUC;
-        private UserTaskRevokedUC userTaskRevokedUC;
-        private AllTaskUC allTaskUC;
+        private readonly ListNewDocumentUC listNewDocumentUC;
+        private readonly UserTaskFinishUC userTaskFinishUC;
+        private readonly UserTaskRevokedUC userTaskRevokedUC;
+        private readonly AllTaskUC allTaskUC;
 
         ListNewDocumentViewModel listNewDocumentViewModel;
         TaskCreateByMeViewModel taskCreateByMeViewModel;
@@ -233,7 +230,7 @@ namespace QLHS_DR.ViewModel
             ///////////////////////////////
             notifierForNormalUser = new Notifier(cfg =>
             {
-                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(5), MaximumNotificationCount.FromCount(10));
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(60), MaximumNotificationCount.FromCount(10));
                 cfg.PositionProvider = new PrimaryScreenPositionProvider(corner: Corner.BottomRight, offsetX: 10, offsetY: 10);
                 //cfg.LifetimeSupervisor = new CountBasedLifetimeSupervisor(maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications());
                 cfg.DisplayOptions.TopMost = true; // set the option to show notifications over other windows
@@ -249,28 +246,31 @@ namespace QLHS_DR.ViewModel
                 NotificationClickAction = n =>
                 {
                     n.Close();
-                    window.Show();
-                    window.WindowState = System.Windows.WindowState.Normal;
+                    if(window!=null)
+                    {
+                        window.Show();
+                        window.WindowState = WindowState.Normal;
 
-                    TabContainer item = Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
-                    if (item != null)
-                    {
-                        item.IsSelected = true;
-                        item.IsVisible = true;
-                    }
-                    else
-                    {
-                        //listNewDocumentUC.DataContext = listNewDocumentViewModel;
-                        TabContainer tabItemNew = new TabContainer
+                        TabContainer item = Workspaces.Where(x => x.Header.Contains("Tài liệu chưa xử lý")).FirstOrDefault();
+                        if (item != null)
                         {
-                            Header = "Tài liệu chưa xử lý",
-                            AllowHide = "true",
-                            IsSelected = true,
-                            IsVisible = true,
-                            Content = listNewDocumentUC
-                        };
-                        Workspaces.Add(tabItemNew);
-                    }
+                            item.IsSelected = true;
+                            item.IsVisible = true;
+                        }
+                        else
+                        {
+                            listNewDocumentUC.DataContext = listNewDocumentViewModel;
+                            TabContainer tabItemNew = new()
+                            {
+                                Header = "Tài liệu chưa xử lý",
+                                AllowHide = "true",
+                                IsSelected = true,
+                                IsVisible = true,
+                                Content = listNewDocumentUC
+                            };
+                            Workspaces.Add(tabItemNew);
+                        }
+                    }                    
                 }
             };
             //Settings for update
@@ -294,8 +294,7 @@ namespace QLHS_DR.ViewModel
                 loginWindow = new LoginWindow();
                 loginWindow.ShowDialog();
                 if (loginWindow.DataContext == null) return;
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-                if (loginVM != null)
+                if (loginWindow.DataContext is LoginViewModel loginVM)
                 {
                     if (loginVM.IsLogin)
                     {
@@ -307,20 +306,17 @@ namespace QLHS_DR.ViewModel
                         {
                             _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                             _MyClient.Open();
-                            _OldUserTasks = _MyClient.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
                             _MyClient.Close();
                             //--------------------Check New Message------------------------//
                             backgroundWorker = new BackgroundWorker
                             {
                                 WorkerSupportsCancellation = true
                             };
-                            backgroundWorker.DoWork += backgroundWorker_0_DoWork;
+                            backgroundWorker.DoWork += BackgroundWorker_0_DoWork;
                             if (!backgroundWorker.IsBusy)
                             {
                                 backgroundWorker.RunWorkerAsync();
                             }
-
-                          
                         }
                         catch (Exception ex)
                         {
@@ -339,9 +335,9 @@ namespace QLHS_DR.ViewModel
             {
                 try
                 {
-                    ServiceFactory serviceManager = new ServiceFactory();
+                    ServiceFactory serviceManager = new ();
 
-                    LoginManager loginManager = new LoginManager()
+                    LoginManager loginManager = new ()
                     {
                         ComputerName = Environment.MachineName,
                         LoginIp = GetLocalIPAddress(),
@@ -359,8 +355,7 @@ namespace QLHS_DR.ViewModel
                     loginWindow = new LoginWindow();
                     loginWindow.ShowDialog();
                     if (loginWindow.DataContext == null) return;
-                    var loginVM = loginWindow.DataContext as LoginViewModel;
-                    if (loginVM != null)
+                    if (loginWindow.DataContext is LoginViewModel loginVM)
                     {
                         if (loginVM.IsLogin)
                         {
@@ -384,9 +379,11 @@ namespace QLHS_DR.ViewModel
             });
             EditStampCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                EditStampViewModel editStampViewModel = new EditStampViewModel();
-                EditStampWindow editStampWindow = new EditStampWindow();
-                editStampWindow.DataContext = editStampViewModel;
+                EditStampViewModel editStampViewModel = new ();
+                EditStampWindow editStampWindow = new()
+                {
+                    DataContext = editStampViewModel
+                };
                 editStampWindow.ShowDialog();
             });
             RefeshCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -424,7 +421,7 @@ namespace QLHS_DR.ViewModel
                 {
                     listNewDocumentViewModel = new ListNewDocumentViewModel(_eventAggregator);
                     listNewDocumentUC.DataContext = listNewDocumentViewModel;
-                    TabContainer tabItemNew = new TabContainer
+                    TabContainer tabItemNew = new ()
                     {
                         Header = "Tài liệu chưa xử lý",
                         AllowHide = "true",
@@ -447,7 +444,7 @@ namespace QLHS_DR.ViewModel
                 {
                     taskCreateByMeViewModel = new TaskCreateByMeViewModel(_eventAggregator);
                     listNewDocumentUC.DataContext = taskCreateByMeViewModel;
-                    TabContainer tabItemNew = new TabContainer
+                    TabContainer tabItemNew = new ()
                     {
                         Header = "Tài liệu tạo bởi tôi",
                         AllowHide = "true",
@@ -468,9 +465,9 @@ namespace QLHS_DR.ViewModel
                 }
                 else
                 {
-                    userTaskFinishViewModel = new UserTaskFinishViewModel(_eventAggregator);
+                    userTaskFinishViewModel = new (_eventAggregator);
                     userTaskFinishUC.DataContext = userTaskFinishViewModel;
-                    TabContainer tabItemNew = new TabContainer
+                    TabContainer tabItemNew = new ()
                     {
                         Header = "Tài liệu đã xử lý",
                         AllowHide = "true",
@@ -493,7 +490,7 @@ namespace QLHS_DR.ViewModel
                 {
                     userTaskRevokedViewModel = new UserTaskRevokedViewModel(_eventAggregator);
                     userTaskRevokedUC.DataContext = userTaskRevokedViewModel;
-                    TabContainer tabItemNew = new TabContainer
+                    TabContainer tabItemNew = new ()
                     {
                         Header = "Tài liệu đã thu hồi",
                         AllowHide = "true",
@@ -516,7 +513,7 @@ namespace QLHS_DR.ViewModel
                 {
                     allTaskViewModel = new AllTaskViewModel(_eventAggregator);
                     allTaskUC.DataContext = allTaskViewModel;
-                    TabContainer tabItemNew = new TabContainer
+                    TabContainer tabItemNew = new ()
                     {
                         Header = "All",
                         AllowHide = "true",
@@ -529,36 +526,44 @@ namespace QLHS_DR.ViewModel
 
             });
             OpenChangePassWordWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
-            {
-                View.UserView.UserChangePasswordWindow userChangePasswordWindow = new View.UserView.UserChangePasswordWindow();
-                ViewModel.UserViewModel.UserChangePasswordViewModel userChangePasswordViewModel = new UserViewModel.UserChangePasswordViewModel();
-                userChangePasswordWindow.DataContext = userChangePasswordViewModel;
+            {                
+                UserChangePasswordViewModel userChangePasswordViewModel = new ();
+                UserChangePasswordWindow userChangePasswordWindow = new()
+                {
+                    DataContext = userChangePasswordViewModel
+                };
                 userChangePasswordWindow.ShowDialog();
             });
             NewTaskCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.Permissions.HasFlag(PermissionType.CREATE_TASK)) return true; else return false; }, (p) =>
-            {
-                NewTaskWindow newTaskWindow = new NewTaskWindow();
-                NewTaskViewModel newTaskViewModel = new NewTaskViewModel();
-                newTaskWindow.DataContext = newTaskViewModel;
+            {                
+                NewTaskViewModel newTaskViewModel = new ();
+                NewTaskWindow newTaskWindow = new()
+                {
+                    DataContext = newTaskViewModel
+                };
                 newTaskWindow.ShowDialog();
             });
             OpenRevokedPrintedDocumentManagerCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanConfirmDisposedPrintedDocument) return true; else return false; }, (p) =>
-            {
-                RevokedPrintedDocumentManagerWD window = new RevokedPrintedDocumentManagerWD();
-                RevokedPrintedDocumentManagerViewModel model = new RevokedPrintedDocumentManagerViewModel();
-                window.DataContext = model;
+            {               
+                RevokedPrintedDocumentManagerViewModel model = new ();
+                RevokedPrintedDocumentManagerWD window = new ()
+                {
+                    DataContext = model
+                };
                 window.ShowDialog();
             });
             OpenDocumentPrintedByUserWindowCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanConfirmDisposedPrintedDocument) return true; else return false; }, (p) =>
-            {
-                DocumentPrintedByUserWindow window = new DocumentPrintedByUserWindow();
-                DocumentPrintedByUserViewModel model = new DocumentPrintedByUserViewModel();
-                window.DataContext = model;
+            {                
+                DocumentPrintedByUserViewModel model = new ();
+                DocumentPrintedByUserWindow window = new ()
+                {
+                    DataContext = model
+                };
                 window.ShowDialog();
             });
             OpenProductManagerCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanViewListProduct) return true; else return false; }, (p) =>
             {
-                ProductManagerUC uc = new ProductManagerUC();
+                ProductManagerUC uc = new ();
                 TabContainer item = Workspaces.Where(x => x.Header == "Products").FirstOrDefault();
                 if (item != null)
                 {
@@ -569,7 +574,7 @@ namespace QLHS_DR.ViewModel
                 }
                 else
                 {
-                    TabContainer tabItemMain = new TabContainer
+                    TabContainer tabItemMain = new ()
                     {
                         Header = "Products",
                         IsSelected = true,
@@ -582,27 +587,32 @@ namespace QLHS_DR.ViewModel
             });
             NewProductCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanNewProduct) return true; else return false; }, (p) =>
             {
-                NewProductWindow newProductWindow = new NewProductWindow();
+                NewProductWindow newProductWindow = new ();
                 newProductWindow.Show();
             });
             AddContract = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanUploadContract) return true; else return false; }, (p) =>
             {
-                AddContractWindow addContractWindow = new AddContractWindow();
-                ViewModel.ContractViewModel.AddContractViewModel addContractViewModel = new ViewModel.ContractViewModel.AddContractViewModel(_ActiveProduct);
-                addContractWindow.DataContext = addContractViewModel;
+               
+                ContractViewModel.AddContractViewModel addContractViewModel = new (_ActiveProduct);
+                AddContractWindow addContractWindow = new()
+                {
+                    DataContext = addContractViewModel
+                };
                 addContractWindow.ShowDialog();
             });
             UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanUploadTransformerManualFile) return true; else return false; }, (p) =>
-            {
-                UploadHoSoWindow uploadHoSo = new UploadHoSoWindow();
-                UploadHoSoViewModel hoSoViewModel = new UploadHoSoViewModel(null);
-                uploadHoSo.DataContext = hoSoViewModel;
+            {               
+                UploadHoSoViewModel hoSoViewModel = new (null);
+                UploadHoSoWindow uploadHoSo = new()
+                {
+                    DataContext = hoSoViewModel
+                };
                 uploadHoSo.ShowDialog();
             });
             UploadApprovalDocumentProductCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanUploadTransformerManualFile) return true; else return false; }, (p) =>
             {
-                UploadApprovalDocumentProductViewModel uploadApprovalDocumentProductViewModel = new UploadApprovalDocumentProductViewModel(null);
-                UploadApprovalDocumentProductWindow uploadApprovalDocumentProductWindow = new UploadApprovalDocumentProductWindow() { DataContext = uploadApprovalDocumentProductViewModel };
+                UploadApprovalDocumentProductViewModel uploadApprovalDocumentProductViewModel = new (null);
+                UploadApprovalDocumentProductWindow uploadApprovalDocumentProductWindow = new () { DataContext = uploadApprovalDocumentProductViewModel };
                 uploadApprovalDocumentProductWindow.ShowDialog();
             });
             NewLsxCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -612,7 +622,7 @@ namespace QLHS_DR.ViewModel
             });
             SignDocumentCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                SignPdfWindow signPdfWindow = new SignPdfWindow();
+                SignPdfWindow signPdfWindow = new ();
                 signPdfWindow.ShowDialog();
             });          
             CheckUpdateCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
@@ -647,9 +657,9 @@ namespace QLHS_DR.ViewModel
             });
             OpenListUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanViewListUsers) return true; else return false; }, (p) =>
             {
-                ListUserUC viewListUser = new ListUserUC();
+                ListUserUC viewListUser = new ();
                 Workspaces.Clear();
-                TabContainer tabItemMain = new TabContainer
+                TabContainer tabItemMain = new()
                 {
                     Header = "Danh sách user",
                     IsSelected = true,
@@ -660,8 +670,8 @@ namespace QLHS_DR.ViewModel
             });
             NewUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanNewUser) return true; else return false; }, (p) =>
             {
-                AddNewUserUC addNewUserUC = new AddNewUserUC();
-                TabContainer tabItemMain = new TabContainer
+                AddNewUserUC addNewUserUC = new ();
+                TabContainer tabItemMain = new ()
                 {
                     Header = "Thêm mới user",
                     IsSelected = true,
@@ -682,8 +692,8 @@ namespace QLHS_DR.ViewModel
             });
             NewGroupsUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanNewRole) return true; else return false; }, (p) =>
             {
-                NewGroupsUserUC newGroupsUserUC = new NewGroupsUserUC();
-                TabContainer tabItemMain = new TabContainer
+                NewGroupsUserUC newGroupsUserUC = new ();
+                TabContainer tabItemMain = new ()
                 {
                     Header = "Thêm nhóm mới",
                     IsSelected = true,
@@ -704,8 +714,8 @@ namespace QLHS_DR.ViewModel
             });
             OpenListGroupCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanViewListGroup) return true; else return false; }, (p) =>
             {
-                ListGroupUC viewListGroups = new ListGroupUC();
-                TabContainer tabItemListUser = new TabContainer()
+                ListGroupUC viewListGroups = new ();
+                TabContainer tabItemListUser = new ()
                 {
                     Header = "Danh sách các Group",
                     IsSelected = true,
@@ -723,13 +733,13 @@ namespace QLHS_DR.ViewModel
             });
             OpenPhanQuyenCommand = new RelayCommand<Object>((p) => { if (SectionLogin.Ins.CanPermissionManager) return true; else return false; }, (p) =>
             {          
-                PhanQuyenWindow phanQuyenWindow = new PhanQuyenWindow() { DataContext = new PhanQuyenViewModel() };               
+                PhanQuyenWindow phanQuyenWindow = new () { DataContext = new PhanQuyenViewModel() };               
                 phanQuyenWindow.ShowDialog();
             });
             OpenFunctionManagerCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                FunctionsManagerUC tabContent = new FunctionsManagerUC();
-                TabContainer tabItemMain = new TabContainer
+                FunctionsManagerUC tabContent = new ();
+                TabContainer tabItemMain = new ()
                 {
                     Header = "Danh sách chức năng",
                     IsSelected = true,
@@ -750,8 +760,8 @@ namespace QLHS_DR.ViewModel
             });
             OpenDepartmentManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                DepartmentManagerUC tabContent = new DepartmentManagerUC();
-                TabContainer tabItemMain = new TabContainer
+                DepartmentManagerUC tabContent = new ();
+                TabContainer tabItemMain = new ()
                 {
                     Header = "Danh sách phòng ban",
                     IsSelected = true,
@@ -772,8 +782,8 @@ namespace QLHS_DR.ViewModel
             });
             OpenLoginManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                LoginManagerWindow tabContent = new LoginManagerWindow();
-                TabContainer tabItemMain = new TabContainer
+                LoginManagerWindow tabContent = new ();
+                TabContainer tabItemMain = new()
                 {
                     Header = "Quản lý đăng nhập",
                     IsSelected = true,
@@ -794,27 +804,20 @@ namespace QLHS_DR.ViewModel
             });
             OpenLogsCommand = new RelayCommand<Object>((p) => {if(SectionLogin.Ins.CanViewLogs) return true; else return false; }, (p) =>
             {
-                LogView logView = new LogView() { DataContext = new LogViewModel() };
+                LogView logView = new() { DataContext = new LogViewModel() };
                 logView.ShowDialog();
             });
         }
 
-        public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
-        {
-            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
-            byte[] orAdd = fileHelper.GetKeyDecryptOfTask(userTask);
-            if (orAdd != null)
-            {
-                taskAttachedFileDTO.Content = CryptoUtil.DecryptWithoutIV(orAdd, taskAttachedFileDTO.Content);
-            }
-        }
-        private void backgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                System.Timers.Timer timer = new System.Timers.Timer();
-                timer.Interval = 300000; // set the interval to 1 minute
-                timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+                Timer timer = new()
+                {
+                    Interval = 300000// set the interval to 5 minute
+                };
+                timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
                 timer.Enabled = true;
             }
             catch (Exception ex)
@@ -822,37 +825,41 @@ namespace QLHS_DR.ViewModel
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
-        private void timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (SectionLogin.Ins.CurrentUser != null && SectionLogin.Ins.Token != null)
             {
-                MessageServiceClient _MyClient1 = new MessageServiceClient();
+                MessageServiceClient _MyClient1 = new ();
                 try
                 {
                     _MyClient1 = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient1.Open();
-                    ObservableCollection<UserTask> newUserTasks = _MyClient1.GetUserTaskNotFinish(_CurrentUser.Id).ToObservableCollection();
-                    if (newUserTasks != null && _OldUserTasks != null)
-                    {
-                        if (newUserTasks.Count > _OldUserTasks.Count)
+
+                    var nortifications = _MyClient1.LoadNortifications(NortificationStatus.None);
+                    if (nortifications!=null && nortifications.Length>0) 
+                        _MyClient1.SetReadedNortifications();
+                    _MyClient1.Close();
+                    
+                    
+                    if (nortifications != null && nortifications.Length > 0)
+                    {                        
+                        foreach(var norti in nortifications)
                         {
-                            for (int i = _OldUserTasks.Count; i < newUserTasks.Count; i++)
+                            if(norti.Type==NortificationType.NewDocument)
                             {
-                                Task task = _MyClient1.LoadTask(newUserTasks[i].TaskId);
-                                string message = "Có tài liệu vừa được gửi tới bạn: " + task.Subject;
-                                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                                Application.Current.Dispatcher.Invoke(new Action(() =>
                                 {
-                                    notifierForNormalUser.ShowInformation(message, optionsForNormalUser);
+                                    notifierForNormalUser.ShowInformation(norti.Message, optionsForNormalUser);
                                 }));
-                            }
+                            }                            
                         }
                     }
-                    _MyClient1.Close();
-                    _OldUserTasks = newUserTasks;
+                                  
                 }
                 catch (Exception ex)
                 {
                     _MyClient1.Abort();
+                    Debug.WriteLine(ex.StackTrace);
                 }
             }
         }
@@ -872,7 +879,7 @@ namespace QLHS_DR.ViewModel
             userTaskRevokedUC.DataContext = userTaskRevokedViewModel;
             allTaskUC.DataContext = allTaskViewModel;
 
-            TabContainer tabItemNew = new TabContainer
+            TabContainer tabItemNew = new ()
             {
                 Header = "Tài liệu chưa xử lý",
                 AllowHide = "true",
@@ -880,7 +887,7 @@ namespace QLHS_DR.ViewModel
                 IsVisible = true,
                 Content = listNewDocumentUC
             };
-            TabContainer tabItemCompleted = new TabContainer
+            TabContainer tabItemCompleted = new ()
             {
                 Header = "Tài liệu đã xử lý",
                 AllowHide = "true",
@@ -888,7 +895,7 @@ namespace QLHS_DR.ViewModel
                 IsVisible = true,
                 Content = userTaskFinishUC
             };
-            TabContainer tabItemRevoke = new TabContainer
+            TabContainer tabItemRevoke = new()
             {
                 Header = "Tài liệu đã thu hồi",
                 AllowHide = "true",
@@ -896,7 +903,7 @@ namespace QLHS_DR.ViewModel
                 IsVisible = true,
                 Content = userTaskRevokedUC
             };
-            TabContainer tabItemAll = new TabContainer
+            TabContainer tabItemAll = new()
             {
                 Header = "All",
                 AllowHide = "true",

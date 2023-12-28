@@ -60,9 +60,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             }
         }
         private MessageServiceClient _MyClient;
-        MainViewModel dataOfMainWindow;
-        private IReadOnlyList<User> iReadOnlyListUser;
-        private ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
+        private readonly IReadOnlyList<User> iReadOnlyListUser;
+        private readonly ConcurrentDictionary<int, byte[]> _ListFileDecrypted = new ConcurrentDictionary<int, byte[]>();
         private bool _TrackChange;
         private bool _IsReadOnlyPermission;
         public bool IsReadOnlyPermission
@@ -152,11 +151,9 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand UnFinishUserTaskCommand { get; set; }
         public ICommand RevokeTaskCommand { get; set; }
         public ICommand AddUserOfMyDepartmentToTaskCommand { get; set; }
+        public ICommand RequirePermisionCommand { get; set; }
         #endregion
-        //public void SetLabelMsg(string message)
-        //{
-        //    ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
-        //}
+        
         public UserTaskFinishViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
@@ -164,8 +161,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
             _TrackChange = false;
             IsExpander = false;
             IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
-            //MessageServiceCallBack.SetDelegate(SetLabelMsg);
-
+          
             try
             {
                 _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
@@ -185,21 +181,31 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 _MyClient.Abort();
             }
 
-            //ListTaskOfUser = new List<Task>();
+            
             UsersInTask = new ObservableCollection<User>();
             LoadedWindowCommand = new RelayCommand<DependencyObject>((p) => { return true; }, (p) =>
             {
                 IsReadOnlyPermission = !SectionLogin.Ins.Permissions.HasFlag(PermissionType.CHANGE_PERMISSION);
                 OnLoadUserControl(new object());
             });
+            RequirePermisionCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null) return true; else return false; }, (p) =>
+            {
+                RequestPermissionDocumentWindow requestPermissionDocumentWindow = new RequestPermissionDocumentWindow(_UserTaskSelected.TaskId);
+                requestPermissionDocumentWindow.ShowDialog();                
+            });
             OpenReceiveDepartmentManagerCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskAddDepartmentToTask")) return true; else return false; }, (p) =>
             {
                 try
                 {
-                    ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD();
-                    ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new ReceiveDepartmentManagerViewModel(_UserTaskSelected);
-                    receiveDepartmentManagerViewModel.WindowTitle = _UserTaskSelected.Task.Subject;
-                    receiveDepartmentManagerWD.DataContext = receiveDepartmentManagerViewModel;
+                    
+                    ReceiveDepartmentManagerViewModel receiveDepartmentManagerViewModel = new ReceiveDepartmentManagerViewModel(_UserTaskSelected)
+                    {
+                        WindowTitle = _UserTaskSelected.Task.Subject
+                    };
+                    ReceiveDepartmentManagerWD receiveDepartmentManagerWD = new ReceiveDepartmentManagerWD
+                    {
+                        DataContext = receiveDepartmentManagerViewModel
+                    };
                     receiveDepartmentManagerWD.ShowDialog();
                     ListUserTaskOfUser = GetAllUserTaskFinishOfUser(SectionLogin.Ins.CurrentUser.Id);
                     UpdateHeaderTabControl();
@@ -351,18 +357,22 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 PermissionType taskPermissions = _MyClient.GetTaskPermissions(SectionLogin.Ins.CurrentUser.Id, _UserTaskSelected.TaskId);
                 bool signable = SectionLogin.Ins.Permissions.HasFlag(PermissionType.REVIEW_DOCUMENT | PermissionType.SIGN_DOCUMENT);
                 bool printable = signable | taskPermissions.HasFlag(PermissionType.PRINT_DOCUMENT) | (_UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id);
-                bool saveable = _UserTaskSelected.CanSave.HasValue ? _UserTaskSelected.CanSave.Value : false;
+                bool saveable = _UserTaskSelected.CanSave.HasValue && _UserTaskSelected.CanSave.Value;
                 if (_UserTaskSelected.CanViewAttachedFile == true)
                 {
                     var taskAttachedFileDTOs = _MyClient.GetTaskDocuments(_UserTaskSelected.TaskId); //get all file PDF in task
                     if (taskAttachedFileDTOs != null && taskAttachedFileDTOs.Length > 0)
                     {
-                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, _UserTaskSelected);
-                        taskAttackFileViewerViewModel.FileName = taskAttachedFileDTOs[0].FileName;
-                        taskAttackFileViewerViewModel.TaskName = _UserTaskSelected.Task.Subject;
+                        TaskAttackFileViewerViewModel taskAttackFileViewerViewModel = new TaskAttackFileViewerViewModel(taskAttachedFileDTOs[0], printable, saveable, _UserTaskSelected)
+                        {
+                            FileName = taskAttachedFileDTOs[0].FileName,
+                            TaskName = _UserTaskSelected.Task.Subject
+                        };
 
-                        TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow();
-                        taskAttackFileViewerWindow.DataContext = taskAttackFileViewerViewModel;
+                        TaskAttackFileViewerWindow taskAttackFileViewerWindow = new TaskAttackFileViewerWindow
+                        {
+                            DataContext = taskAttackFileViewerViewModel
+                        };
                         taskAttackFileViewerWindow.Show();
 
                         //System.Windows.Threading.Dispatcher.Run();

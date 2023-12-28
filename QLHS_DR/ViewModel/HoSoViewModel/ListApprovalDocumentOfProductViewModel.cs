@@ -1,12 +1,16 @@
-﻿using QLHS_DR.ChatAppServiceReference;
+﻿using DevExpress.XtraReports.Parameters;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
 using QLHS_DR.View.HosoView;
 using QLHS_DR.View.PdfView;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using static DevExpress.Xpf.Docking.MDIMenuBar;
 
 namespace QLHS_DR.ViewModel.HoSoViewModel
 {
@@ -51,6 +55,7 @@ namespace QLHS_DR.ViewModel.HoSoViewModel
         public ICommand RemoveApprovalDocumentCommand { get; set; }
         public ICommand EditApprovalDocumentCommand { get; set; }
         public ICommand AddAppDocToOtherProductCommand { get; set; }
+        public ICommand DownloadCommand { get; set; }
         #endregion
         public ListApprovalDocumentOfProductViewModel(Product product)
         {
@@ -93,6 +98,34 @@ namespace QLHS_DR.ViewModel.HoSoViewModel
                 EditApprovalDocumentProductWindow editApprovalDocumentProductWindow = new EditApprovalDocumentProductWindow() { DataContext = editApprovalDocumentProductView };
                 editApprovalDocumentProductWindow.ShowDialog();
                 ApprovalDocumentProducts = _ServiceFactory.GetApprovalDocumentProducts(_Product.Id, false);
+            });
+            DownloadCommand = new RelayCommand<ICollection>((p) => { if (SectionLogin.Ins.CanViewApprovalDocumentProduct && p!=null ) return true; else return false; }, (p) =>
+            {
+                System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog
+                {
+                    Description = "Select a folder to save the file."
+                };
+                if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+                        byte[] content;
+                        foreach (var item in p)
+                        {
+                            ApprovalDocumentProduct approvalDocumentProduct = (ApprovalDocumentProduct)item;
+                            string folderPath = folderBrowserDialog.SelectedPath;
+                            string fileName = approvalDocumentProduct.FileName;
+                            string filePath = Path.Combine(folderPath, fileName);
+                            content = _ServiceFactory.DownloadApprovalDocumentProduct(approvalDocumentProduct.Id);
+                            System.IO.File.WriteAllBytes(filePath, content);
+                        }
+                        MessageBox.Show("Download success!");
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show("An error occurred while saving the file: " + ex.Message);
+                    }
+                }                
             });
             AddAppDocToOtherProductCommand = new RelayCommand<Object>((p) => { if (_SelectedApprovalDocumentProduct != null) return true; else return false; }, (p) =>
             {

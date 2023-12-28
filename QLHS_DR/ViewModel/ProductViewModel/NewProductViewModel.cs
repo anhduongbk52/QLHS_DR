@@ -16,7 +16,7 @@ namespace QLHS_DR.ViewModel.Products
     class NewProductViewModel : BaseViewModel, IDataErrorInfo
     {
         #region "Properties and Filed"
-        ServiceFactory _ServiceFactory;
+        readonly ServiceFactory _ServiceFactory;
         private bool _IsBusy;
         public bool IsBusy
         {
@@ -573,7 +573,7 @@ namespace QLHS_DR.ViewModel.Products
                 _Client.Open();
                 foreach (string codeItem in _ProductCodes)
                 {
-                    TransformerDTO transformerDTO = new TransformerDTO
+                    TransformerDTO transformerDTO = new()
                     {
                         CoolingMethod = _CoolingMethod,
                         ConnectionSymbol = _ConnectionSymbol,

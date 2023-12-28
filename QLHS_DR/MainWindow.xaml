@@ -187,7 +187,7 @@
                          Grid.Row="1"
                          BorderThickness="0"
                          ItemHeaderTemplate="{StaticResource TabItemHeaderTemplate}"
-                         TabHidden="tabControl_TabHidden"
+                         TabHidden="TabControl_TabHidden"
                          Padding="0"
                          Name="tabControl">
                     <i:Interaction.Triggers>

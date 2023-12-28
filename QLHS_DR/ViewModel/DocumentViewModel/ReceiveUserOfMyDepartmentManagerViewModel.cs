@@ -16,7 +16,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
     internal class ReceiveUserOfMyDepartmentManagerViewModel : BaseViewModel
     {
         #region "Properties and Field"
-        private ConcurrentDictionary<int, byte[]> concurrentDictionary_2 = new ConcurrentDictionary<int, byte[]>();
         private bool _DataChanged;
         public bool DataChanged
         {
@@ -29,9 +28,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 }
             }
         }
-        private IReadOnlyList<User> iReadOnlyListUser;
         //private List<int> _UserNotInTaskIds;
-        private Task _Task;
+        private readonly Task _Task;
         private ObservableCollection<ReceiveUser> _ReceiveUsers;
         public ObservableCollection<ReceiveUser> ReceiveUsers
         {
@@ -174,8 +172,6 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     List<ReceiveUser> receiveUserChangedJobContent = new List<ReceiveUser>(); //List Id Cac nguoi dung xoa quyen xem file.
                     UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);
 
-                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(userTask_0);
-                    byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
 
                     foreach (var receiveuser in ReceiveUsers)
                     {
@@ -191,7 +187,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                                     byte[] ecpr = fileHelper.DecryptECPrKeyForFile(masterKey);
                                     fileHelper.SetECPrKeyForFile(ecpr, receiveuser.User);
                                 }
-                                byte[] userTaskKey = CryptoUtil.EncryptWithoutIV(receiveuser.User.ECPrKeyForFile, data);
+                                byte[] userTaskKey = new byte[0];
 
                                 PermissionType permissionType = new PermissionType();
                                 if (receiveuser.CanPrintFile)

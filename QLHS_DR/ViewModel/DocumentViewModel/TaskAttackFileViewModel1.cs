@@ -157,22 +157,22 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     p.CanSave = _CanSaveFile;               
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
-                    using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
+                    using (PdfDocumentProcessor processor = new())
                     {
                         processor.LoadDocument(_OriginFilePath, true);
 
-                        List<int> countPrinteds = new List<int>();
+                        List<int> countPrinteds = new();
                         for (int i = 0; i < processor.Document.Pages.Count; i++)
                         {
                             countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1));
                         }
                         string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
 
-                        using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
+                        using (SolidBrush textBrush = new(Color.FromArgb(100,Color.Blue)))
                         {
                             AddGraphics(processor, addText, textBrush, countPrinteds);
                         }
-                        using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
+                        using (SolidBrush textBrush1 = new (Color.FromArgb(100, Color.Red)))
                         {
                             if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                             {
@@ -208,28 +208,30 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
                     _MyClient.Open();
 
-                    PdfViewerControlEx pdfViewerControlEx = new PdfViewerControlEx();
-                    pdfViewerControlEx.CanPrint = _CanPrintFile;
-                    pdfViewerControlEx.CanSave = _CanSaveFile;
+                    PdfViewerControlEx pdfViewerControlEx = new()
+                    {
+                        CanPrint = _CanPrintFile,
+                        CanSave = _CanSaveFile
+                    };
 
                     _currentPage = p.CurrentPageNumber;
 
-                    using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
+                    using (PdfDocumentProcessor processor = new ())
                     {
                      
                             processor.LoadDocument(_OriginFilePath);
-                            List<int> countPrinteds = new List<int>();
+                            List<int> countPrinteds = new ();
                             for (int i = 0; i < processor.Document.Pages.Count; i++)
                             {
                                 countPrinteds.Add(_MyClient.GetCountPrintDocument(_UserTaskPrint.Id, i + 1) + 1);
                             }
                             string addText = SectionLogin.Ins.CurrentUser.FullName + " - Time: " + DateTime.Now.ToString() + " IP: " + EofficeCommonLibrary.Common.MyCommon.GetLocalIPAddress();
 
-                            using (SolidBrush textBrush = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Blue)))
+                            using (SolidBrush textBrush = new(Color.FromArgb(100,Color.Blue)))
                             {
                                 AddGraphics(processor, addText, textBrush, countPrinteds);
                             }
-                            using (SolidBrush textBrush1 = new SolidBrush(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red)))
+                            using (SolidBrush textBrush1 = new (Color.FromArgb(100,Color.Red)))
                             {
                                 if (_TaskAttachedFileDTO.ConfidentialLevel != null && _TaskAttachedFileDTO.ConfidentialLevel != 0)
                                 {
@@ -285,7 +287,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                         {
                             _MyClient.CountPrintDocument1(_UserTaskPrint.Id, printerSettings.PageNumbers[i], copies, true, _PrinterSetting.Settings.PrinterName);
                         }
-                        Log log = new Log
+                        Log log = new ()
                         {
                             Created = DateTime.Now,
                             UserId = SectionLogin.Ins.CurrentUser.Id,
@@ -313,7 +315,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
         public void DecryptTaskAttachedFile(TaskAttachedFileDTO taskAttachedFileDTO, UserTask userTask)
         {
-            FileHelper fileHelper = new FileHelper(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+            FileHelper fileHelper = new (SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
             byte[] orAdd = fileHelper.GetKeyDecryptOfTask(userTask);
             if (orAdd != null)
             {
@@ -356,14 +358,14 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                 {
                     SizeF actualPageSize = PrepareGraphics(page, graphics);
                     int fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.013);
-                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
-                    using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
+                    FontFamily fontFamily = new("Segoe UI");
+                    using (Font font = new(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
                     {
                         SizeF textSize = graphics.MeasureString(textInPage, font, PdfStringFormat.GenericDefault);
-                        PointF topLeft = new PointF(0, 0);
-                        PointF bottomRight = new PointF(actualPageSize.Width - textSize.Width, actualPageSize.Height - textSize.Height);
+                        PointF topLeft = new (0, 0);
+                        PointF bottomRight = new (actualPageSize.Width - textSize.Width, actualPageSize.Height - textSize.Height);
                         graphics.DrawString(textInPage, font, textBrush, bottomRight);
-                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);
+                        Pen pen = new (Color.Black);
                         graphics.AddToPageForeground(page, DrawingDpi, DrawingDpi);
                     }
                 }
@@ -386,8 +388,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     SizeF actualPageSize = PrepareGraphics(page, graphics);
 
                     fontSize = (int)(Math.Min(actualPageSize.Width, actualPageSize.Height) * 0.02);
-                    System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Segoe UI");
-                    using (Font font = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold), font1 = new Font(fontFamily, fontSize, System.Drawing.FontStyle.Bold))
+                    FontFamily fontFamily = new("Segoe UI");
+                    using (Font font = new (fontFamily, fontSize, FontStyle.Bold), font1 = new (fontFamily, fontSize, FontStyle.Bold))
                     {
                         string text1 = confidentialLevel;
                         //string text2 = confidentialLevel;
@@ -399,15 +401,15 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                         _Stamp_Heigh = (int)((text1Size.Height) * 1.1);
 
-                        PointF center = new PointF(_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
+                        PointF center = new (_StartX + _Stamp_Width / 2, _StartY + _Stamp_Heigh / 2);
 
-                        PointF topLeftText1 = new PointF(center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);
+                        PointF topLeftText1 = new (center.X - text1Size.Width / 2, center.Y - text1Size.Height / 2);
                         // PointF topLeftText2 = new PointF(center.X - text2Size.Width / 2, center.Y - text2Size.Height / 2);                    
 
                         graphics.DrawString(text1, font, textBrush, topLeftText1);
                         //graphics.DrawString(text2, font1, textBrush, topLeftText2);                      
 
-                        System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(100, System.Drawing.Color.Red));
+                        Pen pen = new ( Color.FromArgb(100, Color.Red));
                         graphics.DrawRectangle(pen, new RectangleF(_StartX, _StartY, _Stamp_Width, _Stamp_Heigh));
 
                         graphics.AddToPageForeground(page, 96f, 96f);

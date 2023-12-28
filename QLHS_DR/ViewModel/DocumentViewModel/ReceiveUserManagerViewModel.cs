@@ -179,8 +179,8 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                     UserTask userTask_0 = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, _Task.Id);
 
-                    byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(userTask_0);
-                    byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
+                    //byte[] keyDecryptOfTask = fileHelper.GetKeyDecryptOfTask(userTask_0);
+                    //byte[] data = concurrentDictionary_2.GetOrAdd(_Task.Id, (int int_1) => keyDecryptOfTask);
 
                     foreach (var receiveuser in ReceiveUsers)
                     {
@@ -190,13 +190,13 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                             var userTask = allUserTaskOfTask.Where(x => x.UserId == receiveuser.User.Id).FirstOrDefault();
                             if (userTask == null) // User is not in UserTask;
                             {
-                                if (receiveuser.User.ECPrKeyForFile == null)
-                                {
-                                    byte[] masterKey = fileHelper.MasterKey;
-                                    byte[] ecpr = fileHelper.DecryptECPrKeyForFile(masterKey);
-                                    fileHelper.SetECPrKeyForFile(ecpr, receiveuser.User);
-                                }
-                                byte[] userTaskKey = CryptoUtil.EncryptWithoutIV(receiveuser.User.ECPrKeyForFile, data);
+                                //if (receiveuser.User.ECPrKeyForFile == null)
+                                //{
+                                //    byte[] masterKey = fileHelper.MasterKey;
+                                //    byte[] ecpr = fileHelper.DecryptECPrKeyForFile(masterKey);
+                                //    fileHelper.SetECPrKeyForFile(ecpr, receiveuser.User);
+                                //}
+                                //byte[] userTaskKey = CryptoUtil.EncryptWithoutIV(receiveuser.User.ECPrKeyForFile, data);
                                 //_MyClient.AddUserTask(_Task.Id, receiveuser.User.Id, SectionLogin.Ins.CurrentUser.Id, userTaskKey);
 
                                 PermissionType permissionType = new PermissionType();
@@ -218,7 +218,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
 
                                     CanSave = receiveuser.CanSave,
                                     CanViewAttachedFile = receiveuser.CanViewFile,
-                                    TaskKey = userTaskKey,
+                                    TaskKey = new byte[0],
                                 };
                                 newUserTasks.Add(newUserTask);
                                 //_UserNotInTaskIds.Add(receiveuser.User.Id);

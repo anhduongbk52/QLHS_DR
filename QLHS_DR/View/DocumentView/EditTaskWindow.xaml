@@ -1,22 +1,18 @@
 ﻿<Window x:Class="QLHS_DR.View.DocumentView.EditTaskWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLHS_DR.View.DocumentView"
         xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         mc:Ignorable="d"
         WindowState="Maximized"
         x:Name="editTaskWindow"
-        Title="Thêm nhiệm vụ mới" Height="450" Width="800">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
+        Loaded="editTaskWindow_Loaded"
+        Title="Chỉnh sửa" Height="450" Width="800">
+   
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -57,31 +53,29 @@
 
             </Grid.Resources>
             <TextBox Grid.Column="0"  Grid.Row="0" Margin="10"
-                     Text="{Binding TaskName}"
+                     Name="textBoxMaso"
                      materialDesign:HintAssist.Hint="Mã số"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}">
             </TextBox>
             <TextBox Name="textBoxDocumentName" 
                  Grid.Column="0"  Grid.Row="1" Margin="10"
-                 materialDesign:HintAssist.Hint="Tiêu đề"
-                 Text="{Binding TaskDrecription}"
+                 materialDesign:HintAssist.Hint="Tiêu đề"                
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-            <ComboBox
-                Grid.Row="2" Height="60"  Margin="5"
-                ItemsSource="{Binding ListStandard}"
-                DisplayMemberPath="Name"
-                SelectedItem="{Binding StandardSelected}"
+            <ComboBox Name="cbCapBaoMat"
+                Grid.Row="2" Height="50"  Margin="5"                    
                 materialDesign:HintAssist.Hint="Cấp bảo mật"
-                materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"            
-                    VerticalAlignment="Center"/>
+                materialDesign:TextFieldAssist.DecorationVisibility="Collapsed" VerticalAlignment="Center">
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+            </ComboBox>
             <StackPanel Grid.Column="0"  Grid.Row="3" Orientation="Horizontal" Margin="10">
-                <Button Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="OK" Margin="10" Width="150" Height="40"></Button>
-                <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="CANCEL" Margin="10" Width="150" Height="40"></Button>
-                <CheckBox Command="{Binding CanSaveFile}" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Cho phép lưu đính kèm" ></CheckBox>
+                <Button Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}"  Content="OK" Margin="10" Width="150" Height="40" Click="Button_Click"></Button>
+                <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=newTaskWindow}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="CANCEL" Margin="10" Width="150" Height="40" Click="Button_Click_1"></Button>
+                <CheckBox Name="checkBoxCanSave" Style="{StaticResource MaterialDesignAccentCheckBox}" Content="Cho phép lưu đính kèm" ></CheckBox>
 
             </StackPanel>
         </Grid>
-        <dxpdf:PdfViewerControl Name="pdfViwer" DocumentLoaded="pdfViwer_DocumentLoaded" DocumentSource="{Binding DocumentSourcePdf,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
-                                Grid.Column="1"/>
+        <dxpdf:PdfViewerControl Name="pdfViwer" DocumentLoaded="pdfViwer_DocumentLoaded" Grid.Column="1" CommandBarStyle="None" />
     </Grid>
 </Window>

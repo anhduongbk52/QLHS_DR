@@ -8,7 +8,9 @@ using QLHS_DR.View.TransformerManualView;
 using QLHS_DR.ViewModel.HoSoViewModel;
 using QLHS_DR.ViewModel.TransformerManualViewModel;
 using System;
+using System.Collections;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Windows;
@@ -99,6 +101,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         public ICommand UploadFileHoSoCommand { get; set; }
         public ICommand RemoveFileHoSoCommand { get; set; }
         public ICommand ChangeFileHoSoCommand { get; set; }
+        public ICommand DownloadCommand { get; set; }
 
         #endregion
         public ListTransformerManualViewModel(Product product)
@@ -118,7 +121,39 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 TransformerManualViewPdf pdfViewer = new TransformerManualViewPdf(true, true, _SelectedTransformerManualDTO.FileName, _SelectedTransformerManualDTO);
                 pdfViewer.Show();
             });
-
+            DownloadCommand = new RelayCommand<ICollection>((p) => { if (CanOpenFile && p != null) return true; else return false; }, (p) =>
+            {
+                System.Windows.Forms.FolderBrowserDialog folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog
+                {
+                    Description = "Select a folder to save the file."
+                };
+                if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+                        byte[] content;
+                        foreach (var item in p)
+                        {
+                            TransformerManualDTO transformerManualDTO = (TransformerManualDTO)item;
+                            string folderPath = folderBrowserDialog.SelectedPath;
+                            string fileName = transformerManualDTO.FileName;
+                            string filePath = Path.Combine(folderPath, fileName);
+                            _Proxy = ServiceHelper.NewMessageServiceClient();
+                            _Proxy.Open();
+                            content = _Proxy.DownloadTransformerManualFile(transformerManualDTO.TransformerManualId);
+                            
+                            _Proxy.Close();
+                            System.IO.File.WriteAllBytes(filePath, content);
+                        }
+                        MessageBox.Show("Download success!");
+                    }
+                    catch (IOException ex)
+                    {
+                        _Proxy.Abort();
+                        MessageBox.Show("An error occurred while saving the file: " + ex.Message);
+                    }
+                }
+            });
             UploadFileHoSoCommand = new RelayCommand<Object>((p) => { if (_CanUploadFile) return true; else return false; }, (p) =>
             {
                 UploadHoSoViewModel uploadTransformerManualViewModel = new UploadHoSoViewModel(_Product.ProductCode);
