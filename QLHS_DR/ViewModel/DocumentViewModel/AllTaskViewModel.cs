@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.DocumentViewModel
@@ -157,6 +158,7 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
         public ICommand OpenFileCommand { get; set; }
         public ICommand RequirePermisionCommand { get; set; }
         public ICommand EditTaskCommand { get; set; }
+        public ICommand RevokeTaskCommand { get; set; }
         #endregion
         public void SetLabelMsg(string message)
         {
@@ -240,6 +242,32 @@ namespace QLHS_DR.ViewModel.DocumentViewModel
                     {
                         System.Windows.MessageBox.Show(ex.InnerException.StackTrace);
                     }
+                }
+            });
+            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_UserTaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner") && _UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            {
+                try
+                {
+                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Bạn có muốn thu hồi tài liệu này? Thao tác này sẽ xóa toàn bộ dữ liệu liên quan", "Cảnh báo !", MessageBoxButton.OKCancel);
+                    if (dialogResult == MessageBoxResult.OK)
+                    {
+                        _MyClient = ServiceHelper.NewMessageServiceClient(SectionLogin.Ins.CurrentUser.UserName, SectionLogin.Ins.Token);
+                        _MyClient.Open();
+
+                        _MyClient.RevokeTaskByCurrentUser(_UserTaskSelected.TaskId);
+                        _MyClient.Close();
+                        ListUserTaskOfUser.Remove(_UserTaskSelected);
+                        UpdateHeaderTabControl();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                    if (ex.InnerException != null)
+                    {
+                        System.Windows.MessageBox.Show(ex.InnerException.Message);
+                    }
+                    _MyClient.Abort();
                 }
             });
         }
