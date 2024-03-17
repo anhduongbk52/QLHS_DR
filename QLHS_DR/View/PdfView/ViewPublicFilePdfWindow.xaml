@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="ViewPublicFilePdfWindow" Height="450" Width="800">
     <Grid>
-        <dxpdf:PdfViewerControl Name="pdfViewer"  CommandBarStyle="Ribbon"/>
+        <dxpdf:PdfViewerControl Name="pdfViewer"    CommandBarStyle="Ribbon"/>
     </Grid>
 </Window>
 
