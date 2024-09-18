@@ -15,6 +15,47 @@ namespace QLHS_DR.ViewModel.ProductViewModel
     {
         private MessageServiceClient _Proxy;
         private ServiceFactory _ServiceFactory;
+
+        private bool _IsVisibleRatedPowerKeyWord;
+        public bool IsVisibleRatedPowerKeyWord
+        {
+            get => _IsVisibleRatedPowerKeyWord;
+            set
+            {
+                _IsVisibleRatedPowerKeyWord = value;
+                OnPropertyChanged("IsVisibleRatedPowerKeyWord");
+            }
+        }
+        private bool _IsVisibleRatedVoltageKeyWordd;
+        public bool IsVisibleRatedVoltageKeyWord
+        {
+            get => _IsVisibleRatedVoltageKeyWordd;
+            set
+            {
+                _IsVisibleRatedVoltageKeyWordd = value;
+                OnPropertyChanged("IsVisibleRatedVoltageKeyWord");
+            }
+        }
+        private bool _IsVisibleStandardsSelection;
+        public bool IsVisibleStandardsSelection
+        {
+            get => _IsVisibleStandardsSelection;
+            set
+            {
+                _IsVisibleStandardsSelection = value;
+                OnPropertyChanged("IsVisibleStandardsSelection");
+            }
+        }
+        private bool _IsVisibleTankType;
+        public bool IsVisibleTankType
+        {
+            get => _IsVisibleTankType;
+            set
+            {
+                _IsVisibleTankType = value;
+                OnPropertyChanged("IsVisibleTankType");
+            }
+        }
         private string _CodeKeyWord;
         public string CodeKeyWord
         {
@@ -23,6 +64,29 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             {
                 _CodeKeyWord = value;
                 OnPropertyChanged("CodeKeyWord");
+            }
+        }
+        private string _TankType;
+        public string TankType
+        {
+            get => _TankType;
+            set
+            {
+                if (_TankType != value)
+                {
+                    _TankType = value;
+                    OnPropertyChanged("TankType");
+                }
+            }
+        }
+        private string _SaleOrderNumber;
+        public string SaleOrderNumber
+        {
+            get => _SaleOrderNumber;
+            set
+            {
+                _SaleOrderNumber = value;
+                OnPropertyChanged("SaleOrderNumber");
             }
         }
         private string _RatedPowerKeyWord;
@@ -144,7 +208,81 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             {
                 if (_SelectedProductTypeNew != value)
                 {
-                    _SelectedProductTypeNew = value; OnPropertyChanged("SelectedProductTypeNew");
+                    _SelectedProductTypeNew = value;
+
+                    if (_SelectedProductTypeNew != null)
+                    {
+                        switch (_SelectedProductTypeNew.TypeCode)
+                        {
+                            case "General":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "OutdoorOilImmersedCurrentTransformer":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "PowerTransformer":
+                                IsVisibleRatedPowerKeyWord = true;
+                                IsVisibleRatedVoltageKeyWord = true;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "DistributionTransformer":
+                                IsVisibleRatedPowerKeyWord = true;
+                                IsVisibleRatedVoltageKeyWord = true;
+                                IsVisibleStandardsSelection = true;
+                                IsVisibleTankType = true;
+                                break;
+                            case "BushingCurrentTransformer":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "OutdoorOilImmersedInductiveVoltageTransformer":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "OutdoorOilImmersedCapacitorVoltageTransformer":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "MOF1":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "MOF3":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            case "BA":
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                            default:
+                                IsVisibleRatedPowerKeyWord = false;
+                                IsVisibleRatedVoltageKeyWord = false;
+                                IsVisibleStandardsSelection = false;
+                                IsVisibleTankType = false;
+                                break;
+                        }
+                    }
+                    OnPropertyChanged("SelectedProductTypeNew");
                 }
             }
         }
@@ -164,6 +302,12 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 _Proxy.Open();
                 Standards = _Proxy.LoadStandards().ToObservableCollection();
                 SelectedStandard = Standards.Where(x => x.Name == "NONE").FirstOrDefault();
+
+                _ProductTypeNews = _ServiceFactory.LoadProducTypeNews();
+                _ProductTypeNews.Add(new ProductTypeNew() { Id = 0, TypeCode = "All", TypeName = "All" });
+                ProductTypeNews = _ProductTypeNews.OrderBy(x => x.Id).ToObservableCollection();
+                SelectedProductTypeNew = _ProductTypeNews.Where(x => x.TypeCode == "All").FirstOrDefault();
+
                 _Proxy.Close();
             }
             catch (Exception ex)
@@ -173,11 +317,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             }
             LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                _ProductTypeNews = _ServiceFactory.LoadProducTypeNews();
-                _ProductTypeNews.Add(new ProductTypeNew() { Id = 0, TypeCode = "All", TypeName = "All" });
-                ProductTypeNews = _ProductTypeNews.OrderBy(x => x.Id).ToObservableCollection();
-                SelectedProductTypeNew = _ProductTypeNews.Where(x => x.TypeCode == "All").FirstOrDefault();
-                //OnPropertyChanged("ProductTypeNews");
+               
             });
             RemoveProductCommand = new RelayCommand<Product>((p) => { if (SectionLogin.Ins.CanRemoveProduct) return true; else return false; }, (p) =>
             {
@@ -351,9 +491,75 @@ namespace QLHS_DR.ViewModel.ProductViewModel
             {
                 _Proxy = ServiceHelper.NewMessageServiceClient();
                 _Proxy.Open();
-                ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                 
+                switch (_SelectedProductTypeNew.TypeCode)
+                {
+                    case "General":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                    case "OutdoorOilImmersedCurrentTransformer":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+
+                        break;
+                    case "PowerTransformer":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchTransformersWithSO(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeNew.Id, _SelectedStandard.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchTransformers(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeNew.Id, _SelectedStandard.Id).ToObservableCollection();
+                        break;
+                    case "DistributionTransformer":
+                        ketqua = _Proxy.SearchDistributionTransformers(_CodeKeyWord, _RatedPowerKeyWord, _RatedVoltageKeyWord, _YearCreateKeyWord, _NoteKeyWord, _StationKeyWord, _SelectedProductTypeNew.Id, _SelectedStandard.Id, _SaleOrderNumber, _TankType).ToObservableCollection();
+                        break;
+                    case "BushingCurrentTransformer":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                    case "OutdoorOilImmersedInductiveVoltageTransformer":
+                        ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+
+                        break;
+                    case "OutdoorOilImmersedCapacitorVoltageTransformer":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                    case "MOF1":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                    case "MOF3":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                    case "BA":
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                    default:
+                        if (!String.IsNullOrEmpty(_SaleOrderNumber))
+                            ketqua = _Proxy.SearchAllProductsWithSO(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id, _SaleOrderNumber).ToObservableCollection();
+                        else
+                            ketqua = _Proxy.SearchAllProducts(_CodeKeyWord, _YearCreateKeyWord, _NoteKeyWord, _ProductNameKeyword, _SelectedProductTypeNew.Id).ToObservableCollection();
+                        break;
+                }
                 _Proxy.Close();
             }
+
             catch (Exception ex)
             {
                 _Proxy.Abort();

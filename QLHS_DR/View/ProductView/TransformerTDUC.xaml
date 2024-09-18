@@ -26,6 +26,8 @@
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -45,41 +47,52 @@
                 <Label Grid.Row="1" Grid.Column="3" Content="Trạm:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
                 <Label Grid.Row="2" Grid.Column="3" Content="Tiêu chuẩn chế tạo:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
                 <Label Grid.Row="3" Grid.Column="0" Content="Type:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="3" Grid.Column="3" Content="Tên dự án:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="4" Grid.Column="0" Content="Dải sản phẩm:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="0" Grid.Column="5" Content="Sales Document:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="1" Grid.Column="5" Content="Order Item:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="2" Grid.Column="5" Content="Material:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
 
-                <TextBox MinWidth="200" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.ProductCode}" Margin="5"></TextBox>
-                <TextBox MinWidth="200" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.RatedPower}" Margin="5"></TextBox>
+                <TextBox  Grid.Row="0" Grid.Column="1" MinWidth="200" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.ProductCode}" Margin="5"></TextBox>
+                <ComboBox Grid.Row="2" Grid.Column="4" ItemsSource="{Binding ListStandards,Mode=TwoWay}" DisplayMemberPath="Name"  SelectedItem="{Binding SelectedStandard,Mode=TwoWay}"  materialDesign:HintAssist.Hint="Tiêu chuẩn chế tạo"  Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                <TextBox  Grid.Row="1" Grid.Column="1" MinWidth="200" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.RatedPower}" Margin="5"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.RatedVoltage}" Margin="5"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.YearOfManufacture}" Margin="5"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.Station}" Margin="5"></TextBox>
-                <ComboBox Grid.Row="2" Grid.Column="4"
-                          ItemsSource="{Binding ListStandards,Mode=TwoWay}"
-                          DisplayMemberPath="Name"
-                          SelectedItem="{Binding SelectedStandard,Mode=TwoWay}"                          
-                          materialDesign:HintAssist.Hint="Tiêu chuẩn chế tạo" 
-                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
-                <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding TransformerDTO.UnitPower}" SelectedValuePath="Content" Width="100" Margin="5">
+                <TextBox Grid.Row="3" Grid.Column="4" VerticalAlignment="Top" Text="{Binding TransformerDTO.ProductName}" Margin="5,12,5,0" Grid.RowSpan="2"/>
+                <TextBox MinWidth="200" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.ProductRange}" Margin="5"></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="200"  Text="{Binding TransformerDTO.SaleOrder}" Margin="5" ></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="200"  Text="{Binding TransformerDTO.SaleOrderItem}" Margin="5" ></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinWidth="200"  Text="{Binding TransformerDTO.Material}" Margin="5" ></TextBox>
+                <Button Grid.Row="4" Grid.Column="6" Width="150" Content="Save Change"  Command="{Binding SaveChangeCommand}" ></Button>
+
+
+                <ComboBox Grid.Row="1" Grid.Column="2" SelectedValue="{Binding TransformerDTO.UnitPower}" SelectedValuePath="Content" Width="80" Margin="5">
                     <ComboBoxItem>MVA</ComboBoxItem>
                     <ComboBoxItem>kVA</ComboBoxItem>
                     <ComboBoxItem>VA</ComboBoxItem>
                 </ComboBox>
                 <ComboBox Grid.Row="3" Grid.Column="1"
-                          ItemsSource="{Binding ProductTypeNews}"
-                          DisplayMemberPath="TypeName"
-                          SelectedItem="{Binding SelectedProductTypeNew}">
+                   ItemsSource="{Binding ProductTypeNews}"
+                   DisplayMemberPath="TypeName"
+                   SelectedItem="{Binding SelectedProductTypeNew}">
                 </ComboBox>
             </Grid>
         </GroupBox>
         <GroupBox
-            Grid.Row="1"     
-            Header="Thông số chi tiết:"
-            Style="{DynamicResource MaterialDesignGroupBox}"
-             materialDesign:ColorZoneAssist.Mode="PrimaryDark"
-            Margin="5">
+        Grid.Row="1"     
+        Header="Thông số chi tiết:"
+        Style="{DynamicResource MaterialDesignGroupBox}"
+         materialDesign:ColorZoneAssist.Mode="PrimaryDark"
+        Margin="5">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="210" ></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="210"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -89,7 +102,6 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
-
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Phân bổ công suất:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
                 <Label Grid.Row="1" Grid.Column="0" Content="Tỉ số biến áp:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
@@ -99,7 +111,7 @@
                 <Label Grid.Row="5" Grid.Column="0" Content="Kiểu làm mát:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
                 <Label Grid.Row="6" Grid.Column="0" Content="Số cuộn dây:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
 
-                <TextBox MinWidth="200" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.PowerTransport}"></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="1"  MinWidth="200"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.PowerTransport}"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.VoltageRatio}" Name="textBoxVoltage"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.ConnectionSymbol}"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.NumberOfPhase}"></TextBox>
@@ -107,8 +119,16 @@
                 <TextBox MinWidth="200" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.CoolingMethod}"></TextBox>
                 <TextBox MinWidth="200" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.NumberOfWinding}"></TextBox>
 
-                <Button  Grid.Column="2" Grid.Row="1" Width="50" Content="±" Command="{Binding CongTruCommand}" CommandParameter="{Binding ElementName=textBoxVoltage}"></Button>
-                <Button Grid.Column="2" Grid.Row="6" Width="150" Content="Save Change"  Command="{Binding SaveChangeCommand}" ></Button>
+                <Button Grid.Column="2" Grid.Row="1" Width="50" Content="±" Command="{Binding CongTruCommand}" CommandParameter="{Binding ElementName=textBoxVoltage}"></Button>
+                <Label Grid.Row="0" Grid.Column="4" Content="Po Max (W):" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="1" Grid.Column="4" Content="Pk Max (W):" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="2" Grid.Column="4" Content="Uk Standard (%):" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+                <Label Grid.Row="3" Grid.Column="4" Content="Kiểu dãn nở dầu:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"></Label>
+
+                <TextBox Grid.Row="0" Grid.Column="5"  MinWidth="200"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.NoLoadLossMax}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="5"  MinWidth="200"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.LoadLossMax}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="5"  MinWidth="200"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.ImpedanceStandard}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="5"  MinWidth="200"  VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding TransformerDTO.TankTyp}"></TextBox>
             </Grid>
         </GroupBox>
         <GroupBox

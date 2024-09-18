@@ -1,16 +1,13 @@
-﻿<UserControl x:Class="QLHS_DR.View.ProductView.ProductManagerUC"
+﻿<UserControl x:Class="QLHS_DR.View.SaleDocumentView.SaleDocumentManagerUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-            xmlns:local="clr-namespace:QLHS_DR.View.ProductView"
+             xmlns:local="clr-namespace:QLHS_DR.View.SaleDocumentView" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             DataContext="{Binding Source={StaticResource Locator},Path=ProductManagerViewModel}"
-             Name="transformerManager"
-             d:DesignHeight="450" 
-             d:DesignWidth="1200">
+             d:DesignHeight="550" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
@@ -34,11 +31,51 @@
         </Grid.ColumnDefinitions>
         <StackPanel  Grid.Column="0">
             <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Customer Reference"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Sale Organization"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Sold-to Party"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Distribution Channel"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Division"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Sale Office"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Sale Group"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
+                <TextBox materialDesign:HintAssist.Hint="Create By"
+                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0 0 0" MinWidth="200" BorderThickness="0" VerticalAlignment="Center" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone>
                 <ComboBox
                         ItemsSource="{Binding ProductTypeNews,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
-                        DisplayMemberPath="TypeName"  SelectedItem="{Binding SelectedProductTypeNew}"
+                        DisplayMemberPath="TypeName" SelectedItem="{Binding SelectedProductTypeNew}"
                         Margin="8 0 0 0"
-                        materialDesign:HintAssist.Hint="Loại sản phẩm"
+                        materialDesign:HintAssist.Hint="Sale Document Type"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
                         MinWidth="200"
@@ -48,7 +85,7 @@
                 <TextBox
                     Text="{Binding CodeKeyWord,UpdateSourceTrigger=PropertyChanged}"                       
                     Margin="5 0 0 0"
-                    materialDesign:HintAssist.Hint="Mã số" 
+                    materialDesign:HintAssist.Hint="Serial" 
                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                     BorderThickness="0"
                     MinWidth="200"                    
@@ -58,87 +95,15 @@
                 <TextBox
                         Text="{Binding YearCreateKeyWord,UpdateSourceTrigger=PropertyChanged}"
                         Margin="8 0 0 0"
-                        materialDesign:HintAssist.Hint="Năm sản xuất"
+                        materialDesign:HintAssist.Hint="Customer Ref. Date"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         BorderThickness="0"
                         MinWidth="200"
                         VerticalAlignment="Center"/>
             </materialDesign:ColorZone>
-            <materialDesign:ColorZone>
-                <TextBox
-                    Text="{Binding NoteKeyWord,UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="8 0 0 0"
-                    materialDesign:HintAssist.Hint="Ghi chú" 
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    BorderThickness="0"
-                    MinWidth="200"                    
-                    VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Visibility="Collapsed">
-                <TextBox
-                        Text="{Binding StationKeyWord,UpdateSourceTrigger=PropertyChanged}"
-                        Margin="8 0 0 0"
-                        materialDesign:HintAssist.Hint="Trạm/Công trình/Dự án" 
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
-                        MinWidth="200"
-                        VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone>
-                <TextBox
-                        Text="{Binding ProductNameKeyword,UpdateSourceTrigger=PropertyChanged}"
-                        Margin="8 0 0 0"
-                        materialDesign:HintAssist.Hint="Tên sản phẩm" 
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
-                        MinWidth="200"
-                        VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Visibility="{Binding IsVisibleRatedPowerKeyWord,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
-                <TextBox
-                        Text="{Binding RatedPowerKeyWord,UpdateSourceTrigger=PropertyChanged}"
-                        Margin="8 0 0 0"
-                        materialDesign:HintAssist.Hint="Dung lượng định mức"
-                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                        BorderThickness="0"
-                        MinWidth="200"
-                        VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Visibility="{Binding IsVisibleRatedVoltageKeyWord,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
-                <TextBox
-                    Text="{Binding RatedVoltageKeyWord,UpdateSourceTrigger=PropertyChanged}" 
-                    Margin="8 0 0 0"
-                    materialDesign:HintAssist.Hint="Điện áp định mức" 
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    BorderThickness="0" MinWidth="200"
-                    VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-
-            <materialDesign:ColorZone Visibility="{Binding IsVisibleStandardsSelection,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
-                <ComboBox
-                    ItemsSource="{Binding Standards}"
-                    DisplayMemberPath="Name"
-                    SelectedItem="{Binding SelectedStandard}"
-                    Margin="8 0 0 0" 
-                    materialDesign:HintAssist.Hint="Tiêu chuẩn chế tạo"
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    BorderThickness="0"
-                    MinWidth="200"
-                    VerticalAlignment="Center"/>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Visibility="{Binding IsVisibleTankType,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource BoolToVisibilityConverter}}">
-                <ComboBox                            
-        SelectedValue="{Binding TankType, Mode=TwoWay}"
-        SelectedValuePath="Content"
-        materialDesign:HintAssist.Hint="Kiểu dãn nở dầu"                    
-        Margin="8 0 0 0"                     
-        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-        BorderThickness="0"  MinWidth="200"   VerticalAlignment="Center">
-                    <ComboBoxItem></ComboBoxItem>
-                    <ComboBoxItem>Kín</ComboBoxItem>
-                    <ComboBoxItem>BDP</ComboBoxItem>
-                </ComboBox>
-            </materialDesign:ColorZone>
+            
+          
+          
             <Button Command="{Binding SearchCommand}" IsDefault="True" Margin="5" Grid.Row="8" Content="Tìm kiếm"></Button>
             <Button Command="{Binding ClearCommand}" Margin="5" Grid.Row="9" Content="Clear"></Button>
         </StackPanel>

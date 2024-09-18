@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SAPMODEL" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAPMODEL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Material">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BasicDataText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GrossWeight" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Material1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaterialGroupId" type="xs:int" />
+      <xs:element minOccurs="0" name="MaterialTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="NetWeight" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="OldMaterial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductHierachyId" type="xs:int" />
+      <xs:element minOccurs="0" name="UnitOfWeightId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Material" nillable="true" type="tns:Material" />
+  <xs:complexType name="ArrayOfMaterialGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialGroup" nillable="true" type="tns:MaterialGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialGroup" nillable="true" type="tns:ArrayOfMaterialGroup" />
+  <xs:complexType name="MaterialGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialGroup" nillable="true" type="tns:MaterialGroup" />
+  <xs:complexType name="ArrayOfMaterialType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialType" nillable="true" type="tns:MaterialType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaterialType" nillable="true" type="tns:ArrayOfMaterialType" />
+  <xs:complexType name="MaterialType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CostManager" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FromNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StockManager" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ToNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaterialType" nillable="true" type="tns:MaterialType" />
+  <xs:complexType name="ArrayOfBaseUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BaseUnit" nillable="true" type="tns:BaseUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBaseUnit" nillable="true" type="tns:ArrayOfBaseUnit" />
+  <xs:complexType name="BaseUnit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AltUnit" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsoCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseUnit" nillable="true" type="tns:BaseUnit" />
+  <xs:complexType name="ArrayOfMRP_Controller">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MRP_Controller" nillable="true" type="tns:MRP_Controller" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMRP_Controller" nillable="true" type="tns:ArrayOfMRP_Controller" />
+  <xs:complexType name="MRP_Controller">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MRP_ControllerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MRP_ControllerName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MRP_Controller" nillable="true" type="tns:MRP_Controller" />
+  <xs:complexType name="ArrayOfCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Company" nillable="true" type="tns:Company" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompany" nillable="true" type="tns:ArrayOfCompany" />
+  <xs:complexType name="Company">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Plants" nillable="true" type="tns:ArrayOfPlant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Company" nillable="true" type="tns:Company" />
+  <xs:complexType name="ArrayOfPlant">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Plant" nillable="true" type="tns:Plant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlant" nillable="true" type="tns:ArrayOfPlant" />
+  <xs:complexType name="Plant">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company" nillable="true" type="tns:Company" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PlantCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlantName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StorageLocations" nillable="true" type="tns:ArrayOfStorageLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Plant" nillable="true" type="tns:Plant" />
+  <xs:complexType name="ArrayOfStorageLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StorageLocation" nillable="true" type="tns:StorageLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStorageLocation" nillable="true" type="tns:ArrayOfStorageLocation" />
+  <xs:complexType name="StorageLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Plant" nillable="true" type="tns:Plant" />
+      <xs:element minOccurs="0" name="PlantId" type="xs:int" />
+      <xs:element minOccurs="0" name="SlocCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SlocName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StorageLocation" nillable="true" type="tns:StorageLocation" />
+  <xs:complexType name="ArrayOfProcurementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProcurementType" nillable="true" type="tns:ProcurementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProcurementType" nillable="true" type="tns:ArrayOfProcurementType" />
+  <xs:complexType name="ProcurementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcurementType" nillable="true" type="tns:ProcurementType" />
+  <xs:complexType name="ArrayOfProductHierachy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductHierachy" nillable="true" type="tns:ProductHierachy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductHierachy" nillable="true" type="tns:ArrayOfProductHierachy" />
+  <xs:complexType name="ProductHierachy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductHierachy1" nillable="true" type="tns:ArrayOfProductHierachy" />
+      <xs:element minOccurs="0" name="ProductHierachy2" nillable="true" type="tns:ProductHierachy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductHierachy" nillable="true" type="tns:ProductHierachy" />
+  <xs:complexType name="ArrayOfPurchasingGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurchasingGroup" nillable="true" type="tns:PurchasingGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPurchasingGroup" nillable="true" type="tns:ArrayOfPurchasingGroup" />
+  <xs:complexType name="PurchasingGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PurchasingGroupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PurchasingGroupName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PurchasingGroup" nillable="true" type="tns:PurchasingGroup" />
+  <xs:complexType name="ArrayOfMRP_Group">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MRP_Group" nillable="true" type="tns:MRP_Group" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMRP_Group" nillable="true" type="tns:ArrayOfMRP_Group" />
+  <xs:complexType name="MRP_Group">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MRP_GroupCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MRP_GroupName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MRP_Group" nillable="true" type="tns:MRP_Group" />
+</xs:schema>

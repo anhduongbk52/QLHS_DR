@@ -1,6 +1,6 @@
 ﻿using EofficeClient.Core;
+using QLHS_DR.ChatAppServiceReference;
 using QLHS_DR.Core;
-using QLHS_DR.EofficeMainServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +23,12 @@ namespace QLHS_DR.View.DocumentView
     {
         private Task _Task;
         private UserTask _UserTask;
-        private EofficeMainServiceClient _MyClient;
+        private MessageServiceClient _MyClient;
         public RequestPermissionDocumentWindow(int taskId)
         {
             try
             {
-                _MyClient = ServiceHelper.NewEofficeMainServiceClient();
+                _MyClient = ServiceHelper.NewMessageServiceClient();
                 _MyClient.Open();
                 _Task = _MyClient.LoadTask(taskId);
                 _UserTask = _MyClient.GetUserTask(SectionLogin.Ins.CurrentUser.Id, taskId);
@@ -59,7 +59,7 @@ namespace QLHS_DR.View.DocumentView
             {
                 if(checkBoxPrintPermission.IsChecked==true || checkBoxSavePermission.IsChecked==true||checkBoxViewPermission.IsChecked == true)
                 {
-                    _MyClient = ServiceHelper.NewEofficeMainServiceClient();
+                    _MyClient = ServiceHelper.NewMessageServiceClient();
                     _MyClient.Open();
                     RequestPermissionDocument requestPermissionDocument = new RequestPermissionDocument()
                     {

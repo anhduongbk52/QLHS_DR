@@ -139,6 +139,30 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IEofficeMainService_NewBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NewBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetActiveBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_SetActiveBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateBCTDesign_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBCTDesign" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_UpdateBCTDesign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBCTDesignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadBCTDesigns_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBCTDesigns" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadBCTDesigns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBCTDesignsResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetBCTDesigns_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBCTDesigns" />
   </wsdl:message>
@@ -228,6 +252,30 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_SetSignatureDocumentStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetSignatureDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTaskAttachedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DeleteTaskAttachedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddUserTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTask" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddUserTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddUserTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTasks" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_AddUserTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserTasksResponse" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetUserTask_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserTask" />
@@ -715,36 +763,6 @@
   <wsdl:message name="IEofficeMainService_DownloadFileAttachedInPyc_OutputMessage">
     <wsdl:part name="parameters" element="tns:DownloadFileAttachedInPycResponse" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_NewBCTDesign_InputMessage">
-    <wsdl:part name="parameters" element="tns:NewBCTDesign" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_NewBCTDesign_OutputMessage">
-    <wsdl:part name="parameters" element="tns:NewBCTDesignResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_SetActiveBCTDesign_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetActiveBCTDesign" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_SetActiveBCTDesign_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetActiveBCTDesignResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_UpdateBCTDesign_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateBCTDesign" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_UpdateBCTDesign_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateBCTDesignResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_LoadBCTDesigns_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadBCTDesigns" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_LoadBCTDesigns_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadBCTDesignsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetProductByProductCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetProductByProductCode" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_GetProductByProductCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetProductByProductCodeResponse" />
-  </wsdl:message>
   <wsdl:message name="IEofficeMainService_LoadTransformerManual_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadTransformerManual" />
   </wsdl:message>
@@ -931,6 +949,30 @@
   <wsdl:message name="IEofficeMainService_NewRequestPermissionDocument_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewRequestPermissionDocumentResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestPermissionDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestPermissionDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestPermissionDocumentsDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocumentsDTO" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_LoadRequestPermissionDocumentsDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocumentsDTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ProcessRequestPermissionDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestPermissionDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ProcessRequestPermissionDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestPermissionDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DenyRequestPermissionDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocument" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_DenyRequestPermissionDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocumentResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_NewRequestSendDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:NewRequestSendDocument" />
   </wsdl:message>
@@ -1020,6 +1062,12 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_ProcessRequestSendDocument_OutputMessage">
     <wsdl:part name="parameters" element="tns:ProcessRequestSendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ProcessRequestSendDocument1_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument1" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_ProcessRequestSendDocument1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument1Response" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetPublishDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPublishDocument" />
@@ -1225,30 +1273,6 @@
   <wsdl:message name="IEofficeMainService_IsExistTaskName_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsExistTaskNameResponse" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_DeleteTasks_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteTasks" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_DeleteTasks_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteTasksResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_DeleteTaskAttachedFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFiles" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_DeleteTaskAttachedFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteTaskAttachedFilesResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_AddUserTask_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserTask" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_AddUserTask_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserTaskResponse" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_AddUserTasks_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserTasks" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_AddUserTasks_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserTasksResponse" />
-  </wsdl:message>
   <wsdl:message name="IEofficeMainService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
@@ -1260,12 +1284,6 @@
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_PingToAll_InputMessage">
-    <wsdl:part name="parameters" element="tns:PingToAll" />
-  </wsdl:message>
-  <wsdl:message name="IEofficeMainService_PingToAll_OutputMessage">
-    <wsdl:part name="parameters" element="tns:PingToAllResponse" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_GetConnectedUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetConnectedUsers" />
@@ -1753,19 +1771,44 @@
   <wsdl:message name="IEofficeMainService_GetProductById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProductByProductCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByProductCode" />
+  </wsdl:message>
+  <wsdl:message name="IEofficeMainService_GetProductByProductCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByProductCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_ForwardToClient_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ForwardToClient" />
   </wsdl:message>
   <wsdl:message name="IEofficeMainService_NortifyRequestSendDocument_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:NortifyRequestSendDocument" />
   </wsdl:message>
+  <wsdl:message name="IEofficeMainService_NortifyNewTask_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NortifyNewTask" />
+  </wsdl:message>
   <wsdl:message name="IEofficeMainService_UserConnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UserConnected" />
   </wsdl:message>
-  <wsdl:message name="IEofficeMainService_UserTaskChanged_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UserTaskChanged" />
+  <wsdl:message name="IEofficeMainService_LogoutFormServer_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:LogoutFormServer" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="true" name="IEofficeMainService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NewBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewBCTDesign" message="tns:IEofficeMainService_NewBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewBCTDesignResponse" message="tns:IEofficeMainService_NewBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetActiveBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetActiveBCTDesign" message="tns:IEofficeMainService_SetActiveBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetActiveBCTDesignResponse" message="tns:IEofficeMainService_SetActiveBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBCTDesign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateBCTDesign" message="tns:IEofficeMainService_UpdateBCTDesign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateBCTDesignResponse" message="tns:IEofficeMainService_UpdateBCTDesign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadBCTDesigns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadBCTDesigns" message="tns:IEofficeMainService_LoadBCTDesigns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadBCTDesignsResponse" message="tns:IEofficeMainService_LoadBCTDesigns_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBCTDesigns">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetBCTDesigns" message="tns:IEofficeMainService_GetBCTDesigns_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetBCTDesignsResponse" message="tns:IEofficeMainService_GetBCTDesigns_OutputMessage" />
@@ -1825,6 +1868,22 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetSignatureDocumentStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetSignatureDocumentStatus" message="tns:IEofficeMainService_SetSignatureDocumentStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetSignatureDocumentStatusResponse" message="tns:IEofficeMainService_SetSignatureDocumentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTasks" message="tns:IEofficeMainService_DeleteTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTasksResponse" message="tns:IEofficeMainService_DeleteTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteTaskAttachedFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles" message="tns:IEofficeMainService_DeleteTaskAttachedFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFilesResponse" message="tns:IEofficeMainService_DeleteTaskAttachedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUserTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTask" message="tns:IEofficeMainService_AddUserTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTaskResponse" message="tns:IEofficeMainService_AddUserTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUserTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTasks" message="tns:IEofficeMainService_AddUserTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTasksResponse" message="tns:IEofficeMainService_AddUserTasks_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetUserTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetUserTask" message="tns:IEofficeMainService_GetUserTask_InputMessage" />
@@ -2150,26 +2209,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DownloadFileAttachedInPyc" message="tns:IEofficeMainService_DownloadFileAttachedInPyc_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DownloadFileAttachedInPycResponse" message="tns:IEofficeMainService_DownloadFileAttachedInPyc_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NewBCTDesign">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewBCTDesign" message="tns:IEofficeMainService_NewBCTDesign_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewBCTDesignResponse" message="tns:IEofficeMainService_NewBCTDesign_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetActiveBCTDesign">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SetActiveBCTDesign" message="tns:IEofficeMainService_SetActiveBCTDesign_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/SetActiveBCTDesignResponse" message="tns:IEofficeMainService_SetActiveBCTDesign_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateBCTDesign">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateBCTDesign" message="tns:IEofficeMainService_UpdateBCTDesign_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UpdateBCTDesignResponse" message="tns:IEofficeMainService_UpdateBCTDesign_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadBCTDesigns">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadBCTDesigns" message="tns:IEofficeMainService_LoadBCTDesigns_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadBCTDesignsResponse" message="tns:IEofficeMainService_LoadBCTDesigns_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetProductByProductCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByProductCode" message="tns:IEofficeMainService_GetProductByProductCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByProductCodeResponse" message="tns:IEofficeMainService_GetProductByProductCode_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadTransformerManual">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTransformerManual" message="tns:IEofficeMainService_LoadTransformerManual_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadTransformerManualResponse" message="tns:IEofficeMainService_LoadTransformerManual_OutputMessage" />
@@ -2294,6 +2333,22 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewRequestPermissionDocument" message="tns:IEofficeMainService_NewRequestPermissionDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewRequestPermissionDocumentResponse" message="tns:IEofficeMainService_NewRequestPermissionDocument_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadRequestPermissionDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestPermissionDocuments" message="tns:IEofficeMainService_LoadRequestPermissionDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestPermissionDocumentsResponse" message="tns:IEofficeMainService_LoadRequestPermissionDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LoadRequestPermissionDocumentsDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestPermissionDocumentsDTO" message="tns:IEofficeMainService_LoadRequestPermissionDocumentsDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LoadRequestPermissionDocumentsDTOResponse" message="tns:IEofficeMainService_LoadRequestPermissionDocumentsDTO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ProcessRequestPermissionDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestPermissionDocument" message="tns:IEofficeMainService_ProcessRequestPermissionDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestPermissionDocumentResponse" message="tns:IEofficeMainService_ProcessRequestPermissionDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DenyRequestPermissionDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DenyRequestPermissionDocument" message="tns:IEofficeMainService_DenyRequestPermissionDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DenyRequestPermissionDocumentResponse" message="tns:IEofficeMainService_DenyRequestPermissionDocument_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NewRequestSendDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/NewRequestSendDocument" message="tns:IEofficeMainService_NewRequestSendDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NewRequestSendDocumentResponse" message="tns:IEofficeMainService_NewRequestSendDocument_OutputMessage" />
@@ -2353,6 +2408,10 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ProcessRequestSendDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument" message="tns:IEofficeMainService_ProcessRequestSendDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocumentResponse" message="tns:IEofficeMainService_ProcessRequestSendDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ProcessRequestSendDocument1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument1" message="tns:IEofficeMainService_ProcessRequestSendDocument1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument1Response" message="tns:IEofficeMainService_ProcessRequestSendDocument1_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetPublishDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetPublishDocument" message="tns:IEofficeMainService_GetPublishDocument_InputMessage" />
@@ -2490,22 +2549,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/IsExistTaskName" message="tns:IEofficeMainService_IsExistTaskName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/IsExistTaskNameResponse" message="tns:IEofficeMainService_IsExistTaskName_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteTasks">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTasks" message="tns:IEofficeMainService_DeleteTasks_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTasksResponse" message="tns:IEofficeMainService_DeleteTasks_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteTaskAttachedFiles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles" message="tns:IEofficeMainService_DeleteTaskAttachedFiles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFilesResponse" message="tns:IEofficeMainService_DeleteTaskAttachedFiles_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUserTask">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTask" message="tns:IEofficeMainService_AddUserTask_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTaskResponse" message="tns:IEofficeMainService_AddUserTask_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddUserTasks">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTasks" message="tns:IEofficeMainService_AddUserTasks_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/AddUserTasksResponse" message="tns:IEofficeMainService_AddUserTasks_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/Connect" message="tns:IEofficeMainService_Connect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ConnectResponse" message="tns:IEofficeMainService_Connect_OutputMessage" />
@@ -2515,10 +2558,6 @@
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/SendMessage" message="tns:IEofficeMainService_SendMessage_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="PingToAll">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/PingToAll" message="tns:IEofficeMainService_PingToAll_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/PingToAllResponse" message="tns:IEofficeMainService_PingToAll_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetConnectedUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetConnectedUsers" message="tns:IEofficeMainService_GetConnectedUsers_InputMessage" />
@@ -2844,23 +2883,66 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductById" message="tns:IEofficeMainService_GetProductById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByIdResponse" message="tns:IEofficeMainService_GetProductById_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetProductByProductCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByProductCode" message="tns:IEofficeMainService_GetProductByProductCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/GetProductByProductCodeResponse" message="tns:IEofficeMainService_GetProductByProductCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ForwardToClient">
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/ForwardToClient" message="tns:IEofficeMainService_ForwardToClient_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NortifyRequestSendDocument">
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NortifyRequestSendDocument" message="tns:IEofficeMainService_NortifyRequestSendDocument_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NortifyNewTask">
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/NortifyNewTask" message="tns:IEofficeMainService_NortifyNewTask_OutputCallbackMessage" />
+    </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UserConnected" message="tns:IEofficeMainService_UserConnected_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UserTaskChanged">
-      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/UserTaskChanged" message="tns:IEofficeMainService_UserTaskChanged_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="LogoutFormServer">
+      <wsdl:output wsaw:Action="http://tempuri.org/IEofficeMainService/LogoutFormServer" message="tns:IEofficeMainService_LogoutFormServer_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IEofficeMainService" type="tns:IEofficeMainService">
     <wsp:PolicyReference URI="#NetTcpBinding_IEofficeMainService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="NewBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetActiveBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBCTDesign">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateBCTDesign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadBCTDesigns">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadBCTDesigns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBCTDesigns">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetBCTDesigns" style="document" />
       <wsdl:input>
@@ -2989,6 +3071,42 @@
     </wsdl:operation>
     <wsdl:operation name="SetSignatureDocumentStatus">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetSignatureDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTaskAttachedFiles">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserTasks">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddUserTasks" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3725,51 +3843,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="NewBCTDesign">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewBCTDesign" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetActiveBCTDesign">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/SetActiveBCTDesign" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateBCTDesign">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UpdateBCTDesign" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="LoadBCTDesigns">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadBCTDesigns" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetProductByProductCode">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetProductByProductCode" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="LoadTransformerManual">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadTransformerManual" style="document" />
       <wsdl:input>
@@ -4049,6 +4122,42 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LoadRequestPermissionDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadRequestPermissionDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadRequestPermissionDocumentsDTO">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LoadRequestPermissionDocumentsDTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestPermissionDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/ProcessRequestPermissionDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DenyRequestPermissionDocument">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DenyRequestPermissionDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="NewRequestSendDocument">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NewRequestSendDocument" style="document" />
       <wsdl:input>
@@ -4177,6 +4286,15 @@
     </wsdl:operation>
     <wsdl:operation name="ProcessRequestSendDocument">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument1">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/ProcessRequestSendDocument1" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4490,42 +4608,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteTasks">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteTasks" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteTaskAttachedFiles">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/DeleteTaskAttachedFiles" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddUserTask">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddUserTask" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddUserTasks">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/AddUserTasks" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Connect">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/Connect" style="document" />
       <wsdl:input>
@@ -4546,15 +4628,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="PingToAll">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/PingToAll" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetConnectedUsers">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetConnectedUsers" style="document" />
@@ -5285,6 +5358,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetProductByProductCode">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/GetProductByProductCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ForwardToClient">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/ForwardToClient" style="document" />
       <wsdl:output>
@@ -5297,14 +5379,20 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="NortifyNewTask">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/NortifyNewTask" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UserConnected">
       <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UserConnected" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UserTaskChanged">
-      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/UserTaskChanged" style="document" />
+    <wsdl:operation name="LogoutFormServer">
+      <soap12:operation soapAction="http://tempuri.org/IEofficeMainService/LogoutFormServer" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

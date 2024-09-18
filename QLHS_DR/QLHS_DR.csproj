@@ -156,7 +156,6 @@
     <Compile Include="User32API.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BCTDesignViewModel\NewBCTDesignViewModel.cs" />
-    <Compile Include="ViewModel\ChatAppViewModel\MessageServiceCallBack.cs" />
     <Compile Include="ViewModel\ChatAppViewModel\MessageViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel\AddContractViewModel.cs" />
     <Compile Include="ViewModel\ContractViewModel\ListContractViewModel.cs" />
@@ -346,6 +345,9 @@
     </Compile>
     <Compile Include="View\HosoView\UploadHoSoWindow.xaml.cs">
       <DependentUpon>UploadHoSoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SaleDocumentView\SaleDocumentManagerUC.xaml.cs">
+      <DependentUpon>SaleDocumentManagerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TransformerManualView\EditTransformerManualWindow.xaml.cs">
       <DependentUpon>EditTransformerManualWindow.xaml</DependentUpon>
@@ -575,6 +577,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SaleDocumentView\SaleDocumentManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TransformerManualView\EditTransformerManualWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -644,10 +650,16 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BAInfor.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BaseUnit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BCTDesign.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.BIInfor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Company.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Contract.datasource">
@@ -659,6 +671,9 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DepartmentTask.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DisplayRequestSendDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DocTittle.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -666,6 +681,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.GroupDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.JobType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Log.datasource">
@@ -686,6 +704,15 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MainJobTodoPYC.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Material.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MaterialGroup1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MaterialType1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Message.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -693,6 +720,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MOFInfor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MRP_Controller.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.MRP_Group.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Nortification.datasource">
@@ -704,10 +737,19 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PermissionType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Plant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Position.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ProcurementType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ProductHierachy.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.ProductTypeNew.datasource">
@@ -720,6 +762,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PublishDocumentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PurchasingGroup.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.PYC.datasource">
@@ -749,10 +794,25 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.RolePermissionD.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.SaleDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.SaleDocumentItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.SaleDocumentItemDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.SaleDocumentItem_Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.SignatureDocument.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Standard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.StorageLocation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Task.datasource">
@@ -796,6 +856,9 @@
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.VoltageTransformerInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\SAPMODEL.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\service1.wsdl" />
     <None Include="Connected Services\ChatAppServiceReference\service2.xsd">
@@ -901,6 +964,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.ReceivedDepartmentDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RequestPermissionDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RequestPermissionDocumentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EofficeMainServiceReference\QLHS_DR.EofficeMainServiceReference.RequestSendDocument.datasource">
