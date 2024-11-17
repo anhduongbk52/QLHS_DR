@@ -176,6 +176,12 @@
   <wsdl:message name="IMessageService_GetMainJobTodoes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMainJobTodoesResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_GetMainJobTodoesByStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainJobTodoesByStatus" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetMainJobTodoesByStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainJobTodoesByStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_GetMainJobTodoesInOrderItem_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMainJobTodoesInOrderItem" />
   </wsdl:message>
@@ -493,6 +499,36 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_UpdateSaleDocumentFormSap_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateSaleDocumentFormSapResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployees_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployees" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetAvatar_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvatar" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetAvatar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvatarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentsOfEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsOfEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetDepartmentsOfEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsOfEmployeeResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_ProcessRequestPermissionDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:ProcessRequestPermissionDocument" />
@@ -2049,6 +2085,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoes" message="tns:IMessageService_GetMainJobTodoes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoesResponse" message="tns:IMessageService_GetMainJobTodoes_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetMainJobTodoesByStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoesByStatus" message="tns:IMessageService_GetMainJobTodoesByStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoesByStatusResponse" message="tns:IMessageService_GetMainJobTodoesByStatus_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetMainJobTodoesInOrderItem">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoesInOrderItem" message="tns:IMessageService_GetMainJobTodoesInOrderItem_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetMainJobTodoesInOrderItemResponse" message="tns:IMessageService_GetMainJobTodoesInOrderItem_OutputMessage" />
@@ -2260,6 +2300,26 @@
     <wsdl:operation name="UpdateSaleDocumentFormSap">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UpdateSaleDocumentFormSap" message="tns:IMessageService_UpdateSaleDocumentFormSap_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UpdateSaleDocumentFormSapResponse" message="tns:IMessageService_UpdateSaleDocumentFormSap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployees" message="tns:IMessageService_LoadEmployees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeesResponse" message="tns:IMessageService_LoadEmployees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentDTOs" message="tns:IMessageService_LoadEmployeeDepartmentDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentDTOsResponse" message="tns:IMessageService_LoadEmployeeDepartmentDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvatar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetAvatar" message="tns:IMessageService_GetAvatar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetAvatarResponse" message="tns:IMessageService_GetAvatar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartments" message="tns:IMessageService_LoadEmployeeDepartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsResponse" message="tns:IMessageService_LoadEmployeeDepartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentsOfEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee" message="tns:IMessageService_GetDepartmentsOfEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployeeResponse" message="tns:IMessageService_GetDepartmentsOfEmployee_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ProcessRequestPermissionDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestPermissionDocument" message="tns:IMessageService_ProcessRequestPermissionDocument_InputMessage" />
@@ -3340,6 +3400,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMainJobTodoesByStatus">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetMainJobTodoesByStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetMainJobTodoesInOrderItem">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetMainJobTodoesInOrderItem" style="document" />
       <wsdl:input>
@@ -3810,6 +3879,51 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateSaleDocumentFormSap">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/UpdateSaleDocumentFormSap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployees">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentDTOs">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDepartmentDTOs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvatar">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetAvatar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentsOfEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

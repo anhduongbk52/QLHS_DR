@@ -175,6 +175,19 @@
                                            LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Audit_ChangeHistory.svg}" />
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
+                <dxr:RibbonPage Caption="Employees Manager">
+                    <dxr:RibbonPageGroup Caption="Nhân sự">
+                        <dxb:BarButtonItem Content="Danh sách nhân sự"
+                                           Command="{Binding OpenListEmployeeCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Department.svg}" />
+                        <dxb:BarButtonItem Content="Thêm mới"
+                                           Command="{Binding NewUserCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewCustomer.svg}" />
+                    </dxr:RibbonPageGroup>
+                   
+                   
+                   
+                </dxr:RibbonPage>
                 <dxr:RibbonPage Caption="Setting">
                     <dxr:RibbonPageGroup Caption="Option">
                         <dxb:BarButtonItem Content="Nortification Setting"

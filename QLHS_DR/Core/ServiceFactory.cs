@@ -1,4 +1,6 @@
-﻿using DevExpress.Mvvm.Native;
+﻿
+
+using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using QLHS_DR.ChatAppServiceReference;
 using System;
@@ -15,6 +17,97 @@ namespace QLHS_DR.Core
         internal ServiceFactory()
         {
             _Client = new MessageServiceClient();
+        }
+        internal byte[] GetAvatar(string employeeId)
+        {
+            byte[] kq=null;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.GetAvatar(employeeId);
+
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<Employee> LoadEmployees()
+        {
+            ObservableCollection<Employee> kq = new ObservableCollection<Employee>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadEmployees().ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartments(string employeeId)
+        {
+            ObservableCollection<EmployeeDepartment> kq = new ObservableCollection<EmployeeDepartment>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadEmployeeDepartments(employeeId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<Department> GetDepartmentsOfEmployee(string employeeId)
+        {
+            ObservableCollection<Department> kq = new ObservableCollection<Department>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.GetDepartmentsOfEmployee(employeeId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<EmployeeDepartmentDTO> LoadEmployeeDepartmentDTOs()
+        {
+            ObservableCollection<EmployeeDepartmentDTO> kq = new ObservableCollection<EmployeeDepartmentDTO>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadEmployeeDepartmentDTOs().ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
         }
         internal ObservableCollection<LoginManager> LoadLoginManagers()
         {

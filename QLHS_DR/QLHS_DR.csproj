@@ -65,6 +65,14 @@
     <StartupObject>QLHS_DR.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.DevAV.v21.2.Data, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.DevAV.v21.2.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DevAV.v21.2.Reports, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.DevAV.v21.2.Reports.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Docs.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Bin\Framework\DevExpress.Docs.v21.2.dll</HintPath>
@@ -141,9 +149,11 @@
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\FullNameConverter.cs" />
     <Compile Include="Converter\GenderConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
+    <Compile Include="Converter\PictureConverter.cs" />
     <Compile Include="Core\AppInfo.cs" />
     <Compile Include="Core\DocScan.cs" />
     <Compile Include="Core\FileHelper.cs" />
@@ -175,6 +185,8 @@
     <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel\EmployeeManagerViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel\EmployeePanelViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\AddApprovalDocToOtherProductViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\EditApprovalDocumentProductViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\ListApprovalDocumentOfProductViewModel.cs" />
@@ -279,6 +291,12 @@
     </Compile>
     <Compile Include="View\DocumentView\UserTaskRevokedUC.xaml.cs">
       <DependentUpon>UserTaskRevokedUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView\EmployeeManagerUC.xaml.cs">
+      <DependentUpon>EmployeeManagerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView\EmployeePanelView.xaml.cs">
+      <DependentUpon>EmployeePanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HosoView\AddApprovalDocToOtherProductWindow.xaml.cs">
       <DependentUpon>AddApprovalDocToOtherProductWindow.xaml</DependentUpon>
@@ -392,6 +410,7 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
     <Page Include="ViewModel\ProductViewModel\ListLsxOfProductUC.xaml">
       <SubType>Designer</SubType>
@@ -486,6 +505,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DocumentView\UserTaskRevokedUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView\EmployeeManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView\EmployeePanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -675,6 +702,15 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.DocTittle.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.Employee.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.EmployeeDepartment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.FileOfPyc.datasource">
@@ -1150,6 +1186,47 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\ChangeView.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\Delete.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\Edit.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\NewEmploye.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\NewGroup.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Mr.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\Mrs.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Glyph_Mail.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\Glyph_Message.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\Glyph_Phone.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icon\Glyph_Video.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -13,27 +13,20 @@ namespace QLHS_DR.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null)
+            if (value is string gender)
             {
-                bool gender = (bool)value;
-                if (gender == true)
-                    return "Nam";
-                else if (gender == false)
-                    return "Nữ";
-                else return null;
+                return gender == "0" ? "Nam" : "Nữ";
             }
-            else return null;
+            return "N/A";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var gender = (string)value;
-            if (gender == "Nam")
+            if (value is string genderString)
             {
-                return true;
+                return genderString == "Nam" ? "0" : "1";
             }
-            else if (gender == "Nữ") return false;
-            else return null;
+            return Binding.DoNothing;
         }
     }
 }

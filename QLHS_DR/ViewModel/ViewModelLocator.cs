@@ -2,6 +2,7 @@
 using EofficeClient.ViewModel;
 using QLHS_DR.ViewModel.DepartmentViewModel;
 using QLHS_DR.ViewModel.DocumentViewModel;
+using QLHS_DR.ViewModel.EmployeeViewModel;
 using QLHS_DR.ViewModel.LsxViewModel;
 using QLHS_DR.ViewModel.PhanQuyen;
 using QLHS_DR.ViewModel.Products;
@@ -60,6 +61,10 @@ namespace QLHS_DR.ViewModel
         public FunctionsManagerViewModel FunctionsManagerViewModel
         {
             get { return new FunctionsManagerViewModel(); }
+        }
+        public EmployeeManagerViewModel EmployeeManagerViewModel
+        {
+            get { return new EmployeeManagerViewModel(); }
         }
         
     }

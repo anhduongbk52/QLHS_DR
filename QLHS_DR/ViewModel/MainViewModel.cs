@@ -12,6 +12,7 @@ using QLHS_DR.View;
 using QLHS_DR.View.ContractView;
 using QLHS_DR.View.DepartmentView;
 using QLHS_DR.View.DocumentView;
+using QLHS_DR.View.EmployeeView;
 using QLHS_DR.View.HosoView;
 using QLHS_DR.View.PhanQuyenView;
 using QLHS_DR.View.ProductView;
@@ -199,6 +200,7 @@ namespace QLHS_DR.ViewModel
         public ICommand OpenFunctionManagerCommand { get; set; }
         public ICommand OpenListGroupCommand { get; set; }
         public ICommand OpenLogsCommand { get; set; }
+        public ICommand OpenListEmployeeCommand { get; set; }
 
         #endregion
         private LoginWindow loginWindow;
@@ -230,9 +232,14 @@ namespace QLHS_DR.ViewModel
             ///////////////////////////////
             notifierForNormalUser = new Notifier(cfg =>
             {
-                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(60), MaximumNotificationCount.FromCount(10));
-                cfg.PositionProvider = new PrimaryScreenPositionProvider(corner: Corner.BottomRight, offsetX: 10, offsetY: 10);
+                //cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(50), MaximumNotificationCount.FromCount(10));
                 //cfg.LifetimeSupervisor = new CountBasedLifetimeSupervisor(maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications());
+                //cfg.LifetimeSupervisor = new CountBasedLifetimeSupervisor(maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications());
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(30),
+                    maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications() );
+                cfg.PositionProvider = new PrimaryScreenPositionProvider(corner: Corner.BottomRight, offsetX: 10, offsetY: 10);
+               
                 cfg.DisplayOptions.TopMost = true; // set the option to show notifications over other windows
                 cfg.DisplayOptions.Width = 350; // set the notifications width
                 cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
@@ -807,6 +814,28 @@ namespace QLHS_DR.ViewModel
                 LogView logView = new() { DataContext = new LogViewModel() };
                 logView.ShowDialog();
             });
+            OpenListEmployeeCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                EmployeeManagerUC tabContent = new();
+                TabContainer tabItemMain = new()
+                {
+                    Header = "Danh sách nhân sự",
+                    IsSelected = true,
+                    Content = tabContent,
+                    IsVisible = true
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Danh sách nhân sự").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = tabContent;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
         }
 
         private void BackgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)
@@ -955,7 +984,6 @@ namespace QLHS_DR.ViewModel
                 try
                 {
                     //Process.Start(args.ChangelogURL);
-
                     if (AutoUpdater.DownloadUpdate(args))
                     {
                         window.Close();

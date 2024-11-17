@@ -147,6 +147,8 @@
       <xs:element minOccurs="0" name="ECPuKeyForFile" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="ECPuKeyForMsg" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EmployeeId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FileOfBctDesigns" nillable="true" type="tns:ArrayOfFileOfBctDesign" />
       <xs:element minOccurs="0" name="Files" nillable="true" type="tns:ArrayOfFile" />
       <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
@@ -272,6 +274,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DepartmentTasks" nillable="true" type="tns:ArrayOfDepartmentTask" />
+      <xs:element minOccurs="0" name="EmployeeDepartments" nillable="true" type="tns:ArrayOfEmployeeDepartment" />
       <xs:element minOccurs="0" name="GroupDepartment" nillable="true" type="tns:GroupDepartment" />
       <xs:element minOccurs="0" name="GroupDepartmentId" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -290,6 +293,89 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Department" nillable="true" type="tns:Department" />
+  <xs:complexType name="ArrayOfEmployeeDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmployeeDepartment" nillable="true" type="tns:EmployeeDepartment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmployeeDepartment" nillable="true" type="tns:ArrayOfEmployeeDepartment" />
+  <xs:complexType name="EmployeeDepartment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Department" nillable="true" type="tns:Department" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EmployeeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ToDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeDepartment" nillable="true" type="tns:EmployeeDepartment" />
+  <xs:complexType name="Employee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CitizenIdentificationMumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DocumentNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeDepartments" nillable="true" type="tns:ArrayOfEmployeeDepartment" />
+      <xs:element minOccurs="0" name="EmployeePositions" nillable="true" type="tns:ArrayOfEmployeePosition" />
+      <xs:element minOccurs="0" name="FirtName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HireDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActive" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPartyMember" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSolider" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Salaries" nillable="true" type="tns:ArrayOfSalary" />
+      <xs:element minOccurs="0" name="SocialInsuranceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TrainedOccupation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Employee" nillable="true" type="tns:Employee" />
+  <xs:complexType name="ArrayOfEmployeePosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmployeePosition" nillable="true" type="tns:EmployeePosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmployeePosition" nillable="true" type="tns:ArrayOfEmployeePosition" />
+  <xs:complexType name="EmployeePosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EmployeeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="TitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TitleName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeePosition" nillable="true" type="tns:EmployeePosition" />
+  <xs:complexType name="ArrayOfSalary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Salary" nillable="true" type="tns:Salary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSalary" nillable="true" type="tns:ArrayOfSalary" />
+  <xs:complexType name="Salary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Employee" nillable="true" type="tns:Employee" />
+      <xs:element minOccurs="0" name="EmployeeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ToDate" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Salary" nillable="true" type="tns:Salary" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
   <xs:complexType name="GroupDepartment">
     <xs:sequence>
       <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
@@ -586,6 +672,7 @@
       <xs:element minOccurs="0" name="ItemNumber" type="xs:int" />
       <xs:element minOccurs="0" name="MainJobTodoes" nillable="true" type="tns:ArrayOfMainJobTodo" />
       <xs:element minOccurs="0" name="MaterialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="OrderQuantity" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Plant" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductRange" nillable="true" type="xs:string" />
@@ -610,6 +697,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCompleted" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="JobHeader" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="JobName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="JobType" nillable="true" type="tns:JobType" />
@@ -617,6 +705,7 @@
       <xs:element minOccurs="0" name="LsxId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="PYCId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Priority" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ProcessUser" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="ProcessUserId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="SaleDocumentItem" nillable="true" type="tns:SaleDocumentItem" />
@@ -2441,12 +2530,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSignatureType" nillable="true" type="tns:ArrayOfSignatureType" />
-  <xs:complexType name="ArrayOfUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
   <xs:complexType name="ArrayOfReceivedDepartmentDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceivedDepartmentDTO" nillable="true" type="tns:ReceivedDepartmentDTO" />
