@@ -530,6 +530,12 @@
   <wsdl:message name="IMessageService_GetDepartmentsOfEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartmentsOfEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_SaveChangeEmployeeDepartmentDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartmentDTO" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SaveChangeEmployeeDepartmentDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartmentDTOResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_ProcessRequestPermissionDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:ProcessRequestPermissionDocument" />
   </wsdl:message>
@@ -2321,6 +2327,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee" message="tns:IMessageService_GetDepartmentsOfEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployeeResponse" message="tns:IMessageService_GetDepartmentsOfEmployee_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SaveChangeEmployeeDepartmentDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO" message="tns:IMessageService_SaveChangeEmployeeDepartmentDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTOResponse" message="tns:IMessageService_SaveChangeEmployeeDepartmentDTO_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ProcessRequestPermissionDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestPermissionDocument" message="tns:IMessageService_ProcessRequestPermissionDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestPermissionDocumentResponse" message="tns:IMessageService_ProcessRequestPermissionDocument_OutputMessage" />
@@ -3924,6 +3934,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDepartmentsOfEmployee">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveChangeEmployeeDepartmentDTO">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

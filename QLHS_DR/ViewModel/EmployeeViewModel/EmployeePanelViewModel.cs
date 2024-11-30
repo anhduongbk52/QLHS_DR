@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
+using System.Windows.Forms;
+using EofficeClient.Core;
 
 namespace QLHS_DR.ViewModel.EmployeeViewModel
 {
@@ -94,7 +97,22 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
             IsReadOnly = !SectionLogin.Ins.ListPermissions.Any(x => x.Code == "employeeEditEmployeeInfo");
             SaveChangeEmployeeInfoCommand = new RelayCommand<Object>((p) => { if (!IsReadOnly) return true; else return false; }, (p) =>
             {
-                
+                DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Bạn có muốn lưu thay đổi không", "Cảnh báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        //_ServiceFactory.SaveChangeEmployeeDepartmentDTO();
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                    }
+                    finally
+                    {
+                        
+                    }
+                }
             });
         }
     }

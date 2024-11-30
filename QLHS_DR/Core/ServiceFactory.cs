@@ -18,6 +18,21 @@ namespace QLHS_DR.Core
         {
             _Client = new MessageServiceClient();
         }
+        public void SaveChangeEmployeeDepartmentDTO(EmployeeDepartmentDTO employeeDepartmentDTO)
+        {           
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.SaveChangeEmployeeDepartmentDTO(employeeDepartmentDTO);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+        }
         internal byte[] GetAvatar(string employeeId)
         {
             byte[] kq=null;

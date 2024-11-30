@@ -2563,6 +2563,7 @@
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SocialInsuranceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:int" />
       <xs:element minOccurs="0" name="TaxIdentificationNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TrainedOccupation" nillable="true" type="xs:string" />
     </xs:sequence>

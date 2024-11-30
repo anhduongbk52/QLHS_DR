@@ -18752,6 +18752,9 @@ namespace QLHS_DR.ChatAppServiceReference {
         private string SocialInsuranceNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TaxIdentificationNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -19010,6 +19013,19 @@ namespace QLHS_DR.ChatAppServiceReference {
                 if ((object.ReferenceEquals(this.SocialInsuranceNumberField, value) != true)) {
                     this.SocialInsuranceNumberField = value;
                     this.RaisePropertyChanged("SocialInsuranceNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
                 }
             }
         }
@@ -23134,6 +23150,12 @@ namespace QLHS_DR.ChatAppServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee", ReplyAction="http://tempuri.org/IMessageService/GetDepartmentsOfEmployeeResponse")]
         System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Department[]> GetDepartmentsOfEmployeeAsync(string employeeId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO", ReplyAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTOResponse")]
+        void SaveChangeEmployeeDepartmentDTO(QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO employeeDepartmentDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO", ReplyAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTOResponse")]
+        System.Threading.Tasks.Task SaveChangeEmployeeDepartmentDTOAsync(QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO employeeDepartmentDTO);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestPermissionDocument", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestPermissionDocumentResponse")]
         void ProcessRequestPermissionDocument(QLHS_DR.ChatAppServiceReference.RequestPermissionDocument requestPermissionDocument);
         
@@ -25220,6 +25242,14 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         public System.Threading.Tasks.Task<QLHS_DR.ChatAppServiceReference.Department[]> GetDepartmentsOfEmployeeAsync(string employeeId) {
             return base.Channel.GetDepartmentsOfEmployeeAsync(employeeId);
+        }
+        
+        public void SaveChangeEmployeeDepartmentDTO(QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO employeeDepartmentDTO) {
+            base.Channel.SaveChangeEmployeeDepartmentDTO(employeeDepartmentDTO);
+        }
+        
+        public System.Threading.Tasks.Task SaveChangeEmployeeDepartmentDTOAsync(QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO employeeDepartmentDTO) {
+            return base.Channel.SaveChangeEmployeeDepartmentDTOAsync(employeeDepartmentDTO);
         }
         
         public void ProcessRequestPermissionDocument(QLHS_DR.ChatAppServiceReference.RequestPermissionDocument requestPermissionDocument) {
