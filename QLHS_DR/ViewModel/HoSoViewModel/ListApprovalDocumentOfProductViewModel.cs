@@ -82,7 +82,7 @@ namespace QLHS_DR.ViewModel.HoSoViewModel
                 uploadApprovalDocumentProductWindow.ShowDialog();
                 ApprovalDocumentProducts = _ServiceFactory.GetApprovalDocumentProducts(_Product.Id, false);
             });
-            RemoveApprovalDocumentCommand = new RelayCommand<Object>((p) => { if (_SelectedApprovalDocumentProduct != null && (SectionLogin.Ins.CanRemoveApprovalDocumentProduct || (_SelectedApprovalDocumentProduct.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            RemoveApprovalDocumentCommand = new RelayCommand<Object>((p) => { if (_SelectedApprovalDocumentProduct != null && (SectionLogin.Ins.CanRemoveApprovalDocumentProduct || (SectionLogin.Ins.CurrentUser != null && _SelectedApprovalDocumentProduct.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
             {
                 if (System.Windows.MessageBox.Show("Bạn có muốn xóa tài liệu: " + _SelectedApprovalDocumentProduct.DocumentName, "Cảnh báo", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
                 {
@@ -92,7 +92,7 @@ namespace QLHS_DR.ViewModel.HoSoViewModel
                     }
                 }
             });
-            EditApprovalDocumentCommand = new RelayCommand<Object>((p) => { if (_SelectedApprovalDocumentProduct != null && (SectionLogin.Ins.CanUpdateApprovalDocumentProduct || (_SelectedApprovalDocumentProduct.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            EditApprovalDocumentCommand = new RelayCommand<Object>((p) => { if (_SelectedApprovalDocumentProduct != null && (SectionLogin.Ins.CanUpdateApprovalDocumentProduct || (SectionLogin.Ins.CurrentUser!=null && _SelectedApprovalDocumentProduct.UserCreateId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
             {
                 EditApprovalDocumentProductViewModel editApprovalDocumentProductView = new EditApprovalDocumentProductViewModel(_SelectedApprovalDocumentProduct);
                 EditApprovalDocumentProductWindow editApprovalDocumentProductWindow = new EditApprovalDocumentProductWindow() { DataContext = editApprovalDocumentProductView };

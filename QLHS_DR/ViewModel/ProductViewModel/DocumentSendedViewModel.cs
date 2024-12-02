@@ -223,7 +223,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                     }
                 }
             });
-            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner") && _UserTaskSelected.Task.OwnerUserId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
+            RevokeTaskCommand = new RelayCommand<Object>((p) => { if (_TaskSelected != null && (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTask") || (SectionLogin.Ins.ListPermissions.Any(x => x.Code == "taskRevokeTaskByOwner") && _TaskSelected.OwnerUserId == SectionLogin.Ins.CurrentUser.Id))) return true; else return false; }, (p) =>
             {
                 try
                 {
@@ -234,8 +234,7 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                         _MyClient.Open();
 
                         _MyClient.RevokeTaskByCurrentUser(_TaskSelected.Id);
-                        _MyClient.Close();
-                        
+                        _MyClient.Close();                       
                         
                     }
                 }
