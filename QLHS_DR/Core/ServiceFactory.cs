@@ -70,6 +70,42 @@ namespace QLHS_DR.Core
             }
             return kq;
         }
+        internal ObservableCollection<Task> GetTaskOfProduct(int taskId)
+        {
+            ObservableCollection<Task> kq = new ObservableCollection<Task>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.GetTaskOfProduct(taskId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<int> GetAllProductIdOfTask(int taskId)
+        {
+            ObservableCollection<int> kq = new ObservableCollection<int>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.GetAllProductIdOfTask(taskId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
         internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartments(string employeeId)
         {
             ObservableCollection<EmployeeDepartment> kq = new ObservableCollection<EmployeeDepartment>();

@@ -102,7 +102,7 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
                 {
                     try
                     {
-                        //_ServiceFactory.SaveChangeEmployeeDepartmentDTO();
+                        //_ServiceFactory.GetAllProductIdOfTask(42376);
                     }
                     catch (Exception ex)
                     {

@@ -52,10 +52,7 @@
                 <dxn:NavBarGroup  Header="Giao nhận tài liệu" IsExpanded="True" ImageSource="{dx:DXImage SvgImages/Icon Builder/Business_Briefcase.svg}">
                     <dxn:NavBarItem Content="Đã gửi"
                                     Command="{Binding OpenListSendedDocumentCommand }"
-                                    ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />
-                    <dxn:NavBarItem Content="Thu hồi"
-                                    Command="{Binding OpenListRevokedDocumentCommand}"
-                                    ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />
+                                    ImageSource="{dx:DXImage SvgImages/Business Objects/BO_List.svg}" />               
                 </dxn:NavBarGroup>
             </dxn:NavBarControl>
         </materialDesign:Card>

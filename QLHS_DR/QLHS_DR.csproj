@@ -201,6 +201,7 @@
     <Compile Include="ViewModel\PhanQuyen\PhanQuyenViewModel.cs" />
     <Compile Include="ViewModel\ProductTypeWrapper.cs" />
     <Compile Include="ViewModel\ProductViewModel\DetailTransformerViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel\DocumentSendedViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\GeneralInfomationProductViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel\ListLsxOfProductUC.xaml.cs">
       <DependentUpon>ListLsxOfProductUC.xaml</DependentUpon>
@@ -336,6 +337,9 @@
     </Compile>
     <Compile Include="View\ProductView\DetailTransformerUC.xaml.cs">
       <DependentUpon>DetailTransformerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductView\DocumentSendedUC.xaml.cs">
+      <DependentUpon>DocumentSendedUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProductView\GeneralInformationProductUC.xaml.cs">
       <DependentUpon>GeneralInformationProductUC.xaml</DependentUpon>
@@ -565,6 +569,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProductView\DetailTransformerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductView\DocumentSendedUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

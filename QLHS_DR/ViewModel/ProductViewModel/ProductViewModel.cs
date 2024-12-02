@@ -70,6 +70,8 @@ namespace QLHS_DR.ViewModel.ProductViewModel
         public ICommand OpenListFileDesignCommand { get; set; }
         public ICommand OpenListFileHoSoCommand { get; set; }
         public ICommand OpenListApprovalDocumentProductCommand { get; set; }
+        public ICommand OpenListSendedDocumentCommand { get; set; }
+        public ICommand OpenListRevokedDocumentCommand { get; set; }
         #endregion
         internal ProductViewModel(Product product)
         {
@@ -145,6 +147,18 @@ namespace QLHS_DR.ViewModel.ProductViewModel
                 ListApprovalDocumentOfProductViewModel listApprovalDocumentOfProductViewModel = new ListApprovalDocumentOfProductViewModel(_Product);
                 ListApprovalDocumentOfProductUC listApprovalDocumentOfProductUC = new ListApprovalDocumentOfProductUC() { DataContext = listApprovalDocumentOfProductViewModel };
                 LoadUC = listApprovalDocumentOfProductUC;
+            });
+            OpenListSendedDocumentCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                DocumentSendedViewModel documentSendedViewModel = new DocumentSendedViewModel(Product.Id);
+                DocumentSendedUC documentSendedUC = new DocumentSendedUC() { DataContext = documentSendedViewModel };
+                LoadUC = documentSendedUC;
+            });
+            OpenListRevokedDocumentCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                DocumentSendedViewModel documentSendedViewModel = new DocumentSendedViewModel(Product.Id);
+                DocumentSendedUC documentSendedUC = new DocumentSendedUC() { DataContext = documentSendedViewModel };
+                LoadUC = documentSendedUC;
             });
         }
     }

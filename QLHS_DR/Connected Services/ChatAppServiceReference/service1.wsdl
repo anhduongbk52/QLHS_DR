@@ -392,6 +392,12 @@
   <wsdl:message name="IMessageService_DownloadFileOfBCTDesign_OutputMessage">
     <wsdl:part name="parameters" element="tns:DownloadFileOfBCTDesignResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_GetAllProductIdOfTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductIdOfTask" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetAllProductIdOfTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductIdOfTaskResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_GetSignatureImage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSignatureImage" />
   </wsdl:message>
@@ -451,6 +457,12 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_SetSignatureDocumentStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetSignatureDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskOfProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskOfProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetTaskOfProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskOfProductResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_GetJobTypes_InputMessage">
     <wsdl:part name="parameters" element="tns:GetJobTypes" />
@@ -2235,6 +2247,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileOfBCTDesign" message="tns:IMessageService_DownloadFileOfBCTDesign_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileOfBCTDesignResponse" message="tns:IMessageService_DownloadFileOfBCTDesign_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllProductIdOfTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetAllProductIdOfTask" message="tns:IMessageService_GetAllProductIdOfTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetAllProductIdOfTaskResponse" message="tns:IMessageService_GetAllProductIdOfTask_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetSignatureImage">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetSignatureImage" message="tns:IMessageService_GetSignatureImage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetSignatureImageResponse" message="tns:IMessageService_GetSignatureImage_OutputMessage" />
@@ -2274,6 +2290,10 @@
     <wsdl:operation name="SetSignatureDocumentStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetSignatureDocumentStatus" message="tns:IMessageService_SetSignatureDocumentStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetSignatureDocumentStatusResponse" message="tns:IMessageService_SetSignatureDocumentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskOfProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetTaskOfProduct" message="tns:IMessageService_GetTaskOfProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetTaskOfProductResponse" message="tns:IMessageService_GetTaskOfProduct_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetJobTypes">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetJobTypes" message="tns:IMessageService_GetJobTypes_InputMessage" />
@@ -3734,6 +3754,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllProductIdOfTask">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetAllProductIdOfTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetSignatureImage">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetSignatureImage" style="document" />
       <wsdl:input>
@@ -3817,6 +3846,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetSignatureDocumentStatus">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/SetSignatureDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskOfProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetTaskOfProduct" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
