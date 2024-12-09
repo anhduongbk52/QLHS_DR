@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Forms;
 using EofficeClient.Core;
+using System.IdentityModel.Metadata;
+using DevExpress.Mvvm.Native;
 
 namespace QLHS_DR.ViewModel.EmployeeViewModel
 {
@@ -102,11 +104,19 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
                 {
                     try
                     {
-                        //_ServiceFactory.GetAllProductIdOfTask(42376);
+                        if(_ServiceFactory.SaveChangeEmployee(_Employee))
+                        {
+                            System.Windows.MessageBox.Show("Cập nhật thành công");
+                        }  
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Thao tác thất bại, vui lòng thử lại sau.");
+                        }
                     }
                     catch (Exception ex)
                     {
-                        
+                        System.Windows.MessageBox.Show(ex.Message);
+                        System.Windows.MessageBox.Show(ex.StackTrace);
                     }
                     finally
                     {

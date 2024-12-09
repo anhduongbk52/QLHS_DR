@@ -18,6 +18,24 @@ namespace QLHS_DR.Core
         {
             _Client = new MessageServiceClient();
         }
+        public bool SaveChangeEmployee(Employee employee)
+        {
+            bool result = false;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                result = _Client.SaveChangeEmployee(employee);
+                _Client.Close();
+               
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
         public void SaveChangeEmployeeDepartmentDTO(EmployeeDepartmentDTO employeeDepartmentDTO)
         {           
             try

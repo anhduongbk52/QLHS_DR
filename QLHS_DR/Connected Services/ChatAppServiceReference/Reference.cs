@@ -22899,6 +22899,12 @@ namespace QLHS_DR.ChatAppServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatAppServiceReference.IMessageService")]
     public interface IMessageService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewLsxProduct", ReplyAction="http://tempuri.org/IMessageService/NewLsxProductResponse")]
+        int[] NewLsxProduct(int lsxId, int[] productIds);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewLsxProduct", ReplyAction="http://tempuri.org/IMessageService/NewLsxProductResponse")]
+        System.Threading.Tasks.Task<int[]> NewLsxProductAsync(int lsxId, int[] productIds);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DownloadFileLsx", ReplyAction="http://tempuri.org/IMessageService/DownloadFileLsxResponse")]
         byte[] DownloadFileLsx(int lsxId);
         
@@ -23308,6 +23314,18 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO", ReplyAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTOResponse")]
         System.Threading.Tasks.Task SaveChangeEmployeeDepartmentDTOAsync(QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO employeeDepartmentDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SaveChangeEmployee", ReplyAction="http://tempuri.org/IMessageService/SaveChangeEmployeeResponse")]
+        bool SaveChangeEmployee(QLHS_DR.ChatAppServiceReference.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/SaveChangeEmployee", ReplyAction="http://tempuri.org/IMessageService/SaveChangeEmployeeResponse")]
+        System.Threading.Tasks.Task<bool> SaveChangeEmployeeAsync(QLHS_DR.ChatAppServiceReference.Employee employee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument", ReplyAction="http://tempuri.org/IMessageService/DenyRequestPermissionDocumentResponse")]
+        void DenyRequestPermissionDocument(int requestPermissionDocumentId, string denyReason);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument", ReplyAction="http://tempuri.org/IMessageService/DenyRequestPermissionDocumentResponse")]
+        System.Threading.Tasks.Task DenyRequestPermissionDocumentAsync(int requestPermissionDocumentId, string denyReason);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestPermissionDocument", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestPermissionDocumentResponse")]
         void ProcessRequestPermissionDocument(QLHS_DR.ChatAppServiceReference.RequestPermissionDocument requestPermissionDocument);
@@ -23815,12 +23833,6 @@ namespace QLHS_DR.ChatAppServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewFileOfLsx", ReplyAction="http://tempuri.org/IMessageService/NewFileOfLsxResponse")]
         System.Threading.Tasks.Task<int> NewFileOfLsxAsync(int lsxId, QLHS_DR.ChatAppServiceReference.PublicFile publicFile, byte[] content);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewLsxProduct", ReplyAction="http://tempuri.org/IMessageService/NewLsxProductResponse")]
-        int[] NewLsxProduct(int lsxId, int[] productIds);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/NewLsxProduct", ReplyAction="http://tempuri.org/IMessageService/NewLsxProductResponse")]
-        System.Threading.Tasks.Task<int[]> NewLsxProductAsync(int lsxId, int[] productIds);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DeleteRolePermissionD", ReplyAction="http://tempuri.org/IMessageService/DeleteRolePermissionDResponse")]
         void DeleteRolePermissionD(int permissionId, int roleId);
         
@@ -24259,6 +24271,12 @@ namespace QLHS_DR.ChatAppServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument1", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestSendDocument1Response")]
         System.Threading.Tasks.Task ProcessRequestSendDocument1Async(QLHS_DR.ChatAppServiceReference.Task task, int requestId, int publishDocumentId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument2", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestSendDocument2Response")]
+        void ProcessRequestSendDocument2(QLHS_DR.ChatAppServiceReference.Task task, int requestId, int publishDocumentId, int[] productIds);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument2", ReplyAction="http://tempuri.org/IMessageService/ProcessRequestSendDocument2Response")]
+        System.Threading.Tasks.Task ProcessRequestSendDocument2Async(QLHS_DR.ChatAppServiceReference.Task task, int requestId, int publishDocumentId, int[] productIds);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/GetPublishDocument", ReplyAction="http://tempuri.org/IMessageService/GetPublishDocumentResponse")]
         QLHS_DR.ChatAppServiceReference.PublishDocument GetPublishDocument(int publishDocumentId);
         
@@ -24330,12 +24348,6 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/RequireRevokeDocument", ReplyAction="http://tempuri.org/IMessageService/RequireRevokeDocumentResponse")]
         System.Threading.Tasks.Task<bool> RequireRevokeDocumentAsync(int requestSendDocumentId, string reasonRevoke);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument", ReplyAction="http://tempuri.org/IMessageService/DenyRequestPermissionDocumentResponse")]
-        void DenyRequestPermissionDocument(int requestPermissionDocumentId, string denyReason);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument", ReplyAction="http://tempuri.org/IMessageService/DenyRequestPermissionDocumentResponse")]
-        System.Threading.Tasks.Task DenyRequestPermissionDocumentAsync(int requestPermissionDocumentId, string denyReason);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/LoadRequestPermissionDocuments", ReplyAction="http://tempuri.org/IMessageService/LoadRequestPermissionDocumentsResponse")]
         QLHS_DR.ChatAppServiceReference.RequestPermissionDocument[] LoadRequestPermissionDocuments(QLHS_DR.ChatAppServiceReference.RequestPermissionDocumentStatus requestPermissionDocumentStatus);
@@ -24875,6 +24887,14 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         public MessageServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public int[] NewLsxProduct(int lsxId, int[] productIds) {
+            return base.Channel.NewLsxProduct(lsxId, productIds);
+        }
+        
+        public System.Threading.Tasks.Task<int[]> NewLsxProductAsync(int lsxId, int[] productIds) {
+            return base.Channel.NewLsxProductAsync(lsxId, productIds);
         }
         
         public byte[] DownloadFileLsx(int lsxId) {
@@ -25419,6 +25439,22 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         public System.Threading.Tasks.Task SaveChangeEmployeeDepartmentDTOAsync(QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO employeeDepartmentDTO) {
             return base.Channel.SaveChangeEmployeeDepartmentDTOAsync(employeeDepartmentDTO);
+        }
+        
+        public bool SaveChangeEmployee(QLHS_DR.ChatAppServiceReference.Employee employee) {
+            return base.Channel.SaveChangeEmployee(employee);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SaveChangeEmployeeAsync(QLHS_DR.ChatAppServiceReference.Employee employee) {
+            return base.Channel.SaveChangeEmployeeAsync(employee);
+        }
+        
+        public void DenyRequestPermissionDocument(int requestPermissionDocumentId, string denyReason) {
+            base.Channel.DenyRequestPermissionDocument(requestPermissionDocumentId, denyReason);
+        }
+        
+        public System.Threading.Tasks.Task DenyRequestPermissionDocumentAsync(int requestPermissionDocumentId, string denyReason) {
+            return base.Channel.DenyRequestPermissionDocumentAsync(requestPermissionDocumentId, denyReason);
         }
         
         public void ProcessRequestPermissionDocument(QLHS_DR.ChatAppServiceReference.RequestPermissionDocument requestPermissionDocument) {
@@ -26093,14 +26129,6 @@ namespace QLHS_DR.ChatAppServiceReference {
             return base.Channel.NewFileOfLsxAsync(lsxId, publicFile, content);
         }
         
-        public int[] NewLsxProduct(int lsxId, int[] productIds) {
-            return base.Channel.NewLsxProduct(lsxId, productIds);
-        }
-        
-        public System.Threading.Tasks.Task<int[]> NewLsxProductAsync(int lsxId, int[] productIds) {
-            return base.Channel.NewLsxProductAsync(lsxId, productIds);
-        }
-        
         public void DeleteRolePermissionD(int permissionId, int roleId) {
             base.Channel.DeleteRolePermissionD(permissionId, roleId);
         }
@@ -26677,6 +26705,14 @@ namespace QLHS_DR.ChatAppServiceReference {
             return base.Channel.ProcessRequestSendDocument1Async(task, requestId, publishDocumentId);
         }
         
+        public void ProcessRequestSendDocument2(QLHS_DR.ChatAppServiceReference.Task task, int requestId, int publishDocumentId, int[] productIds) {
+            base.Channel.ProcessRequestSendDocument2(task, requestId, publishDocumentId, productIds);
+        }
+        
+        public System.Threading.Tasks.Task ProcessRequestSendDocument2Async(QLHS_DR.ChatAppServiceReference.Task task, int requestId, int publishDocumentId, int[] productIds) {
+            return base.Channel.ProcessRequestSendDocument2Async(task, requestId, publishDocumentId, productIds);
+        }
+        
         public QLHS_DR.ChatAppServiceReference.PublishDocument GetPublishDocument(int publishDocumentId) {
             return base.Channel.GetPublishDocument(publishDocumentId);
         }
@@ -26771,14 +26807,6 @@ namespace QLHS_DR.ChatAppServiceReference {
         
         public System.Threading.Tasks.Task<bool> RequireRevokeDocumentAsync(int requestSendDocumentId, string reasonRevoke) {
             return base.Channel.RequireRevokeDocumentAsync(requestSendDocumentId, reasonRevoke);
-        }
-        
-        public void DenyRequestPermissionDocument(int requestPermissionDocumentId, string denyReason) {
-            base.Channel.DenyRequestPermissionDocument(requestPermissionDocumentId, denyReason);
-        }
-        
-        public System.Threading.Tasks.Task DenyRequestPermissionDocumentAsync(int requestPermissionDocumentId, string denyReason) {
-            return base.Channel.DenyRequestPermissionDocumentAsync(requestPermissionDocumentId, denyReason);
         }
         
         public QLHS_DR.ChatAppServiceReference.RequestPermissionDocument[] LoadRequestPermissionDocuments(QLHS_DR.ChatAppServiceReference.RequestPermissionDocumentStatus requestPermissionDocumentStatus) {

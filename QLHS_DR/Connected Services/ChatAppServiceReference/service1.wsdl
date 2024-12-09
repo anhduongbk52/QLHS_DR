@@ -134,12 +134,18 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/EofficeService.Model" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SAPMODEL" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/EEMCDatabaseLibrary.Model.Database.DataType" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IMessageService_NewLsxProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewLsxProduct" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewLsxProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewLsxProductResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_DownloadFileLsx_InputMessage">
     <wsdl:part name="parameters" element="tns:DownloadFileLsx" />
   </wsdl:message>
@@ -547,6 +553,18 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_SaveChangeEmployeeDepartmentDTO_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartmentDTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SaveChangeEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChangeEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SaveChangeEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DenyRequestPermissionDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DenyRequestPermissionDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocumentResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_ProcessRequestPermissionDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:ProcessRequestPermissionDocument" />
@@ -1052,12 +1070,6 @@
   <wsdl:message name="IMessageService_NewFileOfLsx_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewFileOfLsxResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_NewLsxProduct_InputMessage">
-    <wsdl:part name="parameters" element="tns:NewLsxProduct" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_NewLsxProduct_OutputMessage">
-    <wsdl:part name="parameters" element="tns:NewLsxProductResponse" />
-  </wsdl:message>
   <wsdl:message name="IMessageService_DeleteRolePermissionD_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRolePermissionD" />
   </wsdl:message>
@@ -1490,6 +1502,12 @@
   <wsdl:message name="IMessageService_ProcessRequestSendDocument1_OutputMessage">
     <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument1Response" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_ProcessRequestSendDocument2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument2" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ProcessRequestSendDocument2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessRequestSendDocument2Response" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_GetPublishDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPublishDocument" />
   </wsdl:message>
@@ -1561,12 +1579,6 @@
   </wsdl:message>
   <wsdl:message name="IMessageService_RequireRevokeDocument_OutputMessage">
     <wsdl:part name="parameters" element="tns:RequireRevokeDocumentResponse" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DenyRequestPermissionDocument_InputMessage">
-    <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocument" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_DenyRequestPermissionDocument_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocumentResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_LoadRequestPermissionDocuments_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadRequestPermissionDocuments" />
@@ -2079,6 +2091,10 @@
     <wsdl:part name="parameters" element="tns:NewRolePermissionDResponse" />
   </wsdl:message>
   <wsdl:portType name="IMessageService">
+    <wsdl:operation name="NewLsxProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewLsxProduct" message="tns:IMessageService_NewLsxProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewLsxProductResponse" message="tns:IMessageService_NewLsxProduct_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DownloadFileLsx">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsx" message="tns:IMessageService_DownloadFileLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadFileLsxResponse" message="tns:IMessageService_DownloadFileLsx_OutputMessage" />
@@ -2350,6 +2366,14 @@
     <wsdl:operation name="SaveChangeEmployeeDepartmentDTO">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO" message="tns:IMessageService_SaveChangeEmployeeDepartmentDTO_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTOResponse" message="tns:IMessageService_SaveChangeEmployeeDepartmentDTO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveChangeEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployee" message="tns:IMessageService_SaveChangeEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeResponse" message="tns:IMessageService_SaveChangeEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DenyRequestPermissionDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument" message="tns:IMessageService_DenyRequestPermissionDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocumentResponse" message="tns:IMessageService_DenyRequestPermissionDocument_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ProcessRequestPermissionDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestPermissionDocument" message="tns:IMessageService_ProcessRequestPermissionDocument_InputMessage" />
@@ -2687,10 +2711,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewFileOfLsx" message="tns:IMessageService_NewFileOfLsx_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewFileOfLsxResponse" message="tns:IMessageService_NewFileOfLsx_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NewLsxProduct">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewLsxProduct" message="tns:IMessageService_NewLsxProduct_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewLsxProductResponse" message="tns:IMessageService_NewLsxProduct_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="DeleteRolePermissionD">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DeleteRolePermissionD" message="tns:IMessageService_DeleteRolePermissionD_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DeleteRolePermissionDResponse" message="tns:IMessageService_DeleteRolePermissionD_OutputMessage" />
@@ -2979,6 +2999,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument1" message="tns:IMessageService_ProcessRequestSendDocument1_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument1Response" message="tns:IMessageService_ProcessRequestSendDocument1_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument2" message="tns:IMessageService_ProcessRequestSendDocument2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ProcessRequestSendDocument2Response" message="tns:IMessageService_ProcessRequestSendDocument2_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetPublishDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetPublishDocument" message="tns:IMessageService_GetPublishDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetPublishDocumentResponse" message="tns:IMessageService_GetPublishDocument_OutputMessage" />
@@ -3026,10 +3050,6 @@
     <wsdl:operation name="RequireRevokeDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RequireRevokeDocument" message="tns:IMessageService_RequireRevokeDocument_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RequireRevokeDocumentResponse" message="tns:IMessageService_RequireRevokeDocument_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DenyRequestPermissionDocument">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument" message="tns:IMessageService_DenyRequestPermissionDocument_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocumentResponse" message="tns:IMessageService_DenyRequestPermissionDocument_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoadRequestPermissionDocuments">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadRequestPermissionDocuments" message="tns:IMessageService_LoadRequestPermissionDocuments_InputMessage" />
@@ -3376,6 +3396,15 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IMessageService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="NewLsxProduct">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewLsxProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DownloadFileLsx">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadFileLsx" style="document" />
       <wsdl:input>
@@ -3981,6 +4010,24 @@
     </wsdl:operation>
     <wsdl:operation name="SaveChangeEmployeeDepartmentDTO">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveChangeEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DenyRequestPermissionDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DenyRequestPermissionDocument" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4744,15 +4791,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="NewLsxProduct">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewLsxProduct" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="DeleteRolePermissionD">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/DeleteRolePermissionD" style="document" />
       <wsdl:input>
@@ -5401,6 +5439,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ProcessRequestSendDocument2">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/ProcessRequestSendDocument2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetPublishDocument">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetPublishDocument" style="document" />
       <wsdl:input>
@@ -5502,15 +5549,6 @@
     </wsdl:operation>
     <wsdl:operation name="RequireRevokeDocument">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/RequireRevokeDocument" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DenyRequestPermissionDocument">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/DenyRequestPermissionDocument" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

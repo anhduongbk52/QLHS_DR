@@ -25,8 +25,8 @@
     <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="6435792a-a464-4de6-8749-5b4a0125746b" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
     <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="1ef5e9bd-3b79-4d90-b2b7-019f770117cc" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
     <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="ad3c3736-7daa-433f-9bc3-970958566dc9" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
-    <MetadataFile FileName="EofficeService.Model1.xsd" MetadataType="Schema" ID="06e3b450-fca6-410d-b3c9-d40527416fe5" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="90de3f56-1274-40a7-af69-62a6151ed128" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
+    <MetadataFile FileName="EofficeService.Model1.xsd" MetadataType="Schema" ID="06e3b450-fca6-410d-b3c9-d40527416fe5" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
     <MetadataFile FileName="SAPMODEL.xsd" MetadataType="Schema" ID="435c12e0-23c0-4414-9107-a1d737ccbace" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
     <MetadataFile FileName="EEMCDatabaseLibrary.Model.Database.DataType.xsd" MetadataType="Schema" ID="52d97b8c-4fef-4535-8da9-d2b57654b908" SourceId="1" SourceUrl="net.tcp://192.168.11.12:8880/EofficeService/Service/mex" />
   </Metadata>
