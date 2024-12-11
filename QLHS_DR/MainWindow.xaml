@@ -181,7 +181,7 @@
                                            Command="{Binding OpenListEmployeeCommand}"
                                            LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Department.svg}" />
                         <dxb:BarButtonItem Content="Thêm mới"
-                                           Command="{Binding NewUserCommand}"
+                                           Command="{Binding NewEmployeeCommand}"
                                            LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewCustomer.svg}" />
                     </dxr:RibbonPageGroup>
                    

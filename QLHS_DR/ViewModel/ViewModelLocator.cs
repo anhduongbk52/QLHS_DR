@@ -66,6 +66,10 @@ namespace QLHS_DR.ViewModel
         {
             get { return new EmployeeManagerViewModel(); }
         }
-        
+        public NewEmployeeViewModel NewEmployeeViewModel
+        {
+            get { return new NewEmployeeViewModel(); }
+        }
+
     }
 }

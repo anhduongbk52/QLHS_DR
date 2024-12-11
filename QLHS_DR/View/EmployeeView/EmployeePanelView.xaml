@@ -12,7 +12,7 @@
              xmlns:converter="clr-namespace:QLHS_DR.Converter" 
              xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"             
              mc:Ignorable="d"
-             d:DesignHeight="700" d:DesignWidth="800">
+             d:DesignHeight="850" d:DesignWidth="800">
     <dxmvvm:Interaction.Behaviors>
         <dx:DXMessageBoxService x:Name="messageBoxService" />
     </dxmvvm:Interaction.Behaviors>
@@ -167,7 +167,17 @@
                                 xml:lang="vi-VN">
                         </DatePicker>
                         <TextBox Text="{Binding Employee.PhoneNumber}" Style="{x:Null}" Grid.Column="1" Grid.Row="3" Margin="5" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsReadOnly="{Binding IsReadOnly}"></TextBox>
-                        <TextBox Text="{Binding Employee.Gender, Converter={StaticResource GenderConverter}}"  Style="{x:Null}" Grid.Column="1" Grid.Row="4" Margin="5" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsReadOnly="{Binding IsReadOnly}"></TextBox>
+                        <ComboBox 
+                            SelectedItem="{Binding Employee.Gender, Converter={StaticResource GenderConverter}}" 
+                            ItemsSource="{Binding GenderList}" 
+                            Style="{x:Null}"
+                            Grid.Column="1" 
+                            Grid.Row="4" 
+                            Margin="5" 
+                            HorizontalContentAlignment="Left" 
+                            VerticalContentAlignment="Center" 
+                            IsEnabled="{Binding !IsReadOnly}">
+                        </ComboBox>
                         <TextBox Text="{Binding Employee.Email}" Style="{x:Null}" Grid.Column="1" Grid.Row="5" Margin="5" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsReadOnly="{Binding IsReadOnly}"></TextBox>
                         <TextBox Text="{Binding Employee.TaxIdentificationNumber}" Style="{x:Null}" Grid.Column="1" Grid.Row="6" Margin="5" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsReadOnly="{Binding IsReadOnly}"></TextBox>
                         <TextBox Text="{Binding Employee.CitizenIdentificationNumber}" Style="{x:Null}" Grid.Column="1" Grid.Row="7" Margin="5" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" IsReadOnly="{Binding IsReadOnly}"></TextBox>

@@ -201,6 +201,7 @@ namespace QLHS_DR.ViewModel
         public ICommand OpenListGroupCommand { get; set; }
         public ICommand OpenLogsCommand { get; set; }
         public ICommand OpenListEmployeeCommand { get; set; }
+        public ICommand NewEmployeeCommand { get; set; }
 
         #endregion
         private LoginWindow loginWindow;
@@ -696,6 +697,11 @@ namespace QLHS_DR.ViewModel
                 {
                     Workspaces.Add(tabItemMain);
                 }
+            });
+            NewEmployeeCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanNewEmployee) return true; else return false; }, (p) =>
+            {
+                NewEmployeeWindow newEmployeeWindow = new() { };
+                newEmployeeWindow.Show();
             });
             NewGroupsUserCommand = new RelayCommand<Window>((p) => { if (SectionLogin.Ins.CanNewRole) return true; else return false; }, (p) =>
             {

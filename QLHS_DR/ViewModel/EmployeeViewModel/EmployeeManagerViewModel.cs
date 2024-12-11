@@ -71,6 +71,7 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
         #endregion
         #region "Command"
         public ICommand LoadedWindowCommand { get; set; }
+        public ICommand NewEmployeeCommand { get; set; }
         #endregion
         internal EmployeeManagerViewModel()
         {
@@ -81,9 +82,14 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
             {
                 Employees = _ServiceFactory.LoadEmployees();               
             });
+            NewEmployeeCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                NewEmployeeWindow newEmployeeWindow = new NewEmployeeWindow();
+                newEmployeeWindow.Show();
+            });
+
+
         }
-
-
     }
     public class ViewSettings {
         public bool IsDataPaneVisible { get; set; }

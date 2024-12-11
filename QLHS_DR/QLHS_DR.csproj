@@ -151,6 +151,7 @@
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\FullNameConverter.cs" />
     <Compile Include="Converter\GenderConverter.cs" />
+    <Compile Include="Converter\GridHeightConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\PermissionTypeToTextConverter.cs" />
     <Compile Include="Converter\PictureConverter.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel\EmployeeManagerViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel\EmployeePanelViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel\NewEmployeeViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\AddApprovalDocToOtherProductViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\EditApprovalDocumentProductViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\ListApprovalDocumentOfProductViewModel.cs" />
@@ -298,6 +300,9 @@
     </Compile>
     <Compile Include="View\EmployeeView\EmployeePanelView.xaml.cs">
       <DependentUpon>EmployeePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView\NewEmployeeWindow.xaml.cs">
+      <DependentUpon>NewEmployeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HosoView\AddApprovalDocToOtherProductWindow.xaml.cs">
       <DependentUpon>AddApprovalDocToOtherProductWindow.xaml</DependentUpon>
@@ -517,6 +522,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EmployeeView\EmployeePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView\NewEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

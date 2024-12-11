@@ -1,21 +1,18 @@
-﻿using QLHS_DR.Core;
+﻿using QLHS_DR.ChatAppServiceReference;
+using QLHS_DR.Core;
 using System;
 using System.Collections.Generic;
-using QLHS_DR.ChatAppServiceReference;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows;
 using System.Windows.Forms;
-using EofficeClient.Core;
-using System.IdentityModel.Metadata;
-using DevExpress.Mvvm.Native;
+using System.Windows.Input;
 
 namespace QLHS_DR.ViewModel.EmployeeViewModel
 {
-    internal class EmployeePanelViewModel:BaseViewModel
+    internal class NewEmployeeViewModel:BaseViewModel
     {
         #region "Properties and Fields"
         public List<string> GenderList { get; set; } = new List<string> { "Nam", "Nữ" };
@@ -48,8 +45,58 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
             }
         }
         ServiceFactory _ServiceFactory = new ServiceFactory();
-        ObservableCollection<Department> _Departments;
-        ObservableCollection<Position> _Positions;
+        private ObservableCollection<Department> _Departments;
+        public ObservableCollection<Department> Departments
+        {
+            get => _Departments;
+            set
+            {
+                if (_Departments != value)
+                {
+                    _Departments = value;
+                    NotifyPropertyChanged("Departments");
+                }
+            }
+        }
+        private Department _DepartmentSelected;
+        public Department DepartmentSelected
+        {
+            get => _DepartmentSelected;
+            set
+            {
+                if (_DepartmentSelected != value)
+                {
+                    _DepartmentSelected = value;
+                    NotifyPropertyChanged("DepartmentSelected");
+                }
+            }
+        }
+        private ObservableCollection<Position> _Positions;
+        public ObservableCollection<Position> Positions
+        {
+            get => _Positions;
+            set
+            {
+                if (_Positions != value)
+                {
+                    _Positions = value;
+                    NotifyPropertyChanged("Positions");
+                }
+            }
+        }
+        private Position _PositionSelected;
+        public Position PositionSelected
+        {
+            get => _PositionSelected;
+            set
+            {
+                if (_PositionSelected != value)
+                {
+                    _PositionSelected = value;
+                    NotifyPropertyChanged("PositionSelected");
+                }
+            }
+        }
         private Employee _Employee;
         public Employee Employee
         {
@@ -59,16 +106,16 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
                 if (_Employee != value)
                 {
                     _Employee = value;
-                    if(Employee != null)
+                    if (Employee != null)
                     {
                         EmployeeAvatar = _ServiceFactory.GetAvatar(_Employee.Id);
                         Employee.EmployeeDepartments = _ServiceFactory.LoadEmployeeDepartments(Employee.Id).ToArray();
                         for (int i = 0; i < Employee.EmployeeDepartments.Length; i++)
                         {
                             Employee.EmployeeDepartments[i].Department = _Departments.Where(x => x.Id == Employee.EmployeeDepartments[i].DepartmentId).FirstOrDefault();
-                            Employee.EmployeeDepartments[i].Position = _Positions.Where(x=>x.Id == Employee.EmployeeDepartments[i].PositionId).FirstOrDefault();
+                            Employee.EmployeeDepartments[i].Position = _Positions.Where(x => x.Id == Employee.EmployeeDepartments[i].PositionId).FirstOrDefault();
                         }
-                    }                   
+                    }
                     NotifyPropertyChanged("Employee");
                     NotifyPropertyChanged("Employee.EmployeeDepartments");
                 }
@@ -87,29 +134,30 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
                 }
             }
         }
-        
+
         #endregion
         #region "Command"
-      
-        public ICommand SaveChangeEmployeeInfoCommand { get; set; }
+
+        public ICommand SaveCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
         #endregion
-        internal EmployeePanelViewModel()
+        internal NewEmployeeViewModel()
         {
             _ServiceFactory = new ServiceFactory();
             _Departments = _ServiceFactory.GetDepartments();
             _Positions = _ServiceFactory.LoadPositions();
             IsReadOnly = !SectionLogin.Ins.ListPermissions.Any(x => x.Code == "employeeEditEmployeeInfo");
-            SaveChangeEmployeeInfoCommand = new RelayCommand<Object>((p) => { if (!IsReadOnly) return true; else return false; }, (p) =>
+            SaveCommand = new RelayCommand<Object>((p) => { if (!IsReadOnly) return true; else return false; }, (p) =>
             {
                 DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Bạn có muốn lưu thay đổi không", "Cảnh báo", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     try
                     {
-                        if(_ServiceFactory.SaveChangeEmployee(_Employee))
+                        if (_ServiceFactory.SaveChangeEmployee(_Employee))
                         {
                             System.Windows.MessageBox.Show("Cập nhật thành công");
-                        }                          
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -118,9 +166,13 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
                     }
                     finally
                     {
-                        
+
                     }
                 }
+            });
+            CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                p.Close();
             });
         }
     }
