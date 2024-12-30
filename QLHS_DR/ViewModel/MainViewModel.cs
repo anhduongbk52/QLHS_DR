@@ -27,6 +27,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Deployment.Application;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -58,6 +59,19 @@ namespace QLHS_DR.ViewModel
         private Window window;
         private MessageServiceClient _MyClient;
         private ObservableCollection<TabContainer> _Workspaces;
+        private bool _IsBusy;
+        public bool IsBusy
+        {
+            get => _IsBusy;
+            set
+            {
+                if (_IsBusy != value)
+                {
+                    _IsBusy = value;
+                    NotifyPropertyChanged("IsBusy");
+                }
+            }
+        }
         public ObservableCollection<TabContainer> Workspaces
         {
             get => _Workspaces;
@@ -202,6 +216,10 @@ namespace QLHS_DR.ViewModel
         public ICommand OpenLogsCommand { get; set; }
         public ICommand OpenListEmployeeCommand { get; set; }
         public ICommand NewEmployeeCommand { get; set; }
+        public ICommand OpenSaleDocumentManagerCommand { get; set; }
+        public ICommand OpenToolUploadEmployeeDocumentCommand { get; set; }
+        public ICommand  OpenToolImportDataEmployeeCommand { get; set; }
+        public ICommand OpenEmployeeDepartmentManagerCommand { get; set; }
 
         #endregion
         private LoginWindow loginWindow;
@@ -218,6 +236,7 @@ namespace QLHS_DR.ViewModel
         AllTaskViewModel allTaskViewModel;
         public MainViewModel()
         {
+            IsBusy = false;
             TileApplication = "Quản lý hồ sơ";
             //--------------------Message between Viewmodels------------------------//
             _eventAggregator = new EventAggregator();
@@ -511,6 +530,7 @@ namespace QLHS_DR.ViewModel
             });
             LoadAllTask = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
+                IsBusy = true;
                 TabContainer item = Workspaces.Where(x => x.Header.Contains("All")).FirstOrDefault();
                 if (item != null)
                 {
@@ -531,7 +551,7 @@ namespace QLHS_DR.ViewModel
                     };
                     Workspaces.Add(tabItemNew);
                 }
-
+                IsBusy = false;
             });
             OpenChangePassWordWindowCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {                
@@ -793,6 +813,28 @@ namespace QLHS_DR.ViewModel
                     Workspaces.Add(tabItemMain);
                 }
             });
+            OpenEmployeeDepartmentManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                EmployeeDepartmentManagerUC tabContent = new();
+                TabContainer tabItemMain = new()
+                {
+                    Header = "Quản lý nhân sự phòng ban",
+                    IsSelected = true,
+                    Content = tabContent,
+                    IsVisible = true
+                };
+                TabContainer item = Workspaces.Where(x => x.Header == "Quản lý nhân sự phòng ban").FirstOrDefault();
+                if (item != null)
+                {
+                    item.IsSelected = true;
+                    item.Content = tabContent;
+                    item.IsVisible = true;
+                }
+                else
+                {
+                    Workspaces.Add(tabItemMain);
+                }
+            });
             OpenLoginManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
                 LoginManagerWindow tabContent = new ();
@@ -817,31 +859,135 @@ namespace QLHS_DR.ViewModel
             });
             OpenLogsCommand = new RelayCommand<Object>((p) => {if(SectionLogin.Ins.CanViewLogs) return true; else return false; }, (p) =>
             {
+                IsBusy = true;
                 LogView logView = new() { DataContext = new LogViewModel() };
                 logView.ShowDialog();
+                IsBusy = false;
             });
             OpenListEmployeeCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
             {
-                EmployeeManagerUC tabContent = new();
-                TabContainer tabItemMain = new()
-                {
-                    Header = "Danh sách nhân sự",
-                    IsSelected = true,
-                    Content = tabContent,
-                    IsVisible = true
-                };
+                IsBusy = true;
                 TabContainer item = Workspaces.Where(x => x.Header == "Danh sách nhân sự").FirstOrDefault();
                 if (item != null)
                 {
                     item.IsSelected = true;
-                    item.Content = tabContent;
+                    item.Content = new EmployeeManagerUC();
                     item.IsVisible = true;
+                    item.AllowHide = "true";
                 }
                 else
                 {
-                    Workspaces.Add(tabItemMain);
+                    Workspaces.Add(new()
+                    {
+                        Header = "Danh sách nhân sự",
+                        IsSelected = true,
+                        Content = new EmployeeManagerUC(),
+                        IsVisible = true,
+                        AllowHide = "true"
+                    });
                 }
+                IsBusy = false;
             });
+            OpenSaleDocumentManagerCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                IsBusy = true;
+                
+                IsBusy = false;
+            });
+            OpenToolImportDataEmployeeCommand = new RelayCommand<Object>((p) => { return true; }, (p) => 
+            { 
+                ImportEmployeeDataWindow importEmployeeData = new ();
+                importEmployeeData.ShowDialog();            
+            });
+           OpenToolUploadEmployeeDocumentCommand = new RelayCommand<Object>((p) => { return true; }, (p) =>
+            {
+                string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "UploadLog.txt"); // File log trên Desktop
+                using (StreamWriter logWriter = new StreamWriter(logFilePath, true)) // Mở file log ở chế độ ghi thêm
+                {
+                    logWriter.WriteLine($"Bắt đầu quá trình upload: {DateTime.Now}");
+                    logWriter.WriteLine("====================================");
+
+                    // Tạo FolderBrowserDialog
+                    using (System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog())
+                    {
+                        folderDialog.Description = "Chọn thư mục chứa hồ sơ nhân sự";
+                        folderDialog.ShowNewFolderButton = false; // Không cho phép tạo thư mục mới
+
+                        // Hiển thị dialog và kiểm tra kết quả
+                        if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            string selectedPath = folderDialog.SelectedPath;
+                            try
+                            {
+                                // Lấy danh sách các thư mục con
+                                string[] subdirectories = Directory.GetDirectories(selectedPath);
+
+                                foreach (var dir in subdirectories)
+                                {
+                                    int employeeId;
+                                    string folderName = Path.GetFileName(dir); // Lấy tên thư mục
+                                    try
+                                    {
+                                        _MyClient = ServiceHelper.NewMessageServiceClient();
+                                        _MyClient.Open();
+                                        employeeId = _MyClient.GetEmployeeIdByMsnv(folderName);
+                                        if (employeeId > 0) // Tìm thấy employee
+                                        {
+                                            logWriter.WriteLine($"Thư mục: {folderName} - Tìm thấy EmployeeId: {employeeId}");
+
+                                            string[] files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories);
+                                            foreach (var file in files)
+                                            {
+                                                byte[] content = System.IO.File.ReadAllBytes(file);
+                                                _MyClient.UploadEmployeeDocument(content, new EmployeeDocument()
+                                                {
+                                                    EmployeeId = employeeId,
+                                                    FileName = System.IO.Path.GetFileName(file),
+                                                    IsDeleted = false,
+                                                    IsEncrypted = false
+                                                });
+
+                                                // Ghi log file upload thành công
+                                                logWriter.WriteLine($"    File upload thành công: {Path.GetFileName(file)}");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            logWriter.WriteLine($"Thư mục: {folderName} - Không tìm thấy EmployeeId");
+                                        }
+                                        _MyClient.Close();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        _MyClient.Abort();
+                                        logWriter.WriteLine($"Lỗi khi xử lý thư mục {folderName}: {ex.Message}");
+                                        System.Windows.MessageBox.Show(ex.Message);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                logWriter.WriteLine($"Có lỗi xảy ra khi đọc thư mục: {ex.Message}");
+                                MessageBox.Show($"Có lỗi xảy ra khi đọc thư mục: {ex.Message}");
+                            }
+                        }
+                        else
+                        {
+                            logWriter.WriteLine("Không có thư mục nào được chọn.");
+                            MessageBox.Show("Không có thư mục nào được chọn.");
+                        }
+                    }
+
+                    logWriter.WriteLine("====================================");
+                    logWriter.WriteLine($"Kết thúc quá trình upload: {DateTime.Now}");
+                }
+
+                // Thông báo hoàn thành
+                MessageBox.Show($"Quá trình upload hoàn tất. Log đã được lưu tại: {logFilePath}");
+            });
+
+
+
         }
 
         private void BackgroundWorker_0_DoWork(object sender, DoWorkEventArgs e)

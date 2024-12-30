@@ -1,0 +1,36 @@
+﻿<Window x:Class="QLHS_DR.View.EmployeeView.ImportEmployeeDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLHS_DR.View.EmployeeView"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator},Path=ImportEmployeeDataViewModel1}"
+        Title="ImportEmployeeDataWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"> 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+                    <Button  Content="Open File" Width="100" Command="{Binding OpenExcelCommand}" Margin="3"></Button>
+                    <Button  Content="Run" Width="100" Command="{Binding RunCommand}" Margin="3"></Button>
+                </StackPanel>
+            </Grid>
+            <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding ExcelData}" CanUserAddRows="False" Grid.Column="1">
+            </DataGrid>
+        </Grid>
+        <ProgressBar Grid.Row="1" Height="20" Value="{Binding ProgressBarValue, UpdateSourceTrigger=PropertyChanged}"></ProgressBar>
+    </Grid>
+    
+</Window>

@@ -47,6 +47,10 @@ namespace QLHS_DR.ViewModel
                 OnPropertyChanged("IsVisible");
             }
         }
+        public TabContainer() // Constructor
+        {
+            AllowHide = "true"; // Gán giá trị mặc định
+        }
         public UserControl Content
         {
             get => _Content;

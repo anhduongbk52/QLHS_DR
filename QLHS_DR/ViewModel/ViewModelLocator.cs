@@ -70,6 +70,17 @@ namespace QLHS_DR.ViewModel
         {
             get { return new NewEmployeeViewModel(); }
         }
-
+        public ImportEmployeeDataViewModel ImportEmployeeDataViewModel
+        {
+            get { return new ImportEmployeeDataViewModel(); }
+        }
+        public ImportEmployeeDataViewModel1 ImportEmployeeDataViewModel1
+        {
+            get { return new ImportEmployeeDataViewModel1(); }
+        }
+        public EmployeeDepartmentManagerViewModel EmployeeDepartmentManagerViewModel
+        {
+            get { return new EmployeeDepartmentManagerViewModel(); }
+        }
     }
 }

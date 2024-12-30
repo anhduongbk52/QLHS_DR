@@ -184,17 +184,28 @@
                                            Command="{Binding NewEmployeeCommand}"
                                            LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/NewCustomer.svg}" />
                     </dxr:RibbonPageGroup>
-                   
-                   
-                   
+                    <dxr:RibbonPageGroup Caption="Tool">
+                        <dxb:BarButtonItem Content="Upload hồ sơ nhân sự"
+                                           Command="{Binding OpenToolUploadEmployeeDocumentCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Scheduling/Import.svg}" />
+                        <dxb:BarButtonItem Content="Import Data"
+                                           Command="{Binding OpenToolImportDataEmployeeCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Scheduling/Import.svg}" />
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Quản lý phòng ban">
+                        <dxb:BarButtonItem Content="Quản lý nhân sự phòng ban"
+                                           Command="{Binding OpenEmployeeDepartmentManagerCommand}"
+                                           LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Category.svg}" />                        
+                    </dxr:RibbonPageGroup>
+
                 </dxr:RibbonPage>
-                <dxr:RibbonPage Caption="Setting">
+                <!--<dxr:RibbonPage Caption="Setting">
                     <dxr:RibbonPageGroup Caption="Option">
                         <dxb:BarButtonItem Content="Nortification Setting"
                                            Command="{Binding OpenListUserCommand}"
                                            LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Notifications.svg}" />                      
                     </dxr:RibbonPageGroup>                   
-                </dxr:RibbonPage>
+                </dxr:RibbonPage>-->
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
         <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
@@ -202,12 +213,10 @@
                 <dxb:BarButtonItem x:Name="printItem" Content="Print" Glyph="{dx:DXImage 'SvgImages/Print/Print.svg'}"/>
             </dxr:RibbonStatusBarControl.RightItems>
         </dxr:RibbonStatusBarControl>
-        <dxwui:HamburgerMenu  DockPanel.Dock="Left" AvailableViewStates="Inline" ViewState="Closed" IsMenuVisible="False">
-            <dxwui:HamburgerMenuNavigationButton Content="{Binding ContentButtonNotCompleted,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Command="{Binding LoadListNewDocument}"></dxwui:HamburgerMenuNavigationButton>
-            <dxwui:HamburgerMenuNavigationButton Content="{Binding ContentButtonCompleted}" Command="{Binding LoadListCompltetedDocument}"></dxwui:HamburgerMenuNavigationButton>
-            <dxwui:HamburgerMenuNavigationButton Content="{Binding ContentButtonRevoke}" Command="{Binding LoadListRevokeDocument}"></dxwui:HamburgerMenuNavigationButton>
-            <dxwui:HamburgerMenu.Content>
-                <dx:DXTabControl ItemsSource="{Binding Workspaces}"
+        <dx:LoadingDecorator IsSplashScreenShown="{Binding IsBusy}"  Name="loadingDecorator"  OwnerLock="LoadingContent">
+            <dxwui:HamburgerMenu  DockPanel.Dock="Left" AvailableViewStates="Inline" ViewState="Closed" IsMenuVisible="False">
+                <dxwui:HamburgerMenu.Content>
+                    <dx:DXTabControl ItemsSource="{Binding Workspaces}"
                          Margin="2"
                          Grid.Row="1"
                          BorderThickness="0"
@@ -215,39 +224,39 @@
                          TabHidden="TabControl_TabHidden"
                          Padding="0"
                          Name="tabControl">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding SelectionChangedTab}"
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectionChangedTab}"
                                            CommandParameter="{Binding SelectedItem,ElementName=tabControl}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <dx:DXTabControl.ItemContainerStyle>
-                        <Style TargetType="dx:DXTabItem">
-                            <Setter Property="CloseCommandParameter"
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <dx:DXTabControl.ItemContainerStyle>
+                            <Style TargetType="dx:DXTabItem">
+                                <Setter Property="CloseCommandParameter"
                             Value="{Binding}" />
-                            <Setter Property="Header"  Value="{Binding Header}"></Setter>
-                            <Setter Property="AllowHide" Value="{Binding AllowHide}"></Setter>
-                            <Setter Property="IsSelected"  Value="{Binding IsSelected,Mode=TwoWay}"></Setter>  
-                            <Setter Property="Visibility" Value="{Binding IsVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BooleanToVisibilityConverter}}"></Setter>
-                        </Style>
-                    </dx:DXTabControl.ItemContainerStyle>
-                    <dx:DXTabControl.View>
-                        <dx:TabControlScrollView ShowHeaderMenu="True"                                         
+                                <Setter Property="Header"  Value="{Binding Header}"></Setter>
+                                <Setter Property="AllowHide" Value="{Binding AllowHide}"></Setter>
+                                <Setter Property="IsSelected"  Value="{Binding IsSelected,Mode=TwoWay}"></Setter>
+                                <Setter Property="Visibility" Value="{Binding IsVisible,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource BooleanToVisibilityConverter}}"></Setter>
+                            </Style>
+                        </dx:DXTabControl.ItemContainerStyle>
+                        <dx:DXTabControl.View>
+                            <dx:TabControlScrollView ShowHeaderMenu="True"                                         
                                          ShowHiddenTabItemsInHeaderMenu="True"
                                          HeaderLocation="Top"
                                          HeaderOrientation="Horizontal"
                                          AllowAnimation="True"
                                          HideButtonShowMode="InAllTabs"                                         
                                          ScrollViewer.PanningMode="VerticalFirst"/>
-                    </dx:DXTabControl.View>
-                    <dx:DXTabControl.ItemTemplate>
-                        <DataTemplate>
-                            <ContentControl Content="{Binding Content}"></ContentControl>
-                        </DataTemplate>
-                    </dx:DXTabControl.ItemTemplate>
-                </dx:DXTabControl>
-            </dxwui:HamburgerMenu.Content>
-        </dxwui:HamburgerMenu>
-
+                        </dx:DXTabControl.View>
+                        <dx:DXTabControl.ItemTemplate>
+                            <DataTemplate>                               
+                                    <ContentControl Name="LoadingContent" Content="{Binding Content}"></ContentControl>                              
+                            </DataTemplate>
+                        </dx:DXTabControl.ItemTemplate>
+                    </dx:DXTabControl>
+                </dxwui:HamburgerMenu.Content>
+            </dxwui:HamburgerMenu>
+        </dx:LoadingDecorator>
     </DockPanel>
 </dx:ThemedWindow>

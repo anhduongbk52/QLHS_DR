@@ -147,6 +147,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BooleanInverterConverter .cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\FullNameConverter.cs" />
@@ -161,6 +162,9 @@
     <Compile Include="Core\SectionLogin.cs" />
     <Compile Include="Core\ServiceFactory.cs" />
     <Compile Include="Core\ServiceHelper.cs" />
+    <Compile Include="CustomControl\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\PdfViewerControl1.cs" />
     <Compile Include="CustomControl\PdfViewerControlForTask.cs" />
     <Compile Include="SingleInstance.cs" />
@@ -186,8 +190,11 @@
     <Compile Include="ViewModel\DocumentViewModel\TaskCreateByMeViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskFinishViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel\UserTaskRevokedViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel\EmployeeDepartmentManagerViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel\EmployeeManagerViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel\EmployeePanelViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel\ImportEmployeeDataViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel\ImportEmployeeDataViewModel1.cs" />
     <Compile Include="ViewModel\EmployeeViewModel\NewEmployeeViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\AddApprovalDocToOtherProductViewModel.cs" />
     <Compile Include="ViewModel\HoSoViewModel\EditApprovalDocumentProductViewModel.cs" />
@@ -295,11 +302,23 @@
     <Compile Include="View\DocumentView\UserTaskRevokedUC.xaml.cs">
       <DependentUpon>UserTaskRevokedUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EmployeeView\EditEmployeeDocumentWindow.xaml.cs">
+      <DependentUpon>EditEmployeeDocumentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView\EmployeeDepartmentManagerUC.xaml.cs">
+      <DependentUpon>EmployeeDepartmentManagerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EmployeeView\EmployeeManagerUC.xaml.cs">
       <DependentUpon>EmployeeManagerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeView\EmployeePanelView.xaml.cs">
       <DependentUpon>EmployeePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView\ImportEmployeeData.xaml.cs">
+      <DependentUpon>ImportEmployeeData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView\ImportEmployeeDataWindow.xaml.cs">
+      <DependentUpon>ImportEmployeeDataWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeView\NewEmployeeWindow.xaml.cs">
       <DependentUpon>NewEmployeeWindow.xaml</DependentUpon>
@@ -400,6 +419,10 @@
     <Compile Include="View\UserView\UserChangePasswordWindow.xaml.cs">
       <DependentUpon>UserChangePasswordWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomControl\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -517,11 +540,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EmployeeView\EditEmployeeDocumentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView\EmployeeDepartmentManagerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EmployeeView\EmployeeManagerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EmployeeView\EmployeePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView\ImportEmployeeData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView\ImportEmployeeDataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -727,7 +766,7 @@
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.EmployeeDepartment.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.EmployeeDepartmentDTO.datasource">
+    <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.EmployeeDocument.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ChatAppServiceReference\QLHS_DR.ChatAppServiceReference.FileOfPyc.datasource">
@@ -1110,6 +1149,9 @@
   <ItemGroup>
     <PackageReference Include="Autoupdater.NET.Official">
       <Version>1.7.6</Version>
+    </PackageReference>
+    <PackageReference Include="EPPlus">
+      <Version>7.5.2</Version>
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
       <Version>4.6.1</Version>

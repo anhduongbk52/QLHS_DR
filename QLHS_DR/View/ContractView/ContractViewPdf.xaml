@@ -30,7 +30,6 @@
                             <dxb:UpdateAction Property="dxb:BarButtonItem.LargeGlyph" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding LargeGlyph}" />
                             <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Caption}" />
                             <dxb:UpdateAction Property="dxb:BarButtonItem.Hint" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.Print}" ValueBinding="{Binding Hint}" />
-
                             <dxb:UpdateAction Property="dxb:BarButtonItem.Command" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.PrintContext}"  
                                           ValueBinding="{Binding Path=(dxpdf:PdfViewerControl.ActualViewer).CustomPrintCommand, RelativeSource={RelativeSource TemplatedParent}}" />
                             <dxb:UpdateAction Property="dxb:BarButtonItem.Content" ElementName="{x:Static dxpdf:DefaultPdfBarManagerItemNames.PrintContext}" ValueBinding="{Binding Caption}" />

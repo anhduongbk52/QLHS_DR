@@ -17,30 +17,29 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
         #region "Properties and Fields"
         public List<string> GenderList { get; set; } = new List<string> { "Nam", "Nữ" };
 
-        private bool _IsReadOnly;
-        public bool IsReadOnly
+        private bool _CanNewEmployee;
+        public bool CanNewEmployee
         {
-            get => _IsReadOnly;
+            get => _CanNewEmployee;
             set
             {
-                if (_IsReadOnly != value)
+                if (_CanNewEmployee != value)
                 {
-                    _IsReadOnly = value;
-                    CanEdit = !value;
-                    NotifyPropertyChanged("IsReadOnly");
+                    _CanNewEmployee = value;                    
+                    NotifyPropertyChanged("CanNewEmployee");
                 }
             }
         }
-        private bool _CanEdit;
-        public bool CanEdit
+        private DateTime _FromDate;
+        public DateTime FromDate
         {
-            get => _CanEdit;
+            get => _FromDate;
             set
             {
-                if (_CanEdit != value)
+                if (_FromDate != value)
                 {
-                    _CanEdit = value;
-                    NotifyPropertyChanged("CanEdit");
+                    _FromDate = value;
+                    NotifyPropertyChanged("FromDate");
                 }
             }
         }
@@ -105,19 +104,8 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
             {
                 if (_Employee != value)
                 {
-                    _Employee = value;
-                    if (Employee != null)
-                    {
-                        EmployeeAvatar = _ServiceFactory.GetAvatar(_Employee.Id);
-                        Employee.EmployeeDepartments = _ServiceFactory.LoadEmployeeDepartments(Employee.Id).ToArray();
-                        for (int i = 0; i < Employee.EmployeeDepartments.Length; i++)
-                        {
-                            Employee.EmployeeDepartments[i].Department = _Departments.Where(x => x.Id == Employee.EmployeeDepartments[i].DepartmentId).FirstOrDefault();
-                            Employee.EmployeeDepartments[i].Position = _Positions.Where(x => x.Id == Employee.EmployeeDepartments[i].PositionId).FirstOrDefault();
-                        }
-                    }
+                    _Employee = value;                    
                     NotifyPropertyChanged("Employee");
-                    NotifyPropertyChanged("Employee.EmployeeDepartments");
                 }
             }
         }
@@ -134,7 +122,8 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
                 }
             }
         }
-
+        
+        
         #endregion
         #region "Command"
 
@@ -146,17 +135,31 @@ namespace QLHS_DR.ViewModel.EmployeeViewModel
             _ServiceFactory = new ServiceFactory();
             _Departments = _ServiceFactory.GetDepartments();
             _Positions = _ServiceFactory.LoadPositions();
-            IsReadOnly = !SectionLogin.Ins.ListPermissions.Any(x => x.Code == "employeeEditEmployeeInfo");
-            SaveCommand = new RelayCommand<Object>((p) => { if (!IsReadOnly) return true; else return false; }, (p) =>
+            Employee = new Employee();
+            FromDate = DateTime.Today;
+            CanNewEmployee = SectionLogin.Ins.ListPermissions.Any(x => x.Code == "employeeNewEmployee");
+            SaveCommand = new RelayCommand<Window>((p) => { if (CanNewEmployee && _Employee.MSNV!=null && _Employee.FirtName!=null && _Employee.LastName!=null) return true; else return false; }, (p) =>
             {
-                DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Bạn có muốn lưu thay đổi không", "Cảnh báo", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Bạn có muốn thêm mới User!", "Cảnh báo", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     try
                     {
-                        if (_ServiceFactory.SaveChangeEmployee(_Employee))
+                        int employeeId = _ServiceFactory.NewEmployee(_Employee, _EmployeeAvatar);
+                        if (employeeId != 0)
                         {
-                            System.Windows.MessageBox.Show("Cập nhật thành công");
+                            if(_DepartmentSelected!=null && _PositionSelected!=null)
+                            {
+                                _ServiceFactory.AddEmployeeToDepartment(new EmployeeDepartment()
+                                {
+                                     DepartmentId = _DepartmentSelected.Id,
+                                     EmployeeId = employeeId,
+                                     PositionId = _PositionSelected.Id,
+                                     FromDate = _FromDate
+                                });
+                            }
+                            System.Windows.MessageBox.Show("Thêm mới thành công");
+                            p.Close();
                         }
                     }
                     catch (Exception ex)

@@ -1,12 +1,11 @@
-﻿
-
-using DevExpress.Mvvm.Native;
+﻿using DevExpress.Mvvm.Native;
 using EofficeClient.Core;
 using QLHS_DR.ChatAppServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Windows;
 
 namespace QLHS_DR.Core
@@ -18,14 +17,179 @@ namespace QLHS_DR.Core
         {
             _Client = new MessageServiceClient();
         }
-        public bool SaveChangeEmployee(Employee employee)
+        internal void RemoveEmployeeToDepartment(int employeeId, int departmentId)
+        {          
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.RemoveEmployeeToDepartment(employeeId, departmentId);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                throw new FaultException(ex.Message);
+            }          
+        }
+        internal bool UploadEmployeeDocument(byte[] content, EmployeeDocument employeeDocument)
         {
             bool result = false;
             try
             {
                 _Client = ServiceHelper.NewMessageServiceClient();
                 _Client.Open();
-                result = _Client.SaveChangeEmployee(employee);
+                result = _Client.UploadEmployeeDocument(content, employeeDocument);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show("Thao tác thất bại, vui lòng thử lại,");
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+        internal bool SaveChangeEmployeeDepartment(EmployeeDepartment employeeDepartment)
+        {
+            bool result = false;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                result = _Client.SaveChangeEmployeeDepartment(employeeDepartment);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                throw new FaultException(ex.Message);
+            }
+            return result;
+        }
+        internal byte[] DownloadEmployeeDocument(int employeeDocumentId)
+        {
+            byte[] ketqua = null;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                ketqua = _Client.DownloadEmployeeDocument(employeeDocumentId);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return ketqua;
+        }
+        public ObservableCollection<EmployeeDocument> LoadEmployeeDocuments(int employeeId,bool isDeleted = false)
+        {
+            ObservableCollection<EmployeeDocument> kq = new ObservableCollection<EmployeeDocument>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                kq = _Client.LoadEmployeeDocuments(employeeId,isDeleted).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        public void ChangeEmployeeDocumentName(int employeeDocumentId, string newDocumentName)
+        {
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.ChangeEmployeeDocumentName(employeeDocumentId, newDocumentName);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void ChangeEmployeeDocumentInfo(int employeeDocumentId, string documentName,string description)
+        {
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.ChangeEmployeeDocumentInfo(employeeDocumentId, documentName, description);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void SetDeleteEmployeeDocument(int employeeDocumentId)
+        {
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                _Client.SetDeleteEmployeeDocument(employeeDocumentId);
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }           
+        }
+        public int AddEmployeeToDepartment(EmployeeDepartment employeeDepartment)
+        {
+            int result=0;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                result = _Client.AddEmployeeToDepartment(employeeDepartment);
+                _Client.Close();
+
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+        public int NewEmployee(Employee employee, byte[] avatar)
+        {
+            int result = 0;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                result = _Client.NewEmployee(employee, avatar);
+                _Client.Close();
+
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+        public bool SaveChangeEmployee(Employee employee, byte[] avatar)
+        {
+            bool result = false;
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+                result = _Client.SaveChangeEmployee(employee, avatar);
                 _Client.Close();
                
             }
@@ -36,22 +200,9 @@ namespace QLHS_DR.Core
             }
             return result;
         }
-        public void SaveChangeEmployeeDepartmentDTO(EmployeeDepartmentDTO employeeDepartmentDTO)
-        {           
-            try
-            {
-                _Client = ServiceHelper.NewMessageServiceClient();
-                _Client.Open();
-                _Client.SaveChangeEmployeeDepartmentDTO(employeeDepartmentDTO);
-                _Client.Close();
-            }
-            catch (Exception ex)
-            {
-                _Client.Abort();
-                MessageBox.Show(ex.Message);
-            }
-        }
-        internal byte[] GetAvatar(string employeeId)
+
+        
+        internal byte[] GetAvatar(int employeeId)
         {
             byte[] kq=null;
             try
@@ -79,6 +230,26 @@ namespace QLHS_DR.Core
                 _Client.Open();
 
                 kq = _Client.LoadEmployees().ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal async System.Threading.Tasks.Task<ObservableCollection<Employee>> LoadEmployeesAsync()
+        {
+            ObservableCollection<Employee> kq = new ObservableCollection<Employee>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                var employees = await System.Threading.Tasks.Task.Run(() => _Client.LoadEmployees());
+                kq = employees.ToObservableCollection();
+
                 _Client.Close();
             }
             catch (Exception ex)
@@ -124,7 +295,7 @@ namespace QLHS_DR.Core
             }
             return kq;
         }
-        internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartments(string employeeId)
+        internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartments(int employeeId)
         {
             ObservableCollection<EmployeeDepartment> kq = new ObservableCollection<EmployeeDepartment>();
             try
@@ -142,7 +313,61 @@ namespace QLHS_DR.Core
             }
             return kq;
         }
-        internal ObservableCollection<Department> GetDepartmentsOfEmployee(string employeeId)
+        internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartmentsByDepartmentId(int departmentId)
+        {
+            ObservableCollection<EmployeeDepartment> kq = new ObservableCollection<EmployeeDepartment>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadEmployeeDepartmentsByDepartmentId(departmentId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartmentsActiveByDepartmentId(int departmentId)
+        {
+            ObservableCollection<EmployeeDepartment> kq = new ObservableCollection<EmployeeDepartment>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadEmployeeDepartmentsActiveByDepartmentId(departmentId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<EmployeeDepartment> LoadEmployeeDepartmentsUnActiveByDepartmentId(int departmentId)
+        {
+            ObservableCollection<EmployeeDepartment> kq = new ObservableCollection<EmployeeDepartment>();
+            try
+            {
+                _Client = ServiceHelper.NewMessageServiceClient();
+                _Client.Open();
+
+                kq = _Client.LoadEmployeeDepartmentsUnActiveByDepartmentId(departmentId).ToObservableCollection();
+                _Client.Close();
+            }
+            catch (Exception ex)
+            {
+                _Client.Abort();
+                MessageBox.Show(ex.Message);
+            }
+            return kq;
+        }
+        internal ObservableCollection<Department> GetDepartmentsOfEmployee(int employeeId)
         {
             ObservableCollection<Department> kq = new ObservableCollection<Department>();
             try
@@ -160,24 +385,7 @@ namespace QLHS_DR.Core
             }
             return kq;
         }
-        internal ObservableCollection<EmployeeDepartmentDTO> LoadEmployeeDepartmentDTOs()
-        {
-            ObservableCollection<EmployeeDepartmentDTO> kq = new ObservableCollection<EmployeeDepartmentDTO>();
-            try
-            {
-                _Client = ServiceHelper.NewMessageServiceClient();
-                _Client.Open();
-
-                kq = _Client.LoadEmployeeDepartmentDTOs().ToObservableCollection();
-                _Client.Close();
-            }
-            catch (Exception ex)
-            {
-                _Client.Abort();
-                MessageBox.Show(ex.Message);
-            }
-            return kq;
-        }
+       
         internal ObservableCollection<LoginManager> LoadLoginManagers()
         {
             ObservableCollection<LoginManager> kq = new ObservableCollection<LoginManager>();

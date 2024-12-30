@@ -524,12 +524,6 @@
   <wsdl:message name="IMessageService_LoadEmployees_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadEmployeesResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_LoadEmployeeDepartmentDTOs_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentDTOs" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_LoadEmployeeDepartmentDTOs_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentDTOsResponse" />
-  </wsdl:message>
   <wsdl:message name="IMessageService_GetAvatar_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAvatar" />
   </wsdl:message>
@@ -542,23 +536,101 @@
   <wsdl:message name="IMessageService_LoadEmployeeDepartments_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsResponse" />
   </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentsByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentsByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsByDepartmentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentsActiveByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsActiveByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentsActiveByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsActiveByDepartmentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentsUnActiveByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsUnActiveByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDepartmentsUnActiveByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDepartmentsUnActiveByDepartmentIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IMessageService_GetDepartmentsOfEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartmentsOfEmployee" />
   </wsdl:message>
   <wsdl:message name="IMessageService_GetDepartmentsOfEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDepartmentsOfEmployeeResponse" />
   </wsdl:message>
-  <wsdl:message name="IMessageService_SaveChangeEmployeeDepartmentDTO_InputMessage">
-    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartmentDTO" />
-  </wsdl:message>
-  <wsdl:message name="IMessageService_SaveChangeEmployeeDepartmentDTO_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartmentDTOResponse" />
-  </wsdl:message>
   <wsdl:message name="IMessageService_SaveChangeEmployee_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveChangeEmployee" />
   </wsdl:message>
   <wsdl:message name="IMessageService_SaveChangeEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveChangeEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_NewEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddEmployeeToDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmployeeToDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_AddEmployeeToDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmployeeToDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadEmployeeDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadEmployeeDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_UploadEmployeeDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadEmployeeDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeleteEmployeeDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeleteEmployeeDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SetDeleteEmployeeDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeleteEmployeeDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_LoadEmployeeDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadEmployeeDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadEmployeeDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadEmployeeDocument" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_DownloadEmployeeDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadEmployeeDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ChangeEmployeeDocumentName_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmployeeDocumentName" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ChangeEmployeeDocumentName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmployeeDocumentNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ChangeEmployeeDocumentInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmployeeDocumentInfo" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_ChangeEmployeeDocumentInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmployeeDocumentInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetEmployeeIdByMsnv_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeIdByMsnv" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_GetEmployeeIdByMsnv_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeIdByMsnvResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SaveChangeEmployeeDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_SaveChangeEmployeeDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveChangeEmployeeDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveEmployeeToDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEmployeeToDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IMessageService_RemoveEmployeeToDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEmployeeToDepartmentResponse" />
   </wsdl:message>
   <wsdl:message name="IMessageService_DenyRequestPermissionDocument_InputMessage">
     <wsdl:part name="parameters" element="tns:DenyRequestPermissionDocument" />
@@ -2347,10 +2419,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployees" message="tns:IMessageService_LoadEmployees_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeesResponse" message="tns:IMessageService_LoadEmployees_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="LoadEmployeeDepartmentDTOs">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentDTOs" message="tns:IMessageService_LoadEmployeeDepartmentDTOs_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentDTOsResponse" message="tns:IMessageService_LoadEmployeeDepartmentDTOs_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetAvatar">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetAvatar" message="tns:IMessageService_GetAvatar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetAvatarResponse" message="tns:IMessageService_GetAvatar_OutputMessage" />
@@ -2359,17 +2427,69 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartments" message="tns:IMessageService_LoadEmployeeDepartments_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsResponse" message="tns:IMessageService_LoadEmployeeDepartments_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentsByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsByDepartmentId" message="tns:IMessageService_LoadEmployeeDepartmentsByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsByDepartmentIdResponse" message="tns:IMessageService_LoadEmployeeDepartmentsByDepartmentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentsActiveByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsActiveByDepartmentId" message="tns:IMessageService_LoadEmployeeDepartmentsActiveByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsActiveByDepartmentIdResponse" message="tns:IMessageService_LoadEmployeeDepartmentsActiveByDepartmentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentsUnActiveByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsUnActiveByDepartmentId" message="tns:IMessageService_LoadEmployeeDepartmentsUnActiveByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsUnActiveByDepartmentIdResponse" message="tns:IMessageService_LoadEmployeeDepartmentsUnActiveByDepartmentId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetDepartmentsOfEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee" message="tns:IMessageService_GetDepartmentsOfEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetDepartmentsOfEmployeeResponse" message="tns:IMessageService_GetDepartmentsOfEmployee_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SaveChangeEmployeeDepartmentDTO">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO" message="tns:IMessageService_SaveChangeEmployeeDepartmentDTO_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTOResponse" message="tns:IMessageService_SaveChangeEmployeeDepartmentDTO_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="SaveChangeEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployee" message="tns:IMessageService_SaveChangeEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeResponse" message="tns:IMessageService_SaveChangeEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/NewEmployee" message="tns:IMessageService_NewEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/NewEmployeeResponse" message="tns:IMessageService_NewEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEmployeeToDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/AddEmployeeToDepartment" message="tns:IMessageService_AddEmployeeToDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/AddEmployeeToDepartmentResponse" message="tns:IMessageService_AddEmployeeToDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadEmployeeDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/UploadEmployeeDocument" message="tns:IMessageService_UploadEmployeeDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/UploadEmployeeDocumentResponse" message="tns:IMessageService_UploadEmployeeDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeleteEmployeeDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SetDeleteEmployeeDocument" message="tns:IMessageService_SetDeleteEmployeeDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SetDeleteEmployeeDocumentResponse" message="tns:IMessageService_SetDeleteEmployeeDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDocuments" message="tns:IMessageService_LoadEmployeeDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/LoadEmployeeDocumentsResponse" message="tns:IMessageService_LoadEmployeeDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadEmployeeDocument">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DownloadEmployeeDocument" message="tns:IMessageService_DownloadEmployeeDocument_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/DownloadEmployeeDocumentResponse" message="tns:IMessageService_DownloadEmployeeDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmployeeDocumentName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ChangeEmployeeDocumentName" message="tns:IMessageService_ChangeEmployeeDocumentName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ChangeEmployeeDocumentNameResponse" message="tns:IMessageService_ChangeEmployeeDocumentName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmployeeDocumentInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/ChangeEmployeeDocumentInfo" message="tns:IMessageService_ChangeEmployeeDocumentInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/ChangeEmployeeDocumentInfoResponse" message="tns:IMessageService_ChangeEmployeeDocumentInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeIdByMsnv">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/GetEmployeeIdByMsnv" message="tns:IMessageService_GetEmployeeIdByMsnv_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/GetEmployeeIdByMsnvResponse" message="tns:IMessageService_GetEmployeeIdByMsnv_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveChangeEmployeeDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartment" message="tns:IMessageService_SaveChangeEmployeeDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentResponse" message="tns:IMessageService_SaveChangeEmployeeDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEmployeeToDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/RemoveEmployeeToDepartment" message="tns:IMessageService_RemoveEmployeeToDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMessageService/RemoveEmployeeToDepartmentResponse" message="tns:IMessageService_RemoveEmployeeToDepartment_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DenyRequestPermissionDocument">
       <wsdl:input wsaw:Action="http://tempuri.org/IMessageService/DenyRequestPermissionDocument" message="tns:IMessageService_DenyRequestPermissionDocument_InputMessage" />
@@ -3972,15 +4092,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="LoadEmployeeDepartmentDTOs">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDepartmentDTOs" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetAvatar">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetAvatar" style="document" />
       <wsdl:input>
@@ -3999,6 +4110,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentsByDepartmentId">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsByDepartmentId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentsActiveByDepartmentId">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsActiveByDepartmentId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDepartmentsUnActiveByDepartmentId">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDepartmentsUnActiveByDepartmentId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDepartmentsOfEmployee">
       <soap12:operation soapAction="http://tempuri.org/IMessageService/GetDepartmentsOfEmployee" style="document" />
       <wsdl:input>
@@ -4008,8 +4146,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SaveChangeEmployeeDepartmentDTO">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartmentDTO" style="document" />
+    <wsdl:operation name="SaveChangeEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployee" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4017,8 +4155,98 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SaveChangeEmployee">
-      <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployee" style="document" />
+    <wsdl:operation name="NewEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/NewEmployee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmployeeToDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/AddEmployeeToDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadEmployeeDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/UploadEmployeeDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeleteEmployeeDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SetDeleteEmployeeDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadEmployeeDocuments">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/LoadEmployeeDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadEmployeeDocument">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/DownloadEmployeeDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmployeeDocumentName">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/ChangeEmployeeDocumentName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmployeeDocumentInfo">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/ChangeEmployeeDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeIdByMsnv">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/GetEmployeeIdByMsnv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveChangeEmployeeDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/SaveChangeEmployeeDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEmployeeToDepartment">
+      <soap12:operation soapAction="http://tempuri.org/IMessageService/RemoveEmployeeToDepartment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -25,12 +25,12 @@
         </ResourceDictionary>
     </Window.Resources>
     <DockPanel>
-        <dxr:RibbonControl x:Name="ribbonControl" RibbonStyle="Office2019" DockPanel.Dock="Top">
-                 
+        <dxr:RibbonControl x:Name="ribbonControl" RibbonStyle="Office2019" DockPanel.Dock="Top">                 
         <dxr:RibbonDefaultPageCategory Caption="defaultCategory">
                 <dxr:RibbonPage Caption="Home">
                     <dxr:RibbonPageGroup Caption="Edit">
                         <dxb:BarButtonItem Content="Save" Command="{Binding SaveCommand}"
+                                           CommandParameter="{Binding ElementName=newEmployeeWindow}"
                             Glyph="{dx:DXImage SvgImages/Outlook Inspired/SaveAs.svg}" 
                                            MediumGlyph="{dx:DXImage SvgImages/Outlook Inspired/SaveAs.svg}" 
                                            LargeGlyph="{dx:DXImage SvgImages/Outlook Inspired/SaveAs.svg}"/>
@@ -42,106 +42,93 @@
             </dxr:RibbonDefaultPageCategory>
         </dxr:RibbonControl>
         <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom"/>
-        <dxlc:LayoutControl Orientation="Vertical" TextBlock.FontSize="11" VerticalAlignment="Stretch" StretchContentVertically="True" x:Name="layoutControl">
-           
-            <dxlc:LayoutGroup Orientation="Horizontal" x:Name="entityGroup" ItemSpace="12">
-                <dxlc:LayoutGroup Orientation="Vertical" x:Name="leftColumnGroup" ItemSpace="15">
-                    <dxlc:LayoutGroup Orientation="Horizontal" x:Name="imageGroup" VerticalAlignment="Top">
-                        <dxlc:LayoutGroup Orientation="Vertical" VerticalAlignment="Stretch" x:Name="employeeNameGroup">
-                            <dxlc:LayoutItem Label="Họ và tên đệm" AddColonToLabel="True">
-                                <dxe:TextEdit EditValue="{Binding Employee.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Tên" AddColonToLabel="True">
-                                <dxe:TextEdit EditValue="{Binding Employee.FirtName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" />
-                            </dxlc:LayoutItem>                           
-                            <dxlc:LayoutItem Label="Ngày sinh" AddColonToLabel="True">
-                                <dxe:DateEdit EditValue="{Binding Employee.DateOfBirth}" Mask="dd/MM/yyyy" MaskUseAsDisplayFormat="True"/>
-                            </dxlc:LayoutItem>                            
-                        </dxlc:LayoutGroup>
-                        
-                    </dxlc:LayoutGroup>
-                    <dxlc:LayoutGroup Orientation="Vertical"  VerticalAlignment="Top">
-                        <dxlc:LayoutItem Label="Địa chỉ" AddColonToLabel="True">
-                            <dxe:TextEdit EditValue="{Binding Employee.Address}"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-                    <dxlc:LayoutGroup Orientation="Vertical" VerticalAlignment="Top">                        
-                        <dxlc:LayoutItem Label="Số điện thoại" AddColonToLabel="True">
-                            <dxe:ButtonEdit IsTextEditable="True"
+        <dxlc:LayoutControl Orientation="Horizontal" TextBlock.FontSize="11" VerticalAlignment="Stretch" StretchContentVertically="True" x:Name="layoutControl">
+            <dxlc:LayoutGroup Orientation="Vertical" VerticalAlignment="Stretch" x:Name="employeeNameGroup">
+                <dxlc:LayoutItem Label="Mã số nhân viên" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.MSNV, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Họ và tên đệm" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Tên" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.FirtName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Ngày sinh" AddColonToLabel="True">
+                    <dxe:DateEdit EditValue="{Binding Employee.DateOfBirth}" Mask="dd/MM/yyyy" MaskUseAsDisplayFormat="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Địa chỉ" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.Address}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Số điện thoại" AddColonToLabel="True">
+                    <dxe:ButtonEdit IsTextEditable="True"
                                         AllowDefaultButton="False"                                        
                                         MaskUseAsDisplayFormat="True"
                                         EditValue="{Binding Employee.PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}">
-                                <dxe:ButtonInfo GlyphKind="Custom">
-                                    <dx:DXImage Height="16" Width="16" Source="pack://application:,,,/QLHS_DR;component/Icon/Glyph_Phone.svg" Margin="3,0"/>
-                                </dxe:ButtonInfo>
-                            </dxe:ButtonEdit>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Email" AddColonToLabel="True">
-                            <dxe:ButtonEdit IsTextEditable="True"
+                        <dxe:ButtonInfo GlyphKind="Custom">
+                            <dx:DXImage Height="16" Width="16" Source="pack://application:,,,/QLHS_DR;component/Icon/Glyph_Phone.svg" Margin="3,0"/>
+                        </dxe:ButtonInfo>
+                    </dxe:ButtonEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Email" AddColonToLabel="True">
+                    <dxe:ButtonEdit IsTextEditable="True"
                                         AllowDefaultButton="False"
                                         MaskType="RegEx"
                                         Mask="(\w|[\.\-\_])+@(\w|[\-]+\.)*(\w|[\-]){2,63}(\.[a-zA-Z]{2,8})+"
                                         EditValue="{Binding Employee.Email}"
                                         ValidateOnTextInput="True">
-                                <dxe:ButtonInfo GlyphKind="Custom">
-                                    <dx:DXImage Height="16" Width="16" Source="pack://application:,,,/QLHS_DR;component/Icon/Glyph_Mail.svg" Margin="3,0"/>
-                                </dxe:ButtonInfo>
-                            </dxe:ButtonEdit>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Mã số thuế" AddColonToLabel="True">
-                            <dxe:TextEdit EditValue="{Binding Employee.TaxIdentificationNumber}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Số căn cước" AddColonToLabel="True">
-                            <dxe:TextEdit EditValue="{Binding Employee.CitizenIdentificationNumber}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Số BHXH" AddColonToLabel="True">
-                            <dxe:TextEdit EditValue="{Binding Employee.SocialInsuranceNumber}"/>
-                        </dxlc:LayoutItem>
-                        
-                        <dxlc:LayoutItem Label="Giới tính" AddColonToLabel="True">
-                            <dxe:ComboBoxEdit ItemsSource="{Binding GenderList}" 
+                        <dxe:ButtonInfo GlyphKind="Custom">
+                            <dx:DXImage Height="16" Width="16" Source="pack://application:,,,/QLHS_DR;component/Icon/Glyph_Mail.svg" Margin="3,0"/>
+                        </dxe:ButtonInfo>
+                    </dxe:ButtonEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Mã số thuế" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.TaxIdentificationNumber}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Số căn cước" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.CitizenIdentificationNumber}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Số BHXH" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.SocialInsuranceNumber}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Giới tính" AddColonToLabel="True">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding GenderList}" 
                                               SelectedItem="{Binding Employee.Gender, Converter={StaticResource GenderConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutGroup Orientation="Horizontal" >
-                            <dxlc:LayoutItem Margin="5" Label="Đảng viên" AddColonToLabel="True">
-                                <StackPanel Orientation="Horizontal">
-                                    <RadioButton Content="Yes" Margin="5,0,0,0"  GroupName="PartyMember" />
-                                    <RadioButton Content="No" Margin="5,0,0,0" GroupName="PartyMember"/>
-                                </StackPanel>
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Margin="5" Label="Bộ đội" AddColonToLabel="True">
-                                <StackPanel Orientation="Horizontal">
-                                    <RadioButton Content="Yes" Margin="5,0,0,0" GroupName="SoliderMember" />
-                                    <RadioButton Content="No" Margin="5,0,0,0" GroupName="SoliderMember"/>
-                                </StackPanel>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Vertical" Height="{Binding ActualHeight, ElementName=leftColumnGroup}" ItemSpace="5">
-                    <dxlc:LayoutItem Label="Ngành nghề được đào tạo" AddColonToLabel="True">
-                        <dxe:TextEdit EditValue="{Binding Employee.TrainedOccupation}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" >
+                    <dxlc:LayoutItem Margin="5" Background="AliceBlue" >
+                        <CheckBox Content="Đảng viên" Margin="5,0,0,0" IsChecked="{Binding Employee.IsPartyMember}" />
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Ngày tuyển dụng" AddColonToLabel="True">
-                        <dxe:DateEdit EditValue="{Binding Employee.HireDate}"
-                                          Mask="dd/MM/yyyy" MaskUseAsDisplayFormat="True"
-                                          xml:lang="vi-VN" />
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Đơn vị" AddColonToLabel="True">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding Departments}" DisplayMember="Name" EditValue="{Binding DepartmentSelected}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Chức danh" AddColonToLabel="True">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding Positions}" DisplayMember="Name" SelectedItem="{Binding PositionSelected}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem  VerticalAlignment="Stretch">
-                        <dxe:ImageEdit x:Name="photoEditor"
-                                       EditValue="{Binding EmployeeAvatar, Converter={StaticResource PictureConverter}}"
-                                       Height="{Binding ActualHeight, ElementName=employeeNameGroup}"/>
+                    <dxlc:LayoutItem Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="Bộ đội" Margin="5,0,0,0"  IsChecked="{Binding Employee.IsSolider}"/>                          
+                        </StackPanel>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            </dxlc:LayoutControl>
+            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
+                <dxlc:LayoutItem Label="Ngành nghề được đào tạo" AddColonToLabel="True">
+                    <dxe:TextEdit EditValue="{Binding Employee.TrainedOccupation}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Ngày tuyển dụng" AddColonToLabel="True">
+                    <dxe:DateEdit EditValue="{Binding Employee.HireDate}"
+                                          Mask="dd/MM/yyyy" MaskUseAsDisplayFormat="True"
+                                          xml:lang="vi-VN" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Đơn vị" AddColonToLabel="True">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Departments}" DisplayMember="Name" EditValue="{Binding DepartmentSelected}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Chức danh" AddColonToLabel="True">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Positions}" DisplayMember="Name" SelectedItem="{Binding PositionSelected}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="From date" AddColonToLabel="True">
+                    <dxe:DateEdit EditValue="{Binding FromDate}" Mask="dd/MM/yyyy" MaskUseAsDisplayFormat="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                    <dxe:ImageEdit Margin="5" x:Name="photoEditor"
+                                       EditValue="{Binding EmployeeAvatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </dxlc:LayoutItem>
+                
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
     </DockPanel>
 </Window>
