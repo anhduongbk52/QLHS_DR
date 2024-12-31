@@ -108,7 +108,7 @@
                                            LargeGlyph="{dx:DXImage SvgImages/Snap/InsertGroupHeader.svg}" />-->
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
-                <dxr:RibbonPage Caption="Sale Document">
+                <dxr:RibbonPage Caption="Sale Document" IsVisible="False">
                     <dxr:RibbonPageGroup Caption="Product">
                         <dxb:BarButtonItem Command="{Binding OpenSaleDocumentManagerCommand}"
                                            Content="Tìm kiếm Sale Document"
@@ -120,7 +120,7 @@
                                            RibbonStyle="Large" />
                     </dxr:RibbonPageGroup> 
                 </dxr:RibbonPage>
-                <dxr:RibbonPage Caption="Library">
+                <dxr:RibbonPage Caption="Library" IsVisible="False">
                     <dxr:RibbonPageGroup Caption="Biến dòng chân sứ">
                         <dxb:BarButtonItem Command="{Binding OpenBCTDesignManagerCommand}"
                                            Content="Find Design"
@@ -175,7 +175,7 @@
                                            LargeGlyph="{dx:DXImage SvgImages/Business Objects/BO_Audit_ChangeHistory.svg}" />
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
-                <dxr:RibbonPage Caption="Employees Manager">
+                <dxr:RibbonPage Caption="Employees Manager" IsVisible="{Binding CanOpenEmployeeManager}">
                     <dxr:RibbonPageGroup Caption="Nhân sự">
                         <dxb:BarButtonItem Content="Danh sách nhân sự"
                                            Command="{Binding OpenListEmployeeCommand}"

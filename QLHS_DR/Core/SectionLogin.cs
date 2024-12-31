@@ -59,6 +59,7 @@ namespace QLHS_DR.Core
                         _CanUploadTransformerManualFile=_ListPermissions.Any(x => x.Code == "productUploadTransformerManualFile");
                         _CanViewListProduct = _ListPermissions.Any(x => x.Code == "productViewListProduct");
                         _CanNewEmployee = _ListPermissions.Any(x => x.Code == "employeeNewEmployee");
+                        _CanOpenEmployeeManager = _ListPermissions.Any(x => x.Code == "employeeManager");
                     }
                 }
             }
@@ -118,6 +119,8 @@ namespace QLHS_DR.Core
         public bool CanViewListProduct { get { return _CanViewListProduct; } }
         private bool _CanNewEmployee;
         public bool CanNewEmployee { get { return _CanNewEmployee; } }
+        private bool _CanOpenEmployeeManager;
+        public bool CanOpenEmployeeManager { get { return _CanOpenEmployeeManager; } }
 
     }
 }

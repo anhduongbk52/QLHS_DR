@@ -179,6 +179,20 @@ namespace QLHS_DR.ViewModel
                 }
             }
         }
+        
+        private bool _CanOpenEmployeeManager;
+        public bool CanOpenEmployeeManager
+        {
+            get => _CanOpenEmployeeManager;
+            set
+            {
+                if (_CanOpenEmployeeManager != value)
+                {
+                    _CanOpenEmployeeManager = value;
+                    NotifyPropertyChanged("CanOpenEmployeeManager");
+                }
+            }
+        }
         #endregion
         #region "Command"
         public ICommand CheckUpdateCommand { get; set; }
@@ -328,6 +342,7 @@ namespace QLHS_DR.ViewModel
                         if (loginVM.User != null)
                         {
                             CurrentUser = loginVM.User;
+                            
                         }
                         try
                         {
@@ -344,15 +359,17 @@ namespace QLHS_DR.ViewModel
                             {
                                 backgroundWorker.RunWorkerAsync();
                             }
+                            
                         }
                         catch (Exception ex)
                         {
                             _MyClient.Abort();
                             System.Windows.Forms.MessageBox.Show(ex.Message);
                         }
-
+                        CanOpenEmployeeManager = SectionLogin.Ins.CanOpenEmployeeManager;
                         p.Show();
                         //LoadDefaultTab();
+                       
                     }
                     else
                     { p.Close(); }
@@ -391,6 +408,7 @@ namespace QLHS_DR.ViewModel
                                 //SectionLogin.Ins.CurrentUser = loginVM.User;
                                 CurrentUser = loginVM.User;
                             }
+                            CanOpenEmployeeManager = SectionLogin.Ins.CanOpenEmployeeManager;
                             p.Show();
                             LoadDefaultTab();
                         }
